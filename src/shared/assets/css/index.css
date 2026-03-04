@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@plugin "flowbite/plugin";
+@import "flowbite/src/themes/default";
+@source "../../../../node_modules/flowbite";
+
+@source "../../../../.flowbite-react/class-list.json";
+@plugin "flowbite-react/plugin/tailwindcss";
+
+body {
+  font-family: "Inter", serif;
+}
+
+/* active  */
+
+.activo {
+  background-color: #68dcc1;    
+  color: #fff;
+}
+
+.activo > svg {
+  color: #fff;
+}
+
+.activo .rounded-full {
+  color: #0f896d;
+  background-color: #fff;
+}
+
+/* scrooll de sidebar */
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Contenido */
+
+.animated-element {
+  animation: fadeIn;
+  position: relative;
+  animation-duration: 0.8s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
