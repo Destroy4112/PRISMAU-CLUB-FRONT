@@ -1,6 +1,14 @@
 import { menuUseCases } from "@features/superAdmin/menus/application/menu.container";
 import type { ChangeEvent, ReactNode } from "react";
 import type { MenuRole } from "../../domain/menu-rol.model";
+import type { ModalsApi } from "@shared/hooks/useModal";
+
+export type MenuRolModalKey = "crear";
+
+export type UseMenuRolFormProps = {
+    modalsApi: ModalsApi<MenuRolModalKey>;
+    rol: number;
+};
 
 export type MenuRolForm = {
     menu_id: number,
@@ -37,7 +45,7 @@ export type CardsMenuRolProps = {
 };
 
 export type FormMenuRolProps = {
-    form : MenuRolForm,
+    form: MenuRolForm,
     menus: Awaited<ReturnType<typeof menuUseCases.getAll>> | undefined,
     handleChange: (e: ChangeEvent<HTMLSelectElement>) => void
 }

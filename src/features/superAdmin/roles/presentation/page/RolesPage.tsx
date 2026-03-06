@@ -12,7 +12,7 @@ import useMenuRole from "../hooks/useMenuRol";
 function RolesPage() {
 
     const { titulo, subtitulo, isLoading, isCreating, rol, menusRol, modals, tituloModal, menus, menuRolForm,
-        cargarRol, handleChange, handleDelete, handleSubmit, toggleModal } = useMenuRole();
+        cargarRol, handleChange, handleDelete, handleSubmit, openModal, closeModal } = useMenuRole();
 
     return (
         <>
@@ -21,11 +21,11 @@ function RolesPage() {
                 <CardsRoles cargarRol={cargarRol} />
                 {rol !== 0 &&
                     <Caja>
-                        <HeaderAsigMenu toggleModal={toggleModal} />
+                        <HeaderAsigMenu toggleModal={openModal} />
                         <CardMenusRol menus={menusRol} eliminar={handleDelete} loading={isLoading} />
                     </Caja>
                 }
-                <VentanaModal size={'2xl'} titulo={tituloModal} show={modals.crear} cerrarModal={toggleModal}
+                <VentanaModal size={'2xl'} titulo={tituloModal} show={modals.crear} cerrarModal={closeModal}
                     hanleSubmit={handleSubmit} loading={isCreating}><></>
                     <FormAsignarMenu form={menuRolForm} handleChange={handleChange} menus={menus} />
                 </VentanaModal>

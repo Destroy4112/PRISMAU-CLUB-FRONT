@@ -1,6 +1,6 @@
 import Contenido from "@shared/components/helpers/Contenido";
 import TituloPage from "@shared/components/helpers/TituloPage";
-import Hobbies from "./components/Hobbies";
+import Hobbies from "../components/Hobbies";
 import { WandSparkles } from "lucide-react";
 
 function HobbiesPage() {

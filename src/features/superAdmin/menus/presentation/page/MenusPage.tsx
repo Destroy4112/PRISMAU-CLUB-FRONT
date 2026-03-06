@@ -12,7 +12,7 @@ import useMenu from "../hooks/useMenu";
 export default function MenusPage() {
 
     const { titulo, subtitulo, loading, menus, tituloModal, modals, menuForm, isLoading,
-        toggleModal, handleChange, cargarMenu, handler, handleDelete, } = useMenu();
+        openCreate, closeModal, handleChange, cargarMenu, submit, handleDelete, } = useMenu();
 
     const columns = MenuColumns({ cargar: cargarMenu, eliminar: handleDelete });
 
@@ -20,10 +20,10 @@ export default function MenusPage() {
         <>
             <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<List className="w-7 h-7" />} color="yellow" />
             <Contenido>
-                <MenuSencillo noBuscar={true} toggleModal={toggleModal} />
+                <MenuSencillo noBuscar={true} toggleModal={openCreate} />
                 <DataTableComponent data={menus} loading={isLoading} columns={columns} />
-                <VentanaModal size={'4xl'} titulo={tituloModal} show={modals.crearEditar} cerrarModal={toggleModal}
-                    hanleSubmit={handler} loading={loading}>
+                <VentanaModal size={'4xl'} titulo={tituloModal} show={modals.crearEditar} cerrarModal={closeModal}
+                    hanleSubmit={submit} loading={loading}>
                     <FormMenu handleChange={handleChange} form={menuForm} />
                 </VentanaModal>
             </Contenido>

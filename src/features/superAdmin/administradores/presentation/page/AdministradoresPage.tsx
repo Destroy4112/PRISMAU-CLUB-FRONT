@@ -16,11 +16,11 @@ import useAdministrador from "../hooks/useAdministrador";
 function AdministradoresPage() {
 
     const { titulo, subtitulo, tituloModal, modals, admins, filters, limit, page, total, admin, isLoading, loading, isEditing,
-        tituloModalClave, isChanging, handleChange, toggleModal, handler, cargar, handleDelete, handleFilterChange,
-        limpiarFiltros, handleUpdateStatus, onPageChange, onRowsPerPageChange, cambiarClave, handleUpdateClave, switchModalClave
-    } = useAdministrador();
+        tituloModalClave, isChanging, passwordForm, handleChangePassword, handleChange, openModal, closeModal, submit, cargar,
+        handleDelete, openModalPass, closeModalPass, handleUpdatePass, handleFilterChange, limpiarFiltros, handleUpdateStatus,
+        onPageChange, onRowsPerPageChange } = useAdministrador();
 
-    const columns = AdminColumns({ cargar, handleDelete, handleUpdateStatus, cambiarClave });
+    const columns = AdminColumns({ cargar, handleDelete, handleUpdateStatus, cambiarClave: openModalPass });
 
     const data = DataExportAdmins(admins);
 
@@ -28,18 +28,18 @@ function AdministradoresPage() {
         <>
             <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<ShieldUser className="w-7 h-7" />} color="pink" />
             <Contenido>
-                <MenuSencillo toggleModal={toggleModal} exportar data={data} titulo={titulo} noBuscar />
+                <MenuSencillo toggleModal={openModal} exportar data={data} titulo={titulo} noBuscar />
                 <FiltrosBusqueda fields={CAMPOS_ADMIN} values={filters} handleChange={handleFilterChange}
                     limpiar={limpiarFiltros} />
                 <DataTableComponent<Administrador> columns={columns} data={admins} loading={isLoading} page={page}
                     limit={limit} total={total} onRowsPerPageChange={onRowsPerPageChange} onPageChange={onPageChange} />
-                <VentanaModal size={'7xl'} titulo={tituloModal} show={modals.crearEditar} cerrarModal={toggleModal}
-                    hanleSubmit={handler} loading={loading}><></>
+                <VentanaModal size={'7xl'} titulo={tituloModal} show={modals.crearEditar} cerrarModal={closeModal}
+                    hanleSubmit={submit} loading={loading}><></>
                     <FormAdmin isEditing={isEditing} form={admin} hanleChange={handleChange} />
                 </VentanaModal>
-                <VentanaModal size={'4xl'} titulo={tituloModalClave} show={modals.clave} cerrarModal={switchModalClave}
-                    hanleSubmit={handleUpdateClave} loading={isChanging}>
-                    <FormClave value={admin.user.password} hanleChange={handleChange} />
+                <VentanaModal size={'4xl'} titulo={tituloModalClave} show={modals.clave} cerrarModal={closeModalPass}
+                    hanleSubmit={handleUpdatePass} loading={isChanging}>
+                    <FormClave value={passwordForm.password} hanleChange={handleChangePassword} />
                 </VentanaModal>
             </Contenido>
         </>

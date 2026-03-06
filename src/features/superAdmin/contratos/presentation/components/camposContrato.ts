@@ -1,4 +1,4 @@
-import type { FieldConfig } from "@components/buscador/buscador.type";
+import type { FieldConfig } from "@shared/components/buscador/buscador.type";
 import { FaIdCardAlt, FaKeyboard } from "react-icons/fa";
 
 export const CAMPOS_CONTRATO: FieldConfig[] = [

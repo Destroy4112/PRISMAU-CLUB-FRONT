@@ -1,8 +1,8 @@
-import type { IContrato } from "@models/entities/Entity.model";
-import { formatearFecha } from "@utils/convertidores/normalizeText";
+import { formatearFecha } from "@shared/utilities/convertidores/normalizeText";
 import type { TableColumn } from "react-data-table-component";
+import type { Contrato } from "../../domain/contrato.model";
 
-export default function ContratacionesColumn(): TableColumn<IContrato>[] {
+export default function ContratacionesColumn(): TableColumn<Contrato>[] {
 
     return [
         {
@@ -36,7 +36,7 @@ export default function ContratacionesColumn(): TableColumn<IContrato>[] {
         },
         {
             name: "Fecha",
-            cell: row => formatearFecha(row.created_at),
+            cell: row => formatearFecha(row.createdAt!),
             width: '120px',
         },
     ];

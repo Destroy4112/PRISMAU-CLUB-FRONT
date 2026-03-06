@@ -1,6 +1,8 @@
 import type { ChangeEvent } from "react";
 import type { Menu } from "../../domain/menu.model";
 
+export type MenuModalKey = "crearEditar";
+
 export type FormMenuProps = {
     form: MenuForm,
     handleChange: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
