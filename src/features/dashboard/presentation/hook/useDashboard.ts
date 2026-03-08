@@ -1,11 +1,12 @@
 import { useAppSelector } from "@core/store/redux/hooks";
+import { selectRol } from "@features/auth/login/presentation/store/auth.selectors";
 import useQueryDashboard from "../queries/useQueryDashboard";
 ;
 
 export default function useDashboard() {
 
-    const rol = Number(useAppSelector((state) => state.credenciales.Rol));
-    
+    const rol = useAppSelector(selectRol);
+
     const { data, isLoading } = useQueryDashboard();
 
     const stats = {

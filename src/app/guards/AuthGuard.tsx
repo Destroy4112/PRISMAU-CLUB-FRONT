@@ -1,4 +1,5 @@
 import { useAppSelector } from "@core/store/redux/hooks";
+import { selectIsAuthenticated } from "@features/auth/login/presentation/store/auth.selectors";
 import LoadingComponent from "@shared/components/loading/LoadingComponent";
 import { PUBLIC_ROUTES } from "@shared/constants/rutas/Rutas.model";
 import { validateToken } from "@shared/utilities/token/token.utility";
@@ -6,7 +7,7 @@ import { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router";
 
 export const AuthGuard = () => {
-    const usuario = useAppSelector((state) => state.user);
+    const isAuthenticated = useAppSelector(selectIsAuthenticated);
     const [verificado, setVerificado] = useState(false);
 
     useEffect(() => {
@@ -17,7 +18,7 @@ export const AuthGuard = () => {
         verificar();
     }, []);
 
-    if (!usuario.id) return <Navigate replace to={PUBLIC_ROUTES.LOGIN} />;
+    if (!isAuthenticated) return <Navigate replace to={PUBLIC_ROUTES.LOGIN} />;
     if (!verificado) return <LoadingComponent />;
     return <Outlet />;
 };

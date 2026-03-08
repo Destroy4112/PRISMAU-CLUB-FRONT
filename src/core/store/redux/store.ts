@@ -1,12 +1,8 @@
+import authSlice from "@features/auth/login/presentation/store/auth.slice";
 import { configureStore } from "@reduxjs/toolkit";
-import credencialesSlice from "./slices/credenciales.slice";
-import userSlice from "./slices/user.slice";
 
 export const store = configureStore({
-    reducer: {
-        credenciales: credencialesSlice,
-        user: userSlice,
-    },
+    reducer: { auth: authSlice },
 });
 
 export type AppDispatch = typeof store.dispatch;

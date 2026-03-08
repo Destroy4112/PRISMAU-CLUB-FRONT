@@ -1,13 +1,10 @@
 import { useAppNavigate } from "@app/routes/hooks";
 import { useAppDispatch } from "@core/store/redux/hooks";
-import { crearCredenciales } from "@core/store/redux/slices/credenciales.slice";
-import { crearUser } from "@core/store/redux/slices/user.slice";
-import { CONST_TOKEN } from "@shared/constants/constants/constants.model";
 import { PRIVATE_ROUTES } from "@shared/constants/rutas/Rutas.model";
 import { alertError } from "@shared/utilities/alerts/alertas.utility";
-import { crearStorageString } from "@shared/utilities/localstorage/localstorage.utility";
 import { useState, type ChangeEvent } from "react";
 import useLoginMutation from "../mutations/useLoginMutation";
+import { setSession } from "../store/auth.slice";
 import { LOGIN_FORM_INITIAL, type LoginForm } from "../types/login.form";
 
 export default function useLogin() {
@@ -21,18 +18,15 @@ export default function useLogin() {
     const toggleVisible = (): void => setVisible((v) => !v);
 
     const { mutate: loginMutation, isPending } = useLoginMutation();
-    
-    const handleChange = ({ target }: ChangeEvent<HTMLInputElement>): void => {
 
+    const handleChange = ({ target }: ChangeEvent<HTMLInputElement>): void => {
         setLoginForm((prev) => ({ ...prev, [target.name]: target.value }));
     };
 
     const handleSubmit = (): void => {
         loginMutation(loginForm, {
             onSuccess: (session) => {
-                dispatch(crearCredenciales(session.credenciales));
-                dispatch(crearUser(session.user));
-                crearStorageString(CONST_TOKEN, session.token);
+                dispatch(setSession(session));
                 navigate(PRIVATE_ROUTES.DASHBOARD, { replace: true });
             },
             onError: (error) => alertError(error.message),

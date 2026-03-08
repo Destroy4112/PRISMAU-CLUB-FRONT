@@ -1,5 +1,6 @@
 import { useAppSelector } from '@core/store/redux/hooks';
 import useLogout from '@features/auth/login/presentation/hooks/useLogout';
+import { selectCurrentUser } from '@features/auth/login/presentation/store/auth.selectors';
 import { initFlowbite } from 'flowbite';
 import React, { useEffect } from 'react';
 import { Outlet } from 'react-router';
@@ -9,8 +10,8 @@ import Navbar from './nav/Navbar';
 
 function Plantilla() {
 
-    const usuario = useAppSelector((state) => state.user);
-    
+    const usuario = useAppSelector(selectCurrentUser);
+
     const { logout } = useLogout();
 
     useEffect(() => { initFlowbite(); }, []);

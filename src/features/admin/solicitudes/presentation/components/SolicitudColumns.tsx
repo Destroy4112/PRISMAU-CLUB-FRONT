@@ -1,9 +1,9 @@
-import type { ISolicitud } from '@models/entities/Entity.model';
-import { formatearFecha } from "@utils/convertidores/normalizeText";
+import { formatearFecha } from "@shared/utilities/convertidores/normalizeText";
 import type { TableColumn } from "react-data-table-component";
 import { FaComment, FaEye, FaListOl } from "react-icons/fa";
+import type { Solicitud } from "../../domain/solicitud.model";
 
-export default function SolicitudColumns({ cargarSolicitud }: any): TableColumn<ISolicitud>[] {
+export default function SolicitudColumns({ cargarSolicitud }: any): TableColumn<Solicitud>[] {
 
     return [
         {
@@ -43,7 +43,7 @@ export default function SolicitudColumns({ cargarSolicitud }: any): TableColumn<
         },
         {
             name: "Fecha",
-            cell: row => formatearFecha(row.created_at),
+            cell: row => formatearFecha(row.createdAt!),
             width: '120px',
         },
     ];

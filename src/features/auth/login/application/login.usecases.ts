@@ -1,4 +1,5 @@
-import type { Login, LoginPayload } from "../domain/login.model";
+import type { AuthSession } from "../domain/auth-session.model";
+import type { LoginPayload } from "../domain/login.model";
 import type { LoginRepository } from "../domain/login.repository";
 
 export class LoginUseCases {
@@ -9,7 +10,7 @@ export class LoginUseCases {
         this.repo = repo;
     }
 
-    iniciarSesion(payload: LoginPayload): Promise<Login> {
+    iniciarSesion(payload: LoginPayload): Promise<AuthSession> {
         return this.repo.iniciarSesion(payload);
     }
 

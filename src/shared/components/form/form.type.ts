@@ -34,12 +34,13 @@ export type TextareaProps = {
     id: string,
     label?: string,
     name: string,
-    handleChange: (e: ChangeEvent<HTMLTextAreaElement>) => void,
     value: string | number,
     disabled?: boolean,
     clase?: string,
     classInput?: string,
-    required?: boolean
+    placeholder?: string,
+    required?: boolean,
+    handleChange: (e: ChangeEvent<HTMLTextAreaElement>) => void,
 }
 
 export type CheckProps = {

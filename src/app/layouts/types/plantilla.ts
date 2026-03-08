@@ -1,17 +1,17 @@
-import type { Usuario } from "@shared/constants/usuario/Usuario.model"
+import type { SessionUser } from "@features/auth/login/domain/auth-session.model"
 import type { ReactNode } from "react"
 
 export type NavBarProps = {
-    usuario: Usuario,
+    usuario: SessionUser | null,
     logout: () => void
 }
 
 export type SidebarProps = {
-    usuario: Usuario,
+    usuario: SessionUser | null,
 }
 
 export type SidebarInfoUserProps = {
-    usuario: Usuario,
+    usuario: SessionUser | null,
 }
 
 export type SidebarLinksProps = {

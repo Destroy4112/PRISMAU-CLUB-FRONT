@@ -1,45 +1,67 @@
-import { CONST_TOKEN } from "@shared/constants/constants/constants.model";
 import { alertOk } from "@shared/utilities/alerts/alertas.utility";
-import { usarStorageString } from "@shared/utilities/localstorage/localstorage.utility";
 import { cerrarSesionAutomatica } from "@shared/utilities/logout/logout.utility";
+import { getStoredToken } from "@shared/utilities/session/auth-session.storage";
 import { isTokenExpired } from "@shared/utilities/token/token.utility";
 import { http } from "./axios.instance";
 
+let isInitialized = false;
+let isSessionExpiredAlertOpen = false;
+
 export const axiosInterceptor = () => {
+    if (isInitialized) return;
+    isInitialized = true;
 
     http.interceptors.request.use(
         async (request) => {
-            const token = usarStorageString(CONST_TOKEN);
-            if (token) {
-                if (isTokenExpired(token)) {
+            const token = getStoredToken();
+
+            if (!token) return request;
+
+            if (isTokenExpired(token)) {
+                if (!isSessionExpiredAlertOpen) {
+                    isSessionExpiredAlertOpen = true;
                     await alertOk(
                         "Sesión expirada",
                         "Tu sesión ha expirado. Por favor inicia sesión nuevamente.",
-                        "Iniciar sesión",
-                    ).then(() => {
-                        cerrarSesionAutomatica();
-                    });
-                    return Promise.reject({ code: "TOKEN_EXPIRED", message: "Token expirado" });
+                        "Iniciar sesión"
+                    );
+                    cerrarSesionAutomatica();
+                    isSessionExpiredAlertOpen = false;
                 }
-                request.headers['Authorization'] = `Bearer ${token}`;
+
+                return Promise.reject({
+                    code: "TOKEN_EXPIRED",
+                    message: "Token expirado",
+                });
             }
+
+            request.headers.Authorization = `Bearer ${token}`;
             return request;
         },
-        error => Promise.reject(error));
+        (error) => Promise.reject(error)
+    );
 
     http.interceptors.response.use(
-        response => response,
+        (response) => response,
         async (error) => {
-            if (error.response?.status === 401) {
-                await alertOk("Sesión inválida", "Tu sesión no es válida o ha expirado.", "Iniciar sesión");
+            const status = error?.response?.status;
+
+            if ((status === 401 || status === 403) && !isSessionExpiredAlertOpen) {
+                isSessionExpiredAlertOpen = true;
+
+                await alertOk(
+                    status === 401 ? "Sesión inválida" : "Acceso denegado",
+                    status === 401
+                        ? "Tu sesión no es válida o ha expirado."
+                        : "No tienes permiso para realizar esta acción.",
+                    status === 401 ? "Iniciar sesión" : "Cerrar"
+                );
+
                 cerrarSesionAutomatica();
+                isSessionExpiredAlertOpen = false;
             }
-            if (error.response?.status === 403) {
-                await alertOk("Acceso denegado", "No tienes permiso para realizar esta acción.", "Cerrar");
-                cerrarSesionAutomatica();
-            }
+
             return Promise.reject(error);
         }
     );
-
-}
+};

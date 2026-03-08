@@ -16,7 +16,7 @@ const MenusPage = lazy(() => import('@/features/superAdmin/menus/presentation/pa
 const HobbiesPage = lazy(() => import('@features/superAdmin/hobbies/presentation/page/HobbiesPage'))
 const ContratosPage = lazy(() => import('@features/superAdmin/contratos/presentation/page/ContratosPage'))
 
-const SolicitudesPage = lazy(() => import('@/features/admin/solicitudes/SolicitudesPage'))
+const SolicitudesPage = lazy(() => import('@features/admin/solicitudes/presentation/page/SolicitudesPage'))
 const ReservasPage = lazy(() => import('@/features/admin/reservas/ReservasPage'))
 const EncuestasPage = lazy(() => import('@/features/admin/encuestas/EncuestasPage'))
 const PreguntasPage = lazy(() => import('@/features/admin/encuestas/PreguntasPage'))

@@ -1,5 +1,5 @@
-import type { FieldConfig } from "@components/buscador/buscador.type";
-import { ESTADOS_SOLICITUDES } from "@models/options/Options.model";
+import type { FieldConfig } from "@shared/components/buscador/buscador.type";
+import { ESTADOS_SOLICITUDES } from "@shared/constants/options/Options.model";
 import { FaEye, FaKeyboard } from "react-icons/fa";
 
 export const CAMPOS_SOLICITUD: FieldConfig[] = [

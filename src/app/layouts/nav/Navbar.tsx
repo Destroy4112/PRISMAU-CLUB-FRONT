@@ -4,7 +4,7 @@ import type { NavBarProps } from '../types/plantilla';
 
 const Navbar = React.memo(({ usuario, logout }: NavBarProps) => {
 
-    const sesion = usuario?.Nombre?.charAt(0) + usuario?.Apellidos?.charAt(0) || '';
+    const sesion = `${usuario?.nombre?.charAt(0)}${usuario?.apellidos?.charAt(0)}`;
 
     return (
         <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200">

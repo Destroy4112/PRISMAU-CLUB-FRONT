@@ -1,4 +1,5 @@
 import { useAppSelector } from '@core/store/redux/hooks';
+import { selectRol } from '@features/auth/login/presentation/store/auth.selectors';
 import { memo } from 'react';
 import type { SidebarProps } from '../types/plantilla';
 import InfoRol from './InfoRol';
@@ -9,7 +10,7 @@ import { getMenuItemsByproyecto } from './sidebar-items';
 
 const Sidebar = memo(function Sidebar({ usuario }: SidebarProps) {
 
-    const rol = useAppSelector((state) => state.credenciales.Rol);
+    const rol = useAppSelector(selectRol);
     const items = getMenuItemsByproyecto(rol!);
 
     return (
