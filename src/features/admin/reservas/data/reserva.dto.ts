@@ -1,0 +1,16 @@
+import type { EspacioDetail } from "@shared/domain/espacio-detail.model";
+import type { UsuarioDetail } from "@shared/domain/usuario-detail.model";
+import type { ReservaId } from "../domain/reserva.model";
+
+export type ReservaDTO = {
+    id: ReservaId;
+    user_id: number;
+    espacio_id: number;
+    Fecha: string;
+    Inicio: string;
+    Fin: string;
+    usuario: UsuarioDetail;
+    espacio?: EspacioDetail;
+    created_at?: string;
+    updated_at?: string;
+}

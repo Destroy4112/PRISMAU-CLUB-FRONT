@@ -1,4 +1,4 @@
-import type { FieldConfig } from "@components/buscador/buscador.type";
+import type { FieldConfig } from "@shared/components/buscador/buscador.type";
 import { FaKeyboard } from "react-icons/fa";
 import { FaMapLocationDot } from "react-icons/fa6";
 

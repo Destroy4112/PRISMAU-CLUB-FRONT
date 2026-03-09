@@ -1,9 +1,9 @@
-import type { IReserva } from '@models/entities/Entity.model';
-import { formatearFecha, formatearHora } from '@utils/convertidores/normalizeText';
+import { formatearFecha, formatearHora } from '@shared/utilities/convertidores/normalizeText';
 import type { TableColumn } from 'react-data-table-component';
 import { FaListOl } from 'react-icons/fa';
+import type { Reserva } from '../../domain/reserva.model';
 
-export default function ReservasColumn(): TableColumn<IReserva>[] {
+export default function ReservasColumn(): TableColumn<Reserva>[] {
 
     return [
         {

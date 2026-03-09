@@ -1,16 +1,17 @@
-import FiltrosBusqueda from '@components/buscador/FiltrosBusqueda';
-import DataTableComponent from '@components/dataTable/DataTableComponent';
-import Contenido from '@components/helpers/Contenido';
-import TituloPage from '@components/helpers/TituloPage';
+import FiltrosBusqueda from '@shared/components/buscador/FiltrosBusqueda';
+import DataTableComponent from '@shared/components/dataTable/DataTableComponent';
+import Contenido from '@shared/components/helpers/Contenido';
+import TituloPage from '@shared/components/helpers/TituloPage';
 import { CalendarClock } from 'lucide-react';
-import { CAMPOS_RESERVA } from './components/camposReserva';
-import ReservasColumn from './components/ReservasColumn';
-import useReservas from './hooks/useReservas';
+import { CAMPOS_RESERVA } from '../components/camposReserva';
+import ReservasColumn from '../components/ReservasColumn';
+import useReservas from '../hooks/useReservas';
 
 export default function ReservasPage() {
 
     const { titulo, subtitulo, isLoading, filters, limit, page, reservas, total,
         handleFilterChange, onPageChange, onRowsPerPageChange, limpiarFiltros } = useReservas();
+
     const columns = ReservasColumn();
 
     return (

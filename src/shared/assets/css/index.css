@@ -19,7 +19,7 @@ body {
 }
 
 .activo > svg {
-  color: #fff;
+  color: #fff !important;
 }
 
 .activo .rounded-full {
