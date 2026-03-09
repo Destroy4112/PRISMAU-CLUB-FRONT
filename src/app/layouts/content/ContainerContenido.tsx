@@ -1,11 +1,12 @@
-import { memo, type PropsWithChildren } from "react";
+import { memo } from "react";
+import type { ContainerProps } from "../types/plantilla";
 
-function ContainerContenido({ children }: PropsWithChildren) {
+function ContainerContenido({ children, collapsed }: ContainerProps) {
 
     return (
-        <div className="p-4 sm:ml-64 mt-14">
+        <main className={`pt-20 px-4 transition-all duration-300 sm:ml-64 ${collapsed ? 'lg:ml-20' : 'lg:ml-64'}`}>
             {children}
-        </div>
+        </main>
     );
 }
 
