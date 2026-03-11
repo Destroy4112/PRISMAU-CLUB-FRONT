@@ -1,9 +1,9 @@
 import Contenido from "@shared/components/helpers/Contenido";
 import TituloPage from "@shared/components/helpers/TituloPage";
 import { UserSearch } from "lucide-react";
-import BuscadorUsuario from "./component/BuscadorUsuario";
-import ResultadoBusqueda from "./component/ResultadoBusqueda";
-import useBusqueda from "./hook/useBusqueda";
+import BuscadorUsuario from "../component/BuscadorUsuario";
+import ResultadoBusqueda from "../component/ResultadoBusqueda";
+import useBusqueda from "../hook/useBusqueda";
 
 export default function BusquedaUserPage() {
 

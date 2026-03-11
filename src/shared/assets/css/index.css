@@ -14,12 +14,12 @@ body {
 /* active  */
 
 .activo {
-  background-color: #68dcc1;    
+  background-color: #68dcc1;
   color: #fff;
 }
 
-.activo > svg {
-  color: #fff !important;
+.activo > span > svg {
+  color: #fff;
 }
 
 .activo .rounded-full {

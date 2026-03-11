@@ -19,6 +19,16 @@ export const traslateRol = (rol: number): string => {
     return "Desconocido";
 }
 
+export const getColorStatus = (status: number): string => {
+    if (status === 0) return "bg-red-100 text-red-600 border-red-300";
+    if (status === 1) return "bg-green-100 text-green-600 border-green-300";
+    if (status === 2) return "bg-orange-100 text-orange-600 border-orange-300";
+    if (status === 3) return "bg-purple-100 text-purple-600 border-purple-300";
+    if (status === 4) return "bg-black text-white border-gray-300";
+    return "bg-gray-100 text-gray-600 border-gray-300";
+}
+
+
 export const colorStyles: Record<string, string> = {
     green: "bg-green-100 text-green-600",
     purple: "bg-purple-100 text-purple-600",
