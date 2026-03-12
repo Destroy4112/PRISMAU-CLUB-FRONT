@@ -1,5 +1,6 @@
 import type { ModalsApi } from "@shared/hooks/useModal";
 import { useState, type ChangeEvent } from "react";
+import { preguntaFormToPayload } from "../../application/pregunta-form.mapper";
 import type { Pregunta } from "../../domain/pregunta.model";
 import { useCreatePreguntaMutation } from "../mutations/useCreatePreguntaMutation";
 import { useUpdatePreguntaMutation } from "../mutations/useUpdatePreguntaMutation";
@@ -48,10 +49,10 @@ export function usePreguntaForm(id: number, modalsApi: ModalsApi<PreguntaModalKe
 
     const submit = (): void => {
         if (isEditing) {
-            updatePreguntaMutation({ id: editId!, ...preguntaForm });
+            updatePreguntaMutation(preguntaFormToPayload(preguntaForm, editId));
             return;
         }
-        createPreguntaMutation(preguntaForm);
+        createPreguntaMutation(preguntaFormToPayload(preguntaForm));
     };
 
     return {

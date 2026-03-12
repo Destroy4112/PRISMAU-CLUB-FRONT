@@ -1,5 +1,6 @@
 import { type ModalsApi } from "@shared/hooks/useModal";
 import { useState, type ChangeEvent } from "react";
+import { administradorPasswordToPayload } from "../../application/administrador-form.mapper";
 import { useUpdatePasswordAdministradorMutation } from "../mutations/useUpdatePasswordAdministradorMutation";
 import { ADMIN_PASSWORD_FORM_INITIAL, type AdministradorPasswordForm, type AdminModalKey } from "../types/admin";
 
@@ -30,8 +31,7 @@ export function useAdministradorPassword(modalApi: ModalsApi<AdminModalKey>) {
     };
 
     const handleUpdatePass = (): void => {
-        if (!passwordForm.id) return;
-        changePasswordMutation({ id: passwordForm.id, password: passwordForm.password });
+        changePasswordMutation(administradorPasswordToPayload(passwordForm));
     };
 
     return {

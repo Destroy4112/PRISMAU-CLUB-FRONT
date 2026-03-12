@@ -1,6 +1,7 @@
 import { useCallback, useState, type ChangeEvent } from "react";
 import { useCreateMenuRolMutation } from "../mutations/useCreateMenuRolMutation";
 import { INITIAL_FORM_MENU_ROL, type MenuRolForm, type UseMenuRolFormProps } from "../types/menuRol";
+import { menuRolFormToPayload } from "../../application/menu-rol-form.mapper";
 
 export function useMenuRolForm({ modalsApi, rol }: UseMenuRolFormProps) {
 
@@ -31,7 +32,7 @@ export function useMenuRolForm({ modalsApi, rol }: UseMenuRolFormProps) {
     };
 
     const handleSubmit = (): void => {
-        asignMenuMutation(menuRolForm);
+        asignMenuMutation(menuRolFormToPayload(menuRolForm));
     };
 
     return {

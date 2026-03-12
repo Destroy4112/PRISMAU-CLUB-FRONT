@@ -16,12 +16,12 @@ export const INITIAL_FILTERS_SOLICITUD: FilterSolicitud = {
 }
 
 export interface SolicitudReplyForm {
-    id: number | null;
+    id: number;
     Respuesta: string;
 }
 
 export const INITIAL_SOLICITUD_REPLY_FORM: SolicitudReplyForm = {
-    id: null,
+    id: 0,
     Respuesta: ''
 }
 

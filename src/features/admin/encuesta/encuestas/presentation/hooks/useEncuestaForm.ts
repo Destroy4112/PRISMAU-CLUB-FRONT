@@ -1,5 +1,6 @@
 import type { ModalsApi } from "@shared/hooks/useModal";
 import { useState, type ChangeEvent } from "react";
+import { encuestaFormToPayload } from "../../application/encuesta-form.mapper";
 import type { Encuesta } from "../../domain/encuesta.model";
 import { useCreateEncuestaMutation } from "../mutations/useCreateEncuestaMutation";
 import { useUpdateEncuestaMutation } from "../mutations/useUpdateEncuestaMutation";
@@ -49,10 +50,10 @@ export function useEncuestaForm(modalsApi: ModalsApi<EncuestaModalKey>) {
 
     const submit = (): void => {
         if (isEditing) {
-            updateEncuestaMutation({ id: editId!, ...encuestaForm });
+            updateEncuestaMutation(encuestaFormToPayload(encuestaForm, editId));
             return;
         }
-        createEncuestaMutation(encuestaForm);
+        createEncuestaMutation(encuestaFormToPayload(encuestaForm));
     };
 
     return {

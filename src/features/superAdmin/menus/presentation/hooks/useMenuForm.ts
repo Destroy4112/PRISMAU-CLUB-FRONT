@@ -1,5 +1,6 @@
 import type { ModalsApi } from "@shared/hooks/useModal";
 import { useState, type ChangeEvent } from "react";
+import { menuFormToPayload } from "../../application/menu-form.mapper";
 import type { Menu } from "../../domain/menu.model";
 import { useCreateMenuMutation } from "../mutations/useCreateMenuMutation";
 import { useUpdateMenuMutation } from "../mutations/useUpdateMenuMutation";
@@ -49,10 +50,10 @@ export function useMenuForm(modalsApi: ModalsApi<MenuModalKey>) {
 
     const submit = (): void => {
         if (isEditing) {
-            updateMenuMutation({ id: editId!, ...menuForm });
+            updateMenuMutation(menuFormToPayload(menuForm, editId!));
             return;
         }
-        createMenuMutation(menuForm);
+        createMenuMutation(menuFormToPayload(menuForm));
     };
 
     return {

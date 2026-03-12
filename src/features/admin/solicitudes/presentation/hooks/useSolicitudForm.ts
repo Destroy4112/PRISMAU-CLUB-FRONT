@@ -1,5 +1,6 @@
 import { type ModalsApi } from "@shared/hooks/useModal";
 import { useState, type ChangeEvent } from "react";
+import { solicitudFormToPayload } from "../../application/solicitud-form.mapper";
 import type { Solicitud } from "../../domain/solicitud.model";
 import { useReplySolicitudMutation } from "../mutations/useReplySolicitudMutation";
 import { INITIAL_SOLICITUD_REPLY_FORM, type SolicitudModalKey, type SolicitudReplyForm } from "../types/solicitud";
@@ -36,7 +37,7 @@ export function useSolicitudForm(modalApi: ModalsApi<SolicitudModalKey>) {
     };
 
     const handleSubmit = (): void => {
-        replySolicitudMutation({ id: solicitudForm.id!, Respuesta: solicitudForm.Respuesta });
+        replySolicitudMutation(solicitudFormToPayload(solicitudForm));
     };
 
     return {
