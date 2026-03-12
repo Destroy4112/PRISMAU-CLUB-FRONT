@@ -13,4 +13,9 @@ export class UserApiRepository implements UserRepository {
         return res.data;
     }
 
+    async resetPassword(id: number): Promise<ApiResponseVoid> {
+        const res = await http.put<ApiResponseVoid>(`${URL}/reset-password/${id}`, {});
+        return res.data;
+    }
+
 }

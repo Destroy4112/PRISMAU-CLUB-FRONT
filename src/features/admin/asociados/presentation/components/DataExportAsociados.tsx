@@ -1,6 +1,6 @@
-import type { IAsociado } from "@models/usuario/Usuario.model";
+import type { Asociado } from "../../domain/asociado.model";
 
-export default function DataExportAsociados(data: IAsociado[] | undefined) {
+export default function DataExportAsociados(data: Asociado[] | undefined) {
     return data?.map(item => ({
         'Nombre Completo': item.Nombre + ' ' + item.Apellidos,
         'Identificación': item.TipoDocumento + ' ' + item.Documento,

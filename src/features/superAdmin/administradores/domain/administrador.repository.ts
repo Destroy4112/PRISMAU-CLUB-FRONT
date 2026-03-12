@@ -4,8 +4,8 @@ import type { Administrador, AdministradorId, AdministradorPayload } from "./adm
 
 export interface AdministradorRepository {
     getAll(params: PageParams & { filters?: AdministradorFilter }): Promise<PaginatedResponse<Administrador>>;
-    create(rubro: AdministradorPayload): Promise<ApiResponse<Administrador>>;
-    update(rubro: AdministradorPayload): Promise<ApiResponseVoid>;
+    create(payload: AdministradorPayload): Promise<ApiResponse<Administrador>>;
+    update(payload: AdministradorPayload): Promise<ApiResponseVoid>;
     updateStatus(id: AdministradorId): Promise<ApiResponseVoid>;
     delete(id: AdministradorId): Promise<ApiResponseVoid>;
 }

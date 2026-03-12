@@ -8,6 +8,8 @@ export const normalizeText = (text: string): string => {
     return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/\s+/g, " ").trim();
 }
 
+export const safeTrim = (value?: string | null) => value?.trim() ?? '';
+
 export const formatearFecha = (valor: string): string => {
     if (!valor) return "-";
     const fecha = new Date(valor);

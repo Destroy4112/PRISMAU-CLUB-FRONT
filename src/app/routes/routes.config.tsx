@@ -21,7 +21,7 @@ const ReservasPage = lazy(() => import('@/features/admin/reservas/presentation/p
 const EncuestasPage = lazy(() => import('@features/admin/encuesta/encuestas/presentation/page/EncuestasPage'))
 const PreguntasPage = lazy(() => import('@features/admin/encuesta/preguntas/presentation/page/PreguntasPage'))
 const BusquedaUserPage = lazy(() => import('@/features/admin/busquedaUser/presentation/page/BusquedaUserPage'))
-const AsociadosPage = lazy(() => import('@/features/admin/asociados/AsociadosPage'))
+const AsociadosPage = lazy(() => import('@features/admin/asociados/presentation/page/AsociadosPage'))
 const FamiliaresAsociadoPage = lazy(() => import('@/features/admin/familiares/FamiliaresAsociadoPage'))
 const AdherentesPage = lazy(() => import('@/features/admin/adherentes/AdherentesPage'))
 const FamiliaresAdherentePage = lazy(() => import('@/features/admin/familiares/FamiliaresAdherentePage'))

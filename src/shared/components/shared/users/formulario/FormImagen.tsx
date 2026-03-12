@@ -1,3 +1,4 @@
+import { URL_BACK } from "@shared/constants/endpoints/Endpoints.model";
 import type { FormImagenProps } from "./formulario.type";
 
 export default function FormImagen({ value, label, name, handleChange, deleteImagen }: FormImagenProps) {
@@ -11,7 +12,7 @@ export default function FormImagen({ value, label, name, handleChange, deleteIma
                                 Imagen actual
                             </span>
                         </div>
-                        <img src={value} alt="Imagen actual" className="w-32 h-32 object-cover rounded-md border" />
+                        <img src={URL_BACK + value} alt="Imagen actual" className="w-32 h-32 object-cover rounded-md border" />
                     </div>
                     {deleteImagen &&
                         <div className="w-full">

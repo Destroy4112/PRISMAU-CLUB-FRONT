@@ -14,4 +14,8 @@ export class UserUseCases {
         return this.repo.updatePassword(payload);
     }
 
+    resetPassword(id: number): Promise<ApiResponseVoid> {
+        return this.repo.resetPassword(id);
+    }
+
 }

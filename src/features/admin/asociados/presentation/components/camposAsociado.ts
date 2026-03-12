@@ -1,5 +1,5 @@
-import type { FieldConfig } from "@components/buscador/buscador.type";
-import { ESTADOS } from "@models/options/Options.model";
+import type { FieldConfig } from "@shared/components/buscador/buscador.type";
+import { ESTADOS } from "@shared/constants/options/Options.model";
 import { FaEye, FaIdCardAlt, FaKeyboard } from "react-icons/fa";
 
 export const CAMPOS_ASOCIADO: FieldConfig[] = [
