@@ -10,6 +10,13 @@ export const normalizeText = (text: string): string => {
 
 export const safeTrim = (value?: string | null) => value?.trim() ?? '';
 
+export const emptyToNull = (value?: string | null): string | null => {
+    if (value == null) return null;
+    const trimmed = value.trim();
+    return trimmed === "" ? null : trimmed;
+};
+
+
 export const formatearFecha = (valor: string): string => {
     if (!valor) return "-";
     const fecha = new Date(valor);

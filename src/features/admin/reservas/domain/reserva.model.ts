@@ -1,5 +1,5 @@
-import type { EspacioDetail } from "@shared/domain/espacio-detail.model";
-import type { UsuarioDetail } from "@shared/domain/usuario-detail.model";
+import type { EspacioDetail } from "@shared/models/espacio-detail.model";
+import type { UsuarioDetail } from "@shared/models/usuario-detail.model";
 
 export type ReservaId = number;
 

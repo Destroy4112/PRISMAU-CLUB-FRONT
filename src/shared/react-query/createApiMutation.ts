@@ -1,6 +1,7 @@
 import { useAppMutation, useAppQueryClient } from "@core/store/react-query/hooks";
 import { alertError, alertSucces, alertWarning } from "@shared/utilities/alerts/alertas.utility";
 import type { QueryKey } from "@tanstack/react-query";
+import axios from "axios";
 
 type BaseApiResponse =
     | { status: true; message: string; errors?: string[] }
@@ -46,6 +47,7 @@ export function createApiMutation<TRes extends BaseApiResponse, TVars>(
             },
 
             onError: (error) => {
+                if (axios.isAxiosError(error)) console.log(error.response?.data);
                 const msg = runtime?.errorMessage?.(error) ?? `${base?.errorLabel ?? "Ocurrió un error"}: ${error.message}`;
                 alertError(msg);
             },

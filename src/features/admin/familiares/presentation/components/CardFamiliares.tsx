@@ -1,5 +1,5 @@
-import Loading from "@components/loading/Loading"
-import { URL_BACK } from "@models/endpoints/Endpoints.model"
+import LoadingComponent from "@shared/components/loading/LoadingComponent"
+import { URL_BACK } from "@shared/constants/endpoints/Endpoints.model"
 import { Button, Card } from "flowbite-react"
 import { CheckCircle, CreditCard, Hash, Heart, XCircle } from "lucide-react"
 import { FaEdit, FaImages, FaLock, FaRegTrashAlt } from "react-icons/fa"
@@ -11,13 +11,13 @@ export default function CardFamiliares({ familiares = [], loading, cargar, handl
         return (
             <div className="flex flex-col items-center justify-center py-20 px-4">
                 <div className="relative mb-8">
-                    <div className="w-32 h-32 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center shadow-inner">
-                        <div className="w-24 h-24 bg-gradient-to-br from-white to-gray-50 rounded-full flex items-center justify-center shadow-lg">
+                    <div className="w-32 h-32 bg-linear-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center shadow-inner">
+                        <div className="w-24 h-24 bg-linear-to-br from-white to-gray-50 rounded-full flex items-center justify-center shadow-lg">
                             <i className="fas fa-user text-4xl text-gray-400"></i>
                         </div>
                     </div>
-                    <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full opacity-60 animate-pulse"></div>
-                    <div className="absolute -bottom-1 -left-1 w-4 h-4 bg-gradient-to-br from-green-400 to-teal-500 rounded-full opacity-40 animate-pulse delay-1000"></div>
+                    <div className="absolute -top-2 -right-2 w-6 h-6 bg-linear-to-br from-blue-400 to-purple-500 rounded-full opacity-60 animate-pulse"></div>
+                    <div className="absolute -bottom-1 -left-1 w-4 h-4 bg-linear-to-br from-green-400 to-teal-500 rounded-full opacity-40 animate-pulse delay-1000"></div>
                 </div>
 
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">No hay familiares</h3>
@@ -28,9 +28,7 @@ export default function CardFamiliares({ familiares = [], loading, cargar, handl
         )
     }
 
-    if (loading) {
-        return <Loading />
-    }
+    if (loading) return <LoadingComponent />
 
     return (
         <div className="w-full space-y-6">

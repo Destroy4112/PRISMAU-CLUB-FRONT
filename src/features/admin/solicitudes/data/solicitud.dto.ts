@@ -1,4 +1,4 @@
-import type { UsuarioDetail } from "@shared/domain/usuario-detail.model";
+import type { UsuarioDetail } from "@shared/models/usuario-detail.model";
 import type { SolicitudId } from "../domain/solicitud.model";
 
 export type SolicitudDTO = {
