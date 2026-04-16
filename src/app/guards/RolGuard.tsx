@@ -1,5 +1,5 @@
 import { useAppSelector } from "@core/store/redux/hooks";
-import { selectRol } from "@features/auth/login/presentation/store/auth.selectors";
+import { selectRol } from "@features/auth/presentation/store/session/session.selectors";
 import { ERROR_ROUTES } from "@shared/constants/rutas/Rutas.model";
 import { Navigate, Outlet } from "react-router";
 ;

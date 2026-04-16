@@ -1,10 +1,11 @@
 import { useAppNavigate } from "@app/routes/hooks";
 import { useAppDispatch } from "@core/store/redux/hooks";
+import { setSession } from "@features/auth/presentation/store/session/session.slice";
 import { PRIVATE_ROUTES } from "@shared/constants/rutas/Rutas.model";
 import { alertError } from "@shared/utilities/alerts/alertas.utility";
 import { useState, type ChangeEvent } from "react";
+import { loginFormToPayload } from "../../application/mappers/login-form.mapper";
 import useLoginMutation from "../mutations/useLoginMutation";
-import { setSession } from "../store/auth.slice";
 import { LOGIN_FORM_INITIAL, type LoginForm } from "../types/login.form";
 
 export default function useLogin() {
@@ -24,10 +25,15 @@ export default function useLogin() {
     };
 
     const handleSubmit = (): void => {
-        loginMutation(loginForm, {
-            onSuccess: (session) => {
-                dispatch(setSession(session));
-                navigate(PRIVATE_ROUTES.DASHBOARD, { replace: true });
+        const payload = loginFormToPayload(loginForm);
+        loginMutation(payload, {
+            onSuccess: (res) => {
+                if (res.status) {
+                    dispatch(setSession(res.data));
+                    navigate(PRIVATE_ROUTES.DASHBOARD, { replace: true });
+                } else {
+                    res.errors.forEach((error: string) => alertError(error));
+                }
             },
             onError: (error) => alertError(error.message),
         });

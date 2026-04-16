@@ -1,6 +1,6 @@
 import { useAppNavigate } from "@app/routes/hooks";
 import { useAppDispatch } from "@core/store/redux/hooks";
-import { clearSession } from "@features/auth/login/presentation/store/auth.slice";
+import { clearSession } from "@features/auth/presentation/store/session/session.slice";
 import { PUBLIC_ROUTES } from "@shared/constants/rutas/Rutas.model";
 import { alertConfirm } from "@shared/utilities/alerts/alertas.utility";
 import { useCallback } from "react";

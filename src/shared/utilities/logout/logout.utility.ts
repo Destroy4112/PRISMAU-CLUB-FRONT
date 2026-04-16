@@ -1,5 +1,5 @@
 import { store } from "@core/store/redux/store";
-import { clearSession } from "@features/auth/login/presentation/store/auth.slice";
+import { clearSession } from "@features/auth/presentation/store/session/session.slice";
 import { PUBLIC_ROUTES } from "@shared/constants/rutas/Rutas.model";
 
 export const cerrarSesionAutomatica = () => {

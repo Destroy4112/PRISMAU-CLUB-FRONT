@@ -1,5 +1,5 @@
 import { useAppSelector } from "@core/store/redux/hooks";
-import { selectIsAuthenticated } from "@features/auth/login/presentation/store/auth.selectors";
+import { selectIsAuthenticated } from "@features/auth/presentation/store/session/session.selectors";
 import LoadingComponent from "@shared/components/loading/LoadingComponent";
 import { PUBLIC_ROUTES } from "@shared/constants/rutas/Rutas.model";
 import { validateToken } from "@shared/utilities/token/token.utility";

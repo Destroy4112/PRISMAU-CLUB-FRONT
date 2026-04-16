@@ -1,4 +1,4 @@
-import type { SessionUser } from "@features/auth/login/domain/auth-session.model";
+import type { SessionUser } from "@features/auth/domain/models/session.model";
 import type { Dispatch, ReactNode } from "react";
 
 export type NavBarProps = {

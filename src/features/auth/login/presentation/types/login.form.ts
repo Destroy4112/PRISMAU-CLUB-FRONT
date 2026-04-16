@@ -1,9 +1,9 @@
 export interface LoginForm {
-   Documento : string;
+   documento : string;
    password : string
 }
 
 export const LOGIN_FORM_INITIAL: LoginForm = {
-    Documento: '',
+    documento: '',
     password: '',
 };

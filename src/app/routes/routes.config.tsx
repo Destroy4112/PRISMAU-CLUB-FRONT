@@ -2,9 +2,9 @@ import { ERROR_ROUTES, PRIVATE_ROUTES, PUBLIC_ROUTES } from '@shared/constants/r
 import { lazy } from 'react'
 
 const LoginPage = lazy(() => import('@features/auth/login/presentation/page/LoginPage'))
-const RecuperacionPage = lazy(() => import('@/features/auth/recuperar/RecuperacionPage'))
-const ChangePasswordPage = lazy(() => import('@/features/auth/cambiarClave/ChangePasswordPage'))
-const ValidateCodePage = lazy(() => import('@/features/auth/verificarCodigo/ValidateCodePage'))
+const RecuperacionPage = lazy(() => import('@features/auth/recuperar/presentation/page/RecuperacionPage'))
+const ChangePasswordPage = lazy(() => import('@/features/auth/cambiarClave/presentation/page/ChangePasswordPage'))
+const ValidateCodePage = lazy(() => import('@/features/auth/verificarCodigo/presentation/page/ValidateCodePage'))
 
 const DashboardPage = lazy(() => import('@/features/dashboard/presentation/page/DashboardPage'))
 const Page403 = lazy(() => import('@/features/errors/403/Page403'))

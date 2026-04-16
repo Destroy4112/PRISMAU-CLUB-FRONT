@@ -1,6 +1,6 @@
 import { useAppSelector } from "@core/store/redux/hooks";
-import { selectRol } from "@features/auth/login/presentation/store/auth.selectors";
 import useQueryDashboard from "../queries/useQueryDashboard";
+import { selectRol } from "@features/auth/presentation/store/session/session.selectors";
 ;
 
 export default function useDashboard() {
