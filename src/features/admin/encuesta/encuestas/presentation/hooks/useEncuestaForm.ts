@@ -1,22 +1,22 @@
 import type { ModalsApi } from "@shared/hooks/useModal";
 import { useState, type ChangeEvent } from "react";
-import { encuestaFormToPayload } from "../../application/encuesta-form.mapper";
-import type { Encuesta } from "../../domain/encuesta.model";
+import { encuestaDomainToForm, encuestaFormToPayload } from "../../application/mapper/encuesta-form.mapper";
+import type { Encuesta } from "../../domain/model/encuesta.model";
 import { useCreateEncuestaMutation } from "../mutations/useCreateEncuestaMutation";
 import { useUpdateEncuestaMutation } from "../mutations/useUpdateEncuestaMutation";
-import { INITIAL_FORM_ENCUESTA, type EncuestaForm, type EncuestaModalKey } from "../types/encuesta";
+import { INITIAL_ENCUESTA_FORM, type EncuestaForm, type EncuestaModalKey } from "../types/encuesta";
 
 export function useEncuestaForm(modalsApi: ModalsApi<EncuestaModalKey>) {
 
     const { toggleModal } = modalsApi;
 
-    const [encuestaForm, setEncuestaForm] = useState<EncuestaForm>(INITIAL_FORM_ENCUESTA);
+    const [encuestaForm, setEncuestaForm] = useState<EncuestaForm>(INITIAL_ENCUESTA_FORM);
     const [editId, setEditId] = useState<number | null>(null);
 
     const isEditing = editId != null;
 
     const resetForm = (): void => {
-        setEncuestaForm(INITIAL_FORM_ENCUESTA);
+        setEncuestaForm(INITIAL_ENCUESTA_FORM);
         setEditId(null);
     };
 
@@ -32,7 +32,7 @@ export function useEncuestaForm(modalsApi: ModalsApi<EncuestaModalKey>) {
 
     const cargarEncuesta = (encuesta: Encuesta): void => {
         setEditId(encuesta.id);
-        setEncuestaForm(encuesta);
+        setEncuestaForm(encuestaDomainToForm(encuesta));
         toggleModal("crearEditar");
     };
 

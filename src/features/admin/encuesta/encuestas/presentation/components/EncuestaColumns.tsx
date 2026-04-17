@@ -1,11 +1,11 @@
 import { useAppNavigate } from '@app/routes/hooks';
 import { useAppSelector } from '@core/store/redux/hooks';
-import { selectRol } from '@features/auth/login/presentation/store/auth.selectors';
+import { selectRol } from '@features/auth/presentation/store/session/session.selectors';
 import { PRIVATE_ROUTES } from '@shared/constants/rutas/Rutas.model';
 import type { TableColumn } from 'react-data-table-component';
 import { FaEdit, FaListOl, FaQuestion, FaTrashAlt } from 'react-icons/fa';
 import { FaChartColumn } from 'react-icons/fa6';
-import type { Encuesta } from '../../domain/encuesta.model';
+import type { Encuesta } from '../../domain/model/encuesta.model';
 import type { ColumnsEncuestaProps } from '../types/encuesta';
 
 export default function EncuestaColumns({ cargarEncuesta, handleDelete }: ColumnsEncuestaProps): TableColumn<Encuesta>[] {
@@ -48,12 +48,12 @@ export default function EncuestaColumns({ cargarEncuesta, handleDelete }: Column
         },
         {
             name: "Titulo",
-            cell: row => row.Titulo,
+            cell: row => row.titulo,
             width: '250px',
         },
         {
             name: "Descripción",
-            cell: row => row.Descripcion,
+            cell: row => row.descripcion,
             style: {
                 padding: '10px'
             }

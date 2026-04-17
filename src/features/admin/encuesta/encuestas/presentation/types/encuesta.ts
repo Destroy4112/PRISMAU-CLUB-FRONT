@@ -1,5 +1,5 @@
 import type { ChangeEvent } from "react";
-import type { Encuesta } from "../../domain/encuesta.model";
+import type { Encuesta } from "../../domain/model/encuesta.model";
 
 export type EncuestaModalKey = "crearEditar";
 
@@ -14,12 +14,11 @@ export type ColumnsEncuestaProps = {
 }
 
 export type EncuestaForm = {
-    Titulo: string,
-    Descripcion: string
-    Estado?: number
+    titulo: string,
+    descripcion: string
 }
 
-export const INITIAL_FORM_ENCUESTA: EncuestaForm = {
-    Titulo: "",
-    Descripcion: "",
+export const INITIAL_ENCUESTA_FORM: EncuestaForm = {
+    titulo: "",
+    descripcion: "",
 }

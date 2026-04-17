@@ -1,13 +1,10 @@
-import type { EncuestaId } from "../domain/encuesta.model";
+import type { EncuestaId } from "../../domain/model/encuesta.model";
 
 export type EncuestaDTO = {
     id: EncuestaId;
     Titulo: string;
     Descripcion: string;
-    preguntas_count?: number;
-    Estado: number;
-    created_at?: string;
-    updated_at?: string;
+    preguntas_count: number;
 }
 
 export interface EncuestaCreateDTO {
@@ -19,5 +16,4 @@ export interface EncuestaUpdateDTO {
     id: EncuestaId;
     Titulo: string;
     Descripcion: string;
-    Estado: number;
 }
