@@ -1,16 +1,18 @@
 import { useCallback, useState, type ChangeEvent } from "react";
+import { menuRolFormToPayload } from "../../application/mapper/menu-rol-form.mapper";
 import { useCreateMenuRolMutation } from "../mutations/useCreateMenuRolMutation";
-import { INITIAL_FORM_MENU_ROL, type MenuRolForm, type UseMenuRolFormProps } from "../types/menuRol";
-import { menuRolFormToPayload } from "../../application/menu-rol-form.mapper";
+import { buildMenuRolContext, INITIAL_MENU_ROL_FORM, type MenuRolForm, type UseMenuRolFormProps } from "../types/menuRol";
 
 export function useMenuRolForm({ modalsApi, rol }: UseMenuRolFormProps) {
 
     const { toggleModal } = modalsApi;
 
-    const [menuRolForm, setMenuRolForm] = useState<MenuRolForm>(INITIAL_FORM_MENU_ROL);
+    const [menuRolForm, setMenuRolForm] = useState<MenuRolForm>(INITIAL_MENU_ROL_FORM);
+
+    const context = buildMenuRolContext(rol);
 
     const resetForm = useCallback((): void => {
-        setMenuRolForm(INITIAL_FORM_MENU_ROL);
+        setMenuRolForm(INITIAL_MENU_ROL_FORM);
     }, []);
 
     const closeModal = useCallback((): void => {
@@ -28,11 +30,12 @@ export function useMenuRolForm({ modalsApi, rol }: UseMenuRolFormProps) {
     });
 
     const handleChange = ({ target }: ChangeEvent<HTMLSelectElement>): void => {
-        setMenuRolForm((prev) => ({ ...prev, role_id: Number(rol), [target.name]: Number(target.value) }));
+        setMenuRolForm((prev) => ({ ...prev, [target.name]: Number(target.value) }));
     };
 
     const handleSubmit = (): void => {
-        asignMenuMutation(menuRolFormToPayload(menuRolForm));
+        const payload = menuRolFormToPayload(menuRolForm, context);
+        asignMenuMutation(payload);
     };
 
     return {

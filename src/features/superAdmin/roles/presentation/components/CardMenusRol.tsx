@@ -26,8 +26,8 @@ function CardMenusRol({ menus, loading, eliminar }: CardsMenuRolProps) {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {menus.map((menu, index) => {
-                            const typeInfo = getTypeInfo(menu.Type)
-                            const statusInfo = getStatusInfo(menu.Estado)
+                            const typeInfo = getTypeInfo(menu.type)
+                            const statusInfo = getStatusInfo(menu.estado)
 
                             return (
                                 <div className="group relative bg-white rounded-3xl border border-gray-200 hover:border-gray-300 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 overflow-hidden"
@@ -38,12 +38,12 @@ function CardMenusRol({ menus, loading, eliminar }: CardsMenuRolProps) {
                                         <div className="flex items-start justify-between mb-4">
                                             <div className="flex items-center gap-4">
                                                 <div className={`relative p-4 rounded-2xl bg-linear-to-br from-${typeInfo.bgColor} to-gray-100 border border-gray-200 group-hover:shadow-lg transition-all duration-300`}>
-                                                    <i className={`fa fa-${menu.Icon} text-xl ${typeInfo.textColor} group-hover:scale-110 transition-transform duration-300`}                                                    ></i>
+                                                    <i className={`fa fa-${menu.icon} text-xl ${typeInfo.textColor} group-hover:scale-110 transition-transform duration-300`}                                                    ></i>
                                                     <div className="absolute inset-0 rounded-2xl bg-linear-to-tr from-white/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                                 </div>
                                                 <div>
                                                     <h3 className="text-lg font-bold text-gray-900 group-hover:text-gray-800 transition-colors duration-300">
-                                                        {menu.Name}
+                                                        {menu.name}
                                                     </h3>
                                                     <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-medium ${typeInfo.bgColor} ${typeInfo.textColor} mt-1`}>
                                                         {typeInfo.label}
@@ -63,12 +63,12 @@ function CardMenusRol({ menus, loading, eliminar }: CardsMenuRolProps) {
                                             <div className="flex items-center gap-2">
                                                 <span className="text-xs font-medium text-gray-500">Ruta:</span>
                                                 <code className="text-xs bg-gray-100 px-2 py-1 rounded font-mono text-gray-700">
-                                                    /{menu.Route}
+                                                    /{menu.route}
                                                 </code>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className={`absolute left-0 top-0 bottom-0 w-1 ${getColorClasses(menu.Color)}`}></div>
+                                    <div className={`absolute left-0 top-0 bottom-0 w-1 ${getColorClasses(menu.color)}`}></div>
                                 </div>
                             )
                         })}

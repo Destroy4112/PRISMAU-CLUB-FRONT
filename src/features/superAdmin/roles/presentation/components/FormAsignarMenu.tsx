@@ -7,8 +7,8 @@ function FormAsignarMenu({ form, menus, handleChange }: FormMenuRolProps) {
 
     return (
         <div className="max-w-full flex flex-col">
-            <SelectField label="Escoja un menu" name='menu_id' required items={items} id="menu"
-                handleChange={handleChange} value={form.menu_id ?? ""} />
+            <SelectField label="Escoja un menu" name='menuId' required items={items} id="menu"
+                handleChange={handleChange} value={form.menuId ?? ""} />
         </div>
     )
 }

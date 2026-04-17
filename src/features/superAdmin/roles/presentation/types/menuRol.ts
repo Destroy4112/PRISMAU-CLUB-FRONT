@@ -1,7 +1,7 @@
 import { menuUseCases } from "@features/superAdmin/menus/application/menu.container";
-import type { ChangeEvent, ReactNode } from "react";
-import type { MenuRole } from "../../domain/menu-rol.model";
 import type { ModalsApi } from "@shared/hooks/useModal";
+import type { ChangeEvent, ReactNode } from "react";
+import type { MenuRole } from "../../domain/model/menu-role.model";
 
 export type MenuRolModalKey = "crear";
 
@@ -11,14 +11,18 @@ export type UseMenuRolFormProps = {
 };
 
 export type MenuRolForm = {
-    menu_id: number,
-    role_id: number
+    menuId: number | null,
 }
 
-export const INITIAL_FORM_MENU_ROL: MenuRolForm = {
-    menu_id: 0,
-    role_id: 0
+export const INITIAL_MENU_ROL_FORM: MenuRolForm = {
+    menuId: null,
 }
+
+export type MenuRolContext = {
+    roleId: number
+}
+
+export const buildMenuRolContext = (rol: number): MenuRolContext => ({ roleId: rol });
 
 export interface CardRol {
     id: number;
