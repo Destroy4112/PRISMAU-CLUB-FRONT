@@ -1,10 +1,10 @@
-import type { ApiResponse } from "@shared/constants/response/Response.model";
+import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
 import { createApiMutation } from "@shared/react-query/createApiMutation";
 import { administradorUseCases } from "../../application/administrador.container";
-import type { Administrador, AdministradorPayload } from "../../domain/administrador.model";
+import type { AdministradorPayload } from "../../domain/payloads/administrador.payload";
 import { administradorKeys } from "../queries/administrador.keys";
 
-export const useCreateAdministradorMutation = createApiMutation<ApiResponse<Administrador>, AdministradorPayload>(
+export const useCreateAdministradorMutation = createApiMutation<ApiResponseVoid, AdministradorPayload>(
     (payload) => administradorUseCases.create(payload),
     {
         invalidateKeys: [administradorKeys.all],

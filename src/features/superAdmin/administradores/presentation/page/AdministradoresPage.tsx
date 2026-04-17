@@ -6,7 +6,7 @@ import MenuSencillo from "@shared/components/menu/MenuSencillo";
 import VentanaModal from "@shared/components/modals/VentanaModal";
 import FormClave from "@shared/components/shared/users/formulario/FormClave";
 import { ShieldUser } from "lucide-react";
-import type { Administrador } from "../../domain/administrador.model";
+import type { Administrador } from "../../domain/models/administrador.model";
 import AdminColumns from "../components/AdminColumns";
 import { CAMPOS_ADMIN } from "../components/camposAdmin";
 import DataExportAdmins from "../components/DataExportAdmins";

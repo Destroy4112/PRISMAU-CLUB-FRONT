@@ -1,10 +1,10 @@
-import type { Administrador } from "../../domain/administrador.model";
+import type { Administrador } from "../../domain/models/administrador.model";
 
 export default function DataExportAdmins(data: Administrador[] | undefined) {
     return data?.map(item => ({
-        'Nombre Completo': item.Nombre + " " + item.Apellidos,
-        'Usuario': item.user.Documento,
-        'Email': item.Correo,
-        'Teléfono': item.Telefono,
+        'Nombre Completo': item.nombre + " " + item.apellidos,
+        'Usuario': item.user.documento,
+        'Email': item.correo,
+        'Teléfono': item.telefono,
     }));
 }

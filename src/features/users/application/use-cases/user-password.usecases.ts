@@ -1,12 +1,12 @@
 import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
-import type { UserPasswordPayload } from "../domain/user-password.model";
-import type { UserRepository } from "../domain/user.repository";
+import type { UserPasswordPayload } from "../../domain/payloads/user-password.payload";
+import type { UserPasswordRepository } from "@features/users/domain/repositories/user-password.repository";
 
-export class UserUseCases {
+export class UserPasswordUseCases {
 
-    private readonly repo: UserRepository;
+    private readonly repo: UserPasswordRepository;
 
-    constructor(repo: UserRepository) {
+    constructor(repo: UserPasswordRepository) {
         this.repo = repo;
     }
 

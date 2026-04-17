@@ -1,6 +1,6 @@
 import type { ChangeEvent } from "react";
-import type { AdministradorFilter } from "../../domain/administrador.filters";
-import type { Administrador } from "../../domain/administrador.model";
+import type { AdministradorFilter } from "../../domain/models/administrador.filters";
+import type { Administrador } from "../../domain/models/administrador.model";
 
 export type AdminModalKey = "crearEditar" | "clave";
 
@@ -17,19 +17,19 @@ export const INITIAL_FILTERS_ADMIN: AdministradorFilter = {
 };
 
 export type AdministradorForm = {
-    Nombre: string;
-    Apellidos: string;
-    user: { id?: number, Documento: string, password?: string };
-    Correo: string;
-    Telefono: string;
+    nombre: string;
+    apellidos: string;
+    user: { id?: number, documento: string, password?: string };
+    correo: string;
+    telefono: string;
 };
 
-export const ADMINISTRADOR_FORM_INITIAL: AdministradorForm = {
-    Nombre: "",
-    Apellidos: "",
-    user: { id: undefined, Documento: "", password: "" },
-    Correo: "",
-    Telefono: "",
+export const INITIAL_ADMINISTRADOR_FORM: AdministradorForm = {
+    nombre: "",
+    apellidos: "",
+    user: { id: undefined, documento: "", password: "" },
+    correo: "",
+    telefono: "",
 };
 
 export type FormAdminProps = {
@@ -39,11 +39,11 @@ export type FormAdminProps = {
 }
 
 export type AdministradorPasswordForm = {
-    id: number | null;
+    id: number;
     password: string;
 };
 
 export const ADMIN_PASSWORD_FORM_INITIAL: AdministradorPasswordForm = {
-    id: null,
+    id: 0,
     password: "",
 };

@@ -1,7 +1,6 @@
-import { UserApiRepository } from "../data/user.api.repository";
-import type { UserRepository } from "../domain/user.repository";
-import { UserUseCases } from "./user.usecases";
+import { UserPasswordApiRepository } from "../data/repositories/user-password.api.repository";
+import type { UserPasswordRepository } from "../domain/repositories/user-password.repository";
+import { UserPasswordUseCases } from "./use-cases/user-password.usecases";
 
-const userRepository: UserRepository = new UserApiRepository();
-
-export const userUseCases = new UserUseCases(userRepository);
+const userPasswordRepository: UserPasswordRepository = new UserPasswordApiRepository();
+export const userPasswordUseCases = new UserPasswordUseCases(userPasswordRepository);

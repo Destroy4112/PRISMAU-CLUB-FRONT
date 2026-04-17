@@ -1,11 +1,12 @@
 import { http } from "@core/http/axios.instance";
 import { ENDPOINTS } from "@shared/constants/endpoints/Endpoints.model";
-import type { ApiResponse, ApiResponseVoid, PageParams, PaginatedResponse } from "@shared/constants/response/Response.model";
-import type { AdministradorFilter } from "../domain/administrador.filters";
-import type { Administrador, AdministradorId, AdministradorPayload } from "../domain/administrador.model";
-import type { AdministradorRepository } from "../domain/administrador.repository";
-import type { AdministradorDTO } from "./administrador.dto";
-import { administradorDtoToDomain, payloadToCreateDto, payloadToUpdateDto } from "./administrador.mapper";
+import type { ApiResponseVoid, PageParams, PaginatedResponse } from "@shared/constants/response/Response.model";
+import type { AdministradorFilter } from "../../domain/models/administrador.filters";
+import type { Administrador, AdministradorId } from "../../domain/models/administrador.model";
+import type { AdministradorPayload } from "../../domain/payloads/administrador.payload";
+import type { AdministradorRepository } from "../../domain/repository/administrador.repository";
+import type { AdministradorDTO } from "../dtos/administrador.dto";
+import { administradorDtoToDomain, payloadToCreateDto, payloadToUpdateDto } from "../mappers/administrador.mapper";
 
 const URL = ENDPOINTS.ADMINS;
 
@@ -19,11 +20,11 @@ export class AdministradorApiRepository implements AdministradorRepository {
         return { ...res.data, data: (res.data.data ?? []).map(administradorDtoToDomain) };
     }
 
-    async create(administrador: AdministradorPayload): Promise<ApiResponse<Administrador>> {
+    async create(administrador: AdministradorPayload): Promise<ApiResponseVoid> {
         const dto = payloadToCreateDto(administrador);
-        const res = await http.post<ApiResponse<AdministradorDTO>>(URL, dto);
-        if (!res.data?.status) return res.data as ApiResponse<Administrador>;
-        return { ...res.data, data: administradorDtoToDomain(res.data.data) };
+        const res = await http.post<ApiResponseVoid>(URL, dto);
+        if (!res.data?.status) return { status: false, errors: res.data.errors }
+        return res.data;
     }
 
     async update(administrador: AdministradorPayload): Promise<ApiResponseVoid> {

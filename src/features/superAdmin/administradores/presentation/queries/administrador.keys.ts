@@ -1,6 +1,6 @@
 import type { PageParams } from "@shared/constants/response/Response.model";
 import type { QueryKey } from "@tanstack/react-query";
-import type { AdministradorFilter } from "../../domain/administrador.filters";
+import type { AdministradorFilter } from "../../domain/models/administrador.filters";
 
 export const administradorKeys = {
     all: (): QueryKey => ["administrador"],

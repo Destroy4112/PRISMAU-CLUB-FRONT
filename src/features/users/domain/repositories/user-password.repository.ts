@@ -1,7 +1,7 @@
 import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
-import type { UserPasswordPayload } from "./user-password.model";
+import type { UserPasswordPayload } from "../payloads/user-password.payload";
 
-export interface UserRepository {
+export interface UserPasswordRepository {
     updatePassword(payload: UserPasswordPayload): Promise<ApiResponseVoid>;
     resetPassword(id: number): Promise<ApiResponseVoid>;
 }

@@ -1,8 +1,8 @@
 import { useDebounce } from "@shared/hooks/useDebounce";
 import { useSearchPaginate } from "@shared/hooks/useSearchPaginate";
 import { useMemo } from "react";
-import type { AdministradorFilter } from "../../domain/administrador.filters";
-import type { Administrador } from "../../domain/administrador.model";
+import type { AdministradorFilter } from "../../domain/models/administrador.filters";
+import type { Administrador } from "../../domain/models/administrador.model";
 import { useAdministradorQuery } from "../queries/useAdministradorQuery";
 import { INITIAL_FILTERS_ADMIN } from "../types/admin";
 

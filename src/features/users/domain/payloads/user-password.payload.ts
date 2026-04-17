@@ -1,4 +1,4 @@
 export type UserPasswordPayload = {
-  id: number;
-  password: string;
+    id: number;
+    password: string;
 };
