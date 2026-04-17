@@ -1,6 +1,6 @@
 import type { PageParams, PaginatedResponse } from "@shared/constants/response/Response.model";
-import type { ReservaFilter } from "../domain/reserva.filters";
-import type { Reserva } from "../domain/reserva.model";
+import type { ReservaFilter } from "../../domain/model/reserva.filters";
+import type { Reserva } from "../../domain/model/reserva.model";
 import type { ReservaRepository } from "../domain/reserva.repository";
 
 export class ReservaUseCases {

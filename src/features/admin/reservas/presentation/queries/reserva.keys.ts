@@ -1,6 +1,6 @@
 import type { PageParams } from "@shared/constants/response/Response.model";
 import type { QueryKey } from "@tanstack/react-query";
-import type { ReservaFilter } from "../../domain/reserva.filters";
+import type { ReservaFilter } from "../../domain/model/reserva.filters";
 
 export const reservaKeys = {
     all: (): QueryKey => ["reserva"],

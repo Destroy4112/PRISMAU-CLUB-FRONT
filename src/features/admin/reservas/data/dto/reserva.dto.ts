@@ -1,6 +1,6 @@
 import type { EspacioDetail } from "@shared/models/espacio-detail.model";
 import type { UsuarioDetail } from "@shared/models/usuario-detail.model";
-import type { ReservaId } from "../domain/reserva.model";
+import type { ReservaId } from "../../domain/model/reserva.model";
 
 export type ReservaDTO = {
     id: ReservaId;
@@ -10,7 +10,6 @@ export type ReservaDTO = {
     Inicio: string;
     Fin: string;
     usuario: UsuarioDetail;
-    espacio?: EspacioDetail;
-    created_at?: string;
-    updated_at?: string;
+    espacio: EspacioDetail;
+    created_at: string;
 }

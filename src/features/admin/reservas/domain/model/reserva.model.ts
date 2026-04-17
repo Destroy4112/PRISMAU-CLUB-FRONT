@@ -5,13 +5,12 @@ export type ReservaId = number;
 
 export interface Reserva {
     id: ReservaId;
-    user_id: number;
-    espacio_id: number;
-    Fecha: string;
-    Inicio: string;
-    Fin: string;
+    userId: number;
+    espacioId: number;
+    fecha: string;
+    inicio: string;
+    fin: string;
     usuario: UsuarioDetail
-    espacio?: EspacioDetail
-    createdAt?: string;
-    updatedAt?: string;
+    espacio: EspacioDetail
+    createdAt: string;
 }

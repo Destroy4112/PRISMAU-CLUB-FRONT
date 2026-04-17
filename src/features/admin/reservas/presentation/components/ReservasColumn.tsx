@@ -1,7 +1,7 @@
 import { formatearFecha, formatearHora } from '@shared/utilities/convertidores/normalizeText';
 import type { TableColumn } from 'react-data-table-component';
 import { FaListOl } from 'react-icons/fa';
-import type { Reserva } from '../../domain/reserva.model';
+import type { Reserva } from '../../domain/model/reserva.model';
 
 export default function ReservasColumn(): TableColumn<Reserva>[] {
 
@@ -17,15 +17,15 @@ export default function ReservasColumn(): TableColumn<Reserva>[] {
         },
         {
             name: "Fecha",
-            cell: row => formatearFecha(row.Fecha),
+            cell: row => formatearFecha(row.fecha),
         },
         {
             name: "Hora inicial",
-            cell: row => formatearHora(row.Inicio),
+            cell: row => formatearHora(row.inicio),
         },
         {
             name: "Hora final",
-            cell: row => formatearHora(row.Fin),
+            cell: row => formatearHora(row.fin),
         },
         {
             name: "Nombre completo",

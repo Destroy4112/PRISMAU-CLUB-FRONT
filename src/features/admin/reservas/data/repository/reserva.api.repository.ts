@@ -1,11 +1,11 @@
 import { http } from "@core/http/axios.instance";
 import { ENDPOINTS } from "@shared/constants/endpoints/Endpoints.model";
 import type { PageParams, PaginatedResponse } from "@shared/constants/response/Response.model";
-import type { ReservaFilter } from "../domain/reserva.filters";
-import type { Reserva } from "../domain/reserva.model";
-import type { ReservaRepository } from "../domain/reserva.repository";
-import type { ReservaDTO } from "./reserva.dto";
-import { reservaDtoToDomain } from "./reserva.mapper";
+import type { ReservaFilter } from "../../domain/model/reserva.filters";
+import type { Reserva } from "../../domain/model/reserva.model";
+import type { ReservaRepository } from "../../domain/repository/reserva.repository";
+import type { ReservaDTO } from "../dto/reserva.dto";
+import { reservaDtoToDomain } from "../mapper/reserva.mapper";
 
 const URL = ENDPOINTS.RESERVAS;
 

@@ -31,5 +31,5 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src", "src/features/admin/reservas/domain/reserva.filters.ts"]
+  "include": ["src", "src/features/admin/reservas/domain/model/reserva.filters.ts"]
 }
