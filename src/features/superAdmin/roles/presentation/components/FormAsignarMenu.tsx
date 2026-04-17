@@ -3,7 +3,7 @@ import type { FormMenuRolProps } from "../types/menuRol";
 
 function FormAsignarMenu({ form, menus, handleChange }: FormMenuRolProps) {
 
-    const items = menus?.map((menu) => ({ value: menu.id!, label: menu.Name })) ?? [];
+    const items = menus?.map((menu) => ({ value: menu.id!, label: menu.name })) ?? [];
 
     return (
         <div className="max-w-full flex flex-col">
