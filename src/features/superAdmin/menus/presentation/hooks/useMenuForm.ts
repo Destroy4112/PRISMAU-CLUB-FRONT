@@ -1,22 +1,22 @@
 import type { ModalsApi } from "@shared/hooks/useModal";
 import { useState, type ChangeEvent } from "react";
-import { menuFormToPayload } from "../../application/menu-form.mapper";
-import type { Menu } from "../../domain/menu.model";
+import { menuDomainToForm, menuFormToPayload } from "../../application/mapper/menu-form.mapper";
+import type { Menu } from "../../domain/model/menu.model";
 import { useCreateMenuMutation } from "../mutations/useCreateMenuMutation";
 import { useUpdateMenuMutation } from "../mutations/useUpdateMenuMutation";
-import { INITIAL_FORM_MENU, type MenuForm, type MenuModalKey } from "../types/menu";
+import { INITIAL_MENU_FORM, type MenuForm, type MenuModalKey } from "../types/menu";
 
 export function useMenuForm(modalsApi: ModalsApi<MenuModalKey>) {
 
     const { toggleModal } = modalsApi;
 
-    const [menuForm, setMenuForm] = useState<MenuForm>(INITIAL_FORM_MENU);
+    const [menuForm, setMenuForm] = useState<MenuForm>(INITIAL_MENU_FORM);
     const [editId, setEditId] = useState<number | null>(null);
 
     const isEditing = editId != null;
 
     const resetForm = (): void => {
-        setMenuForm(INITIAL_FORM_MENU);
+        setMenuForm(INITIAL_MENU_FORM);
         setEditId(null);
     };
 
@@ -32,7 +32,7 @@ export function useMenuForm(modalsApi: ModalsApi<MenuModalKey>) {
 
     const cargarMenu = (menu: Menu): void => {
         setEditId(menu.id);
-        setMenuForm(menu);
+        setMenuForm(menuDomainToForm(menu));
         toggleModal("crearEditar");
     };
 

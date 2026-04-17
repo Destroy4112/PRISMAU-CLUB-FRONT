@@ -1,5 +1,5 @@
 import type { ChangeEvent } from "react";
-import type { Menu } from "../../domain/menu.model";
+import type { Menu } from "../../domain/model/menu.model";
 
 export type MenuModalKey = "crearEditar";
 
@@ -14,17 +14,17 @@ export type ColumnsMenuProps = {
 }
 
 export type MenuForm = {
-    Name: string,
-    Type: string,
-    Route: string,
-    Icon: string,
-    Color: string,
+    name: string,
+    type: string,
+    route: string,
+    icon: string,
+    color: string,
 }
 
-export const INITIAL_FORM_MENU: MenuForm = {
-    Name: "",
-    Type: "",
-    Route: "",
-    Icon: "",
-    Color: "",
+export const INITIAL_MENU_FORM: MenuForm = {
+    name: "",
+    type: "",
+    route: "",
+    icon: "",
+    color: "",
 }

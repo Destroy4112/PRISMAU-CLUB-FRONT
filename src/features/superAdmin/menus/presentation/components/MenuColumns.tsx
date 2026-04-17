@@ -1,6 +1,6 @@
 import type { TableColumn } from 'react-data-table-component';
 import { FaEdit, FaTrash } from 'react-icons/fa';
-import type { Menu } from '../../domain/menu.model';
+import type { Menu } from '../../domain/model/menu.model';
 import type { ColumnsMenuProps } from '../types/menu';
 
 export default function MenuColumns({ cargar, eliminar }: ColumnsMenuProps): TableColumn<Menu>[] {
@@ -27,23 +27,23 @@ export default function MenuColumns({ cargar, eliminar }: ColumnsMenuProps): Tab
         },
         {
             name: "Label",
-            cell: row => row.Name,
+            cell: row => row.name,
         },
         {
             name: "Tipo",
-            cell: row => row.Type,
+            cell: row => row.type,
         },
         {
             name: "Ruta",
-            cell: row => row.Route,
+            cell: row => row.route,
         },
         {
             name: "Icono",
-            cell: row => (<i className={`fa fa-${row.Icon} text-${row.Color} text-lg`}></i>),
+            cell: row => (<i className={`fa fa-${row.icon} text-${row.color} text-lg`}></i>),
         },
         {
             name: "Color",
-            cell: row => (<div className={`w-6 h-6 rounded-full bg-${row.Color}`}></div>),
+            cell: row => (<div className={`w-6 h-6 rounded-full bg-${row.color}`}></div>),
         },
     ];
 }

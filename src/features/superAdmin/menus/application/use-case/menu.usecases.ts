@@ -1,6 +1,7 @@
-import type { ApiResponse, ApiResponseVoid } from "@shared/constants/response/Response.model";
-import type { Menu, MenuId, MenuPayload } from "../domain/menu.model";
-import type { MenuRepository } from "../domain/menu.repository";
+import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
+import type { Menu, MenuId } from "../../domain/model/menu.model";
+import type { MenuPayload } from "../../domain/payload/menu.payload";
+import type { MenuRepository } from "../../domain/repository/menu.repository";
 
 export class MenuUseCases {
 
@@ -14,7 +15,7 @@ export class MenuUseCases {
         return this.repo.getAll();
     }
 
-    create(payload: MenuPayload): Promise<ApiResponse<Menu>> {
+    create(payload: MenuPayload): Promise<ApiResponseVoid> {
         return this.repo.create(payload);
     }
 
