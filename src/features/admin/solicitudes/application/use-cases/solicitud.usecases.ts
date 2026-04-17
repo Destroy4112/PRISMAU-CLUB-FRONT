@@ -1,8 +1,8 @@
 import type { ApiResponseVoid, PageParams, PaginatedResponse } from "@shared/constants/response/Response.model";
-import type { SolicitudFilter } from "../domain/solicitud.filters";
-import type { Solicitud } from "../domain/solicitud.model";
-import type { SolicitudRepository } from "../domain/solicitud.repository";
-import { type SolicitudRespuestaPayload } from '../domain/solicitud.model';
+import type { SolicitudFilter } from "../../domain/models/solicitud.filters";
+import type { Solicitud } from "../../domain/models/solicitud.model";
+import type { SolicitudRespuestaPayload } from "../../domain/payloads/solicitud.payload";
+import type { SolicitudRepository } from "../../domain/repository/solicitud.repository";
 
 export class SolicitudUseCases {
 

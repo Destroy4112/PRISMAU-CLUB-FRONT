@@ -1,7 +1,7 @@
 import { formatearFecha } from "@shared/utilities/convertidores/normalizeText";
 import type { TableColumn } from "react-data-table-component";
 import { FaComment, FaEye, FaListOl } from "react-icons/fa";
-import type { Solicitud } from "../../domain/solicitud.model";
+import type { Solicitud } from "../../domain/models/solicitud.model";
 
 export default function SolicitudColumns({ cargarSolicitud }: any): TableColumn<Solicitud>[] {
 
@@ -15,8 +15,8 @@ export default function SolicitudColumns({ cargarSolicitud }: any): TableColumn<
             name: "Actions",
             cell: row => (
                 <div className="flex">
-                    <button onClick={() => cargarSolicitud(row)} className={`rounded-full w-8 h-8 ${row.Estado === 0 ? 'bg-green-600' : 'bg-orange-400'} text-white flex justify-center items-center cursor-pointer`} title='Responder' >
-                        {row.Estado == 0 ? <FaEye /> : <FaComment />}
+                    <button onClick={() => cargarSolicitud(row)} className={`rounded-full w-8 h-8 ${row.estado === 0 ? 'bg-green-600' : 'bg-orange-400'} text-white flex justify-center items-center cursor-pointer`} title='Responder' >
+                        {row.estado == 0 ? <FaEye /> : <FaComment />}
                     </button>
                 </div>
             ),
@@ -26,8 +26,8 @@ export default function SolicitudColumns({ cargarSolicitud }: any): TableColumn<
             name: "Estado",
             cell: row => (
                 <div className="flex items-center">
-                    <div className={`h-2.5 w-2.5 rounded-full ${row.Estado == 0 ? 'bg-green-500' : 'bg-orange-500'} mr-2`}></div>
-                    {row.Estado == 0 ? "Aprobada" : "Pendiente"}
+                    <div className={`h-2.5 w-2.5 rounded-full ${row.estado == 0 ? 'bg-green-500' : 'bg-orange-500'} mr-2`}></div>
+                    {row.estado == 0 ? "Aprobada" : "Pendiente"}
                 </div>
             ),
             width: '130px',
@@ -39,11 +39,11 @@ export default function SolicitudColumns({ cargarSolicitud }: any): TableColumn<
         },
         {
             name: "Tipo de solicitud",
-            selector: row => row.Tipo,
+            selector: row => row.tipo,
         },
         {
             name: "Fecha",
-            cell: row => formatearFecha(row.createdAt!),
+            cell: row => formatearFecha(row.createdAt),
             width: '120px',
         },
     ];

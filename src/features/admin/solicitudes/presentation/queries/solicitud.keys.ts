@@ -1,6 +1,6 @@
 import type { PageParams } from "@shared/constants/response/Response.model";
 import type { QueryKey } from "@tanstack/react-query";
-import type { SolicitudFilter } from "../../domain/solicitud.filters";
+import type { SolicitudFilter } from "../../domain/models/solicitud.filters";
 
 export const solicitudKeys = {
     all: (): QueryKey => ["solicitud"],

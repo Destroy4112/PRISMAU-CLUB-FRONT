@@ -1,4 +1,4 @@
-import type { Solicitud, SolicitudRespuestaPayload } from "../domain/solicitud.model";
+import type { Solicitud, SolicitudRespuestaPayload } from "../../domain/models/solicitud.model";
 import type { SolicitudDTO, SolicitudRespuestaDTO } from "./solicitud.dto";
 
 export function solicitudDtoToDomain(dto: SolicitudDTO): Solicitud {

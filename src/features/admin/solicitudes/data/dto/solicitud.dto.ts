@@ -1,5 +1,5 @@
 import type { UsuarioDetail } from "@shared/models/usuario-detail.model";
-import type { SolicitudId } from "../domain/solicitud.model";
+import type { SolicitudId } from "../../domain/models/solicitud.model";
 
 export type SolicitudDTO = {
     id: SolicitudId;
@@ -9,8 +9,7 @@ export type SolicitudDTO = {
     Respuesta: string;
     Estado: number;
     usuario: UsuarioDetail;
-    created_at?: string;
-    updated_at?: string;
+    created_at: string;
 };
 
 export interface SolicitudRespuestaDTO {

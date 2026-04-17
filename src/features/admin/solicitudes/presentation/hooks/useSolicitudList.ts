@@ -1,8 +1,8 @@
 import { useDebounce } from "@shared/hooks/useDebounce";
 import { useSearchPaginate } from "@shared/hooks/useSearchPaginate";
 import { useMemo } from "react";
-import type { SolicitudFilter } from "../../domain/solicitud.filters";
-import type { Solicitud } from "../../domain/solicitud.model";
+import type { SolicitudFilter } from "../../domain/models/solicitud.filters";
+import type { Solicitud } from "../../domain/models/solicitud.model";
 import { useSolicitudQuery } from "../queries/useSolicitudQuery";
 import { INITIAL_FILTERS_SOLICITUD } from "../types/solicitud";
 

@@ -1,24 +1,24 @@
 import { type ModalsApi } from "@shared/hooks/useModal";
 import { useState, type ChangeEvent } from "react";
-import { solicitudFormToPayload } from "../../application/solicitud-form.mapper";
-import type { Solicitud } from "../../domain/solicitud.model";
+import { solicitudDomainToForm, solicitudFormToPayload } from "../../application/mappers/solicitud-form.mapper";
+import type { Solicitud } from "../../domain/models/solicitud.model";
 import { useReplySolicitudMutation } from "../mutations/useReplySolicitudMutation";
-import { INITIAL_SOLICITUD_REPLY_FORM, type SolicitudModalKey, type SolicitudReplyForm } from "../types/solicitud";
+import { INITIAL_SOLICITUD_FORM, INITIAL_SOLICITUD_REPLY_FORM, type SolicitudForm, type SolicitudModalKey, type SolicitudReplyForm } from "../types/solicitud";
 
 export function useSolicitudForm(modalApi: ModalsApi<SolicitudModalKey>) {
 
     const { toggleModal } = modalApi;
 
-    const [solicitudForm, setSolicitudForm] = useState<SolicitudReplyForm>(INITIAL_SOLICITUD_REPLY_FORM);
-    const [solicitud, setSolicitud] = useState<Solicitud | null>(null);
+    const [solicitudForm, setSolicitudForm] = useState<SolicitudForm>(INITIAL_SOLICITUD_FORM);
+    const [solicitudReplyForm, setSolicitudReplyForm] = useState<SolicitudReplyForm>(INITIAL_SOLICITUD_REPLY_FORM);
 
     const resetForm = (): void => {
-        setSolicitudForm(INITIAL_SOLICITUD_REPLY_FORM);
+        setSolicitudReplyForm(INITIAL_SOLICITUD_REPLY_FORM);
     };
 
     const openModal = (solicitud: Solicitud): void => {
-        setSolicitudForm({ id: solicitud.id, Respuesta: '' });
-        setSolicitud(solicitud);
+        setSolicitudReplyForm({ id: solicitud.id, respuesta: '' });
+        setSolicitudForm(solicitudDomainToForm(solicitud));
         toggleModal("reply");
     };
 
@@ -33,16 +33,16 @@ export function useSolicitudForm(modalApi: ModalsApi<SolicitudModalKey>) {
 
     const handleChange = ({ target }: ChangeEvent<HTMLTextAreaElement>): void => {
         const { name, value } = target;
-        setSolicitudForm((prev) => ({ ...prev, [name]: value }));
+        setSolicitudReplyForm((prev) => ({ ...prev, [name]: value }));
     };
 
     const handleSubmit = (): void => {
-        replySolicitudMutation(solicitudFormToPayload(solicitudForm));
+        replySolicitudMutation(solicitudFormToPayload(solicitudReplyForm));
     };
 
     return {
-        solicitud,
-        solicitudForm,
+        solicitud: solicitudForm,
+        solicitudReplyForm,
         loading: isPending,
         tituloModal: "Responder Solicitud",
         openModal,

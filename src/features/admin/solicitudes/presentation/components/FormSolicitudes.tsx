@@ -6,8 +6,8 @@ import type { FormSolicitudesProps } from "../types/solicitud";
 
 function FormSolicitudes({ solicitud, form, handleChange }: FormSolicitudesProps) {
 
-    const isClosed = solicitud?.Estado == 0;
-    const foto = solicitud?.usuario?.imagen ? `${URL_BACK + solicitud.usuario.imagen}` : solicitud?.usuario?.Sexo === "Femenino" ? imagen.femenino : imagen.masculino;
+    const isClosed = solicitud.estado == 0;
+    const foto = solicitud.usuario.imagen ? `${URL_BACK + solicitud.usuario.imagen}` : solicitud.usuario.Sexo === "Femenino" ? imagen.femenino : imagen.masculino;
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
@@ -29,14 +29,14 @@ function FormSolicitudes({ solicitud, form, handleChange }: FormSolicitudesProps
                         <div className="space-y-2">
                             <label className="block text-sm font-medium text-gray-900">Tipo de solicitud</label>
                             <div className="p-3 bg-gray-100 rounded-lg border border-gray-200">
-                                <p className="text-sm text-gray-900">{solicitud?.Tipo}</p>
+                                <p className="text-sm text-gray-900">{solicitud.tipo}</p>
                             </div>
                         </div>
 
                         <div className="space-y-2">
                             <label className="block text-sm font-medium text-gray-900">Descripción de la solicitud</label>
                             <div className="p-3 bg-gray-100 rounded-lg border border-gray-200 min-h-25">
-                                <p className="text-sm text-gray-900 whitespace-pre-wrap">{solicitud?.Descripcion}</p>
+                                <p className="text-sm text-gray-900 whitespace-pre-wrap">{solicitud.descripcion}</p>
                             </div>
                         </div>
 
@@ -46,9 +46,9 @@ function FormSolicitudes({ solicitud, form, handleChange }: FormSolicitudesProps
                             </label>
                             <TextAreaField
                                 id="Respuesta"
-                                name="Respuesta"
+                                name="respuesta"
                                 handleChange={handleChange}
-                                value={isClosed ? solicitud?.Respuesta : form.Respuesta}
+                                value={isClosed ? solicitud.respuesta : form.respuesta}
                                 placeholder="Escriba la respuesta de la solicitud..."
                             />
                             <p className="text-xs text-gray-500">*Campo requerido para completar la solicitud</p>
@@ -71,19 +71,19 @@ function FormSolicitudes({ solicitud, form, handleChange }: FormSolicitudesProps
                         </div>
                         <div className="min-w-0 flex-1">
                             <p className="text-sm font-semibold text-gray-900 truncate">
-                                {solicitud?.usuario?.Nombre}
+                                {solicitud.usuario.Nombre}
                             </p>
-                            <p className="text-xs text-gray-500">{solicitud?.usuario?.Apellidos}</p>
+                            <p className="text-xs text-gray-500">{solicitud.usuario.Apellidos}</p>
                         </div>
                     </div>
                     <div className="space-y-2 text-xs text-gray-600">
                         <div className="flex items-center">
                             <Mail className="w-3 h-3 mr-2 shrink-0" />
-                            <span className="truncate">{solicitud?.usuario?.Correo}</span>
+                            <span className="truncate">{solicitud.usuario.Correo}</span>
                         </div>
                         <div className="flex items-center">
                             <Phone className="w-3 h-3 mr-2 shrink-0" />
-                            <span>{solicitud?.usuario?.Telefono}</span>
+                            <span>{solicitud.usuario.Telefono}</span>
                         </div>
                     </div>
                 </div>
