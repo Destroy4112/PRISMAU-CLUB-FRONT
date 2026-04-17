@@ -1,6 +1,6 @@
 import { formatearFecha } from "@shared/utilities/convertidores/normalizeText";
 import type { TableColumn } from "react-data-table-component";
-import type { Contrato } from "../../domain/contrato.model";
+import type { Contrato } from "../../domain/models/contrato.model";
 
 export default function ContratacionesColumn(): TableColumn<Contrato>[] {
 
@@ -12,31 +12,31 @@ export default function ContratacionesColumn(): TableColumn<Contrato>[] {
         },
         {
             name: "Nombre Completo",
-            cell: row => row.Nombres + " " + row.Apellidos,
+            cell: row => row.nombres + " " + row.apellidos,
             width: '310px',
         },
         {
             name: "Identificación",
-            selector: row => row.Identificacion,
+            selector: row => row.identificacion,
             width: '150px',
         },
         {
             name: "Empresa",
-            cell: row => row.Empresa,
+            cell: row => row.empresa,
             width: '200px'
         },
         {
             name: "Correo",
-            cell: row => row.Correo,
+            cell: row => row.correo,
             width: '300px'
         },
         {
             name: "Telefono",
-            selector: row => row.Telefono,
+            selector: row => row.telefono,
         },
         {
             name: "Fecha",
-            cell: row => formatearFecha(row.createdAt!),
+            cell: row => formatearFecha(row.createdAt),
             width: '120px',
         },
     ];

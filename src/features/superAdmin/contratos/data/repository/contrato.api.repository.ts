@@ -1,11 +1,11 @@
 import { http } from "@core/http/axios.instance";
 import { ENDPOINTS } from "@shared/constants/endpoints/Endpoints.model";
 import type { PageParams, PaginatedResponse } from "@shared/constants/response/Response.model";
-import type { ContratoFilter } from "../domain/contrato.filters";
-import type { Contrato } from "../domain/contrato.model";
-import type { ContratoRepository } from "../domain/contrato.repository";
-import type { ContratoDTO } from "./contrato.dto";
-import { contratoDtoToDomain } from "./contrato.mapper";
+import type { ContratoFilter } from "../../domain/models/contrato.filters";
+import type { Contrato } from "../../domain/models/contrato.model";
+import type { ContratoRepository } from "../../domain/repository/contrato.repository";
+import type { ContratoDTO } from "../dto/contrato.dto";
+import { contratoDtoToDomain } from "../mapper/contrato.mapper";
 
 const URL = ENDPOINTS.CONTRATOS;
 

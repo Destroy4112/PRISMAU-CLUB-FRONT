@@ -1,7 +1,7 @@
 import type { PageParams, PaginatedResponse } from "@shared/constants/response/Response.model";
-import type { ContratoFilter } from "../domain/contrato.filters";
-import type { Contrato } from "../domain/contrato.model";
-import type { ContratoRepository } from "../domain/contrato.repository";
+import type { ContratoFilter } from "../../domain/models/contrato.filters";
+import type { Contrato } from "../../domain/models/contrato.model";
+import type { ContratoRepository } from "../../domain/repository/contrato.repository";
 
 export class ContratoUseCases {
 

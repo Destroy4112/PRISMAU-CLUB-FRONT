@@ -1,6 +1,6 @@
-import { ContratoApiRepository } from "../data/contrato.api.repository";
-import type { ContratoRepository } from "../domain/contrato.repository";
-import { ContratoUseCases } from "./contrato.usecases";
+import { ContratoApiRepository } from "../data/repository/contrato.api.repository";
+import type { ContratoRepository } from "../domain/repository/contrato.repository";
+import { ContratoUseCases } from "./use-case/contrato.usecases";
 
 const contratoRepository: ContratoRepository = new ContratoApiRepository();
 

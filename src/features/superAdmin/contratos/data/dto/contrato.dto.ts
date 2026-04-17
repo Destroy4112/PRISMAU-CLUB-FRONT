@@ -1,4 +1,4 @@
-import type { ContratoId } from "../domain/contrato.model";
+import type { ContratoId } from "../../domain/models/contrato.model";
 
 export type ContratoDTO = {
     id: ContratoId;
@@ -10,6 +10,5 @@ export type ContratoDTO = {
     Empresa: string;
     Ciudad: string;
     Estado: string;
-    created_at?: string;
-    updated_at?: string;
+    created_at: string;
 }

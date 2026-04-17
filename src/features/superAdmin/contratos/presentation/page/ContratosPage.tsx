@@ -3,7 +3,7 @@ import DataTableComponent from '@shared/components/dataTable/DataTableComponent'
 import Contenido from '@shared/components/helpers/Contenido';
 import TituloPage from '@shared/components/helpers/TituloPage';
 import { FileChartColumn } from 'lucide-react';
-import type { Contrato } from '../../domain/contrato.model';
+import type { Contrato } from '../../domain/models/contrato.model';
 import { CAMPOS_CONTRATO } from '../components/camposContrato';
 import AdminColumns from '../components/ContratosColumns';
 import useContrato from '../hooks/useContrato';
