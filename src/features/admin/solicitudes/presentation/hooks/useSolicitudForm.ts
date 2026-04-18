@@ -17,7 +17,7 @@ export function useSolicitudForm(modalApi: ModalsApi<SolicitudModalKey>) {
     };
 
     const openModal = (solicitud: Solicitud): void => {
-        setSolicitudReplyForm({ id: solicitud.id, respuesta: '' });
+        setSolicitudReplyForm({ id: solicitud.id, respuesta: solicitud.respuesta! });
         setSolicitudForm(solicitudDomainToForm(solicitud));
         toggleModal("reply");
     };

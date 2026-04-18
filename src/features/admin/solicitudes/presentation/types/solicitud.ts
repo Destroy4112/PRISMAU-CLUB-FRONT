@@ -1,6 +1,5 @@
 import type { UsuarioDetail } from "@shared/models/usuario-detail.model";
 import type { ChangeEvent } from "react";
-import type { Solicitud } from "../../domain/models/solicitud.model";
 
 export type SolicitudModalKey = 'reply';
 
@@ -9,7 +8,7 @@ export type SolicitudForm = {
     descripcion: string;
     tipo: string;
     userId: number;
-    respuesta: string;
+    respuesta: string | null;
     estado: number;
     usuario: UsuarioDetail;
 }

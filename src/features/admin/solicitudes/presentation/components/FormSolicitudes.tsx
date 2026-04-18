@@ -41,15 +41,14 @@ function FormSolicitudes({ solicitud, form, handleChange }: FormSolicitudesProps
                         </div>
 
                         <div className="space-y-2">
-                            <label className="block text-sm font-medium text-gray-900" htmlFor="Respuesta">
-                                Respuesta
-                            </label>
                             <TextAreaField
-                                id="Respuesta"
+                                id="idRespuesta"
                                 name="respuesta"
                                 handleChange={handleChange}
-                                value={isClosed ? solicitud.respuesta : form.respuesta}
+                                value={form.respuesta}
                                 placeholder="Escriba la respuesta de la solicitud..."
+                                label="Respuesta de la solicitud"
+                                required
                             />
                             <p className="text-xs text-gray-500">*Campo requerido para completar la solicitud</p>
                         </div>

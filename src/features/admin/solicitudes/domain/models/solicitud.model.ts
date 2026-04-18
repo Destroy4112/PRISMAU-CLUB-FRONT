@@ -7,8 +7,8 @@ export interface Solicitud {
     descripcion: string;
     tipo: string;
     userId: number;
-    respuesta: string;
     estado: number;
     usuario: UsuarioDetail;
+    respuesta: string | null;
     createdAt: string;
 }

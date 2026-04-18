@@ -6,9 +6,9 @@ export type SolicitudDTO = {
     Descripcion: string;
     Tipo: string;
     user_id: number;
-    Respuesta: string;
     Estado: number;
     usuario: UsuarioDetail;
+    Respuesta: string | null;
     created_at: string;
 };
 
