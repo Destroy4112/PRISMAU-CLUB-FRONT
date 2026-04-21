@@ -1,6 +1,7 @@
-import type { ApiResponse, ApiResponseVoid } from "@shared/constants/response/Response.model";
-import type { Pregunta, PreguntaId, PreguntaPayload } from "../domain/pregunta.model";
-import type { PreguntaRepository } from "../domain/pregunta.repository";
+import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
+import type { Pregunta, PreguntaId } from "../../domain/model/pregunta.model";
+import type { PreguntaPayload } from "../../domain/payload/pregunta.payload";
+import type { PreguntaRepository } from "../../domain/repository/pregunta.repository";
 
 export class PreguntaUseCases {
 
@@ -14,7 +15,7 @@ export class PreguntaUseCases {
         return this.repo.getAll(id);
     }
 
-    create(payload: PreguntaPayload): Promise<ApiResponse<Pregunta>> {
+    create(payload: PreguntaPayload): Promise<ApiResponseVoid> {
         return this.repo.create(payload);
     }
 

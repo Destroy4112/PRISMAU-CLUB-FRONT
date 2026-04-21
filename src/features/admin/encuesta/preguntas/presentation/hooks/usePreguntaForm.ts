@@ -1,22 +1,24 @@
 import type { ModalsApi } from "@shared/hooks/useModal";
 import { useState, type ChangeEvent } from "react";
-import { preguntaFormToPayload } from "../../application/pregunta-form.mapper";
-import type { Pregunta } from "../../domain/pregunta.model";
+import { preguntaDomainToForm, preguntaFormToPayload } from "../../application/mapper/pregunta-form.mapper";
+import type { Pregunta } from "../../domain/model/pregunta.model";
 import { useCreatePreguntaMutation } from "../mutations/useCreatePreguntaMutation";
 import { useUpdatePreguntaMutation } from "../mutations/useUpdatePreguntaMutation";
-import { INITIAL_FORM_PREGUNTA, type PreguntaForm, type PreguntaModalKey } from "../types/pregunta";
+import { buildPreguntaContext, INITIAL_FORM_PREGUNTA, type PreguntaForm, type PreguntaModalKey } from "../types/pregunta";
 
 export function usePreguntaForm(id: number, modalsApi: ModalsApi<PreguntaModalKey>) {
 
     const { toggleModal } = modalsApi;
 
-    const [preguntaForm, setPreguntaForm] = useState<PreguntaForm>(INITIAL_FORM_PREGUNTA(id));
+    const [preguntaForm, setPreguntaForm] = useState<PreguntaForm>(INITIAL_FORM_PREGUNTA);
     const [editId, setEditId] = useState<number | null>(null);
 
     const isEditing = editId != null;
 
+    const context = buildPreguntaContext(id);
+
     const resetForm = (): void => {
-        setPreguntaForm(INITIAL_FORM_PREGUNTA(id));
+        setPreguntaForm(INITIAL_FORM_PREGUNTA);
         setEditId(null);
     };
 
@@ -31,7 +33,7 @@ export function usePreguntaForm(id: number, modalsApi: ModalsApi<PreguntaModalKe
 
     const cargarPregunta = (pregunta: Pregunta): void => {
         setEditId(pregunta.id);
-        setPreguntaForm(pregunta);
+        setPreguntaForm(preguntaDomainToForm(pregunta));
         toggleModal("crearEditar");
     };
 
@@ -49,10 +51,10 @@ export function usePreguntaForm(id: number, modalsApi: ModalsApi<PreguntaModalKe
 
     const submit = (): void => {
         if (isEditing) {
-            updatePreguntaMutation(preguntaFormToPayload(preguntaForm, editId));
+            updatePreguntaMutation(preguntaFormToPayload(preguntaForm, context, editId));
             return;
         }
-        createPreguntaMutation(preguntaFormToPayload(preguntaForm));
+        createPreguntaMutation(preguntaFormToPayload(preguntaForm, context));
     };
 
     return {

@@ -1,7 +1,7 @@
 import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
 import { createApiMutation } from "@shared/react-query/createApiMutation";
 import { preguntaUseCases } from "../../application/pregunta.container";
-import type { PreguntaPayload } from "../../domain/pregunta.model";
+import type { PreguntaPayload } from "../../domain/payload/pregunta.payload";
 import { preguntaKeys } from "../queries/pregunta.keys";
 
 export const useUpdatePreguntaMutation = createApiMutation<ApiResponseVoid, PreguntaPayload>(

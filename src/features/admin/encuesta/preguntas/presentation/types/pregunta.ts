@@ -1,15 +1,21 @@
-import type { Pregunta } from "../../domain/pregunta.model";
+import type { Pregunta } from "../../domain/model/pregunta.model";
 
 export type PreguntaModalKey = "crearEditar";
 
-export type PreguntaForm = {
+export type PreguntaContext = {
     encuesta_id: number,
-    Pregunta: string,
 }
 
-export const INITIAL_FORM_PREGUNTA = (encuesta_id: number): PreguntaForm => ({
-    encuesta_id,
-    Pregunta: "",
+export const buildPreguntaContext = (encuesta_id: number): PreguntaContext => ({
+    encuesta_id
+})
+
+export type PreguntaForm = {
+    pregunta: string,
+}
+
+export const INITIAL_FORM_PREGUNTA = (): PreguntaForm => ({
+    pregunta: "",
 });
 
 export type FormPreguntaProps = {

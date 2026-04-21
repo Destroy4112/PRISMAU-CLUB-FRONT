@@ -1,8 +1,8 @@
 import { useAppSelector } from '@core/store/redux/hooks';
-import { selectRol } from '@features/auth/login/presentation/store/auth.selectors';
+import { selectRol } from '@features/auth/presentation/store/session/session.selectors';
 import type { TableColumn } from 'react-data-table-component';
 import { FaEdit, FaListOl, FaTrashAlt } from 'react-icons/fa';
-import type { Pregunta } from '../../domain/pregunta.model';
+import type { Pregunta } from '../../domain/model/pregunta.model';
 import type { ColumnsPreguntaProps } from '../types/pregunta';
 
 export default function PreguntaColumns({ cargar, handleDelete }: ColumnsPreguntaProps): TableColumn<Pregunta>[] {
@@ -31,7 +31,7 @@ export default function PreguntaColumns({ cargar, handleDelete }: ColumnsPregunt
         },
         {
             name: "Descripción",
-            cell: row => row.Pregunta,
+            cell: row => row.pregunta,
         },
     ];
 }
