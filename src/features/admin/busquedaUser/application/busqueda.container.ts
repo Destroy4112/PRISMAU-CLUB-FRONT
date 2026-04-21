@@ -1,7 +1,6 @@
-import { BusquedaApiRepository } from "../data/busqueda.api.repository";
-import type { BusquedaRepository } from "../domain/busqueda.repository";
-import { BusquedaUseCases } from "./busqueda.usecases";
+import { BusquedaUserApiRepository } from "../data/repository/busqueda-user.api.repository";
+import type { BusquedaUserRepository } from "../domain/repository/busqueda-user.repository";
+import { BusquedaUserUseCases } from "./use-case/busqueda-user.usecases";
 
-const busquedaRepository: BusquedaRepository = new BusquedaApiRepository();
-
-export const busquedaUseCases = new BusquedaUseCases(busquedaRepository);
+const busquedaUserRepository: BusquedaUserRepository = new BusquedaUserApiRepository();
+export const busquedaUserUseCases = new BusquedaUserUseCases(busquedaUserRepository);

@@ -1,6 +1,6 @@
 import type { ChangeEvent } from "react";
 import type { IconType } from "react-icons";
-import type { DataResultSearch } from "../../domain/usuario-search.model";
+import type { DataResultSearch } from "../../domain/model/busqueda-user.model";
 
 export type BuscadorUserProps = {
     busqueda: string;

@@ -1,12 +1,12 @@
-export type SearchUsuarioTipoDTO = | "ASOCIADO" | "ADHERENTE" | "FAMILIAR" | "EMPLEADO";
+import type { EntityType } from "../../domain/model/busqueda-user.model";
 
-export type ResultSearchResponseDTO =
+export type BusquedaUserResponseDTO =
     | { status: true; data: DataResultSearchDTO }
     | { status: false; message: string };
 
 export type DataResultSearchDTO = {
     status: boolean;
-    tipo: SearchUsuarioTipoDTO;
+    tipo: EntityType;
     user: SearchPersonaBaseDTO;
     relacionado: SearchPersonaBaseDTO | null;
 };

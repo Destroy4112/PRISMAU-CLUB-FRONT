@@ -1,6 +1,6 @@
 import { alertError, alertWarning } from "@shared/utilities/alerts/alertas.utility";
 import { useState, type ChangeEvent } from "react";
-import type { DataResultSearch } from "../../domain/usuario-search.model";
+import type { DataResultSearch } from "../../domain/model/busqueda-user.model";
 import { useSearchUserMutation } from "../mutations/useSearchUserMutation";
 
 export default function useBusqueda() {
@@ -21,6 +21,7 @@ export default function useBusqueda() {
     };
 
     const handleSubmit = () => {
+        if (!busqueda) return alertWarning("Ingrese un documento");
         setActivo(true);
         searchMutation(busqueda, {
             onSuccess: (res) => {

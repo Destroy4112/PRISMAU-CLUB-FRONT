@@ -1,10 +1,10 @@
 import { useAppMutation } from "@core/store/react-query/hooks";
-import { busquedaUseCases } from "../../application/busqueda.container";
-import type { ResultSearchResponse } from "../../domain/usuario-search.model";
+import { busquedaUserUseCases } from "../../application/busqueda.container";
+import type { BusquedaUserResponse } from "../../domain/model/busqueda-user.model";
 
 export const useSearchUserMutation = () => {
-    return useAppMutation<ResultSearchResponse, Error, string>({
+    return useAppMutation<BusquedaUserResponse, Error, string>({
         mutationKey: ["searchUser"],
-        mutationFn: (documento: string) => busquedaUseCases.get(documento),
+        mutationFn: (documento: string) => busquedaUserUseCases.get(documento),
     });
 };
