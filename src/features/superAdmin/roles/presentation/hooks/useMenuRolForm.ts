@@ -1,5 +1,5 @@
 import { useCallback, useState, type ChangeEvent } from "react";
-import { menuRolFormToPayload } from "../../application/mapper/menu-rol-form.mapper";
+import { menuRolFormToPayload } from "../mapper/menu-rol-form.mapper";
 import { useCreateMenuRolMutation } from "../mutations/useCreateMenuRolMutation";
 import { buildMenuRolContext, INITIAL_MENU_ROL_FORM, type MenuRolForm, type UseMenuRolFormProps } from "../types/menuRol";
 

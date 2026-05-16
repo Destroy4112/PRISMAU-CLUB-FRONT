@@ -1,5 +1,5 @@
 import { useAppQuery } from '@core/store/react-query/hooks'
-import { menuRolUseCases } from '../../application/menu.container'
+import { menuRolUseCases } from '../../application/container/menu.container'
 import type { MenuRole } from '../../domain/model/menu-role.model'
 import { menuRolKeys } from './menu-rol.keys'
 

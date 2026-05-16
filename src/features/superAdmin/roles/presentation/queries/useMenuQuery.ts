@@ -8,7 +8,7 @@ export function useMenuQuery() {
     type MenusForRole = Awaited<ReturnType<typeof usecase>>;
 
     return useAppQuery<MenusForRole, Error>({
-        queryKey: menuRolKeys.list(),
+        queryKey: menuRolKeys.menu(),
         queryFn: () => menuUseCases.getAll(),
     })
 }

@@ -1,8 +1,8 @@
 import { http } from "@core/http/axios.instance";
 import { ENDPOINTS } from "@shared/constants/endpoints/Endpoints.model";
 import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
+import type { MenuRolInput } from "../../application/contracts/menu-rol.input";
 import type { MenuRole } from "../../domain/model/menu-role.model";
-import type { MenuRolPayload } from "../../domain/payload/menu-rol.payload";
 import type { MenuRolRepository } from "../../domain/repository/menu-rol.repository";
 import type { MenuRoleDTO } from "../dto/menu-role.dto";
 import { menuRolpayloadToCreateDto } from "../mapper/menu-rol.mapper";
@@ -17,7 +17,7 @@ export class MenuRolApiRepository implements MenuRolRepository {
         return res.data.map(menuRoleDtoToDomain);
     }
 
-    async create(payload: MenuRolPayload): Promise<ApiResponseVoid> {
+    async create(payload: MenuRolInput): Promise<ApiResponseVoid> {
         const dto = menuRolpayloadToCreateDto(payload);
         const res = await http.post<ApiResponseVoid>(URL, dto);
         if (!res.data?.status) return { status: false, errors: res.data.errors };

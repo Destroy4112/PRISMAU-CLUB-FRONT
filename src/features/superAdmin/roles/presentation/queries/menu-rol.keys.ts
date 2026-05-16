@@ -1,8 +1,6 @@
-import type { QueryKey } from "@tanstack/react-query";
-
 export const menuRolKeys = {
-    all: (): QueryKey => ["menu-rol"],
-    lists: (): QueryKey => ["menu-rol", "list"],
-    list: (): QueryKey => { return ["menu-rol", "list"]; },
-    listByRol: (rolId: number | string): QueryKey => ["menu-rol", "list", rolId],
+    all: ["menu-rol"] as const,
+    menu: () => [...menuRolKeys.all, "menu"] as const,
+    list: () => [...menuRolKeys.all, "list"] as const,
+    listByRol: (rolId: number | string) => [...menuRolKeys.list(), rolId],
 }; 

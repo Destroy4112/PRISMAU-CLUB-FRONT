@@ -1,7 +1,7 @@
 import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
 import type { MenuRole } from "../../domain/model/menu-role.model";
-import type { MenuRolPayload } from "../../domain/payload/menu-rol.payload";
 import type { MenuRolRepository } from "../../domain/repository/menu-rol.repository";
+import type { MenuRolInput } from "../contracts/menu-rol.input";
 
 export class MenuRolUseCases {
 
@@ -15,7 +15,7 @@ export class MenuRolUseCases {
         return this.repo.getByRol(id);
     }
 
-    create(payload: MenuRolPayload): Promise<ApiResponseVoid> {
+    create(payload: MenuRolInput): Promise<ApiResponseVoid> {
         return this.repo.create(payload);
     }
 

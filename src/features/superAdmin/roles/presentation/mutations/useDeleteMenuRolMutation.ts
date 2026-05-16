@@ -1,13 +1,12 @@
 import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
 import { createApiMutation } from "@shared/react-query/createApiMutation";
-import { menuRolUseCases } from "../../application/menu.container";
-import type { MenuRolId } from "../../domain/model/menu-rol.model";
+import { menuRolUseCases } from "../../application/container/menu.container";
 import { menuRolKeys } from "../queries/menu-rol.keys";
 
-export const useDeleteMenuRolMutation = createApiMutation<ApiResponseVoid, MenuRolId>(
+export const useDeleteMenuRolMutation = createApiMutation<ApiResponseVoid, number>(
     (id) => menuRolUseCases.delete(id),
     {
-        invalidateKeys: [menuRolKeys.all],
+        invalidateKeys: [menuRolKeys.list()],
         errorLabel: "Error al eliminar el menu",
     }
 );
