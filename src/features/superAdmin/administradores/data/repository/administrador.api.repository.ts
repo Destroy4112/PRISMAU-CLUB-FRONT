@@ -1,9 +1,9 @@
 import { http } from "@core/http/axios.instance";
 import { ENDPOINTS } from "@shared/constants/endpoints/Endpoints.model";
 import type { ApiResponseVoid, PageParams, PaginatedResponse } from "@shared/constants/response/Response.model";
-import type { AdministradorFilter } from "../../domain/models/administrador.filters";
+import type { AdministradorFilter } from "../../application/contracts/administrador.filters";
+import type { AdministradorInput } from "../../application/contracts/administrador.input";
 import type { Administrador, AdministradorId } from "../../domain/models/administrador.model";
-import type { AdministradorPayload } from "../../domain/payloads/administrador.payload";
 import type { AdministradorRepository } from "../../domain/repository/administrador.repository";
 import type { AdministradorDTO } from "../dtos/administrador.dto";
 import { administradorDtoToDomain, payloadToCreateDto, payloadToUpdateDto } from "../mappers/administrador.mapper";
@@ -12,34 +12,44 @@ const URL = ENDPOINTS.ADMINS;
 
 export class AdministradorApiRepository implements AdministradorRepository {
 
-    async getAll(params: PageParams & { filters?: AdministradorFilter; }): Promise<PaginatedResponse<Administrador>> {
-        const { filters, ...rest } = params;
+    private buildParams(params: PageParams & AdministradorFilter) {
+        return {
+            page: params.page,
+            limit: params.limit,
+            search: params.search.trim() || undefined,
+        };
+    }
+
+    async getAll(params: PageParams & AdministradorFilter): Promise<PaginatedResponse<Administrador>> {
         const res = await http.get<PaginatedResponse<AdministradorDTO>>(URL, {
-            params: { ...rest, ...filters },
+            params: this.buildParams(params),
         });
         return { ...res.data, data: (res.data.data ?? []).map(administradorDtoToDomain) };
     }
 
-    async create(administrador: AdministradorPayload): Promise<ApiResponseVoid> {
+    async create(administrador: AdministradorInput): Promise<ApiResponseVoid> {
         const dto = payloadToCreateDto(administrador);
         const res = await http.post<ApiResponseVoid>(URL, dto);
         if (!res.data?.status) return { status: false, errors: res.data.errors }
         return res.data;
     }
 
-    async update(administrador: AdministradorPayload): Promise<ApiResponseVoid> {
+    async update(administrador: AdministradorInput): Promise<ApiResponseVoid> {
         const dto = payloadToUpdateDto(administrador);
         const res = await http.put<ApiResponseVoid>(`${URL}/${dto.id}`, dto);
+        if (!res.data?.status) return { status: false, errors: res.data.errors }
         return res.data;
     }
 
     async updateStatus(id: AdministradorId): Promise<ApiResponseVoid> {
         const res = await http.put<ApiResponseVoid>(`${URL}/status/${id}`);
+        if (!res.data?.status) return { status: false, errors: res.data.errors }
         return res.data;
     }
 
     async delete(id: AdministradorId): Promise<ApiResponseVoid> {
         const res = await http.delete<ApiResponseVoid>(`${URL}/${id}`);
+        if (!res.data?.status) return { status: false, errors: res.data.errors }
         return res.data;
     }
 }

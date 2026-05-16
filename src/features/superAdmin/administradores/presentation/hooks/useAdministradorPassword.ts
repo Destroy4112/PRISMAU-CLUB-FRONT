@@ -3,7 +3,7 @@ import useUpdatePasswordMutation from "@features/users/presentation/mutations/us
 import { type ModalsApi } from "@shared/hooks/useModal";
 import { alertError, alertSucces, alertWarning } from "@shared/utilities/alerts/alertas.utility";
 import { useState, type ChangeEvent } from "react";
-import { administradorPasswordFormToPayload } from "../../application/mappers/administrador-form.mapper";
+import { administradorPasswordFormToPayload } from "../mappers/administrador-form.mapper";
 import { administradorKeys } from "../queries/administrador.keys";
 import { ADMIN_PASSWORD_FORM_INITIAL, type AdministradorPasswordForm, type AdminModalKey } from "../types/admin";
 
@@ -30,7 +30,7 @@ export function useAdministradorPassword(modalApi: ModalsApi<AdminModalKey>) {
     const { mutate: changePasswordMutation, isPending: isChanging } = useUpdatePasswordMutation({
         onSuccess: async (res) => {
             if (res.status) {
-                await queryClient.invalidateQueries({ queryKey: administradorKeys.all() });
+                await queryClient.invalidateQueries({ queryKey: administradorKeys.lists() });
                 closeModalPass();
                 alertSucces(res.message);
             } else {

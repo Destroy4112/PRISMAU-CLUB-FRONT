@@ -1,17 +1,16 @@
-import FiltrosBusqueda from "@shared/components/buscador/FiltrosBusqueda";
 import DataTableComponent from "@shared/components/dataTable/DataTableComponent";
 import Contenido from "@shared/components/helpers/Contenido";
 import TituloPage from "@shared/components/helpers/TituloPage";
-import MenuSencillo from "@shared/components/menu/MenuSencillo";
 import VentanaModal from "@shared/components/modals/VentanaModal";
 import FormClave from "@shared/components/shared/users/formulario/FormClave";
 import { ShieldUser } from "lucide-react";
 import type { Administrador } from "../../domain/models/administrador.model";
 import AdminColumns from "../components/AdminColumns";
-import { CAMPOS_ADMIN } from "../components/camposAdmin";
+import AdminToolbar from "../components/AdminToolbar";
 import DataExportAdmins from "../components/DataExportAdmins";
 import FormAdmin from "../components/FormAdmin";
 import useAdministrador from "../hooks/useAdministrador";
+import type { AdministradorExport } from "../types/admin";
 
 function AdministradoresPage() {
 
@@ -22,15 +21,14 @@ function AdministradoresPage() {
 
     const columns = AdminColumns({ cargar, handleDelete, handleUpdateStatus, cambiarClave: openModalPass });
 
-    const data = DataExportAdmins(admins);
+    const data = DataExportAdmins(admins) ?? [];
 
     return (
         <>
-            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<ShieldUser className="w-7 h-7" />} color="pink" />
+            <TituloPage<AdministradorExport> titulo={titulo} subtitulo={subtitulo} icono={<ShieldUser className="w-7 h-7" />} color="pink"
+                canCreate label="Crear" canExport data={data} accion={openModal} />
             <Contenido>
-                <MenuSencillo toggleModal={openModal} exportar data={data} titulo={titulo} noBuscar />
-                <FiltrosBusqueda fields={CAMPOS_ADMIN} values={filters} handleChange={handleFilterChange}
-                    limpiar={limpiarFiltros} />
+                <AdminToolbar total={total} filters={filters} onSearchChange={handleFilterChange} onClearSearch={limpiarFiltros} />
                 <DataTableComponent<Administrador> columns={columns} data={admins} loading={isLoading} page={page}
                     limit={limit} total={total} onRowsPerPageChange={onRowsPerPageChange} onPageChange={onPageChange} />
                 <VentanaModal size={'7xl'} titulo={tituloModal} show={modals.crearEditar} cerrarModal={closeModal}

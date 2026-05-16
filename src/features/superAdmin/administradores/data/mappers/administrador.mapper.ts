@@ -1,5 +1,5 @@
+import type { AdministradorInput } from "../../application/contracts/administrador.input";
 import type { Administrador } from "../../domain/models/administrador.model";
-import type { AdministradorPayload } from "../../domain/payloads/administrador.payload";
 import type { AdministradorCreateDTO, AdministradorDTO, AdministradorUpdateDTO } from "../dtos/administrador.dto";
 
 export function administradorDtoToDomain(dto: AdministradorDTO): Administrador {
@@ -15,7 +15,7 @@ export function administradorDtoToDomain(dto: AdministradorDTO): Administrador {
     };
 }
 
-export function payloadToCreateDto(payload: AdministradorPayload): AdministradorCreateDTO {
+export function payloadToCreateDto(payload: AdministradorInput): AdministradorCreateDTO {
     return {
         Nombre: payload.nombre,
         Apellidos: payload.apellidos,
@@ -25,7 +25,7 @@ export function payloadToCreateDto(payload: AdministradorPayload): Administrador
     };
 }
 
-export function payloadToUpdateDto(payload: AdministradorPayload): AdministradorUpdateDTO {
+export function payloadToUpdateDto(payload: AdministradorInput): AdministradorUpdateDTO {
     return {
         id: payload.id!,
         user_id: payload.userId!,

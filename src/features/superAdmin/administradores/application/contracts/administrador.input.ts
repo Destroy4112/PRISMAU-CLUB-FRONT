@@ -1,7 +1,7 @@
-import type { AdministradorId, Credenciales } from "../models/administrador.model";
+import type { Credenciales } from "../../domain/models/administrador.model";
 
-export interface AdministradorPayload {
-    id?: AdministradorId;
+export interface AdministradorInput {
+    id?: number;
     userId?: number,
     nombre: string,
     apellidos: string,

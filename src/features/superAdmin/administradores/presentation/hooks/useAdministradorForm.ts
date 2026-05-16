@@ -1,6 +1,6 @@
 import { type ModalsApi } from "@shared/hooks/useModal";
 import { useState, type ChangeEvent } from "react";
-import { administradorDomainToForm, administradorFormToPayload } from "../../application/mappers/administrador-form.mapper";
+import { administradorDomainToForm, administradorFormToPayload } from "../mappers/administrador-form.mapper";
 import type { Administrador, AdministradorId } from "../../domain/models/administrador.model";
 import { useCreateAdministradorMutation } from "../mutations/useCreateAdministradorMutation";
 import { useUpdateAdministradorMutation } from "../mutations/useUpdateAdministradorMutation";

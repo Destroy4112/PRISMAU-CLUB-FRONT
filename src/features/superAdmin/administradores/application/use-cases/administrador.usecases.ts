@@ -1,8 +1,8 @@
 import type { ApiResponseVoid, PageParams, PaginatedResponse } from "@shared/constants/response/Response.model";
-import type { AdministradorFilter } from "../../domain/models/administrador.filters";
 import type { Administrador, AdministradorId } from "../../domain/models/administrador.model";
-import type { AdministradorPayload } from "../../domain/payloads/administrador.payload";
 import type { AdministradorRepository } from "../../domain/repository/administrador.repository";
+import type { AdministradorFilter } from "../contracts/administrador.filters";
+import type { AdministradorInput } from "../contracts/administrador.input";
 
 export class AdministradorUseCases {
 
@@ -12,15 +12,15 @@ export class AdministradorUseCases {
         this.repo = repo;
     }
 
-    getAll(params: PageParams & { filters?: AdministradorFilter }): Promise<PaginatedResponse<Administrador>> {
+    getAll(params: PageParams & AdministradorFilter): Promise<PaginatedResponse<Administrador>> {
         return this.repo.getAll(params);
     }
 
-    create(payload: AdministradorPayload): Promise<ApiResponseVoid> {
+    create(payload: AdministradorInput): Promise<ApiResponseVoid> {
         return this.repo.create(payload);
     }
 
-    update(payload: AdministradorPayload): Promise<ApiResponseVoid> {
+    update(payload: AdministradorInput): Promise<ApiResponseVoid> {
         return this.repo.update(payload);
     }
 
