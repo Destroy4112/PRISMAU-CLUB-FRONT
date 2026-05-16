@@ -1,5 +1,5 @@
 import type { Menu } from "../../domain/model/menu.model";
-import type { MenuPayload } from "../../domain/payload/menu.payload";
+import type { MenuInput } from "../../application/contracts/menu.input";
 import type { MenuCreateDTO, MenuDTO, MenuUpdateDTO } from "../dto/menu.dto";
 
 export function menuDtoToDomain(dto: MenuDTO): Menu {
@@ -14,7 +14,7 @@ export function menuDtoToDomain(dto: MenuDTO): Menu {
     };
 }
 
-export function menuPayloadToCreateDto(payload: MenuPayload): MenuCreateDTO {
+export function menuPayloadToCreateDto(payload: MenuInput): MenuCreateDTO {
     return {
         Name: payload.name,
         Type: payload.type,
@@ -24,7 +24,7 @@ export function menuPayloadToCreateDto(payload: MenuPayload): MenuCreateDTO {
     };
 }
 
-export function menuPayloadToUpdateDto(payload: MenuPayload): MenuUpdateDTO {
+export function menuPayloadToUpdateDto(payload: MenuInput): MenuUpdateDTO {
     return {
         id: payload.id!,
         Name: payload.name,

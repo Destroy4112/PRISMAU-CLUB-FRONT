@@ -1,7 +1,7 @@
 import type { ModalsApi } from "@shared/hooks/useModal";
 import { useState, type ChangeEvent } from "react";
-import { menuDomainToForm, menuFormToPayload } from "../../application/mapper/menu-form.mapper";
 import type { Menu } from "../../domain/model/menu.model";
+import { menuDomainToForm, menuFormToPayload } from "../mapper/menu-form.mapper";
 import { useCreateMenuMutation } from "../mutations/useCreateMenuMutation";
 import { useUpdateMenuMutation } from "../mutations/useUpdateMenuMutation";
 import { INITIAL_MENU_FORM, type MenuForm, type MenuModalKey } from "../types/menu";

@@ -1,6 +1,6 @@
 import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
 import type { Menu, MenuId } from "../../domain/model/menu.model";
-import type { MenuPayload } from "../../domain/payload/menu.payload";
+import type { MenuInput } from "../contracts/menu.input";
 import type { MenuRepository } from "../../domain/repository/menu.repository";
 
 export class MenuUseCases {
@@ -15,11 +15,11 @@ export class MenuUseCases {
         return this.repo.getAll();
     }
 
-    create(payload: MenuPayload): Promise<ApiResponseVoid> {
+    create(payload: MenuInput): Promise<ApiResponseVoid> {
         return this.repo.create(payload);
     }
 
-    update(payload: MenuPayload): Promise<ApiResponseVoid> {
+    update(payload: MenuInput): Promise<ApiResponseVoid> {
         return this.repo.update(payload);
     }
 

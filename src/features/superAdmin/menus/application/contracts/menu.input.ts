@@ -1,6 +1,6 @@
-import type { MenuId } from "../model/menu.model";
+import type { MenuId } from "../../domain/model/menu.model";
 
-export interface MenuPayload {
+export interface MenuInput {
     id?: MenuId;
     name: string;
     type: string;

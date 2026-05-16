@@ -1,7 +1,6 @@
 import DataTableComponent from "@shared/components/dataTable/DataTableComponent";
 import Contenido from "@shared/components/helpers/Contenido";
 import TituloPage from "@shared/components/helpers/TituloPage";
-import MenuSencillo from "@shared/components/menu/MenuSencillo";
 import VentanaModal from "@shared/components/modals/VentanaModal";
 import { List } from "lucide-react";
 import FormMenu from "../components/FormMenu";
@@ -18,9 +17,9 @@ export default function MenusPage() {
 
     return (
         <>
-            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<List className="w-7 h-7" />} color="yellow" />
+            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<List className="w-7 h-7" />} color="yellow"
+                canCreate label="Nuevo Modulo" accion={openCreate} />
             <Contenido>
-                <MenuSencillo noBuscar={true} toggleModal={openCreate} />
                 <DataTableComponent data={menus} loading={isLoading} columns={columns} />
                 <VentanaModal size={'4xl'} titulo={tituloModal} show={modals.crearEditar} cerrarModal={closeModal}
                     hanleSubmit={submit} loading={loading}>

@@ -1,8 +1,8 @@
 import type { Menu } from "../../domain/model/menu.model";
-import type { MenuPayload } from "../../domain/payload/menu.payload";
+import type { MenuInput } from "../../application/contracts/menu.input";
 import type { MenuForm } from "../../presentation/types/menu";
 
-export function menuFormToPayload(form: MenuForm, id?: number): MenuPayload {
+export function menuFormToPayload(form: MenuForm, id?: number): MenuInput {
     return {
         ...(id != null ? { id } : {}),
         ...form,

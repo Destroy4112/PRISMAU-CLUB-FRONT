@@ -1,10 +1,10 @@
 import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
 import { createApiMutation } from "@shared/react-query/createApiMutation";
-import { menuUseCases } from "../../application/menu.container";
-import type { MenuPayload } from "../../domain/payload/menu.payload";
+import { menuUseCases } from "../../application/container/menu.container";
+import type { MenuInput } from "../../application/contracts/menu.input";
 import { menuKeys } from "../queries/menu.keys";
 
-export const useCreateMenuMutation = createApiMutation<ApiResponseVoid, MenuPayload>(
+export const useCreateMenuMutation = createApiMutation<ApiResponseVoid, MenuInput>(
     (payload) => menuUseCases.create(payload),
     {
         invalidateKeys: [menuKeys.all],
