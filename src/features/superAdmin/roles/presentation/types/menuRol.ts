@@ -1,4 +1,4 @@
-import { menuUseCases } from "@features/superAdmin/menus/application/menu.container";
+import type { menuUseCases } from "@features/superAdmin/menus/application/container/menu.container";
 import type { ModalsApi } from "@shared/hooks/useModal";
 import type { ChangeEvent, ReactNode } from "react";
 import type { MenuRole } from "../../domain/model/menu-role.model";

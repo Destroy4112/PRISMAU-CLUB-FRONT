@@ -1,5 +1,5 @@
 import { useAppQuery } from '@core/store/react-query/hooks';
-import { menuUseCases } from '@features/superAdmin/menus/application/menu.container';
+import { menuUseCases } from '@features/superAdmin/menus/application/container/menu.container';
 import { menuRolKeys } from './menu-rol.keys';
 
 export function useMenuQuery() {
