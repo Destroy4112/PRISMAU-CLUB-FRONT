@@ -9,8 +9,8 @@ export type FormImagenProps = {
 }
 
 export type Estado = {
-    Estado: number;
-    Motivo: string;
+    estado: number;
+    motivo: string;
 };
 
 export type FormEstadoProps = {

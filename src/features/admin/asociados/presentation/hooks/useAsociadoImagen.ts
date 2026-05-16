@@ -1,7 +1,7 @@
 import type { ModalsApi } from '@shared/hooks/useModal';
 import { alertConfirm } from '@shared/utilities/alerts/alertas.utility';
 import { useState, type ChangeEvent } from 'react';
-import { asociadoImagenFormToPayload } from '../../application/asociado-form.mapper';
+import { asociadoImagenFormToInput } from '../mapper/asociado-form.mapper';
 import { useDeleteImagenAsociadoMutation } from '../mutations/useDeleteImagenAsociadoMutation';
 import { useUpdateImagenAsociadoMutation } from '../mutations/useUpdateImagenAsociadoMutation';
 import { ASOCIADO_IMAGEN_INITIAL, type AsociadoImagenForm, type AsociadoModalKey } from '../types/asociado';
@@ -42,7 +42,7 @@ export default function useAsociadoImagen(modalApi: ModalsApi<AsociadoModalKey>)
     };
 
     const handleUpdateImagen = (): void => {
-        updateImagenMutation(asociadoImagenFormToPayload(asociadoImagenForm));
+        updateImagenMutation(asociadoImagenFormToInput(asociadoImagenForm));
     };
 
 

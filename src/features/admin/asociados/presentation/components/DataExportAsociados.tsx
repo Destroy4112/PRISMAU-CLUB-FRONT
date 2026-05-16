@@ -1,24 +1,24 @@
-import type { Asociado } from "../../domain/asociado.model";
+import type { Asociado } from "../../domain/model/asociado.model";
 
 export default function DataExportAsociados(data: Asociado[] | undefined) {
     return data?.map(item => ({
-        'Nombre Completo': item.Nombre + ' ' + item.Apellidos,
-        'Identificación': item.TipoDocumento + ' ' + item.Documento,
-        'Fecha Nacimiento': item.FechaNacimiento,
-        'Lugar Nacimiento': item.LugarNacimiento,
-        'Email': item.Correo,
-        'Telefono': item.Telefono,
-        'Sexo': item.Sexo,
-        'Dirección Residencia': item.DireccionResidencia,
-        'Ciudad Residencia': item.CiudadResidencia,
-        'Tiempo Residencia': item.TiempoResidencia,
-        'Estado Civil': item.EstadoCivil,
-        'Profesion': item.Profesion,
-        'Trabajo': item.Trabajo,
-        'Cargo': item.Cargo,
-        'Tiempo Servicios': item.TiempoServicio,
-        'Telefono Trabajo': item.TelOficina,
-        'Dirección Trabajo': item.DireccionOficina,
-        'Ciudad Trabajo': item.CiudadOficina,
+        'Nombre Completo': item.nombre + ' ' + item.apellidos,
+        'Identificación': item.tipoDocumento + ' ' + item.documento,
+        'Fecha Nacimiento': item.fechaNacimiento,
+        'Lugar Nacimiento': item.lugarNacimiento,
+        'Email': item.correo,
+        'Telefono': item.telefono,
+        'Sexo': item.sexo,
+        'Dirección Residencia': item.direccionResidencia,
+        'Ciudad Residencia': item.ciudadResidencia,
+        'Tiempo Residencia': item.tiempoResidencia,
+        'Estado Civil': item.estadoCivil,
+        'Profesion': item.profesion,
+        'Trabajo': item.trabajo,
+        'Cargo': item.cargo,
+        'Tiempo Servicios': item.tiempoServicio,
+        'Telefono Trabajo': item.telOficina,
+        'Dirección Trabajo': item.direccionOficina,
+        'Ciudad Trabajo': item.ciudadOficina,
     }));
 }

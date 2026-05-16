@@ -1,10 +1,9 @@
 import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
 import { createApiMutation } from "@shared/react-query/createApiMutation";
-import { asociadoUseCases } from "../../application/asociado.container";
-import type { AsociadoId } from "../../domain/asociado.model";
+import { asociadoUseCases } from "../../application/container/asociado.container";
 import { asociadoKeys } from "../queries/asociado.keys";
 
-export const useDeleteAsociadoMutation = createApiMutation<ApiResponseVoid, AsociadoId>(
+export const useDeleteAsociadoMutation = createApiMutation<ApiResponseVoid, number>(
     (id) => asociadoUseCases.delete(id),
     {
         invalidateKeys: [asociadoKeys.all],

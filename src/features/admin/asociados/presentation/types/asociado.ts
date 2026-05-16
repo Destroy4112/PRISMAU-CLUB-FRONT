@@ -1,82 +1,82 @@
 import type { ChangeEvent } from "react";
-import type { Asociado } from "../../domain/asociado.model";
+import type { Asociado } from "../../domain/model/asociado.model";
 
 export type AsociadoModalKey = "crearEditar" | "estado" | "imagen";
 
 export type AsociadoForm = {
-    Nombre: string;
-    Apellidos: string;
-    Codigo: string;
-    TipoDocumento: string;
-    Documento: string;
-    Correo: string;
-    Telefono: string;
-    FechaNacimiento: string;
-    LugarNacimiento: string;
-    Sexo: string;
-    DireccionResidencia: string;
-    CiudadResidencia: string;
-    TiempoResidencia: string;
-    EstadoCivil: string;
-    Profesion: string;
-    Trabajo: string;
-    Cargo: string;
-    TiempoServicio: string;
-    TelOficina: string;
-    DireccionOficina: string;
-    CiudadOficina: string;
-    Estado: number;
+    nombre: string;
+    apellidos: string;
+    codigo: string;
+    tipoDocumento: string;
+    documento: string;
+    correo: string;
+    telefono: string;
+    fechaNacimiento: string;
+    lugarNacimiento: string;
+    sexo: string;
+    direccionResidencia: string;
+    ciudadResidencia: string;
+    tiempoResidencia: string;
+    estadoCivil: string;
+    profesion: string;
+    trabajo: string;
+    cargo: string;
+    tiempoServicio: string;
+    telOficina: string;
+    direccionOficina: string;
+    ciudadOficina: string;
+    estado: number;
 }
 
 export const ASOCIADO_FORM_INITIAL: AsociadoForm = {
-    Nombre: "",
-    Apellidos: "",
-    Codigo: "",
-    TipoDocumento: "",
-    Documento: "",
-    Correo: "",
-    Telefono: "",
-    FechaNacimiento: "",
-    LugarNacimiento: "",
-    Sexo: "",
-    DireccionResidencia: "",
-    CiudadResidencia: "",
-    TiempoResidencia: "",
-    EstadoCivil: "",
-    Profesion: "",
-    Trabajo: "",
-    Cargo: "",
-    TiempoServicio: "",
-    TelOficina: "",
-    DireccionOficina: "",
-    CiudadOficina: "",
-    Estado: 1
+    nombre: "",
+    apellidos: "",
+    codigo: "",
+    tipoDocumento: "",
+    documento: "",
+    correo: "",
+    telefono: "",
+    fechaNacimiento: "",
+    lugarNacimiento: "",
+    sexo: "",
+    direccionResidencia: "",
+    ciudadResidencia: "",
+    tiempoResidencia: "",
+    estadoCivil: "",
+    profesion: "",
+    trabajo: "",
+    cargo: "",
+    tiempoServicio: "",
+    telOficina: "",
+    direccionOficina: "",
+    ciudadOficina: "",
+    estado: 1
 }
 
 export interface FiltersAsociado {
-    Nombre?: string;
-    Apellidos?: string;
-    Documento?: string;
-    Estado?: number;
+    nombre?: string;
+    apellidos?: string;
+    documento?: string;
+    estado?: number;
 }
 
 export const INITIAL_FILTERS_ASOCIADO: FiltersAsociado = {
-    Nombre: "",
-    Apellidos: "",
-    Documento: "",
-    Estado: 10
+    nombre: "",
+    apellidos: "",
+    documento: "",
+    estado: 10
 }
 
 export interface AsociadoEstadoForm {
     id: number,
-    Estado: number
-    Motivo: string
+    estado: number
+    motivo: string
 }
 
 export const ASOCIADO_ESTADO_INITIAL: AsociadoEstadoForm = {
     id: 0,
-    Estado: -1,
-    Motivo: ""
+    estado: -1,
+    motivo: ""
 }
 
 export interface AsociadoImagenForm {

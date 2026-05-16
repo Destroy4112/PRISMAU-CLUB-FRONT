@@ -1,10 +1,10 @@
 import { type ModalsApi } from "@shared/hooks/useModal";
 import { useState, type ChangeEvent } from "react";
-import type { Asociado, AsociadoId } from "../../domain/asociado.model";
 import { useCreateAsociadoMutation } from "../mutations/useCreateAsociadoMutation";
 import { useUpdateAsociadoMutation } from "../mutations/useUpdateAsociadoMutation";
 import { ASOCIADO_FORM_INITIAL, type AsociadoForm, type AsociadoModalKey } from "../types/asociado";
-import { asociadoFormToPayload } from "../../application/asociado-form.mapper";
+import type { Asociado } from "../../domain/model/asociado.model";
+import { asociadoDomainToForm, asociadoFormToCreateInput, asociadoFormToUpdateInput } from "../mapper/asociado-form.mapper";
 
 export function useAsociadoForm(modalApi: ModalsApi<AsociadoModalKey>) {
 
@@ -12,7 +12,7 @@ export function useAsociadoForm(modalApi: ModalsApi<AsociadoModalKey>) {
 
     const [asociadoForm, setAsociadoForm] = useState<AsociadoForm>(ASOCIADO_FORM_INITIAL);
     const [touched, setTouched] = useState<boolean>(false);
-    const [editId, setEditId] = useState<AsociadoId | null>(null);
+    const [editId, setEditId] = useState<number | null>(null);
     const isEditing = editId != null;
 
     const resetForm = (): void => {
@@ -46,18 +46,17 @@ export function useAsociadoForm(modalApi: ModalsApi<AsociadoModalKey>) {
 
     const cargar = (row: Asociado): void => {
         setEditId(row.id!);
-        setAsociadoForm(row);
+        setAsociadoForm(asociadoDomainToForm(row));
         toggleModal("crearEditar");
     };
 
     const submit = (): void => {
         setTouched(true);
         if (isEditing && editId != null) {
-            updateAsociadoMutation(asociadoFormToPayload(asociadoForm, editId));
+            updateAsociadoMutation(asociadoFormToUpdateInput(asociadoForm, editId));
             return;
         }
-
-        createAsociadoMutation(asociadoFormToPayload(asociadoForm));
+        createAsociadoMutation(asociadoFormToCreateInput(asociadoForm));
     };
 
     return {

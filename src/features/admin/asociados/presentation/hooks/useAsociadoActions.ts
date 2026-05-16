@@ -3,8 +3,8 @@ import { PRIVATE_ROUTES } from "@shared/constants/rutas/Rutas.model";
 import type { ModalsApi } from "@shared/hooks/useModal";
 import { alertConfirm } from "@shared/utilities/alerts/alertas.utility";
 import { useCallback, useState, type ChangeEvent } from "react";
-import { asociadoEstadoFormToPayload } from "../../application/asociado-form.mapper";
-import type { Asociado } from "../../domain/asociado.model";
+import type { Asociado } from "../../domain/model/asociado.model";
+import { asociadoEstadoFormToInput } from "../mapper/asociado-form.mapper";
 import { useDeleteAsociadoMutation } from "../mutations/useDeleteAsociadoMutation";
 import { useResetPasswordAsociadoMutation } from "../mutations/useResetPasswordAsociadoMutation";
 import { useUpdateStatusAsociadoMutation } from "../mutations/useUpdateStatusAsociadoMutation";
@@ -51,7 +51,7 @@ export function useAsociadoActions(modalApi: ModalsApi<AsociadoModalKey>) {
     };
 
     const handleUpdateEstado = (): void => {
-        cambiarEstadoMutation(asociadoEstadoFormToPayload(asociadoEstadoForm));
+        cambiarEstadoMutation(asociadoEstadoFormToInput(asociadoEstadoForm));
     };
 
     //-------------------- ELIMINAR ASOCIADO -------------------------------------

@@ -7,7 +7,7 @@ import VentanaModal from "@shared/components/modals/VentanaModal";
 import FormEstado from "@shared/components/shared/users/formulario/FormEstado";
 import FormImagen from "@shared/components/shared/users/formulario/FormImagen";
 import { User } from "lucide-react";
-import type { Asociado } from "../../domain/asociado.model";
+import type { Asociado } from "../../domain/model/asociado.model";
 import AsociadoColumns from "../components/AsociadoColumns";
 import { CAMPOS_ASOCIADO } from "../components/camposAsociado";
 import FormAsociados from "../components/FormAsociados";

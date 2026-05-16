@@ -5,12 +5,12 @@ import { FaEye } from 'react-icons/fa'
 import type { FormEstadoProps } from './formulario.type'
 
 export default function FormEstado({ estado, handleChange }: FormEstadoProps) {
-  return (
-    <div className='space-y-4'>
-      <SelectField label='Estado' name='Estado' required handleChange={handleChange} icon={FaEye} items={STATUS}
-        id='id_estado' value={estado.Estado !== -1 ? String(estado.Estado) : ""} />
-      <TextAreaField label='Motivo' name='Motivo' required handleChange={handleChange} value={estado.Motivo ?? ""}
-        placeholder='Escribe el motivo...' id='id_motivo' />
-    </div>
-  )
+    return (
+        <div className='space-y-4'>
+            <SelectField label='Estado' name='estado' required handleChange={handleChange} icon={FaEye} items={STATUS}
+                id='id_estado' value={estado.estado !== -1 ? String(estado.estado) : ""} />
+            <TextAreaField label='Motivo' name='motivo' required handleChange={handleChange} value={estado.motivo ?? ""}
+                placeholder='Escribe el motivo...' id='id_motivo' />
+        </div>
+    )
 }

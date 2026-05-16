@@ -1,10 +1,10 @@
-import type { ApiResponse } from "@shared/constants/response/Response.model";
+import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
 import { createApiMutation } from "@shared/react-query/createApiMutation";
-import { asociadoUseCases } from "../../application/asociado.container";
-import type { Asociado, AsociadoPayload } from "../../domain/asociado.model";
+import { asociadoUseCases } from "../../application/container/asociado.container";
+import type { CreateAsociadoInput } from "../../application/contracts/asociado.input";
 import { asociadoKeys } from "../queries/asociado.keys";
 
-export const useCreateAsociadoMutation = createApiMutation<ApiResponse<Asociado>, AsociadoPayload>(
+export const useCreateAsociadoMutation = createApiMutation<ApiResponseVoid, CreateAsociadoInput>(
     (payload) => asociadoUseCases.create(payload),
     {
         invalidateKeys: [asociadoKeys.all],
