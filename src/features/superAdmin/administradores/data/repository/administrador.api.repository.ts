@@ -1,7 +1,7 @@
 import { http } from "@core/http/axios.instance";
 import { ENDPOINTS } from "@shared/constants/endpoints/Endpoints.model";
+import type { Filter } from "@shared/constants/filters/filters.constant";
 import type { ApiResponseVoid, PageParams, PaginatedResponse } from "@shared/constants/response/Response.model";
-import type { AdministradorFilter } from "../../application/contracts/administrador.filters";
 import type { AdministradorInput } from "../../application/contracts/administrador.input";
 import type { Administrador, AdministradorId } from "../../domain/models/administrador.model";
 import type { AdministradorRepository } from "../../domain/repository/administrador.repository";
@@ -12,7 +12,7 @@ const URL = ENDPOINTS.ADMINS;
 
 export class AdministradorApiRepository implements AdministradorRepository {
 
-    private buildParams(params: PageParams & AdministradorFilter) {
+    private buildParams(params: PageParams & Filter) {
         return {
             page: params.page,
             limit: params.limit,
@@ -20,7 +20,7 @@ export class AdministradorApiRepository implements AdministradorRepository {
         };
     }
 
-    async getAll(params: PageParams & AdministradorFilter): Promise<PaginatedResponse<Administrador>> {
+    async getAll(params: PageParams & Filter): Promise<PaginatedResponse<Administrador>> {
         const res = await http.get<PaginatedResponse<AdministradorDTO>>(URL, {
             params: this.buildParams(params),
         });

@@ -1,14 +1,13 @@
+import { INITIAL_FILTERS, type Filter } from "@shared/constants/filters/filters.constant";
 import { useDebounce } from "@shared/hooks/useDebounce";
 import { useSearchPaginate } from "@shared/hooks/useSearchPaginate";
-import type { AdministradorFilter } from "../../application/contracts/administrador.filters";
 import type { Administrador } from "../../domain/models/administrador.model";
 import { useAdministradorQuery } from "../queries/useAdministradorQuery";
-import { INITIAL_FILTERS_ADMIN } from "../types/admin";
 
 export function useAdministradorList() {
 
     const { filters, limit, page, onPageChange, onRowsPerPageChange, handleFilterChange, limpiarFiltros,
-    } = useSearchPaginate<AdministradorFilter>(INITIAL_FILTERS_ADMIN);
+    } = useSearchPaginate<Filter>(INITIAL_FILTERS);
 
     const debouncedSearch = useDebounce<string>(filters.search, 500);
 

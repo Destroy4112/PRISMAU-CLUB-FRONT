@@ -17,6 +17,7 @@ export default function useAdministrador() {
     return {
         titulo: "Administradores",
         subtitulo: "Gestión de usuarios con privilegios administrativos",
+        campos: "nombre completo, documento, correo, usuario",
         modals: modal.modals,
         ...list,
         ...form,

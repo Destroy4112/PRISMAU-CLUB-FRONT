@@ -1,5 +1,4 @@
 import type { ChangeEvent } from "react";
-import type { AdministradorFilter } from "../../application/contracts/administrador.filters";
 import type { Administrador } from "../../domain/models/administrador.model";
 
 export type AdminModalKey = "crearEditar" | "clave";
@@ -10,10 +9,6 @@ export type ColumnsAdminProps = {
     handleUpdateStatus: (id: number) => void
     cambiarClave: (id: number) => void
 }
-
-export const INITIAL_FILTERS_ADMIN: AdministradorFilter = {
-    search: "",
-};
 
 export type AdministradorForm = {
     nombre: string;
