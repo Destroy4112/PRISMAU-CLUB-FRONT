@@ -1,24 +1,18 @@
+import { INITIAL_FILTERS, type Filter } from "@shared/constants/filters/filters.constant";
 import { useDebounce } from "@shared/hooks/useDebounce";
 import { useSearchPaginate } from "@shared/hooks/useSearchPaginate";
-import { useMemo } from "react";
 import { useContratoQuery } from "../queries/useContratoQuery";
-import { INITIAL_FILTERS_CONTRATO, type FiltersContrato } from "../types/contrato";
 
 function useContrato() {
 
     const { filters, limit, page, onPageChange, onRowsPerPageChange, handleFilterChange, limpiarFiltros
-    } = useSearchPaginate<FiltersContrato>(INITIAL_FILTERS_CONTRATO);
+    } = useSearchPaginate<Filter>(INITIAL_FILTERS);
 
-    const debouncedNombres = useDebounce(filters.Nombres, 500);
-    const debouncedApellidos = useDebounce(filters.Apellidos, 500);
-    const debouncedIdentificacion = useDebounce(filters.Identificacion, 500);
+    const debounce = useDebounce<string>(filters.search, 500);
 
-    const debouncedFilters = useMemo(
-        () => ({ ...filters, Nombres: debouncedNombres, Apellidos: debouncedApellidos, Identificacion: debouncedIdentificacion }),
-        [filters, debouncedNombres, debouncedApellidos, debouncedIdentificacion]
-    );
+    const queryParams = { page, limit, search: debounce };
 
-    const { data, isLoading } = useContratoQuery({ page, limit, filters: debouncedFilters });
+    const { data, isLoading } = useContratoQuery(queryParams);
 
     const contratos = data?.data || [];
     const total = data?.total || 0;
@@ -26,6 +20,7 @@ function useContrato() {
     return {
         titulo: "Contratos",
         subtitulo: "Listado de usuarios interesados en adquirir nuestros servicios",
+        campos: "nombre completo, identificación, empresa, ciudad",
         isLoading,
         contratos,
         limit,
