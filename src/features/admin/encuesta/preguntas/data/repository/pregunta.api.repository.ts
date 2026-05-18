@@ -1,8 +1,8 @@
 import { http } from "@core/http/axios.instance";
 import { ENDPOINTS } from "@shared/constants/endpoints/Endpoints.model";
 import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
+import type { PreguntaInput } from "../../application/contracts/pregunta.input";
 import type { Pregunta, PreguntaId } from "../../domain/model/pregunta.model";
-import type { PreguntaPayload } from "../../domain/payload/pregunta.payload";
 import type { PreguntaRepository } from "../../domain/repository/pregunta.repository";
 import type { PreguntaDTO } from "../dto/pregunta.dto";
 import { preguntaDtoToDomain, preguntaPayloadToCreateDto, preguntaPayloadToUpdateDto } from "../mapper/pregunta.mapper";
@@ -16,14 +16,14 @@ export class PreguntaApiRepository implements PreguntaRepository {
         return res.data.map(preguntaDtoToDomain);
     }
 
-    async create(pregunta: PreguntaPayload): Promise<ApiResponseVoid> {
+    async create(pregunta: PreguntaInput): Promise<ApiResponseVoid> {
         const dto = preguntaPayloadToCreateDto(pregunta);
         const res = await http.post<ApiResponseVoid>(URL, dto);
         if (!res.data?.status) return { ...res.data, errors: res.data.errors };
         return res.data;
     }
 
-    async update(pregunta: PreguntaPayload): Promise<ApiResponseVoid> {
+    async update(pregunta: PreguntaInput): Promise<ApiResponseVoid> {
         const dto = preguntaPayloadToUpdateDto(pregunta);
         const res = await http.put<ApiResponseVoid>(`${URL}/${dto.id}`, dto);
         if (!res.data?.status) return { ...res.data, errors: res.data.errors };

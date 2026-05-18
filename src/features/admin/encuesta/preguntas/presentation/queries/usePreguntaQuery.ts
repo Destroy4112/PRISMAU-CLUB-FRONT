@@ -1,5 +1,5 @@
 import { useAppQuery } from '@core/store/react-query/hooks'
-import { preguntaUseCases } from '../../application/pregunta.container'
+import { preguntaUseCases } from '../../application/container/pregunta.container'
 import type { Pregunta, PreguntaId } from '../../domain/model/pregunta.model'
 import { preguntaKeys } from './pregunta.keys'
 

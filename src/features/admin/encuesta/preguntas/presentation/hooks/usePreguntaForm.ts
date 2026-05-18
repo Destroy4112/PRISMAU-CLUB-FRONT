@@ -1,7 +1,7 @@
 import type { ModalsApi } from "@shared/hooks/useModal";
 import { useState, type ChangeEvent } from "react";
-import { preguntaDomainToForm, preguntaFormToPayload } from "../../application/mapper/pregunta-form.mapper";
 import type { Pregunta } from "../../domain/model/pregunta.model";
+import { preguntaDomainToForm, preguntaFormToPayload } from "../mapper/pregunta-form.mapper";
 import { useCreatePreguntaMutation } from "../mutations/useCreatePreguntaMutation";
 import { useUpdatePreguntaMutation } from "../mutations/useUpdatePreguntaMutation";
 import { buildPreguntaContext, INITIAL_FORM_PREGUNTA, type PreguntaForm, type PreguntaModalKey } from "../types/pregunta";
