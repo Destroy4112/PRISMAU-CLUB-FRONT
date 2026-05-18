@@ -13,6 +13,7 @@ export default function useSolicitud() {
     return {
         titulo: "Solicitudes",
         subtitulo: "Revisión de solicitudes de usuarios",
+        campos: "nombre del socio",
         modals: modal.modals,
         ...list,
         ...form

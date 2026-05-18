@@ -34,18 +34,6 @@ export const INITIAL_SOLICITUD_FORM: SolicitudForm = {
     }
 }
 
-export interface FilterSolicitud {
-    Nombre?: string;
-    Apellidos?: string;
-    Estado?: number;
-}
-
-export const INITIAL_FILTERS_SOLICITUD: FilterSolicitud = {
-    Nombre: '',
-    Apellidos: '',
-    Estado: 10
-}
-
 export interface SolicitudReplyForm {
     id: number;
     respuesta: string;

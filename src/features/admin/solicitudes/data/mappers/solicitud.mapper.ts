@@ -1,6 +1,6 @@
 import { emptyToNull } from "@shared/utilities/convertidores/normalizeText";
+import type { SolicitudRespuestaInput } from "../../application/contracts/solicitud.input";
 import type { Solicitud } from "../../domain/models/solicitud.model";
-import type { SolicitudRespuestaPayload } from "../../domain/payloads/solicitud.payload";
 import type { SolicitudDTO, SolicitudRespuestaDTO } from "../dto/solicitud.dto";
 
 export function solicitudDtoToDomain(dto: SolicitudDTO): Solicitud {
@@ -16,7 +16,7 @@ export function solicitudDtoToDomain(dto: SolicitudDTO): Solicitud {
     };
 }
 
-export function payloadToReplyDto(payload: SolicitudRespuestaPayload): SolicitudRespuestaDTO {
+export function payloadToReplyDto(payload: SolicitudRespuestaInput): SolicitudRespuestaDTO {
     return {
         id: payload.id,
         Respuesta: payload.respuesta

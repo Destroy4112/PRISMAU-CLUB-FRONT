@@ -3,7 +3,7 @@ import Contenido from "@shared/components/helpers/Contenido";
 import TituloPage from "@shared/components/helpers/TituloPage";
 import VentanaModal from "@shared/components/modals/VentanaModal";
 import FormClave from "@shared/components/shared/users/formulario/FormClave";
-import ToolbarInput from "@shared/components/toolbar/ToolbarInput";
+import ToolbarFilter from "@shared/components/toolbar/ToolbarFilter";
 import { ShieldUser } from "lucide-react";
 import type { Administrador } from "../../domain/models/administrador.model";
 import AdminColumns from "../components/AdminColumns";
@@ -28,7 +28,7 @@ function AdministradoresPage() {
             <TituloPage<AdministradorExport> titulo={titulo} subtitulo={subtitulo} icono={<ShieldUser className="w-7 h-7" />} color="pink"
                 canCreate label="Crear" canExport data={data} accion={openModal} />
             <Contenido>
-                <ToolbarInput entityName={titulo} onSearchChange={handleFilterChange} onClearSearch={limpiarFiltros}
+                <ToolbarFilter entityName={titulo} onSearchChange={handleFilterChange} onClearSearch={limpiarFiltros}
                     filters={filters} total={total} campos={campos} />
                 <DataTableComponent<Administrador> columns={columns} data={admins} loading={isLoading} page={page}
                     limit={limit} total={total} onRowsPerPageChange={onRowsPerPageChange} onPageChange={onPageChange} />

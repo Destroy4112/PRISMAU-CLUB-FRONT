@@ -1,13 +1,13 @@
 import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
 import { createApiMutation } from "@shared/react-query/createApiMutation";
-import { solicitudUseCases } from "../../application/solicitud.container";
+import { solicitudUseCases } from "../../application/container/solicitud.container";
+import type { SolicitudRespuestaInput } from "../../application/contracts/solicitud.input";
 import { solicitudKeys } from "../queries/solicitud.keys";
-import type { SolicitudRespuestaPayload } from "../../domain/payloads/solicitud.payload";
 
-export const useReplySolicitudMutation = createApiMutation<ApiResponseVoid, SolicitudRespuestaPayload>(
+export const useReplySolicitudMutation = createApiMutation<ApiResponseVoid, SolicitudRespuestaInput>(
     (payload) => solicitudUseCases.reply(payload),
     {
-        invalidateKeys: [solicitudKeys.all()],
+        invalidateKeys: [solicitudKeys.lists()],
         errorLabel: "Error al responder la solicitud",
     }
 );

@@ -1,6 +1,6 @@
 import { type ModalsApi } from "@shared/hooks/useModal";
 import { useState, type ChangeEvent } from "react";
-import { solicitudDomainToForm, solicitudFormToPayload } from "../../application/mappers/solicitud-form.mapper";
+import { solicitudDomainToForm, solicitudFormToPayload } from "../mappers/solicitud-form.mapper";
 import type { Solicitud } from "../../domain/models/solicitud.model";
 import { useReplySolicitudMutation } from "../mutations/useReplySolicitudMutation";
 import { INITIAL_SOLICITUD_FORM, INITIAL_SOLICITUD_REPLY_FORM, type SolicitudForm, type SolicitudModalKey, type SolicitudReplyForm } from "../types/solicitud";

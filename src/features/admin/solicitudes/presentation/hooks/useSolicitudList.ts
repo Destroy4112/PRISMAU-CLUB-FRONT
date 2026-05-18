@@ -1,25 +1,19 @@
+import { INITIAL_FILTERS_WITH_STATE, type FilterWithState } from "@shared/constants/filters/filters.constant";
 import { useDebounce } from "@shared/hooks/useDebounce";
 import { useSearchPaginate } from "@shared/hooks/useSearchPaginate";
-import { useMemo } from "react";
-import type { SolicitudFilter } from "../../domain/models/solicitud.filters";
 import type { Solicitud } from "../../domain/models/solicitud.model";
 import { useSolicitudQuery } from "../queries/useSolicitudQuery";
-import { INITIAL_FILTERS_SOLICITUD } from "../types/solicitud";
 
 export function useSolicitudList() {
 
-    const { filters, limit, page, onPageChange, onRowsPerPageChange, handleFilterChange, limpiarFiltros,
-    } = useSearchPaginate<SolicitudFilter>(INITIAL_FILTERS_SOLICITUD);
+    const { filters, limit, page, onPageChange, setFilter, onRowsPerPageChange, handleFilterChange, clearFilter,
+    } = useSearchPaginate<FilterWithState>(INITIAL_FILTERS_WITH_STATE);
 
-    const debounceNombres = useDebounce(filters.Nombre, 500);
-    const debounceApellidos = useDebounce(filters.Apellidos, 500);
+    const debouncedFilters = useDebounce<string>(filters.search, 500);
 
-    const debouncedFilters = useMemo(
-        () => ({ ...filters, Nombre: debounceNombres, Apellidos: debounceApellidos }),
-        [filters, debounceNombres, debounceApellidos]
-    );
+    const queryParams = { page, limit, search: debouncedFilters, state: filters.state };
 
-    const { data, isLoading } = useSolicitudQuery({ page, limit, filters: debouncedFilters });
+    const { data, isLoading } = useSolicitudQuery(queryParams);
 
     const solicitudes: Solicitud[] = data?.data || [];
     const total = data?.total || 0;
@@ -34,6 +28,7 @@ export function useSolicitudList() {
         onPageChange,
         onRowsPerPageChange,
         handleFilterChange,
-        limpiarFiltros,
+        clearFilter,
+        setFilter
     };
 }

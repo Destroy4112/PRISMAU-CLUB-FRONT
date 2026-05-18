@@ -1,16 +1,18 @@
 export type Filter = {
-    search: string
-}
+    search: string;
+};
 
-export type FilterWithState = Filter & {
-    state: number | null
-}
+export type FilterState = number | string | boolean | null;
+
+export type FilterWithState<TState extends FilterState = number | null> = Filter & {
+    state: TState;
+};
 
 export const INITIAL_FILTERS: Filter = {
     search: "",
-}
+};
 
 export const INITIAL_FILTERS_WITH_STATE: FilterWithState = {
     search: "",
     state: null,
-}
+};

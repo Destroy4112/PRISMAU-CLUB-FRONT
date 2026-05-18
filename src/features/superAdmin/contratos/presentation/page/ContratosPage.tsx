@@ -1,7 +1,7 @@
 import DataTableComponent from '@shared/components/dataTable/DataTableComponent';
 import Contenido from '@shared/components/helpers/Contenido';
 import TituloPage from '@shared/components/helpers/TituloPage';
-import ToolbarInput from '@shared/components/toolbar/ToolbarInput';
+import ToolbarFilter from '@shared/components/toolbar/ToolbarFilter';
 import { FileChartColumn } from 'lucide-react';
 import type { Contrato } from '../../domain/models/contrato.model';
 import AdminColumns from '../components/ContratosColumns';
@@ -18,7 +18,7 @@ function ContratosPage() {
         <>
             <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<FileChartColumn className="w-7 h-7" />} color="purple" />
             <Contenido>
-                <ToolbarInput entityName={titulo} onSearchChange={handleFilterChange} onClearSearch={limpiarFiltros}
+                <ToolbarFilter entityName={titulo} onSearchChange={handleFilterChange} onClearSearch={limpiarFiltros}
                     filters={filters} total={total} campos={campos} />
                 <DataTableComponent<Contrato> columns={columns} data={contratos} loading={isLoading}
                     limit={limit} page={page} total={total} onPageChange={onPageChange} onRowsPerPageChange={onRowsPerPageChange} />
