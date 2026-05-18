@@ -1,14 +1,8 @@
+import type { Filter } from "@shared/constants/filters/filters.constant";
 import type { PageParams } from "@shared/constants/response/Response.model";
-import type { QueryKey } from "@tanstack/react-query";
-import type { ReservaFilter } from "../../domain/model/reserva.filters";
 
 export const reservaKeys = {
-    all: (): QueryKey => ["reserva"],
-    lists: (): QueryKey => ["reserva", "list"],
-    list: ({ page, limit, filters }: PageParams & { filters?: ReservaFilter }): QueryKey => {
-        const nombre = (filters?.Nombres ?? "").trim();
-        const apellidos = (filters?.Apellidos ?? "").trim();
-        const espacio = (filters?.Espacio ?? "").trim();
-        return ["reserva", "list", page, limit, nombre, apellidos, espacio];
-    },
+    all: ["reserva"] as const,
+    lists: () => [...reservaKeys.all, "list"] as const,
+    list: (params: PageParams & Filter) => [...reservaKeys.lists(), params] as const
 };
