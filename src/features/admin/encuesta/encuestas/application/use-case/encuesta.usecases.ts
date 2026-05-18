@@ -1,7 +1,7 @@
 import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
 import type { Encuesta, EncuestaId } from "../../domain/model/encuesta.model";
-import type { EncuestaPayload } from "../../domain/payload/encuesta.payload";
 import type { EncuestaRepository } from "../../domain/repository/encuesta.repository";
+import type { EncuestaInput } from "../contracts/encuesta.input";
 
 export class EncuestaUseCases {
 
@@ -15,11 +15,11 @@ export class EncuestaUseCases {
         return this.repo.getAll();
     }
 
-    create(payload: EncuestaPayload): Promise<ApiResponseVoid> {
+    create(payload: EncuestaInput): Promise<ApiResponseVoid> {
         return this.repo.create(payload);
     }
 
-    update(payload: EncuestaPayload): Promise<ApiResponseVoid> {
+    update(payload: EncuestaInput): Promise<ApiResponseVoid> {
         return this.repo.update(payload);
     }
 

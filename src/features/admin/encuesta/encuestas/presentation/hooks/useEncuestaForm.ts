@@ -1,6 +1,6 @@
 import type { ModalsApi } from "@shared/hooks/useModal";
 import { useState, type ChangeEvent } from "react";
-import { encuestaDomainToForm, encuestaFormToPayload } from "../../application/mapper/encuesta-form.mapper";
+import { encuestaDomainToForm, encuestaFormToPayload } from "../mapper/encuesta-form.mapper";
 import type { Encuesta } from "../../domain/model/encuesta.model";
 import { useCreateEncuestaMutation } from "../mutations/useCreateEncuestaMutation";
 import { useUpdateEncuestaMutation } from "../mutations/useUpdateEncuestaMutation";

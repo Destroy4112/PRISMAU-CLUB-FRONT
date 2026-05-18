@@ -1,5 +1,5 @@
+import type { EncuestaInput } from "../../application/contracts/encuesta.input";
 import type { Encuesta } from "../../domain/model/encuesta.model";
-import type { EncuestaPayload } from "../../domain/payload/encuesta.payload";
 import type { EncuestaCreateDTO, EncuestaDTO, EncuestaUpdateDTO } from "../dto/encuesta.dto";
 
 export function encuestaDtoToDomain(dto: EncuestaDTO): Encuesta {
@@ -11,14 +11,14 @@ export function encuestaDtoToDomain(dto: EncuestaDTO): Encuesta {
     };
 }
 
-export function payloadToCreateDto(payload: EncuestaPayload): EncuestaCreateDTO {
+export function payloadToCreateDto(payload: EncuestaInput): EncuestaCreateDTO {
     return {
         Titulo: payload.titulo,
         Descripcion: payload.descripcion,
     };
 }
 
-export function payloadToUpdateDto(payload: EncuestaPayload): EncuestaUpdateDTO {
+export function payloadToUpdateDto(payload: EncuestaInput): EncuestaUpdateDTO {
     return {
         id: payload.id!,
         Titulo: payload.titulo,

@@ -1,10 +1,10 @@
 import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
+import type { EncuestaInput } from "../../application/contracts/encuesta.input";
 import type { Encuesta, EncuestaId } from "../model/encuesta.model";
-import type { EncuestaPayload } from "../payload/encuesta.payload";
 
 export interface EncuestaRepository {
     getAll(): Promise<Encuesta[]>;
-    create(rubro: EncuestaPayload): Promise<ApiResponseVoid>;
-    update(rubro: EncuestaPayload): Promise<ApiResponseVoid>;
+    create(rubro: EncuestaInput): Promise<ApiResponseVoid>;
+    update(rubro: EncuestaInput): Promise<ApiResponseVoid>;
     delete(id: EncuestaId): Promise<ApiResponseVoid>;
 }
