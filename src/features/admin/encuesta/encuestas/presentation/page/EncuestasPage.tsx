@@ -21,7 +21,7 @@ export default function EncuestasPage() {
             <Contenido>
                 <DataTableComponent data={encuestas} loading={isLoading} columns={columns} />
                 <VentanaModal size={'5xl'} titulo={tituloModal} show={modal} cerrarModal={closeModal}
-                    hanleSubmit={submit} loading={loading}>
+                    handleSubmit={submit} loading={loading}>
                     <FormEncuesta form={encuestaForm} handleChange={handleChange} />
                 </VentanaModal>
             </Contenido>

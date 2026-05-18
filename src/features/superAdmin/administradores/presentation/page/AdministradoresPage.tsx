@@ -33,11 +33,11 @@ function AdministradoresPage() {
                 <DataTableComponent<Administrador> columns={columns} data={admins} loading={isLoading} page={page}
                     limit={limit} total={total} onRowsPerPageChange={onRowsPerPageChange} onPageChange={onPageChange} />
                 <VentanaModal size={'7xl'} titulo={tituloModal} show={modals.crearEditar} cerrarModal={closeModal}
-                    hanleSubmit={submit} loading={loading}><></>
+                    handleSubmit={submit} loading={loading}><></>
                     <FormAdmin isEditing={isEditing} form={admin} hanleChange={handleChange} />
                 </VentanaModal>
                 <VentanaModal size={'4xl'} titulo={tituloModalClave} show={modals.clave} cerrarModal={closeModalPass}
-                    hanleSubmit={handleUpdatePass} loading={isChanging}>
+                    handleSubmit={handleUpdatePass} loading={isChanging}>
                     <FormClave value={passwordForm.password} hanleChange={handleChangePassword} />
                 </VentanaModal>
             </Contenido>

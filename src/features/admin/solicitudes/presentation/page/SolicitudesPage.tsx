@@ -27,7 +27,7 @@ function SolicitudesPage() {
                 <DataTableComponent data={solicitudes} loading={isLoading} columns={columns} limit={limit} page={page}
                     total={total} onPageChange={onPageChange} onRowsPerPageChange={onRowsPerPageChange} />
                 <VentanaModal size={'full'} titulo={tituloModal} show={modals.reply} cerrarModal={closeModal}
-                    hanleSubmit={handleSubmit} loading={loading}>
+                    handleSubmit={handleSubmit} loading={loading}>
                     <FormSolicitudes form={solicitudReplyForm} solicitud={solicitud} handleChange={handleChange} />
                 </VentanaModal>
             </Contenido>

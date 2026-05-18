@@ -22,7 +22,7 @@ export default function MenusPage() {
             <Contenido>
                 <DataTableComponent data={menus} loading={isLoading} columns={columns} />
                 <VentanaModal size={'4xl'} titulo={tituloModal} show={modals.crearEditar} cerrarModal={closeModal}
-                    hanleSubmit={submit} loading={loading}>
+                    handleSubmit={submit} loading={loading}>
                     <FormMenu handleChange={handleChange} form={menuForm} />
                 </VentanaModal>
             </Contenido>
