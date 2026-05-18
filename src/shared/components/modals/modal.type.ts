@@ -7,5 +7,5 @@ export type ModalProps = {
     show: boolean,
     loading: boolean,
     cerrarModal: () => void,
-    hanleSubmit: () => void,
+    handleSubmit: () => void,
 }
