@@ -25,5 +25,6 @@ export type FormPreguntaProps = {
 
 export type ColumnsPreguntaProps = {
     cargar: (row: Pregunta) => void;
+    goRespuestas: (pregunta: Pregunta) => void;
     handleDelete: (id: number) => void;
 }

@@ -11,9 +11,9 @@ import usePregunta from '../hooks/usePregunta'
 export default function PreguntasPage() {
 
     const { titulo, subtitulo, tituloModal, modals, preguntaForm, encuesta, preguntas, isLoading, loading,
-        openModal, closeModal, handleChange, cargarPregunta, submit, handleDelete } = usePregunta();
+        openModal, closeModal, handleChange, cargarPregunta, submit, handleDelete, goRespuestas } = usePregunta();
 
-    const columns = PreguntaColumns({ cargar: cargarPregunta, handleDelete });
+    const columns = PreguntaColumns({ cargar: cargarPregunta, handleDelete, goRespuestas });
 
     return (
         <>
