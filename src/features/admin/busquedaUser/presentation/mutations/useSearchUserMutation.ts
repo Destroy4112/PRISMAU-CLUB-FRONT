@@ -1,5 +1,5 @@
 import { useAppMutation } from "@core/store/react-query/hooks";
-import { busquedaUserUseCases } from "../../application/busqueda.container";
+import { busquedaUserUseCases } from "../../application/container/busqueda.container";
 import type { BusquedaUserResponse } from "../../domain/model/busqueda-user.model";
 
 export const useSearchUserMutation = () => {
