@@ -9,3 +9,11 @@ export type ModalProps = {
     cerrarModal: () => void,
     handleSubmit: () => void,
 }
+
+export type ModalSencillaProps = {
+    titulo: string,
+    size: string,
+    children: ReactNode,
+    show: boolean,
+    cerrarModal: () => void,
+}

@@ -19,6 +19,7 @@ const ContratosPage = lazy(() => import('@features/superAdmin/contratos/presenta
 const SolicitudesPage = lazy(() => import('@features/admin/solicitudes/presentation/page/SolicitudesPage'))
 const ReservasPage = lazy(() => import('@/features/admin/reservas/presentation/page/ReservasPage'))
 const EncuestasPage = lazy(() => import('@features/admin/encuesta/encuestas/presentation/page/EncuestasPage'))
+const RespuestasEncuestaPage = lazy(() => import('@features/admin/encuesta/respuestas/presentation/page/RespuestasEncuestaPage'))
 const PreguntasPage = lazy(() => import('@features/admin/encuesta/preguntas/presentation/page/PreguntasPage'))
 const OptionsPage = lazy(() => import('@features/admin/encuesta/options/presentation/page/OptionsPage'))
 const BusquedaUserPage = lazy(() => import('@/features/admin/busquedaUser/presentation/page/BusquedaUserPage'))
@@ -62,6 +63,7 @@ export const ADMINROUTES = [
     { path: PRIVATE_ROUTES.SOLICITUDES, element: <SolicitudesPage /> },
     { path: PRIVATE_ROUTES.RESERVAS, element: <ReservasPage /> },
     { path: PRIVATE_ROUTES.ENCUESTAS, element: <EncuestasPage /> },
+    { path: PRIVATE_ROUTES.ENCUESTA, element: <RespuestasEncuestaPage /> },
     { path: PRIVATE_ROUTES.PREGUNTAS, element: <PreguntasPage /> },
     { path: PRIVATE_ROUTES.RESPUESTAS, element: <OptionsPage /> },
     { path: PRIVATE_ROUTES.BUSCAR_USER, element: <BusquedaUserPage /> },
