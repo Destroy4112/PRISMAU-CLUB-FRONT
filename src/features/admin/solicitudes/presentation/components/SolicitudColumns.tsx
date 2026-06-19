@@ -1,3 +1,4 @@
+import BadgeStatusSolicitud from "@shared/components/badges/BadgeStatusSolicitud";
 import { formatearFecha } from "@shared/utilities/convertidores/normalizeText";
 import type { TableColumn } from "react-data-table-component";
 import { FaComment, FaEye, FaListOl } from "react-icons/fa";
@@ -24,12 +25,7 @@ export default function SolicitudColumns({ cargarSolicitud }: any): TableColumn<
         },
         {
             name: "Estado",
-            cell: row => (
-                <div className="flex items-center">
-                    <div className={`h-2.5 w-2.5 rounded-full ${row.estado == 0 ? 'bg-green-500' : 'bg-orange-500'} mr-2`}></div>
-                    {row.estado == 0 ? "Aprobada" : "Pendiente"}
-                </div>
-            ),
+            cell: row => <BadgeStatusSolicitud status={row.estado} />,
             width: '130px',
         },
         {

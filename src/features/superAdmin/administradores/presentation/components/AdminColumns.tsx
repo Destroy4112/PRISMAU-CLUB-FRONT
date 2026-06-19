@@ -1,3 +1,4 @@
+import BadgeStatus from '@shared/components/badges/BadgeStatus';
 import type { TableColumn } from 'react-data-table-component';
 import { FaEdit, FaListOl, FaLock, FaTrashAlt, FaUser, FaUserSlash } from 'react-icons/fa';
 import type { Administrador } from '../../domain/models/administrador.model';
@@ -33,12 +34,7 @@ export default function AdminColumns({ cargar, handleDelete, handleUpdateStatus,
         },
         {
             name: "Estado",
-            cell: row => (
-                <div className="flex items-center">
-                    <div className={`h-2.5 w-2.5 rounded-full ${row.estado === 1 ? 'bg-green-500' : 'bg-red-600'} mr-2`}></div>
-                    {row.estado === 1 ? "Activo" : "Inactivo"}
-                </div>
-            ),
+            cell: (row) => <BadgeStatus status={row.estado} />,
             width: '100px'
         },
         {

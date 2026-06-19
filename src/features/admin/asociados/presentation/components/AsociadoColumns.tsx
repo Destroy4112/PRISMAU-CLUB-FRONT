@@ -59,9 +59,7 @@ export default function AsociadoColumns(props: ColumnsAsociadoProps): TableColum
         },
         {
             name: "estado",
-            cell: (row) => (
-                <BadgeStatus status={row.estado} />
-            ),
+            cell: (row) => <BadgeStatus status={row.estado} />,
             width: "150px",
         },
         {
