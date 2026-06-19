@@ -1,23 +1,29 @@
 import { http } from "@core/http/axios.instance";
 import { ENDPOINTS } from "@shared/constants/endpoints/Endpoints.model";
+import type { FilterWithState } from "@shared/constants/filters/filters.constant";
 import type { ApiResponse, ApiResponseVoid, PageParams, PaginatedResponse } from "@shared/constants/response/Response.model";
-import type { AsociadoFilter } from "../../application/contracts/asociado.filters";
 import type { AsociadoEstadoInput, AsociadoImagenInput, CreateAsociadoInput, UpdateAsociadoInput } from "../../application/contracts/asociado.input";
 import type { Asociado } from "../../domain/model/asociado.model";
 import type { AsociadoRepository } from "../../domain/repository/asociado.repository";
 import type { AsociadoDTO } from "../dtos/asociado.dto";
-import { asociadoFilterToDto } from "../mappers/asociado.filter.mapper";
 import { asociadoDtoToDomain, asociadoInputToCreateDto, asociadoInputToEstadoDto, asociadoInputToImagenDto, asociadoInputToUpdateDto } from "../mappers/asociado.mapper";
 
 const URL = ENDPOINTS.ASOCIADOS;
 
 export class AsociadoApiRepository implements AsociadoRepository {
 
-    async getAll(params: PageParams & { filters?: AsociadoFilter; }): Promise<PaginatedResponse<Asociado>> {
-        const { filters, ...rest } = params;
-        const filtersDto = asociadoFilterToDto(filters);
+    private buildParams(params: PageParams & FilterWithState) {
+        return {
+            page: params.page,
+            limit: params.limit,
+            search: params.search.trim() || undefined,
+            state: params.state
+        }
+    }
+
+    async getAll(params: PageParams & FilterWithState): Promise<PaginatedResponse<Asociado>> {
         const res = await http.get<PaginatedResponse<AsociadoDTO>>(URL, {
-            params: { ...rest, ...filtersDto },
+            params: this.buildParams(params)
         });
         return { ...res.data, data: (res.data.data ?? []).map(asociadoDtoToDomain) };
     }

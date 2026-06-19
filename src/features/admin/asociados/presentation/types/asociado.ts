@@ -53,20 +53,6 @@ export const ASOCIADO_FORM_INITIAL: AsociadoForm = {
     estado: 1
 }
 
-export interface FiltersAsociado {
-    nombre?: string;
-    apellidos?: string;
-    documento?: string;
-    estado?: number;
-}
-
-export const INITIAL_FILTERS_ASOCIADO: FiltersAsociado = {
-    nombre: "",
-    apellidos: "",
-    documento: "",
-    estado: 10
-}
-
 export interface AsociadoEstadoForm {
     id: number,
     estado: number

@@ -59,7 +59,7 @@ export function useAsociadoActions(modalApi: ModalsApi<AsociadoModalKey>) {
     const { mutate: eliminarMutation } = useDeleteAsociadoMutation();
 
     const handleDelete = useCallback(async (id: number): Promise<void> => {
-        if (await alertConfirm("¿Seguro que quiere eliminar este admin?", "Si, eliminar!")) {
+        if (await alertConfirm("¿Seguro que quiere eliminar este asociado?", "Si, eliminar!")) {
             eliminarMutation(id);
         }
     }, [eliminarMutation]);

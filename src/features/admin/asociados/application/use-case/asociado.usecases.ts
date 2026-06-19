@@ -1,7 +1,7 @@
+import type { FilterWithState } from "@shared/constants/filters/filters.constant";
 import type { ApiResponseVoid, PageParams, PaginatedResponse } from "@shared/constants/response/Response.model";
 import type { Asociado } from "../../domain/model/asociado.model";
 import type { AsociadoRepository } from "../../domain/repository/asociado.repository";
-import type { AsociadoFilter } from "../contracts/asociado.filters";
 import type { AsociadoEstadoInput, AsociadoImagenInput, CreateAsociadoInput, UpdateAsociadoInput } from "../contracts/asociado.input";
 
 export class AsociadoUseCases {
@@ -12,7 +12,7 @@ export class AsociadoUseCases {
         this.repo = repo;
     }
 
-    getAll(params: PageParams & { filters?: AsociadoFilter }): Promise<PaginatedResponse<Asociado>> {
+    getAll(params: PageParams & FilterWithState): Promise<PaginatedResponse<Asociado>> {
         return this.repo.getAll(params);
     }
 

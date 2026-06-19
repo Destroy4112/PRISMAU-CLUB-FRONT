@@ -1,5 +1,5 @@
 import { useAppMutation } from "@core/store/react-query/hooks";
-import { userPasswordUseCases } from "@features/users/application/user.container";
+import { userPasswordUseCases } from "@features/users/application/container/user.container";
 import type { UserPasswordPayload } from "@features/users/domain/payloads/user-password.payload";
 import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
 import type { UseMutationOptions } from "@tanstack/react-query";

@@ -1,6 +1,7 @@
 import { useAppSelector } from "@core/store/redux/hooks";
 import { selectRol } from "@features/auth/presentation/store/session/session.selectors";
 import imagen from "@shared/assets/img/imagen";
+import BadgeStatus from "@shared/components/badges/BadgeStatus";
 import { URL_BACK } from "@shared/constants/endpoints/Endpoints.model";
 import type { TableColumn } from "react-data-table-component";
 import { FaImages, FaListOl, FaLock, FaUser, FaUserEdit, FaUserPlus, FaUserSlash, FaUserTimes } from "react-icons/fa";
@@ -59,10 +60,7 @@ export default function AsociadoColumns(props: ColumnsAsociadoProps): TableColum
         {
             name: "estado",
             cell: (row) => (
-                <div className="flex items-center">
-                    <div className={`h-2.5 w-2.5 rounded-full ${row.estado == 1 ? "bg-green-500" : row.estado == 2 ? "bg-orange-500" : row.estado == 3 ? "bg-purple-500" : row.estado == 4 ? "bg-black" : "bg-red-600"} mr-2`}></div>
-                    {row.estado == 0 ? "Inactivo" : row.estado == 1 ? "Activo" : row.estado == 2 ? "Retirado" : row.estado == 3 ? "En Mora" : "Retirado en Mora"}
-                </div>
+                <BadgeStatus status={row.estado} />
             ),
             width: "150px",
         },
