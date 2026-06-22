@@ -30,15 +30,13 @@ export default function useAsociadoImagen(modalApi: ModalsApi<AsociadoModalKey>)
     });
 
     const cargarImagen = (id: number, imagen: string): void => {
-        setAsociadoImagenForm((prev) => ({ ...prev, id, imagenActualUrl: imagen }));
+        setAsociadoImagenForm((prev) => ({ ...prev, id, imagen: null, imagenActualUrl: imagen }));
         toggleModal("imagen");
     };
 
     const handleChangeImagen = (e: ChangeEvent<HTMLInputElement>): void => {
-        const files = e.target.files;
-        if (!files || files.length === 0) return;
-        const file = files[0];
-        setAsociadoImagenForm({ ...asociadoImagenForm, imagen: file });
+        const file = e.target.files?.[0] ?? null;
+        setAsociadoImagenForm((prev) => ({ ...prev, imagen: file, }));
     };
 
     const handleUpdateImagen = (): void => {

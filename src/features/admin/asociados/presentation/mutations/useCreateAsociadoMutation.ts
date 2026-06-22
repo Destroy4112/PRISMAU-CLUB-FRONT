@@ -7,7 +7,7 @@ import { asociadoKeys } from "../queries/asociado.keys";
 export const useCreateAsociadoMutation = createApiMutation<ApiResponseVoid, CreateAsociadoInput>(
     (payload) => asociadoUseCases.create(payload),
     {
-        invalidateKeys: [asociadoKeys.all],
+        invalidateKeys: [asociadoKeys.lists()],
         errorLabel: "Error al crear el asociado",
     }
 );

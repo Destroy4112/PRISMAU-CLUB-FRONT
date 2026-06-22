@@ -7,7 +7,7 @@ import { asociadoKeys } from "../queries/asociado.keys";
 export const useUpdateImagenAsociadoMutation = createApiMutation<ApiResponseVoid, AsociadoImagenInput>(
     (payload) => asociadoUseCases.updateImagen(payload),
     {
-        invalidateKeys: [asociadoKeys.all],
+        invalidateKeys: [asociadoKeys.lists()],
         errorLabel: "Error al actualizar la imagen del asociado",
     }
 );

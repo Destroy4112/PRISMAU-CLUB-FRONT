@@ -6,7 +6,7 @@ import { asociadoKeys } from "../queries/asociado.keys";
 export const useDeleteAsociadoMutation = createApiMutation<ApiResponseVoid, number>(
     (id) => asociadoUseCases.delete(id),
     {
-        invalidateKeys: [asociadoKeys.all],
+        invalidateKeys: [asociadoKeys.lists()],
         errorLabel: "Error al eliminar el asociado",
     }
 );

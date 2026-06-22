@@ -1,12 +1,12 @@
 import { useAppNavigate } from "@app/routes/hooks";
+import useResetPasswordMutation from "@features/users/presentation/mutations/useResetPasswordMutation";
 import { PRIVATE_ROUTES } from "@shared/constants/rutas/Rutas.model";
 import type { ModalsApi } from "@shared/hooks/useModal";
-import { alertConfirm } from "@shared/utilities/alerts/alertas.utility";
+import { alertConfirm, alertError, alertSucces, alertWarning } from "@shared/utilities/alerts/alertas.utility";
 import { useCallback, useState, type ChangeEvent } from "react";
 import type { Asociado } from "../../domain/model/asociado.model";
 import { asociadoEstadoFormToInput } from "../mapper/asociado-form.mapper";
 import { useDeleteAsociadoMutation } from "../mutations/useDeleteAsociadoMutation";
-import { useResetPasswordAsociadoMutation } from "../mutations/useResetPasswordAsociadoMutation";
 import { useUpdateStatusAsociadoMutation } from "../mutations/useUpdateStatusAsociadoMutation";
 import { ASOCIADO_ESTADO_INITIAL, type AsociadoEstadoForm, type AsociadoModalKey } from "../types/asociado";
 
@@ -66,11 +66,20 @@ export function useAsociadoActions(modalApi: ModalsApi<AsociadoModalKey>) {
 
     //-------------------- RESETEAR CONTRASEÑA -------------------------------------
 
-    const { mutate: resetPasswordMutation } = useResetPasswordAsociadoMutation();
+    const { mutate: resetPasswordMutation } = useResetPasswordMutation();
 
     const handleResetPassword = useCallback(async (id: number): Promise<void> => {
-        if (await alertConfirm("¿Seguro que quiere restablecer la contraseña de este asociado?", "Si, restablecer!")) {
-            resetPasswordMutation(id);
+        if (await alertConfirm("¿Seguro que quiere restablecer la contraseña de este adherente?", "Si, restablecer!")) {
+            resetPasswordMutation(id, {
+                onSuccess: (res) => {
+                    if (res.status) {
+                        alertSucces(res.message);
+                    } else {
+                        res.errors.forEach((error: string) => alertWarning(error));
+                    }
+                },
+                onError: (error) => alertError(error.message)
+            });
         }
     }, [resetPasswordMutation]);
 

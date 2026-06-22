@@ -6,7 +6,7 @@ import { asociadoKeys } from "../queries/asociado.keys";
 export const useDeleteImagenAsociadoMutation = createApiMutation<ApiResponseVoid, number>(
     (id) => asociadoUseCases.deleteImagen(id),
     {
-        invalidateKeys: [asociadoKeys.all],
+        invalidateKeys: [asociadoKeys.lists()],
         errorLabel: "Error al eliminar la imagen del asociado",
     }
 );

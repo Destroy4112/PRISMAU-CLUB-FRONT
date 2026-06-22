@@ -24,10 +24,9 @@ export function asociadoEstadoFormToInput(form: AsociadoEstadoForm): AsociadoEst
 
 export function asociadoImagenFormToInput(form: AsociadoImagenForm): AsociadoImagenInput {
     if (form.id == null) throw new Error("El id del asociado es requerido.");
-    if (form.imagen == null) throw new Error("La imagen es requerida.");
     return {
         id: form.id,
-        imagen: form.imagen,
+        imagen: form.imagen!,
     };
 }
 
