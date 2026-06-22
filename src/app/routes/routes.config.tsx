@@ -25,7 +25,7 @@ const OptionsPage = lazy(() => import('@features/admin/encuesta/options/presenta
 const BusquedaUserPage = lazy(() => import('@/features/admin/busquedaUser/presentation/page/BusquedaUserPage'))
 const AsociadosPage = lazy(() => import('@features/admin/asociados/presentation/page/AsociadosPage'))
 const FamiliaresAsociadoPage = lazy(() => import('@/features/admin/familiares/presentation/pages/FamiliaresAsociadoPage'))
-const AdherentesPage = lazy(() => import('@/features/admin/adherentes/AdherentesPage'))
+const AdherentesPage = lazy(() => import('@features/admin/adherentes/presentation/page/AdherentesPage'))
 const FamiliaresAdherentePage = lazy(() => import('@/features/admin/familiares/presentation/pages/FamiliaresAdherentePage'))
 const EmpleadosPage = lazy(() => import('@/features/admin/empleados/EmpleadosPage'))
 const EspaciosPage = lazy(() => import('@/features/admin/espacios/EspaciosPage'))

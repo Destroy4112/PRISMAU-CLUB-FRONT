@@ -1,11 +1,11 @@
 import type { ChangeEvent } from "react";
 
-export type FormImagenProps = {
+export interface FormImagenProps {
+    value?: string | null;
     label: string;
     name: string;
-    value?: string | undefined;
-    handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
-    deleteImagen?: () => void
+    handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
+    deleteImagen?: () => void;
 }
 
 export type Estado = {
