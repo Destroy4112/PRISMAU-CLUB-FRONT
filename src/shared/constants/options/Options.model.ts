@@ -62,8 +62,11 @@ export const PARENTESCOS = [
 ];
 
 export const TIPOS_EMPLEADOS = [
-    { value: 7, label: 'Administrativo' },
     { value: 6, label: 'Portero' },
+    { value: 7, label: 'Administrativo' },
+    { value: 8, label: 'Gerente Restaurante' },
+    { value: 9, label: 'Cocinero' },
+    { value: 10, label: 'Mesero' },
     { value: 4, label: 'Otro' },
 ];
 
