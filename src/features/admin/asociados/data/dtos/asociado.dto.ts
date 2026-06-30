@@ -33,7 +33,7 @@ export type AsociadoCreateDTO = AsociadoBase;
 
 export type AsociadoUpdateDTO = AsociadoBase & {
     id: number;
-    user_id: number;
+    user_id?: number;
 }
 
 export interface AsociadoEstadoDTO {
