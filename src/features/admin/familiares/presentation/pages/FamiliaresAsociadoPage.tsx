@@ -26,11 +26,11 @@ export default function FamiliaresAsociadoPage() {
                 <CardFamiliares familiares={familiares} loading={isLoading} cargar={cargar} handleDelete={handleDelete}
                     change={cargarImagen} reset={handleResetPassword} />
                 <VentanaModal size={'full'} titulo={tituloModal} show={modals.crearEditar} cerrarModal={closeModal}
-                    hanleSubmit={submit} loading={loading}>
+                    handleSubmit={submit} loading={loading}>
                     <FormFamiliar form={familiarForm} touched={touched} handleChange={handleChange} />
                 </VentanaModal>
                 <VentanaModal size={'4xl'} titulo={tituloModalImagen} show={modals.imagen} cerrarModal={closeModalImagen}
-                    hanleSubmit={handleUpdateImagen} loading={isUpdatingImagen}>
+                    handleSubmit={handleUpdateImagen} loading={isUpdatingImagen}>
                     <FormImagen label="Cambiar imagen" name="imagen" handleChange={handleChangeImagen}
                         value={familiarImagenForm.imagenActualUrl} deleteImagen={handleDeleteImagen} />
                 </VentanaModal>

@@ -1,4 +1,4 @@
-import type { Familiar } from "../../domain/familiar.model";
+import type { Familiar } from "../../domain/model/familiar.model";
 import { useFamiliarQuery } from "../queries/useFamiliarQuery";
 
 export function useFamiliarList(id: number, rol: string) {

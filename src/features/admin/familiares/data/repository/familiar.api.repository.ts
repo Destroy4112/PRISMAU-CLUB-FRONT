@@ -1,10 +1,11 @@
 import { http } from "@core/http/axios.instance";
 import { ENDPOINTS } from "@shared/constants/endpoints/Endpoints.model";
 import type { ApiResponse, ApiResponseVoid } from "@shared/constants/response/Response.model";
-import type { Familiar, FamiliarId, FamiliarImagenPayload, FamiliarPayload } from "../domain/familiar.model";
-import type { FamiliarRepository } from "../domain/familiar.repository";
-import type { FamiliarDTO } from "./familiar.dto";
-import { familiarDtoToDomain, payloadToCreateDto, payloadToImagenDto, payloadToUpdateDto } from "./familiar.mapper";
+import type { CreateFamiliarInput, FamiliarImagenInput, UpdateFamiliarInput } from "../../application/contracts/familiar.input";
+import type { Familiar, FamiliarId } from "../../domain/model/familiar.model";
+import type { FamiliarRepository } from "../../domain/repository/familiar.repository";
+import type { FamiliarDTO } from "../dto/familiar.dto";
+import { familiarDtoToDomain, familiarInputToCreateDto, familiarInputToImagenDto, familiarInputToUpdateDto } from "../mapper/familiar.mapper";
 
 const URL = ENDPOINTS.FAMILIARES;
 
@@ -15,23 +16,23 @@ export class FamiliarApiRepository implements FamiliarRepository {
         return res.data.map(familiarDtoToDomain);
     }
 
-    async create(payload: FamiliarPayload): Promise<ApiResponse<Familiar>> {
-        const dto = payloadToCreateDto(payload);
+    async create(payload: CreateFamiliarInput): Promise<ApiResponse<Familiar>> {
+        const dto = familiarInputToCreateDto(payload);
         const res = await http.post<ApiResponse<FamiliarDTO>>(URL, dto);
         if (!res.data?.status) return { ...res.data, errors: res.data.errors };
         return { ...res.data, data: familiarDtoToDomain(res.data.data) };
     }
 
-    async updateImagen(payload: FamiliarImagenPayload): Promise<ApiResponseVoid> {
-        const dto = payloadToImagenDto(payload);
+    async updateImagen(payload: FamiliarImagenInput): Promise<ApiResponseVoid> {
+        const dto = familiarInputToImagenDto(payload);
         const res = await http.post<ApiResponseVoid>(`${URL}/imagen/${payload.id}`, dto, {
             headers: { 'Content-Type': 'multipart/form-data' },
         });
         return res.data;
     }
 
-    async update(payload: FamiliarPayload): Promise<ApiResponseVoid> {
-        const dto = payloadToUpdateDto(payload);
+    async update(payload: UpdateFamiliarInput): Promise<ApiResponseVoid> {
+        const dto = familiarInputToUpdateDto(payload);
         const res = await http.put<ApiResponseVoid>(`${URL}/${dto.id}`, dto);
         if (!res.data?.status) return { ...res.data, errors: res.data.errors };
         return res.data;

@@ -1,5 +1,5 @@
 import type { ChangeEvent } from "react";
-import type { Familiar } from "../../domain/familiar.model";
+import type { Familiar } from "../../domain/model/familiar.model";
 import type { SocioDetail } from "@shared/models/usuario-detail.model";
 
 export type FamiliarModalKey = "crearEditar" | "imagen";

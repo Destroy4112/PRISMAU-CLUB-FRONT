@@ -1,7 +1,5 @@
-import type { QueryKey } from "@tanstack/react-query";
-
 export const familiarKeys = {
-    all: (): QueryKey => ["familiar"],
-    lists: (): QueryKey => ["familiar", "list"],
-    list: (id: number, rol: string): QueryKey => ["familiar", "list", id, rol]
+    all: ["familiar"] as const,
+    lists: () => [...familiarKeys.all, "list"] as const,
+    list: (id: number, rol: string) => [...familiarKeys.lists(), id, rol]
 };

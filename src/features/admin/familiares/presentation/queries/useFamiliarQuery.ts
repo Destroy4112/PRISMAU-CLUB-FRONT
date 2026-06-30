@@ -1,6 +1,6 @@
 import { useAppQuery } from '@core/store/react-query/hooks'
-import { familiarUseCases } from '../../application/familiar.container'
-import type { Familiar } from '../../domain/familiar.model'
+import { familiarUseCases } from '../../application/container/familiar.container'
+import type { Familiar } from '../../domain/model/familiar.model'
 import { familiarKeys } from './familiar.keys'
 
 export function useFamiliarQuery(id: number, rol: string) {

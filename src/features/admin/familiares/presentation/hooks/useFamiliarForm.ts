@@ -1,8 +1,8 @@
-import type { SocioDetail } from "@shared/models/usuario-detail.model";
 import { type ModalsApi } from "@shared/hooks/useModal";
+import type { SocioDetail } from "@shared/models/usuario-detail.model";
 import { useState, type ChangeEvent } from "react";
-import { familiarDomainToForm, familiarFormToPayload } from "../../application/familiar-form.mapper";
-import type { Familiar, FamiliarId } from "../../domain/familiar.model";
+import type { Familiar, FamiliarId } from "../../domain/model/familiar.model";
+import { familiarDomainToForm, familiarFormToCreateInput, familiarFormToUpdateInput } from "../mapper/familiar-form.mapper";
 import { useCreateFamiliarMutation } from "../mutations/useCreateFamiliarMutation";
 import { useUpdateFamiliarMutation } from "../mutations/useUpdateFamiliarMutation";
 import { buildFamiliarContext, FAMILIAR_FORM_INITIAL, type FamiliarForm, type FamiliarModalKey } from "../types/familiar";
@@ -56,11 +56,11 @@ export function useFamiliarForm(modalApi: ModalsApi<FamiliarModalKey>, type: "As
     const submit = (): void => {
         setTouched(true);
         if (isEditing && editId != null) {
-            updateFamiliarMutation(familiarFormToPayload(familiarForm, context, editId));
+            updateFamiliarMutation(familiarFormToUpdateInput(familiarForm, context, editId));
             return;
         }
 
-        createFamiliarMutation(familiarFormToPayload(familiarForm, context));
+        createFamiliarMutation(familiarFormToCreateInput(familiarForm, context));
     };
 
     return {

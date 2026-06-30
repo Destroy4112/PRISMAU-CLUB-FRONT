@@ -1,6 +1,7 @@
 import type { ApiResponse, ApiResponseVoid } from "@shared/constants/response/Response.model";
-import type { Familiar, FamiliarId, FamiliarImagenPayload, FamiliarPayload } from "../domain/familiar.model";
-import type { FamiliarRepository } from "../domain/familiar.repository";
+import type { Familiar, FamiliarId } from "../../domain/model/familiar.model";
+import type { FamiliarRepository } from "../../domain/repository/familiar.repository";
+import type { CreateFamiliarInput, FamiliarImagenInput, UpdateFamiliarInput } from "../contracts/familiar.input";
 
 export class FamiliarUseCases {
 
@@ -14,15 +15,15 @@ export class FamiliarUseCases {
         return this.repo.getAll(id, rol);
     }
 
-    create(payload: FamiliarPayload): Promise<ApiResponse<Familiar>> {
+    create(payload: CreateFamiliarInput): Promise<ApiResponse<Familiar>> {
         return this.repo.create(payload);
     }
 
-    updateImagen(payload: FamiliarImagenPayload): Promise<ApiResponseVoid> {
+    updateImagen(payload: FamiliarImagenInput): Promise<ApiResponseVoid> {
         return this.repo.updateImagen(payload);
     }
 
-    update(payload: FamiliarPayload): Promise<ApiResponseVoid> {
+    update(payload: UpdateFamiliarInput): Promise<ApiResponseVoid> {
         return this.repo.update(payload);
     }
 

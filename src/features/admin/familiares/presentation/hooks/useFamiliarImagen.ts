@@ -1,7 +1,7 @@
 import type { ModalsApi } from '@shared/hooks/useModal';
 import { alertConfirm } from '@shared/utilities/alerts/alertas.utility';
 import { useState, type ChangeEvent } from 'react';
-import { familiarImagenFormToPayload } from '../../application/familiar-form.mapper';
+import { familiarImagenFormToPayload } from '../mapper/familiar-form.mapper';
 import { useDeleteImagenFamiliarMutation } from '../mutations/useDeleteImagenFamiliarMutation';
 import { useUpdateImagenFamiliarMutation } from '../mutations/useUpdateImagenFamiliarMutation';
 import { FAMILIAR_IMAGEN_FORM_INITIAL, type FamiliarImagenForm, type FamiliarModalKey } from '../types/familiar';
