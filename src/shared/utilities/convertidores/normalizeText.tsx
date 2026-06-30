@@ -16,7 +16,6 @@ export const emptyToNull = (value?: string | null): string | null => {
     return trimmed === "" ? null : trimmed;
 };
 
-
 export const formatearFecha = (valor: string): string => {
     if (!valor) return "-";
     const fecha = new Date(valor);

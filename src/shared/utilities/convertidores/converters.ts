@@ -1,3 +1,5 @@
+import { URL_BACK } from "@shared/constants/endpoints/Endpoints.model";
+
 export const traslateStatus = (status: number): string => {
     if (status === 0) return "INACTIVO";
     if (status === 1) return "ACTIVO";
@@ -28,7 +30,6 @@ export const getColorStatus = (status: number): string => {
     return "bg-gray-100 text-gray-600 border-gray-300";
 }
 
-
 export const colorStyles: Record<string, string> = {
     green: "bg-green-100 text-green-600",
     purple: "bg-purple-100 text-purple-600",
@@ -43,4 +44,9 @@ export const gradientes = [
     "from-red-500 via-rose-500 to-rose-600",
     "from-yellow-400 via-yellow-500 to-yellow-600",
     "from-green-500 via-teal-500 to-emerald-600",
-]; 
+];
+
+export function getFilePreview(objectKey?: string | null): string | null {
+    if (!objectKey) return null;
+    return `${URL_BACK}${objectKey}`;
+}
