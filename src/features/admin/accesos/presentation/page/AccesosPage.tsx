@@ -2,7 +2,7 @@ import DataTableComponent from '@shared/components/dataTable/DataTableComponent'
 import Contenido from '@shared/components/helpers/Contenido';
 import TituloPage from '@shared/components/helpers/TituloPage';
 import ToolbarFilter from '@shared/components/toolbar/ToolbarFilter';
-import { Contact } from 'lucide-react';
+import { ScanQrCode } from 'lucide-react';
 import type { Acceso } from '../../domain/models/acceso.model';
 import AccesosColumns from '../components/AccesosColumns';
 import useAcceso from '../hooks/useAcceso';
@@ -16,7 +16,7 @@ function AccesoPage() {
 
     return (
         <>
-            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<Contact className="w-7 h-7" />} color="green" />
+            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<ScanQrCode className="w-7 h-7" />} color="purple" />
             <Contenido>
                 <ToolbarFilter entityName={titulo} onSearchChange={handleFilterChange} onClearSearch={limpiarFiltros}
                     filters={filters} total={total} campos={campos} />

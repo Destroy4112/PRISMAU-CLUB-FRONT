@@ -18,8 +18,8 @@ function useAcceso() {
     const total = data?.total || 0;
 
     return {
-        titulo: "Control de Accesos",
-        subtitulo: "Listado de accesos a las instalaciones del club",
+        titulo: "Accesos",
+        subtitulo: "Registro de entradas de usuarios al club",
         campos: "nombre completo, identificación...",
         isLoading,
         contratos,
