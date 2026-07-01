@@ -1,8 +1,8 @@
-import type { IEstado } from "@models/entities/Entity.model";
-import { formatearFechaHora } from "@utils/convertidores/normalizeText";
+import { formatearFechaHora } from "@shared/utilities/convertidores/normalizeText";
 import type { TableColumn } from "react-data-table-component";
+import type { Estado } from "../../domain/models/estado.model";
 
-export default function EstadosColumns(): TableColumn<IEstado>[] {
+export default function EstadosColumns(): TableColumn<Estado>[] {
 
     return [
         {
@@ -12,25 +12,25 @@ export default function EstadosColumns(): TableColumn<IEstado>[] {
         },
         {
             name: "Nombre Completo",
-            cell: row => row.usuario?.Nombre + " " + row.usuario?.Apellidos,
+            cell: row => `${row.usuario.Nombre} ${row.usuario.Apellidos}`,
         },
         {
             name: "Identificación",
-            cell: row => row.usuario?.Documento,
+            cell: row => row.usuario.Documento,
             width: '150px',
         },
         {
             name: "Fecha",
-            cell: row => formatearFechaHora(row.created_at!),
+            cell: row => formatearFechaHora(row.createdAt),
         },
         {
             name: "Estado",
-            cell: row => row.Estado,
+            cell: row => row.estado,
             width: '150px',
         },
         {
             name: "Motivo",
-            cell: row => row.Motivo,
+            cell: row => row.motivo,
         },
     ];
 }
