@@ -4,7 +4,7 @@ import TituloPage from '@shared/components/helpers/TituloPage';
 import ToolbarFilter from '@shared/components/toolbar/ToolbarFilter';
 import { FileChartColumn } from 'lucide-react';
 import type { Contrato } from '../../domain/models/contrato.model';
-import AdminColumns from '../components/ContratosColumns';
+import ContratosColumns from '../components/ContratosColumns';
 import useContrato from '../hooks/useContrato';
 
 function ContratosPage() {
@@ -12,7 +12,7 @@ function ContratosPage() {
     const { titulo, subtitulo, isLoading, contratos, filters, limit, page, total, campos,
         handleFilterChange, limpiarFiltros, onPageChange, onRowsPerPageChange } = useContrato();
 
-    const columns = AdminColumns();
+    const columns = ContratosColumns();
 
     return (
         <>

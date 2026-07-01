@@ -4,7 +4,7 @@ import TituloPage from '@shared/components/helpers/TituloPage';
 import ToolbarFilter from '@shared/components/toolbar/ToolbarFilter';
 import { Contact } from 'lucide-react';
 import type { Invitacion } from '../../domain/models/invitacion.model';
-import AdminColumns from '../components/InvitacionesColumns';
+import InvitacionesColumns from '../components/InvitacionesColumns';
 import useInvitacion from '../hooks/useInvitacion';
 
 function InvitacionesPage() {
@@ -12,7 +12,7 @@ function InvitacionesPage() {
     const { titulo, subtitulo, isLoading, contratos, filters, limit, page, total, campos,
         handleFilterChange, limpiarFiltros, onPageChange, onRowsPerPageChange } = useInvitacion();
 
-    const columns = AdminColumns();
+    const columns = InvitacionesColumns();
 
     return (
         <>
