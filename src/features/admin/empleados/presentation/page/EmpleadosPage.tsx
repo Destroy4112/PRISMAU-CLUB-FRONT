@@ -4,7 +4,7 @@ import TituloPage from "@shared/components/helpers/TituloPage";
 import VentanaModal from "@shared/components/modals/VentanaModal";
 import FormImagen from "@shared/components/shared/users/formulario/FormImagen";
 import ToolbarFilter from "@shared/components/toolbar/ToolbarFilter";
-import { User } from "lucide-react";
+import { IdCardLanyard } from "lucide-react";
 import type { Empleado } from "../../domain/model/empleado.model";
 import EmpleadoColumns from "../components/EmpleadoColumns";
 import FormEmpleados from "../components/FormEmpleado";
@@ -24,7 +24,7 @@ export default function EmpleadosPage() {
 
     return (
         <>
-            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<User className="w-7 h-7" />} color="green"
+            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<IdCardLanyard className="w-7 h-7" />} color="pink"
                 canCreate label="Crear" accion={openModal} />
             <Contenido>
                 <ToolbarFilter<number | null> filters={filters} total={total} onSearchChange={handleFilterChange}

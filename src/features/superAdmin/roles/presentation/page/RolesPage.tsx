@@ -16,7 +16,7 @@ function RolesPage() {
 
     return (
         <>
-            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<UserCog className="w-7 h-7" />} color="red" />
+            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<UserCog className="w-7 h-7" />} color="pink" />
             <Contenido>
                 <CardsRoles cargarRol={cargarRol} />
                 {rol !== 0 &&
@@ -26,7 +26,7 @@ function RolesPage() {
                     </Caja>
                 }
                 <VentanaModal size={'2xl'} titulo={tituloModal} show={modals.crear} cerrarModal={closeModal}
-                    hanleSubmit={handleSubmit} loading={isCreating}><></>
+                    handleSubmit={handleSubmit} loading={isCreating}><></>
                     <FormAsignarMenu form={menuRolForm} handleChange={handleChange} menus={menus} />
                 </VentanaModal>
             </Contenido>

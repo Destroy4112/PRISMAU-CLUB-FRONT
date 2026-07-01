@@ -25,7 +25,7 @@ function AdministradoresPage() {
 
     return (
         <>
-            <TituloPage<AdministradorExport> titulo={titulo} subtitulo={subtitulo} icono={<ShieldUser className="w-7 h-7" />} color="pink"
+            <TituloPage<AdministradorExport> titulo={titulo} subtitulo={subtitulo} icono={<ShieldUser className="w-7 h-7" />} color="purple"
                 canCreate label="Crear" canExport data={data} accion={openModal} />
             <Contenido>
                 <ToolbarFilter entityName={titulo} onSearchChange={handleFilterChange} onClearSearch={limpiarFiltros}

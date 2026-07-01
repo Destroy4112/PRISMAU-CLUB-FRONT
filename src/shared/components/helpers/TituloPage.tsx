@@ -5,7 +5,7 @@ import ExportExcel from '../excel/ExportExcel';
 
 type BaseProps = {
     icono: ReactNode;
-    color: string;
+    color: "green" | "purple" | "pink" | "red" | "yellow";
     titulo: string;
     subtitulo?: string;
     canCreate?: boolean;

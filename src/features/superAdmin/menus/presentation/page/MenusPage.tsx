@@ -17,7 +17,7 @@ export default function MenusPage() {
 
     return (
         <>
-            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<List className="w-7 h-7" />} color="yellow"
+            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<List className="w-7 h-7" />} color="red"
                 canCreate label="Nuevo Modulo" accion={openCreate} />
             <Contenido>
                 <DataTableComponent data={menus} loading={isLoading} columns={columns} />

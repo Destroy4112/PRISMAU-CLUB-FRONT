@@ -2,7 +2,7 @@ import Contenido from "@shared/components/helpers/Contenido";
 import TituloPage from "@shared/components/helpers/TituloPage";
 import VentanaModal from "@shared/components/modals/VentanaModal";
 import ToolbarFilter from "@shared/components/toolbar/ToolbarFilter";
-import { User } from "lucide-react";
+import { MapPinHouse } from "lucide-react";
 import CardsEspacios from "../components/CardsEspacios";
 import DisponibilidadEspacio from "../components/DisponibilidadEspacio";
 import FormEspacios from "../components/FormEspacio";
@@ -19,7 +19,7 @@ export default function EspaciosPage() {
 
     return (
         <>
-            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<User className="w-7 h-7" />} color="green"
+            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<MapPinHouse className="w-7 h-7" />} color="red"
                 canCreate label="Crear" accion={openModal} />
             <Contenido>
                 <ToolbarFilter<number | null> filters={filters} total={total} onSearchChange={handleFilterChange}

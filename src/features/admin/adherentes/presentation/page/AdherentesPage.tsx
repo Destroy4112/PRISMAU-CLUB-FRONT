@@ -27,7 +27,7 @@ export default function AdherentesPage() {
 
     return (
         <>
-            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<User className="w-7 h-7" />} color="green"
+            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<User className="w-7 h-7" />} color="purple"
                 canCreate label="Crear" accion={openModal} />
             <Contenido>
                 <ToolbarFilterSocios<number | null> filters={filters} total={total} onSearchChange={handleFilterChange}

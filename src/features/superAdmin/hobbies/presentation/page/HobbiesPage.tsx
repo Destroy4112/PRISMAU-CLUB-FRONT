@@ -1,7 +1,7 @@
 import Contenido from "@shared/components/helpers/Contenido";
 import TituloPage from "@shared/components/helpers/TituloPage";
-import Hobbies from "../components/Hobbies";
 import { WandSparkles } from "lucide-react";
+import Hobbies from "../components/Hobbies";
 
 function HobbiesPage() {
 
@@ -10,7 +10,7 @@ function HobbiesPage() {
 
     return (
         <>
-            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<WandSparkles className="w-7 h-7" />} color="green" />
+            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<WandSparkles className="w-7 h-7" />} color="yellow" />
             <Contenido>
                 <Hobbies />
             </Contenido>

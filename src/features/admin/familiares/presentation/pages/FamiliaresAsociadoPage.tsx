@@ -20,7 +20,7 @@ export default function FamiliaresAsociadoPage() {
 
     return (
         <>
-            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<Users className="w-7 h-7" />} color="yellow" />
+            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<Users className="w-7 h-7" />} color="green" />
             <Contenido>
                 <MenuSencillo toggleModal={openModal} noBuscar />
                 <CardFamiliares familiares={familiares} loading={isLoading} cargar={cargar} handleDelete={handleDelete}
