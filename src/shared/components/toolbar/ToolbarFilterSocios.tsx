@@ -4,7 +4,7 @@ import type { ChangeEvent } from "react";
 import { FaTimes } from "react-icons/fa";
 import type { ToolbarStatusOption, ToolbarStatusVariant } from "./ToolbarFilter";
 
-type Props<TState extends FilterState = number | null> = {
+type Props<TState extends FilterState = number | string | null> = {
     entityName: string;
     total: number;
 

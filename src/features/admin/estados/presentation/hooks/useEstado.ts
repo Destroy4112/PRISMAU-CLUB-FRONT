@@ -1,16 +1,16 @@
-import { INITIAL_FILTERS, type Filter } from "@shared/constants/filters/filters.constant";
+import { INITIAL_FILTERS_WITH_STATE, type FilterWithState } from "@shared/constants/filters/filters.constant";
 import { useDebounce } from "@shared/hooks/useDebounce";
 import { useSearchPaginate } from "@shared/hooks/useSearchPaginate";
 import { useEstadoQuery } from "../queries/useEstadoQuery";
 
 function useEstado() {
 
-    const { filters, limit, page, onPageChange, onRowsPerPageChange, handleFilterChange, limpiarFiltros
-    } = useSearchPaginate<Filter>(INITIAL_FILTERS);
+    const { filters, limit, page, onPageChange, onRowsPerPageChange, handleFilterChange, setFilter, clearFilter,
+    } = useSearchPaginate<FilterWithState>(INITIAL_FILTERS_WITH_STATE);
 
     const debounce = useDebounce<string>(filters.search, 500);
 
-    const queryParams = { page, limit, search: debounce };
+    const queryParams = { page, limit, search: debounce, state: filters.state };
 
     const { data, isLoading } = useEstadoQuery(queryParams);
 
@@ -28,7 +28,8 @@ function useEstado() {
         total,
         filters,
         handleFilterChange,
-        limpiarFiltros,
+        setFilter,
+        clearFilter,
         onPageChange,
         onRowsPerPageChange
     };

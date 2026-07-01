@@ -4,7 +4,7 @@ export type Filter = {
 
 export type FilterState = number | string | boolean | null;
 
-export type FilterWithState<TState extends FilterState = number | null> = Filter & {
+export type FilterWithState<TState extends FilterState = number | string | boolean | null> = Filter & {
     state: TState;
 };
 
