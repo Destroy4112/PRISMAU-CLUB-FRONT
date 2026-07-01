@@ -31,7 +31,7 @@ const EmpleadosPage = lazy(() => import('@features/admin/empleados/presentation/
 const EspaciosPage = lazy(() => import('@features/admin/espacios/presentation/page/EspaciosPage'))
 const EventosPage = lazy(() => import('@/features/admin/eventos/presentation/page/EventosPage'))
 const InvitacionesPage = lazy(() => import('@/features/admin/invitaciones/presentation/page/InvitacionesPage'))
-const AccesosPage = lazy(() => import('@/features/admin/accesos/AccesosPage'))
+const AccesosPage = lazy(() => import('@/features/admin/accesos/presentation/page/AccesosPage'))
 const EstadosPage = lazy(() => import('@/features/admin/estados/EstadosPage'))
 const GestionPage = lazy(() => import('@/features/admin/pagos/gestion/GestionPage'))
 const RubrosPage = lazy(() => import('@/features/admin/pagos/rubros/presentation/pages/RubrosPage'))
