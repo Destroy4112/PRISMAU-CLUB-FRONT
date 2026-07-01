@@ -1,9 +1,9 @@
-import type { IInvitacion } from "@models/entities/Entity.model";
-import { formatearFecha } from "@utils/convertidores/normalizeText";
+import { formatearFecha } from "@shared/utilities/convertidores/normalizeText";
 import { Badge } from "flowbite-react";
 import type { TableColumn } from "react-data-table-component";
+import type { Invitacion } from "../../domain/models/invitacion.model";
 
-export default function InvitacionesColumns(): TableColumn<IInvitacion>[] {
+export default function InvitacionesColumns(): TableColumn<Invitacion>[] {
 
     return [
         {
@@ -13,7 +13,7 @@ export default function InvitacionesColumns(): TableColumn<IInvitacion>[] {
         },
         {
             name: "Fecha",
-            cell: row => formatearFecha(row.created_at!),
+            cell: row => formatearFecha(row.createdAt),
             width: '120px',
         },
         {

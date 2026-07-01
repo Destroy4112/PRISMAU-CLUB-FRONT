@@ -30,7 +30,7 @@ const FamiliaresAdherentePage = lazy(() => import('@/features/admin/familiares/p
 const EmpleadosPage = lazy(() => import('@features/admin/empleados/presentation/page/EmpleadosPage'))
 const EspaciosPage = lazy(() => import('@features/admin/espacios/presentation/page/EspaciosPage'))
 const EventosPage = lazy(() => import('@/features/admin/eventos/presentation/page/EventosPage'))
-const InvitacionesPage = lazy(() => import('@/features/admin/invitaciones/InvitacionesPage'))
+const InvitacionesPage = lazy(() => import('@/features/admin/invitaciones/presentation/page/InvitacionesPage'))
 const AccesosPage = lazy(() => import('@/features/admin/accesos/AccesosPage'))
 const EstadosPage = lazy(() => import('@/features/admin/estados/EstadosPage'))
 const GestionPage = lazy(() => import('@/features/admin/pagos/gestion/GestionPage'))
