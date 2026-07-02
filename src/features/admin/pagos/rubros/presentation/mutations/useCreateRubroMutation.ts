@@ -1,10 +1,10 @@
-import type { ApiResponse } from "@shared/constants/response/Response.model";
+import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
 import { createApiMutation } from "@shared/react-query/createApiMutation";
-import { rubroUseCases } from "../../application/rubro.container";
-import type { Rubro, RubroPayload } from "../../domain/rubro.model";
+import { rubroUseCases } from "../../application/container/rubro.container";
+import type { CreateRubroInput } from "../../application/contracts/rubro.input";
 import { rubroKeys } from "../queries/rubro.keys";
 
-export const useCreateRubroMutation = createApiMutation<ApiResponse<Rubro>, RubroPayload>(
+export const useCreateRubroMutation = createApiMutation<ApiResponseVoid, CreateRubroInput>(
     (payload) => rubroUseCases.create(payload),
     {
         invalidateKeys: [rubroKeys.all],

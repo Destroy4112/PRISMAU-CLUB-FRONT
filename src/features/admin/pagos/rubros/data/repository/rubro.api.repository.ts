@@ -1,32 +1,40 @@
 import { http } from "@core/http/axios.instance";
 import { ENDPOINTS } from "@shared/constants/endpoints/Endpoints.model";
+import type { Filter } from "@shared/constants/filters/filters.constant";
 import type { ApiResponse, ApiResponseVoid, PageParams, PaginatedResponse } from "@shared/constants/response/Response.model";
-import type { RubroFilter } from "../domain/rubro.filters";
-import type { Rubro, RubroId, RubroPayload } from "../domain/rubro.model";
-import type { RubroRepository } from "../domain/rubro.repository";
-import type { RubroDTO } from "./rubro.dto";
-import { payloadToCreateDto, payloadToUpdateDto, rubroDtoToDomain } from "./rubro.mapper";
+import type { CreateRubroInput, UpdateRubroInput } from "../../application/contracts/rubro.input";
+import type { Rubro, RubroId } from "../../domain/model/rubro.model";
+import type { RubroRepository } from "../../domain/repository/rubro.repository";
+import type { RubroDTO } from "../dto/rubro.dto";
+import { payloadToCreateDto, payloadToUpdateDto, rubroDtoToDomain } from "../mapper/rubro.mapper";
 
 const URL = ENDPOINTS.RUBROS;
 
 export class RubroApiRepository implements RubroRepository {
 
-    async getAll(params: PageParams & { filters?: RubroFilter; }): Promise<PaginatedResponse<Rubro>> {
-        const { filters, ...rest } = params;
+    private buildParams(params: PageParams & Filter): PageParams & Filter {
+        return {
+            search: params.search.trim(),
+            page: params.page,
+            limit: params.limit
+        }
+    }
+
+    async getAll(params: PageParams & Filter): Promise<PaginatedResponse<Rubro>> {
         const res = await http.get<PaginatedResponse<RubroDTO>>(URL, {
-            params: { ...rest, ...filters },
+            params: this.buildParams(params),
         });
         return { ...res.data, data: (res.data.data ?? []).map(rubroDtoToDomain) };
     }
 
-    async create(rubro: RubroPayload): Promise<ApiResponse<Rubro>> {
+    async create(rubro: CreateRubroInput): Promise<ApiResponseVoid> {
         const dto = payloadToCreateDto(rubro);
         const res = await http.post<ApiResponse<RubroDTO>>(URL, dto);
         if (!res.data?.status) return res.data as ApiResponse<Rubro>;
-        return { ...res.data, data: rubroDtoToDomain(res.data.data) };
+        return res.data;
     }
 
-    async update(rubro: RubroPayload): Promise<ApiResponseVoid> {
+    async update(rubro: UpdateRubroInput): Promise<ApiResponseVoid> {
         const dto = payloadToUpdateDto(rubro);
         const res = await http.put<ApiResponseVoid>(`${URL}/${dto.id}`, dto);
         return res.data;
