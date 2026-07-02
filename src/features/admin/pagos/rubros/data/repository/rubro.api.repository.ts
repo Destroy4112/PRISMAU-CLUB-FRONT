@@ -20,7 +20,12 @@ export class RubroApiRepository implements RubroRepository {
         }
     }
 
-    async getAll(params: PageParams & Filter): Promise<PaginatedResponse<Rubro>> {
+    async getAll(): Promise<Rubro[]> {
+        const res = await http.get<RubroDTO[]>(`${URL}/all`);
+        return (res.data ?? []).map(rubroDtoToDomain);
+    }
+
+    async getPaginated(params: PageParams & Filter): Promise<PaginatedResponse<Rubro>> {
         const res = await http.get<PaginatedResponse<RubroDTO>>(URL, {
             params: this.buildParams(params),
         });

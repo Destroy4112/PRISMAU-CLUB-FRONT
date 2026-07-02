@@ -33,6 +33,7 @@ export const ENDPOINTS = {
     PERMISOS: 'permisos',
     PERMISOS_ROL: 'permisos/rol',
     RUBROS: 'rubros',
+    FACTURAS: 'facturas',
     PAGOS: 'pagos',
 }
 

@@ -1,324 +1,264 @@
-import React, { useMemo, useState } from "react";
+import type { Rubro } from '@features/admin/pagos/rubros/domain/model/rubro.model';
+import Spinner from '@shared/components/spinner/Spinner';
+import { formatearMoneda } from '@shared/utilities/convertidores/normalizeText';
+import { Label, Select, TextInput } from 'flowbite-react';
+import type { ChangeEvent, ReactNode } from 'react';
+import { FaCalendarAlt, FaCheck, FaFileInvoiceDollar, FaHashtag, FaLayerGroup } from 'react-icons/fa';
+import type { ProgramacionForm } from '../types/programacion';
+import EmptyState from './EmptyState';
+import LoadingRubros from './LoadingRubros';
 
-type Currency = "COP" | "USD" | "EUR";
-
-export type RubroConfig = {
-    id: string;                // "mensualidad", "cuota_baile", etc.
-    nombre: string;            // "Mensualidad"
-    descripcion?: string;      // "Pago fijo"
-    valor: number;             // valor unitario
-    moneda?: Currency;         // opcional por rubro (si no, usa global)
-    requiereCuotas?: boolean;  // si pide numero de cuotas
-    cuotasMin?: number;        // default 1
-    cuotasMax?: number;        // default 60
-    badge?: string;            // ej: "Popular", "Nuevo"
-};
-
-export type ProgramarPagoPayload = {
-    anio: number;
-    rubroId: string;
-    valorUnitario: number;
-    moneda: Currency;
-    numeroCuotas?: number; // solo si requiereCuotas
-    total: number;
-};
-
-type Props = {
-    rubros: RubroConfig[];
-    monedaDefault?: Currency;
-    anioMin?: number;
-    anioMax?: number;
-    defaultRubroId?: string;
-    onSubmit?: (payload: ProgramarPagoPayload) => Promise<void> | void;
-};
-
-function clamp(n: number, min: number, max: number) {
-    return Math.max(min, Math.min(max, n));
+interface Props {
+    form: ProgramacionForm;
+    rubros: Rubro[];
+    rubroSeleccionado?: Rubro;
+    formularioCompleto: boolean;
+    loading: boolean;
+    loadingRubros: boolean;
+    handleChange: (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+    handleSubmit: () => void;
 }
 
-function formatMoney(amount: number, currency: Currency) {
-    try {
-        return new Intl.NumberFormat(undefined, { style: "currency", currency }).format(amount || 0);
-    } catch {
-        return `${currency} ${Number(amount || 0).toFixed(2)}`;
-    }
-}
+export default function FormProgramacion({ form, rubros, rubroSeleccionado, formularioCompleto, loading, loadingRubros, handleChange, handleSubmit }: Props) {
 
-function currentYear() {
-    return new Date().getFullYear();
-}
+    if (loadingRubros) return <LoadingRubros />;
 
-export default function FormProgramacion({
-    rubros,
-    monedaDefault = "COP",
-    anioMin = 2020,
-    anioMax = currentYear() + 2,
-    defaultRubroId,
-    onSubmit,
-}: Props) {
-    const firstRubroId = rubros?.[0]?.id;
-    const initialRubroId = defaultRubroId ?? firstRubroId ?? "";
-
-    const [anio, setAnio] = useState<number>(currentYear());
-    const [rubroId, setRubroId] = useState<string>(initialRubroId);
-    const [cuotas, setCuotas] = useState<number>(1);
-    const [loading, setLoading] = useState(false);
-
-    const rubro = useMemo(() => rubros?.find((r) => r.id === rubroId), [rubros, rubroId]);
-
-    const requiresCuotas = !!rubro?.requiereCuotas;
-    const cuotasMin = rubro?.cuotasMin ?? 1;
-    const cuotasMax = rubro?.cuotasMax ?? 60;
-
-    const currency = (rubro?.moneda ?? monedaDefault) as Currency;
-    const valorUnitario = rubro?.valor ?? 0;
-
-    const total = useMemo(() => {
-        if (!rubro) return 0;
-        if (!requiresCuotas) return valorUnitario;
-        return valorUnitario * clamp(cuotas, cuotasMin, cuotasMax);
-    }, [rubro, requiresCuotas, valorUnitario, cuotas, cuotasMin, cuotasMax]);
-
-    const errors = useMemo(() => {
-        const e: { anio?: string; rubro?: string; cuotas?: string } = {};
-
-        if (!Number.isFinite(anio) || anio < anioMin || anio > anioMax) {
-            e.anio = `Año inválido (${anioMin}–${anioMax}).`;
-        }
-
-        if (!rubro) {
-            e.rubro = "Selecciona un rubro válido.";
-        }
-
-        if (requiresCuotas) {
-            if (!Number.isFinite(cuotas) || cuotas < cuotasMin) e.cuotas = `Mínimo ${cuotasMin}.`;
-            if (cuotas > cuotasMax) e.cuotas = `Máximo ${cuotasMax}.`;
-        }
-
-        return e;
-    }, [anio, anioMin, anioMax, rubro, requiresCuotas, cuotas, cuotasMin, cuotasMax]);
-
-    const isOk = Object.keys(errors).length === 0;
-
-    const payload: ProgramarPagoPayload | null = useMemo(() => {
-        if (!rubro) return null;
-        const base: ProgramarPagoPayload = {
-            anio,
-            rubroId: rubro.id,
-            valorUnitario,
-            moneda: currency,
-            total,
-        };
-        if (requiresCuotas) base.numeroCuotas = clamp(cuotas, cuotasMin, cuotasMax);
-        return base;
-    }, [anio, rubro, valorUnitario, currency, total, requiresCuotas, cuotas, cuotasMin, cuotasMax]);
-
-    async function submit() {
-        if (!isOk || !payload) return;
-        try {
-            setLoading(true);
-            await onSubmit?.(payload);
-        } finally {
-            setLoading(false);
-        }
-    }
-
-    // ---- UI styles (Tailwind) ----
-    const shell =
-        "rounded-2xl border border-gray-200 bg-white shadow-[0_14px_55px_rgba(0,0,0,0.08)]";
-    const input =
-        "w-full rounded-xl border border-gray-200 bg-white px-3 py-2.5 text-sm text-gray-900 outline-none transition focus:border-gray-300 focus:ring-4 focus:ring-gray-100";
-    const label = "text-xs font-semibold text-gray-600";
-    const muted = "text-xs text-gray-500";
+    if (!rubros.length) return <EmptyState />;
 
     return (
-        <div className="w-full">
-            <div className={shell}>
-                {/* Top bar */}
-                <div className="flex flex-col gap-3 border-b border-gray-200 p-5 md:flex-row md:items-center md:justify-between">
-                    <div>
-                        <h2 className="text-lg font-semibold text-gray-900">Programar pago</h2>
-                        <p className="mt-1 text-sm text-gray-600">
-                            Selecciona el rubro y configura los parámetros requeridos.
-                        </p>
+        <div className="relative overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_20px_60px_-35px_rgba(15,23,42,0.3)]">
+            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-emerald-400 to-transparent" />
+
+            <div className="grid xl:grid-cols-[minmax(0,1fr)_340px]">
+                <section className="p-6 sm:p-8 lg:p-10">
+                    <div className="mb-9 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                        <div>
+                            <p className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-600">
+                                Configuración
+                            </p>
+
+                            <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-950">
+                                Programar facturación
+                            </h2>
+
+                            <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-500">
+                                Define el periodo y el concepto que se aplicará durante la generación de las facturas.
+                            </p>
+                        </div>
+
+                        <div className={`inline-flex w-fit items-center gap-2 rounded-full border px-3.5 py-2 text-xs font-bold ${formularioCompleto ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-slate-200 bg-slate-50 text-slate-500'}`}>
+                            <span className={`h-2 w-2 rounded-full ${formularioCompleto ? 'bg-emerald-500' : 'bg-slate-300'}`} />
+                            {formularioCompleto ? 'Configuración completa' : 'Pendiente por completar'}
+                        </div>
                     </div>
 
-                    <button
-                        type="button"
-                        disabled={!isOk || loading}
-                        onClick={submit}
-                        className={`inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2.5 text-sm font-semibold text-white transition ${!isOk || loading
-                                ? "cursor-not-allowed bg-gray-300"
-                                : "bg-gray-900 hover:bg-black shadow-[0_10px_22px_rgba(0,0,0,0.18)]"
-                            }`}
-                    >
-                        {loading ? "Programando..." : "Programar"}
-                        <span className="opacity-80">↗</span>
-                    </button>
+                    <div className="space-y-8">
+                        <div className="grid gap-8 md:grid-cols-2">
+                            <FormField number="01" label="Año de facturación" completed={Boolean(form.anio)}
+                                description="Periodo al que pertenecerán las facturas."
+                            >
+                                <TextInput id="anio" name="anio" type="number" min={2000} max={2100} inputMode="numeric" icon={FaCalendarAlt}
+                                    value={form.anio ?? ''} onChange={handleChange} placeholder="Ej. 2026" required className={inputClassName} />
+                            </FormField>
+
+                            <FormField number="02" label="Concepto de facturación" description="Rubro que será utilizado para generar el cobro."
+                                completed={Boolean(form.rubroId)}>
+                                <Select id="rubroId" name="rubroId" icon={FaLayerGroup} value={form.rubroId ?? ''}
+                                    onChange={handleChange} required className={selectClassName}
+                                >
+                                    <option value="" disabled>Selecciona un rubro</option>
+                                    {rubros.map((rubro) => (
+                                        <option key={rubro.id} value={rubro.id}>{rubro.rubro}</option>
+                                    ))}
+                                </Select>
+                            </FormField>
+                        </div>
+
+                        {form.isCuota && (
+                            <div className="border-y border-emerald-100 bg-emerald-50/40 py-6 sm:px-5">
+                                <div className="grid gap-6 md:grid-cols-[minmax(0,1fr)_280px] md:items-center">
+                                    <div className="flex items-start gap-4">
+                                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-600 text-white shadow-lg shadow-emerald-600/20">
+                                            <FaHashtag />
+                                        </div>
+
+                                        <div>
+                                            <h3 className="font-bold text-slate-900">
+                                                Configuración de cuotas
+                                            </h3>
+
+                                            <p className="mt-1 max-w-lg text-sm leading-6 text-slate-500">
+                                                Indica cuántos cobros se generarán para este rubro durante el periodo.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <Label htmlFor="cuotas" className="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-500">
+                                            Número de cuotas
+                                        </Label>
+                                        <TextInput id="cuotas" name="cuotas" type="number" min={1} inputMode="numeric"
+                                            icon={FaHashtag} value={form.cuotas ?? ''} onChange={handleChange}
+                                            placeholder="Ej. 4" required className={inputClassName} />
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    <div className="mt-10 flex flex-col gap-12 border-t border-slate-100 pt-7 sm:flex-row sm:items-center sm:justify-between">
+                        <p className="max-w-xl text-sm leading-6 text-slate-500">
+                            Verifica los datos antes de continuar. La programación generará las facturas asociadas al rubro seleccionado.
+                        </p>
+
+                        <button type="button" disabled={loading || !formularioCompleto} onClick={handleSubmit}
+                            className="group inline-flex min-h-12 items-center justify-center gap-3 rounded-2xl bg-slate-950 px-7 py-3 text-sm font-bold text-white shadow-[0_12px_30px_-12px_rgba(15,23,42,0.8)] transition duration-200 hover:-translate-y-0.5 hover:bg-emerald-600 focus:outline-none focus:ring-4 focus:ring-emerald-100 disabled:cursor-not-allowed disabled:bg-slate-300 disabled:shadow-none disabled:hover:translate-y-0"
+                        >
+                            {loading ? (
+                                <div className="flex items-center gap-2">
+                                    <Spinner />
+                                </div>
+                            ) : (
+                                <>
+                                    <FaFileInvoiceDollar />
+                                    Generar
+                                </>
+                            )}
+                        </button>
+                    </div>
+                </section>
+
+                <ResumenProgramacion
+                    anio={form.anio}
+                    rubro={rubroSeleccionado?.rubro}
+                    valorRubro={rubroSeleccionado?.valor ?? 0}
+                    cantidadCuotas={form.cuotas ? Number(form.cuotas) : 0}
+                    isCuota={form.isCuota}
+                    formularioCompleto={formularioCompleto}
+                />
+            </div>
+        </div>
+    )
+}
+
+interface FormFieldProps {
+    number: string;
+    label: string;
+    description: string;
+    completed: boolean;
+    children: ReactNode;
+}
+
+function FormField({ number, label, description, completed, children }: FormFieldProps) {
+    return (
+        <div>
+            <div className="mb-3 flex items-start gap-3">
+                <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl text-xs font-bold transition ${completed ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20' : 'bg-slate-100 text-slate-500'}`}>
+                    {completed ? <FaCheck className="text-[10px]" /> : number}
                 </div>
 
-                {/* Content */}
-                <div className="p-5">
-                    <div className="grid gap-4 md:grid-cols-12">
-                        {/* Año */}
-                        <div className="md:col-span-3">
-                            <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
-                                <div className="flex items-center justify-between">
-                                    <div className={label}>Año</div>
-                                    <div className={muted}>{anioMin}–{anioMax}</div>
-                                </div>
-                                <div className="mt-2 flex items-center gap-2">
-                                    <div className="grid h-10 w-10 place-items-center rounded-xl border border-gray-200 bg-white">
-                                        <span>📅</span>
-                                    </div>
-                                    <input
-                                        className={input}
-                                        inputMode="numeric"
-                                        value={anio}
-                                        onChange={(e) => setAnio(Number(e.target.value))}
-                                        placeholder="2026"
-                                    />
-                                </div>
-                                {errors.anio && <div className="mt-2 text-xs font-medium text-red-600">{errors.anio}</div>}
-                            </div>
-                        </div>
+                <div className="min-w-0">
+                    <Label className="block text-sm font-bold text-slate-900">
+                        {label}
+                    </Label>
+                    <p className="mt-1 text-xs leading-5 text-slate-500">
+                        {description}
+                    </p>
+                </div>
+            </div>
 
-                        {/* Rubros as premium chips */}
-                        <div className="md:col-span-6">
-                            <div className="rounded-2xl border border-gray-200 bg-white p-4">
-                                <div className="flex items-center justify-between">
-                                    <div className={label}>Rubro</div>
-                                    <div className={muted}>{rubros.length} disponible(s)</div>
-                                </div>
+            <div className="sm:pl-11">
+                {children}
+            </div>
+        </div>
+    )
+}
 
-                                <div className="mt-3 flex flex-wrap gap-2">
-                                    {rubros.map((r) => {
-                                        const active = r.id === rubroId;
-                                        return (
-                                            <button
-                                                key={r.id}
-                                                type="button"
-                                                onClick={() => {
-                                                    setRubroId(r.id);
-                                                    // reset cuotas cuando cambias de rubro
-                                                    setCuotas(r.cuotasMin ?? 1);
-                                                }}
-                                                className={`group rounded-2xl border px-3 py-2 text-left transition ${active
-                                                        ? "border-gray-900 bg-gray-900 text-white"
-                                                        : "border-gray-200 bg-white text-gray-900 hover:bg-gray-50"
-                                                    }`}
-                                            >
-                                                <div className="flex items-center gap-2">
-                                                    <div className="text-sm font-semibold">{r.nombre}</div>
-                                                    {r.badge && (
-                                                        <span
-                                                            className={`rounded-full px-2 py-0.5 text-[11px] font-semibold ${active ? "bg-white/15 text-white" : "bg-gray-100 text-gray-700"
-                                                                }`}
-                                                        >
-                                                            {r.badge}
-                                                        </span>
-                                                    )}
-                                                </div>
+interface ResumenProgramacionProps {
+    anio: string;
+    rubro?: string;
+    valorRubro: number;
+    cantidadCuotas: number;
+    isCuota: boolean;
+    formularioCompleto: boolean;
+}
 
-                                                <div className={`mt-0.5 text-xs ${active ? "text-gray-200" : "text-gray-500"}`}>
-                                                    {r.descripcion ?? "—"}
-                                                </div>
+function ResumenProgramacion({ anio, rubro, valorRubro, cantidadCuotas, isCuota, formularioCompleto }: ResumenProgramacionProps) {
 
-                                                <div className="mt-2 text-sm font-semibold">
-                                                    {formatMoney(r.valor, (r.moneda ?? monedaDefault) as Currency)}
-                                                </div>
-                                            </button>
-                                        );
-                                    })}
-                                </div>
+    return (
+        <aside className="border-t border-slate-200 bg-slate-50/70 xl:border-l xl:border-t-0">
+            <div className="flex h-full flex-col p-6 sm:p-8">
+                <div>
+                    <p className="text-[14px] font-bold uppercase tracking-[0.2em] text-emerald-600">
+                        Resumen
+                    </p>
+                </div>
 
-                                {errors.rubro && <div className="mt-2 text-xs font-medium text-red-600">{errors.rubro}</div>}
-                            </div>
-                        </div>
+                <div className="mt-4 border-y border-slate-200">
+                    <DetalleResumen label="Periodo" value={anio || 'Sin definir'} />
+                    <DetalleResumen label="Rubro" value={rubro ?? 'Sin seleccionar'} />
+                    {isCuota && (
+                        <DetalleResumen label="No. cuotas" value={cantidadCuotas > 0 ? String(cantidadCuotas) : 'Sin definir'} />
+                    )}
+                </div>
 
-                        {/* Params */}
-                        <div className="md:col-span-3">
-                            <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
-                                <div className="flex items-center justify-between">
-                                    <div className={label}>Configuración</div>
-                                    <div className={muted}>{rubro ? rubro.nombre : "—"}</div>
-                                </div>
+                <div className="mt-8">
+                    <p className="text-xs font-semibold text-slate-500">
+                        Valor del rubro
+                    </p>
 
-                                {/* Cuotas only if required */}
-                                {requiresCuotas ? (
-                                    <>
-                                        <div className="mt-3">
-                                            <div className="flex items-center justify-between">
-                                                <div className="text-xs font-semibold text-gray-700">Número de cuotas</div>
-                                                <div className="text-xs text-gray-500">{cuotasMin}–{cuotasMax}</div>
-                                            </div>
-                                            <div className="mt-2 flex items-center gap-2">
-                                                <div className="grid h-10 w-10 place-items-center rounded-xl border border-gray-200 bg-white">
-                                                    <span>#</span>
-                                                </div>
-                                                <input
-                                                    className={input}
-                                                    type="number"
-                                                    min={cuotasMin}
-                                                    max={cuotasMax}
-                                                    value={cuotas}
-                                                    onChange={(e) => setCuotas(Number(e.target.value))}
-                                                    placeholder="Ej: 12"
-                                                />
-                                            </div>
-                                            {errors.cuotas && <div className="mt-2 text-xs font-medium text-red-600">{errors.cuotas}</div>}
-                                        </div>
+                    <div className="mt-2 flex items-end justify-between gap-4">
+                        <p className="text-3xl font-bold tracking-tight text-slate-950">
+                            {formatearMoneda(valorRubro)}
+                        </p>
 
-                                        {/* Total pill (subtle, not a “summary card”) */}
-                                        <div className="mt-4 rounded-2xl border border-gray-200 bg-white p-3">
-                                            <div className="text-xs text-gray-500">Total</div>
-                                            <div className="mt-1 text-base font-extrabold text-gray-900">
-                                                {formatMoney(total, currency)}
-                                            </div>
-                                            <div className="mt-1 text-[11px] text-gray-500">
-                                                {formatMoney(valorUnitario, currency)} × {clamp(cuotas, cuotasMin, cuotasMax)}
-                                            </div>
-                                        </div>
-                                    </>
-                                ) : (
-                                    <div className="mt-3 rounded-2xl border border-gray-200 bg-white p-3">
-                                        <div className="text-xs text-gray-500">Total</div>
-                                        <div className="mt-1 text-base font-extrabold text-gray-900">
-                                            {formatMoney(total, currency)}
-                                        </div>
-                                        <div className="mt-1 text-[11px] text-gray-500">Pago único</div>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
+                        <span className="mb-1 rounded-full bg-emerald-100 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-700">
+                            COP
+                        </span>
                     </div>
+                </div>
 
-                    {/* Bottom helper row */}
-                    <div className="mt-4 flex flex-col gap-2 rounded-2xl border border-gray-200 bg-white p-4 md:flex-row md:items-center md:justify-between">
-                        <div className="text-xs text-gray-600">
-                            <span className="font-semibold text-gray-900">Tip:</span>{" "}
-                            si agregas nuevos rubros, solo los incluyes en el array <code className="rounded bg-gray-100 px-1">rubros</code>.
+                <div className="mt-auto">
+                    <div className="flex items-start gap-3 border-t border-slate-200 pt-5">
+                        <div className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${formularioCompleto ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}`}>
+                            {formularioCompleto ? <FaCheck className="text-[10px]" /> : <span className="text-xs font-bold">!</span>}
                         </div>
 
-                        {/* Dev-only: puedes eliminar esto */}
-                        <div className="text-xs text-gray-500">
-                            Total calculado: <span className="font-semibold text-gray-900">{formatMoney(total, currency)}</span>
-                        </div>
-                    </div>
+                        <div>
+                            <p className="text-sm font-bold text-slate-900">
+                                {formularioCompleto ? 'Configuración completa' : 'Información pendiente'}
+                            </p>
 
-                    {/* Dev-only payload preview (quítalo si no lo quieres) */}
-                    <div className="mt-3">
-                        <details className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
-                            <summary className="cursor-pointer text-sm font-semibold text-gray-900">
-                                Ver payload (debug)
-                            </summary>
-                            <pre className="mt-3 overflow-auto rounded-2xl border border-gray-200 bg-white p-3 text-xs text-gray-700">
-                                {JSON.stringify(payload, null, 2)}
-                            </pre>
-                        </details>
+                            <p className="mt-1 text-xs leading-5 text-slate-500">
+                                {formularioCompleto ? 'La programación está lista para generar las facturas.' : 'Completa los campos requeridos para continuar.'}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    );
+        </aside>
+    )
 }
+
+interface DetalleResumenProps {
+    label: string;
+    value: string | number;
+}
+
+function DetalleResumen({ label, value }: DetalleResumenProps) {
+
+    return (
+        <div className="grid grid-cols-[90px_minmax(0,1fr)] gap-4 border-b border-slate-200 py-4 last:border-b-0">
+            <span className="text-xs font-medium text-slate-400">
+                {label}
+            </span>
+
+            <span className="text-right text-sm font-semibold leading-5 text-slate-800">
+                {value}
+            </span>
+        </div>
+    )
+}
+
+const inputClassName = '[&_input]:h-12 [&_input]:rounded-2xl [&_input]:border-slate-200 [&_input]:bg-slate-50/70 [&_input]:text-sm [&_input]:font-medium [&_input]:text-slate-900 [&_input]:shadow-none [&_input]:transition [&_input]:placeholder:text-slate-400 [&_input]:hover:border-slate-300 [&_input]:focus:border-emerald-500 [&_input]:focus:bg-white [&_input]:focus:ring-4 [&_input]:focus:ring-emerald-500/10';
+const selectClassName = '[&_select]:h-12 [&_select]:rounded-2xl [&_select]:border-slate-200 [&_select]:bg-slate-50/70 [&_select]:text-sm [&_select]:font-medium [&_select]:text-slate-900 [&_select]:shadow-none [&_select]:transition [&_select]:hover:border-slate-300 [&_select]:focus:border-emerald-500 [&_select]:focus:bg-white [&_select]:focus:ring-4 [&_select]:focus:ring-emerald-500/10';

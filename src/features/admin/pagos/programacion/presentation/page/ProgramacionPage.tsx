@@ -1,19 +1,28 @@
-import Contenido from '@components/helpers/Contenido';
-import TituloPage from '@components/helpers/TituloPage';
-import { CalendarDays } from 'lucide-react';
-import useProgramacion from './hooks/useProgramacion';
-import FormProgramacion from './components/FormProgramacion';
-import apiQueryRubro from '../rubros/api/apiQueryRubro';
+import Contenido from "@shared/components/helpers/Contenido";
+import TituloPage from "@shared/components/helpers/TituloPage";
+import { CalendarDays } from "lucide-react";
+import FormProgramacion from "../components/FormProgramacion";
+import useProgramacion from "../hooks/useProgramacion";
 
 export default function ProgramacionPage() {
 
-    const { titulo, subtitulo, programacion, isPending, handleChange, handleChangeRubro, handleSubmit } = useProgramacion();
+    const { titulo, subtitulo, programacionForm, isPending, rubros, isLoading, rubroSeleccionado, formularioCompleto,
+        handleChange, handleSubmit } = useProgramacion();
 
     return (
         <>
             <TituloPage titulo={titulo} subtitulo={subtitulo} color="red" icono={<CalendarDays className="w-7 h-7" />} />
             <Contenido>
-                <FormProgramacion rubros={[]} programacion={programacion} loading={isPending} handleChange={handleChange} handleChangeRubro={handleChangeRubro} handleSubmit={handleSubmit} />
+                <FormProgramacion
+                    form={programacionForm}
+                    rubros={rubros}
+                    rubroSeleccionado={rubroSeleccionado}
+                    formularioCompleto={formularioCompleto}
+                    handleChange={handleChange}
+                    handleSubmit={handleSubmit}
+                    loading={isPending}
+                    loadingRubros={isLoading}
+                />
             </Contenido>
         </>
     )

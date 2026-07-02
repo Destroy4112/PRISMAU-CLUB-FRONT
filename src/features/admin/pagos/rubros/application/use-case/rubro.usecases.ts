@@ -12,8 +12,12 @@ export class RubroUseCases {
         this.repo = repo;
     }
 
-    getAll(params: PageParams & Filter): Promise<PaginatedResponse<Rubro>> {
-        return this.repo.getAll(params);
+    getAll(): Promise<Rubro[]> {
+        return this.repo.getAll();
+    }
+
+    getPaginated(params: PageParams & Filter): Promise<PaginatedResponse<Rubro>> {
+        return this.repo.getPaginated(params);
     }
 
     create(payload: CreateRubroInput): Promise<ApiResponseVoid> {

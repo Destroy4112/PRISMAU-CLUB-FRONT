@@ -4,7 +4,8 @@ import type { CreateRubroInput, UpdateRubroInput } from "../../application/contr
 import type { Rubro, RubroId } from "../model/rubro.model";
 
 export interface RubroRepository {
-    getAll(params: PageParams & Filter): Promise<PaginatedResponse<Rubro>>;
+    getPaginated(params: PageParams & Filter): Promise<PaginatedResponse<Rubro>>;
+    getAll(): Promise<Rubro[]>;
     create(rubro: CreateRubroInput): Promise<ApiResponseVoid>;
     update(rubro: UpdateRubroInput): Promise<ApiResponseVoid>;
     delete(id: RubroId): Promise<ApiResponseVoid>;

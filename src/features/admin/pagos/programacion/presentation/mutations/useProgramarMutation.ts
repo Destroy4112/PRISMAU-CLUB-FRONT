@@ -1,18 +1,13 @@
-import { useAppMutation, useAppQueryClient } from "@hooks/useStore";
-import type { ApiResponse } from "@models/response/Response.model";
-import { programacionUseCases } from "../../application/programacion.container";
-import type { Programacion } from "../../domain/programacion.entity";
+import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
+import { createApiMutation } from "@shared/react-query/createApiMutation";
+import { programacionUseCases } from "../../application/container/programacion.container";
+import type { ProgramacionInput } from "../../application/contracts/programacion.input";
 import { programacionKeys } from "../queries/programacion.keys";
 
-export function useProgramarMutation() {
-
-    const qc = useAppQueryClient();
-
-    return useAppMutation<ApiResponse<Programacion>, Error, Programacion>({
-        mutationFn: (payload) => programacionUseCases.create(payload),
-        onSuccess: async (res) => {
-            if (res.status) await qc.invalidateQueries({ queryKey: programacionKeys.all });
-        },
-    });
-
-}
+export const useProgramarMutation = createApiMutation<ApiResponseVoid, ProgramacionInput>(
+    (payload) => programacionUseCases.create(payload),
+    {
+        invalidateKeys: [programacionKeys.all],
+        errorLabel: "Error al crear el programacion",
+    }
+);
