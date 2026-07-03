@@ -33,9 +33,10 @@ export const PRIVATE_ROUTES = {
     GESTION_PAGOS: '/gestion-pagos',
     PAGAR: '/pagar',
     RUBROS: '/rubros',
-    SOCIOS: '/socios',
     PROGRAMACION_PAGOS: '/programacion-pagos',
-    PAGOS_SOCIOS: '/pagos-socios',
+    ADMINISTRACION_PAGOS: '/pagos-socios',
+    MENSUALIDADES: '/mensualidades-socio',
+    CUOTAS_BAILE: '/cuotas-baile-socio',
     HISTORIAL_MENSUALIDADES: '/historial-mensualidades',
     HISTORIAL_CUOTAS_BAILE: '/historial-cuotas-baile'
 }

@@ -36,6 +36,7 @@ const EstadosPage = lazy(() => import('@/features/admin/estados/presentation/pag
 const GestionPage = lazy(() => import('@/features/admin/pagos/gestion/GestionPage'))
 const RubrosPage = lazy(() => import('@/features/admin/pagos/rubros/presentation/pages/RubrosPage'))
 const ProgramacionPage = lazy(() => import('@/features/admin/pagos/programacion/presentation/page/ProgramacionPage'))
+const AdministracionPage = lazy(() => import('@features/admin/pagos/administracion/presentation/page/AdministracionPage'))
 
 export const LOGINROUTES = [
     { path: PUBLIC_ROUTES.LOGIN, element: <LoginPage /> }
@@ -80,6 +81,7 @@ export const ADMINROUTES = [
     { path: PRIVATE_ROUTES.GESTION_PAGOS, element: <GestionPage /> },
     { path: PRIVATE_ROUTES.RUBROS, element: <RubrosPage /> },
     { path: PRIVATE_ROUTES.PROGRAMACION_PAGOS, element: <ProgramacionPage /> },
+    { path: PRIVATE_ROUTES.ADMINISTRACION_PAGOS, element: <AdministracionPage /> },
 ]
 
 export const ERRORROUTES = [

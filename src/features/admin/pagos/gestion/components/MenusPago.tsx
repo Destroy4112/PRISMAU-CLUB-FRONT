@@ -42,7 +42,7 @@ export const MENUS_PAGO = [
         title: "Administración",
         description: "Gestión de pagos de los socios",
         icon: FaUsersCog,
-        path: PRIVATE_ROUTES.SOCIOS,
+        path: PRIVATE_ROUTES.ADMINISTRACION_PAGOS,
         gradient: "from-green-500 via-teal-500 to-emerald-600",
     },
 ];
