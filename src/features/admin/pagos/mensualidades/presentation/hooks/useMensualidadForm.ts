@@ -1,6 +1,7 @@
 import type { ModalsApi } from "@shared/hooks/useModal";
 import { useState, type ChangeEvent } from "react";
 import type { Mensualidad } from "../../domain/models/mensualidad.model";
+import type { PagoMensualidadResponse } from "../../domain/models/mensualidad.response.model";
 import { mensualidadDomainToForm, payMensualidadFormToInput } from "../mapper/mensualidad-form.mapper";
 import { usePayMensualidadMutation } from "../mutations/usePayMensualidadMutation";
 import { INITIAL_PAY_MENSUALIDAD_FORM, type MensualidadModalKey, type PayMensualidadForm } from "../types/mensualidad";
@@ -10,6 +11,7 @@ export default function useMensualidadForm(modalApi: ModalsApi<MensualidadModalK
     const { toggleModal } = modalApi;
 
     const [payMensualidadForm, setPayMensualidadForm] = useState<PayMensualidadForm>(INITIAL_PAY_MENSUALIDAD_FORM);
+    const [pagoInfo, setPagoInfo] = useState<PagoMensualidadResponse | null>(null);
 
     const cargar = (row: Mensualidad): void => {
         setPayMensualidadForm(mensualidadDomainToForm(row));
@@ -25,7 +27,7 @@ export default function useMensualidadForm(modalApi: ModalsApi<MensualidadModalK
         toggleModal("pagar");
         setPayMensualidadForm(INITIAL_PAY_MENSUALIDAD_FORM);
     };
-    
+
     const closeModalFactura = (): void => {
         toggleModal("ver");
         setPayMensualidadForm(INITIAL_PAY_MENSUALIDAD_FORM);
@@ -44,21 +46,34 @@ export default function useMensualidadForm(modalApi: ModalsApi<MensualidadModalK
     };
 
     const { mutate: payMutation, isPending: loading } = usePayMensualidadMutation({
-        onOk: () => closeModal(),
+        onOk: (data) => {
+            if (data.status) {
+                closeModal();
+                setPagoInfo(data.data);
+                toggleModal("pago");
+            }
+        },
     });
 
     const handleSubmit = (): void => {
         payMutation(payMensualidadFormToInput(payMensualidadForm));
     };
 
+    const closeModalPago = (): void => {
+        toggleModal("pago");
+        setPagoInfo(null);
+    };
+
     return {
         tituloModal: "Pagar Mensualidad",
         payMensualidadForm,
         loading,
+        pagoInfo,
         ver,
         cargar,
         closeModal,
         closeModalFactura,
+        closeModalPago,
         handleChange,
         handleChangeFile,
         handleSubmit

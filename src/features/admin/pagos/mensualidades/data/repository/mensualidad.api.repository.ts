@@ -1,12 +1,14 @@
 import { http } from "@core/http/axios.instance";
 import { ENDPOINTS } from "@shared/constants/endpoints/Endpoints.model";
 import type { FilterWithState } from "@shared/constants/filters/filters.constant";
-import type { ApiResponseVoid, PageParams, PaginatedResponse } from "@shared/constants/response/Response.model";
+import type { ApiResponse, PageParams, PaginatedResponse } from "@shared/constants/response/Response.model";
 import type { PayMensualidadInput } from "../../application/contracts/mensualidad.input";
-import type { Mensualidad, MensualidadStats } from "../../domain/models/mensualidad.model";
+import type { Mensualidad } from "../../domain/models/mensualidad.model";
+import type { MensualidadStats, PagoMensualidadResponse } from "../../domain/models/mensualidad.response.model";
 import type { MensualidadRepository } from "../../domain/repository/mensualidad.repository";
 import type { MensualidadDTO } from "../dto/mensualidad.dto";
-import { mensualidadDtoToDomain, mensualidadPayDtoToFormData, mensualidadPayInputToDto } from "../mapper/mensualidad.mapper";
+import type { PagoMensualidadResponseDto } from "../dto/mensualidad.response.dto";
+import { mensualidadDtoToDomain, mensualidadPayDtoToFormData, mensualidadPayInputToDto, mensualidadResponseDtoToDomain } from "../mapper/mensualidad.mapper";
 
 const URL = ENDPOINTS.MENSUALIDADES;
 
@@ -28,12 +30,14 @@ export class MensualidadApiRepository implements MensualidadRepository {
         return { ...res.data, data: (res.data.data ?? []).map(mensualidadDtoToDomain) };
     }
 
-    async pay(payload: PayMensualidadInput): Promise<ApiResponseVoid> {
+    async pay(payload: PayMensualidadInput): Promise<ApiResponse<PagoMensualidadResponse>> {
         const dto = mensualidadPayInputToDto(payload);
         const data = mensualidadPayDtoToFormData(dto);
-        const res = await http.post<ApiResponseVoid>(URL, data, { headers: { 'Content-Type': 'multipart/form-data' } });
+        const res = await http.post<ApiResponse<PagoMensualidadResponseDto>>(URL, data, {
+            headers: { 'Content-Type': 'multipart/form-data' }
+        });
         if (!res.data.status) return { ...res.data, errors: res.data.errors };
-        return res.data;
+        return { ...res.data, data: mensualidadResponseDtoToDomain(res.data.data) };
     }
 
 }

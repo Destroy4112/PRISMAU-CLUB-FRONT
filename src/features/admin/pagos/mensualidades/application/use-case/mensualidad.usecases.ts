@@ -1,6 +1,7 @@
 import type { FilterWithState } from "@shared/constants/filters/filters.constant";
-import type { ApiResponseVoid, PageParams, PaginatedResponse } from "@shared/constants/response/Response.model";
-import type { Mensualidad, MensualidadStats } from "../../domain/models/mensualidad.model";
+import type { ApiResponse, PageParams, PaginatedResponse } from "@shared/constants/response/Response.model";
+import type { Mensualidad } from "../../domain/models/mensualidad.model";
+import type { MensualidadStats, PagoMensualidadResponse } from "../../domain/models/mensualidad.response.model";
 import type { MensualidadRepository } from "../../domain/repository/mensualidad.repository";
 import type { PayMensualidadInput } from "../contracts/mensualidad.input";
 
@@ -16,7 +17,7 @@ export class MensualidadUseCases {
         return this.repo.get(documento, params);
     }
 
-    pay(payload: PayMensualidadInput): Promise<ApiResponseVoid> {
+    pay(payload: PayMensualidadInput): Promise<ApiResponse<PagoMensualidadResponse>> {
         return this.repo.pay(payload);
     }
 

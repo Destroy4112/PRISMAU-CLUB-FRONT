@@ -8,6 +8,7 @@ import { DollarSign } from 'lucide-react';
 import type { Mensualidad } from '../../domain/models/mensualidad.model';
 import FacturaMensualidad from '../components/FacturaMensualidad';
 import FormMensualidad from '../components/FormMensualidad';
+import InfoPagoMensualidad from '../components/InfoPagoMensualidad';
 import SociosColumns from '../components/MensualidadesColumns';
 import MetricsMensualidad from '../components/MetricsMensualidad';
 import useMensualidad from '../hooks/useMensualidad';
@@ -16,8 +17,8 @@ import { statusSocios } from '../utils/programacion.util';
 function MensualidadesPage() {
 
     const { titulo, subtitulo, campos, tituloModal, isLoading, socios, filters, limit, page, total, loading, payMensualidadForm,
-        modals, socio, pagadas, pendientes, handleFilterChange, clearFilter, setFilter, onPageChange, onRowsPerPageChange,
-        cargar, handleChange, ver, closeModal, handleChangeFile, handleSubmit, closeModalFactura } = useMensualidad();
+        modals, socio, pagadas, pendientes, pagoInfo, handleFilterChange, clearFilter, setFilter, onPageChange, cargar, ver,
+        onRowsPerPageChange, handleChange, closeModal, handleChangeFile, handleSubmit, closeModalFactura, closeModalPago } = useMensualidad();
 
     const columns = SociosColumns({ cargar, ver });
 
@@ -42,7 +43,8 @@ function MensualidadesPage() {
                     titulo={'Detalle de pago'}>
                     <FacturaMensualidad mensualidad={payMensualidadForm.mensualidad!} socio={socio} />
                 </VentanaModalSencilla>
-            </Contenido>
+                {modals.pago && <InfoPagoMensualidad pago={pagoInfo!} closeModal={closeModalPago} />}
+            </Contenido >
         </>
     );
 }

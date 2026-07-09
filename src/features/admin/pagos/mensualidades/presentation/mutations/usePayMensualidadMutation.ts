@@ -1,10 +1,11 @@
-import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
+import type { ApiResponse } from "@shared/constants/response/Response.model";
 import { createApiMutation } from "@shared/react-query/createApiMutation";
 import { mensualidadUseCases } from "../../application/container/mensualidad.container";
 import type { PayMensualidadInput } from "../../application/contracts/mensualidad.input";
+import type { PagoMensualidadResponse } from "../../domain/models/mensualidad.response.model";
 import { mensualidadKeys } from "../queries/mensualidad.keys";
 
-export const usePayMensualidadMutation = createApiMutation<ApiResponseVoid, PayMensualidadInput>(
+export const usePayMensualidadMutation = createApiMutation<ApiResponse<PagoMensualidadResponse>, PayMensualidadInput>(
     (payload) => mensualidadUseCases.pay(payload),
     {
         invalidateKeys: [mensualidadKeys.list()],

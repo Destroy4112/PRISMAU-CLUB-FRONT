@@ -1,7 +1,8 @@
 import type { Socio } from "@features/admin/pagos/administracion/domain/models/socio.model";
 import type { Mensualidad } from "../../domain/models/mensualidad.model";
+import type { PagoMensualidadResponse } from "../../domain/models/mensualidad.response.model";
 
-export type MensualidadModalKey = "pagar" | "ver";
+export type MensualidadModalKey = "pagar" | "ver" | "pago";
 
 export interface PayMensualidadForm {
     mensualidad: Mensualidad | null;
@@ -35,4 +36,9 @@ export interface FormMensualidadProps {
 export interface FacturaMensualidadProps {
     socio: Socio,
     mensualidad: Mensualidad
+}
+
+export interface InfoPagoMensualidadProps {
+    pago: PagoMensualidadResponse,
+    closeModal: () => void
 }

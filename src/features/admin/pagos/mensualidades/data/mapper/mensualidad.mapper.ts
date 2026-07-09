@@ -1,7 +1,10 @@
 import { getFilePreview } from "@shared/utilities/convertidores/converters";
+import { formatearFechaMesAnio } from "@shared/utilities/convertidores/normalizeText";
 import type { PayMensualidadInput } from "../../application/contracts/mensualidad.input";
 import type { Mensualidad, PagoMensualidad } from "../../domain/models/mensualidad.model";
+import type { PagoMensualidadResponse } from "../../domain/models/mensualidad.response.model";
 import type { MensualidadDTO, PagoMensualidadDto, PayMensualidadDto } from "../dto/mensualidad.dto";
+import type { PagoMensualidadResponseDto } from "../dto/mensualidad.response.dto";
 
 export function pagoMensualidadDtoToDomain(dto: PagoMensualidadDto): PagoMensualidad {
     return {
@@ -52,4 +55,21 @@ export function mensualidadPayDtoToFormData(dto: PayMensualidadDto): FormData {
     formData.append("valor", dto.valor.toString());
     formData.append("soporte", dto.soporte);
     return formData;
+}
+
+export function mensualidadResponseDtoToDomain(dto: PagoMensualidadResponseDto): PagoMensualidadResponse {
+    return {
+        montoPagado: dto.monto_pagado,
+        montoRestante: dto.monto_restante,
+        pagos: dto.pagos_aplicados.map(p => {
+            return {
+                mensualidadId: p.mensualidad_id,
+                fecha: formatearFechaMesAnio(p.fecha),
+                saldoAnterior: p.saldo_anterior,
+                valorAplicado: p.valor_aplicado,
+                saldoNuevo: p.saldo_nuevo,
+                pagada: p.pagada
+            }
+        })
+    }
 }
