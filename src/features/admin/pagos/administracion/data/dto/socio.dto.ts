@@ -7,6 +7,8 @@ export type SocioDTO = {
     documento: string;
     sexo: string;
     codigo: string;
+    telefono: string;
+    direccion: string;
     estado: number;
     rol: number;
     mensualidad: string;

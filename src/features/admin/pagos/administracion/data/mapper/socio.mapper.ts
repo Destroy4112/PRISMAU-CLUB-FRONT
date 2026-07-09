@@ -17,6 +17,8 @@ export function socioDtoToDomain(dto: SocioDTO): Socio {
         documento: dto.documento,
         sexo: dto.sexo,
         codigo: dto.codigo,
+        telefono: dto.telefono,
+        direccion: dto.direccion,
         estado: dto.estado,
         rol: dto.rol,
         mensualidad: dto.mensualidad,

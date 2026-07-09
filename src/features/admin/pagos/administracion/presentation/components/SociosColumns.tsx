@@ -15,10 +15,10 @@ export default function SociosColumns({ edit, loading, startEdit, cancelEdit, ch
             </div>),
             cell: row => (
                 <div className="flex">
-                    <button onClick={() => go("mensualidad", row.documento)} className="rounded-full w-8 h-8 bg-pink-600 text-white flex justify-center items-center cursor-pointer" title="Mensualidades">
+                    <button onClick={() => go("mensualidad", row)} className="rounded-full w-8 h-8 bg-pink-600 text-white flex justify-center items-center cursor-pointer" title="Mensualidades">
                         <FaDollarSign />
                     </button>
-                    <button onClick={() => go("cuotaBaile", row.documento)} className="rounded-full w-8 h-8 bg-green-500 text-white flex justify-center items-center cursor-pointer" title="Cuotas de baile">
+                    <button onClick={() => go("cuotaBaile", row)} className="rounded-full w-8 h-8 bg-green-500 text-white flex justify-center items-center cursor-pointer" title="Cuotas de baile">
                         <FaDollarSign />
                     </button>
                 </div>

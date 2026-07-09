@@ -52,7 +52,7 @@ export default function ToolbarFilter<TState extends FilterState = number | null
                     </h2>
 
                     <p className="mt-0.5 max-w-2xl text-sm text-slate-500">
-                        Filtra para encontrar más rápidamente tus {entityName}.
+                        Encuentra rápidamente lo que buscas usando los filtros de busqueda.
                     </p>
                 </div>
             </div>

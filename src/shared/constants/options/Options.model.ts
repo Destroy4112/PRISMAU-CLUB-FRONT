@@ -85,3 +85,10 @@ export const ROLES_PRINCIPALES = [
     { value: 'Familiar', label: 'Familiar' },
     { value: 'Empleado', label: 'Empleado' },
 ];
+
+export const METODOS_PAGO = [
+    { value: 'Efectivo', label: 'Efectivo' },
+    { value: 'Tarjeta de Credito', label: 'Tarjeta de Credito' },
+    { value: 'Transferencia', label: 'Transferencia' },
+    { value: 'Canje', label: 'Canje' },
+];

@@ -24,6 +24,16 @@ export const formatearFecha = (valor: string): string => {
     return format(zonedDate, 'dd/MM/yyyy', { locale: es });
 };
 
+export const formatearFechaMesAnio = (valor: string): string => {
+    if (!valor) return "-";
+    const fechaBase = valor.split("T")[0];
+    const [year, month, day] = fechaBase.split("-").map(Number);
+    if (!year || !month || !day) return "-";
+    const fecha = new Date(year, month - 1, day);
+    const mesAnio = format(fecha, "MMMM yyyy", { locale: es });
+    return mesAnio.charAt(0).toUpperCase() + mesAnio.slice(1);
+};
+
 export const formatearFechaString = (valor: string): string => {
     const fecha = new Date(valor);
     if (isNaN(fecha.getTime())) return "-";

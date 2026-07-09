@@ -1,6 +1,7 @@
 import { useAppNavigate } from "@app/routes/hooks";
 import { PRIVATE_ROUTES } from "@shared/constants/rutas/Rutas.model";
 import { useState } from "react";
+import type { Socio } from "../../domain/models/socio.model";
 import { socioEditValueFormToUpdateInput } from "../mapper/administracion-form.mapper";
 import { useUpdateSocioValueMutation } from "../mutations/useUpdateSocioValueMutation";
 import type { EditableSocioField, EditValorForm } from "../types/administracion";
@@ -34,11 +35,11 @@ export default function useAdministracionActions() {
         updateSocioMutation(socioEditValueFormToUpdateInput(edit));
     };
 
-    const go = (field: EditableSocioField, documento: string) => {
+    const go = (field: EditableSocioField, socio: Socio) => {
         if (field === "mensualidad") {
-            navigate(PRIVATE_ROUTES.MENSUALIDADES, { state: { documento }, replace: true });
+            navigate(PRIVATE_ROUTES.MENSUALIDADES, { state: { socio }, replace: true });
         } else {
-            navigate(PRIVATE_ROUTES.CUOTAS_BAILE, { state: { documento }, replace: true });
+            navigate(PRIVATE_ROUTES.CUOTAS_BAILE, { state: { socio }, replace: true });
         }
     };
 

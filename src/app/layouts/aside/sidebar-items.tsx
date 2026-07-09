@@ -27,7 +27,7 @@ const ADMIN_ITEMS = [
     { icono: <Contact className="text-green-600" />, texto: "Invitaciones", link: PRIVATE_ROUTES.INVITACIONES },
     { icono: <ScanQrCode className="text-purple-600" />, texto: "Control de Accesos", link: PRIVATE_ROUTES.ACCESOS },
     { icono: <History className="text-pink-600" />, texto: "Gestión de Estados", link: PRIVATE_ROUTES.ESTADOS },
-    { icono: <CircleDollarSign className="text-red-600" />, texto: "Gestión de Pagos", link: PRIVATE_ROUTES.GESTION_PAGOS, activeSubroutes: [PRIVATE_ROUTES.RUBROS, PRIVATE_ROUTES.PROGRAMACION_PAGOS, PRIVATE_ROUTES.ADMINISTRACION_PAGOS] },
+    { icono: <CircleDollarSign className="text-red-600" />, texto: "Gestión de Pagos", link: PRIVATE_ROUTES.GESTION_PAGOS, activeSubroutes: [PRIVATE_ROUTES.RUBROS, PRIVATE_ROUTES.PROGRAMACION_PAGOS, PRIVATE_ROUTES.ADMINISTRACION_PAGOS, PRIVATE_ROUTES.MENSUALIDADES, PRIVATE_ROUTES.CUOTAS_BAILE] },
 ];
 
 export function getMenuItemsByproyecto(rol: number) {

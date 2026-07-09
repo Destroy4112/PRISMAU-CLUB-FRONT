@@ -37,6 +37,7 @@ const GestionPage = lazy(() => import('@/features/admin/pagos/gestion/GestionPag
 const RubrosPage = lazy(() => import('@/features/admin/pagos/rubros/presentation/pages/RubrosPage'))
 const ProgramacionPage = lazy(() => import('@/features/admin/pagos/programacion/presentation/page/ProgramacionPage'))
 const AdministracionPage = lazy(() => import('@features/admin/pagos/administracion/presentation/page/AdministracionPage'))
+const MensualidadesPage = lazy(() => import('@features/admin/pagos/mensualidades/presentation/page/MensualidadesPage'))
 
 export const LOGINROUTES = [
     { path: PUBLIC_ROUTES.LOGIN, element: <LoginPage /> }
@@ -82,6 +83,7 @@ export const ADMINROUTES = [
     { path: PRIVATE_ROUTES.RUBROS, element: <RubrosPage /> },
     { path: PRIVATE_ROUTES.PROGRAMACION_PAGOS, element: <ProgramacionPage /> },
     { path: PRIVATE_ROUTES.ADMINISTRACION_PAGOS, element: <AdministracionPage /> },
+    { path: PRIVATE_ROUTES.MENSUALIDADES, element: <MensualidadesPage /> },
 ]
 
 export const ERRORROUTES = [

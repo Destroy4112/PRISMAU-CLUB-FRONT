@@ -1,3 +1,5 @@
+import type { Socio } from "../../domain/models/socio.model";
+
 export type EditableSocioField = "mensualidad" | "cuotaBaile";
 
 export interface EditValorForm {
@@ -13,5 +15,5 @@ export interface SocioColumnsProps {
     cancelEdit: () => void;
     changeEditValue: (value: string) => void;
     saveEdit: () => void;
-    go: (field: EditableSocioField, documento: string) => void;
+    go: (field: EditableSocioField, socio: Socio) => void;
 }

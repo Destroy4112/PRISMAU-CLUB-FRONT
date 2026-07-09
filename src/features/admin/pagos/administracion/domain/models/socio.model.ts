@@ -7,6 +7,8 @@ export interface Socio {
     documento: string;
     sexo: string;
     codigo: string;
+    telefono: string;
+    direccion: string;
     estado: number;
     rol: number;
     mensualidad: string;
