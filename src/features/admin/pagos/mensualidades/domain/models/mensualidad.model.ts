@@ -22,3 +22,9 @@ export interface PagoMensualidad {
     fechaPago: string,
     soporte: string | null,
 }
+
+export type MensualidadStats = {
+    total: number;
+    pagadas: number;
+    pendientes: number;
+};

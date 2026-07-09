@@ -15,9 +15,9 @@ export default function useMensualidadList(documento: string) {
     const { data, isLoading } = useMensualidadQuery(documento, queryParams);
 
     const socios = data?.data || [];
-    const total = data?.total || 0;
-    const pagadas = socios.filter(socio => socio.estado).length;
-    const pendientes = socios.filter(socio => !socio.estado).length;
+    const total = data?.stats?.total || 0;
+    const pagadas = data?.stats?.pagadas || 0;
+    const pendientes = data?.stats?.pendientes || 0;
 
     return {
         isLoading,

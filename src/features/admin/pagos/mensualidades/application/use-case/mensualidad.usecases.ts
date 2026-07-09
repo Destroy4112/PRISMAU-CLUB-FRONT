@@ -1,6 +1,6 @@
 import type { FilterWithState } from "@shared/constants/filters/filters.constant";
 import type { ApiResponseVoid, PageParams, PaginatedResponse } from "@shared/constants/response/Response.model";
-import type { Mensualidad } from "../../domain/models/mensualidad.model";
+import type { Mensualidad, MensualidadStats } from "../../domain/models/mensualidad.model";
 import type { MensualidadRepository } from "../../domain/repository/mensualidad.repository";
 import type { PayMensualidadInput } from "../contracts/mensualidad.input";
 
@@ -12,7 +12,7 @@ export class MensualidadUseCases {
         this.repo = repo;
     }
 
-    get(documento: string, params: PageParams & FilterWithState): Promise<PaginatedResponse<Mensualidad>> {
+    get(documento: string, params: PageParams & FilterWithState): Promise<PaginatedResponse<Mensualidad, MensualidadStats>> {
         return this.repo.get(documento, params);
     }
 

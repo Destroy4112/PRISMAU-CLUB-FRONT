@@ -3,7 +3,7 @@ import { ENDPOINTS } from "@shared/constants/endpoints/Endpoints.model";
 import type { FilterWithState } from "@shared/constants/filters/filters.constant";
 import type { ApiResponseVoid, PageParams, PaginatedResponse } from "@shared/constants/response/Response.model";
 import type { PayMensualidadInput } from "../../application/contracts/mensualidad.input";
-import type { Mensualidad } from "../../domain/models/mensualidad.model";
+import type { Mensualidad, MensualidadStats } from "../../domain/models/mensualidad.model";
 import type { MensualidadRepository } from "../../domain/repository/mensualidad.repository";
 import type { MensualidadDTO } from "../dto/mensualidad.dto";
 import { mensualidadDtoToDomain, mensualidadPayDtoToFormData, mensualidadPayInputToDto } from "../mapper/mensualidad.mapper";
@@ -21,8 +21,8 @@ export class MensualidadApiRepository implements MensualidadRepository {
         }
     }
 
-    async get(documento: string, params: PageParams & FilterWithState): Promise<PaginatedResponse<Mensualidad>> {
-        const res = await http.get<PaginatedResponse<MensualidadDTO>>(`${URL}/${documento}`, {
+    async get(documento: string, params: PageParams & FilterWithState): Promise<PaginatedResponse<Mensualidad, MensualidadStats>> {
+        const res = await http.get<PaginatedResponse<MensualidadDTO, MensualidadStats>>(`${URL}/${documento}`, {
             params: this.buildParams(params),
         });
         return { ...res.data, data: (res.data.data ?? []).map(mensualidadDtoToDomain) };
