@@ -11,7 +11,7 @@ export default function ProgramacionPage() {
 
     return (
         <>
-            <TituloPage titulo={titulo} subtitulo={subtitulo} color="red" icono={<CalendarDays className="w-7 h-7" />} />
+            <TituloPage titulo={titulo} subtitulo={subtitulo} color="purple" icono={<CalendarDays className="w-7 h-7" />} />
             <Contenido>
                 <FormProgramacion
                     form={programacionForm}

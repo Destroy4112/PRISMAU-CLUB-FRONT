@@ -31,14 +31,11 @@ export const PRIVATE_ROUTES = {
     ACCESOS: '/accesos',
     ESTADOS: '/estados',
     GESTION_PAGOS: '/gestion-pagos',
-    PAGAR: '/pagar',
     RUBROS: '/rubros',
     PROGRAMACION_PAGOS: '/programacion-pagos',
     ADMINISTRACION_PAGOS: '/pagos-socios',
     MENSUALIDADES: '/mensualidades-socio',
     CUOTAS_BAILE: '/cuotas-baile-socio',
-    HISTORIAL_MENSUALIDADES: '/historial-mensualidades',
-    HISTORIAL_CUOTAS_BAILE: '/historial-cuotas-baile'
 }
 
 export const ERROR_ROUTES = {

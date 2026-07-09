@@ -2,7 +2,7 @@ import Contenido from "@shared/components/helpers/Contenido";
 import TituloPage from "@shared/components/helpers/TituloPage";
 import VentanaModal from "@shared/components/modals/VentanaModal";
 import ToolbarFilter from "@shared/components/toolbar/ToolbarFilter";
-import { Wallet } from "lucide-react";
+import { Layers } from "lucide-react";
 import CardsRubro from "../components/CardsRubro";
 import FormRubro from "../components/FormRubro";
 import useRubro from "../hooks/useRubro";
@@ -15,7 +15,7 @@ export default function RubrosPage() {
 
     return (
         <>
-            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<Wallet className="w-7 h-7" />} color="red"
+            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<Layers className="w-7 h-7" />} color="green"
                 canCreate label="Crear" accion={openModal} />
             <Contenido>
                 <ToolbarFilter<number | null> filters={filters} total={total} onSearchChange={handleFilterChange}
