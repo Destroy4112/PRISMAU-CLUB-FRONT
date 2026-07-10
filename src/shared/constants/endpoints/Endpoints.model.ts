@@ -36,7 +36,8 @@ export const ENDPOINTS = {
     FACTURAS: 'facturas',
     PAGOS: 'pagos',
     SOCIOS: 'socios',
-    MENSUALIDADES: 'mensualidades'
+    MENSUALIDADES: 'mensualidades',
+    CUOTAS_BAILE: 'cuotas'
 }
 
 export const URL_BACK = "http://127.0.0.1:8000";

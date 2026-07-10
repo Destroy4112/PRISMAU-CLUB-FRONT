@@ -29,8 +29,10 @@ export interface MensualidadesColumns {
 
 export interface FormMensualidadProps {
     form: PayMensualidadForm,
+    archivoSeleccionado: File | null,
     handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void,
     handleChangeFile: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    limpiar: () => void
 }
 
 export interface FacturaMensualidadProps {

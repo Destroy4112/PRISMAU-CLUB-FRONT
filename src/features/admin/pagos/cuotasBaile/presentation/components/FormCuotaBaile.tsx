@@ -1,19 +1,19 @@
 import InputField from '@shared/components/form/InputField'
 import SelectField from '@shared/components/form/SelectField'
 import { METODOS_PAGO } from '@shared/constants/options/Options.model'
-import { formatearFechaMesAnio, formatearMoneda } from '@shared/utilities/convertidores/normalizeText'
+import { formatearMoneda } from '@shared/utilities/convertidores/normalizeText'
 import { Checkbox, Label } from 'flowbite-react'
-import { CalendarDays, CheckCircle2, CreditCard, FilePlus, FileText, ReceiptText, WalletCards, X } from 'lucide-react'
+import { CheckCircle2, CreditCard, FilePlus, FileText, ReceiptText, WalletCards, X } from 'lucide-react'
 import { FaMoneyBill } from 'react-icons/fa'
-import type { FormMensualidadProps } from '../types/mensualidad'
+import type { FormCuotaBaileProps } from '../types/cuotaBaile'
 
-export default function FormMensualidad({ form, archivoSeleccionado, handleChange, handleChangeFile, limpiar }: FormMensualidadProps) {
-    if (!form.mensualidad) return null;
+export default function FormCuotaBaile({ form, archivoSeleccionado, handleChange, handleChangeFile, limpiar }: FormCuotaBaileProps) {
+    if (!form.cuotaBaile) return null;
 
-    const mensualidad = form.mensualidad;
-    const valorFactura = Number(mensualidad.valor ?? 0);
-    const totalAbonado = Number(mensualidad.abono ?? 0);
-    const saldoPendiente = Number(mensualidad.restante ?? 0);
+    const cuotaBaile = form.cuotaBaile;
+    const valorFactura = Number(cuotaBaile.valor ?? 0);
+    const totalAbonado = Number(cuotaBaile.abono ?? 0);
+    const saldoPendiente = Number(cuotaBaile.restante ?? 0);
     const porcentajePagado = valorFactura > 0 ? Math.min((totalAbonado / valorFactura) * 100, 100) : 0;
 
     return (
@@ -27,15 +27,11 @@ export default function FormMensualidad({ form, archivoSeleccionado, handleChang
                             </div>
                             <div>
                                 <p className="text-xs font-black uppercase tracking-wide text-slate-400">Factura pendiente</p>
-                                <h3 className="mt-1 text-xl font-black text-slate-900">Mensualidad de {formatearFechaMesAnio(mensualidad.fecha)}</h3>
+                                <h3 className="mt-1 text-xl font-black text-slate-900">{cuotaBaile.descripcion}</h3>
                                 <div className="mt-2 flex flex-wrap items-center gap-2">
                                     <span className="inline-flex items-center gap-1 rounded-full bg-white px-2.5 py-1 text-xs font-bold text-slate-600 ring-1 ring-slate-200">
                                         <FileText className="h-3.5 w-3.5" />
-                                        Factura #{mensualidad.id}
-                                    </span>
-                                    <span className="inline-flex items-center gap-1 rounded-full bg-white px-2.5 py-1 text-xs font-bold text-slate-600 ring-1 ring-slate-200">
-                                        <CalendarDays className="h-3.5 w-3.5" />
-                                        {formatearFechaMesAnio(mensualidad.fecha)}
+                                        Factura #{cuotaBaile.id}
                                     </span>
                                 </div>
                             </div>
@@ -174,7 +170,7 @@ export default function FormMensualidad({ form, archivoSeleccionado, handleChang
                             </Label>
                             <span className="text-xs font-normal leading-5 text-slate-500">
                                 Marca esta opción si deseas registrar un monto diferente.
-                                Cualquier valor adicional se abonará automáticamente a la siguiente mensualidad.
+                                Cualquier valor adicional se abonará automáticamente a la siguiente cuotaBaile.
                             </span>
                         </div>
                     </div>

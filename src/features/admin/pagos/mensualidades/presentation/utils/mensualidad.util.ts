@@ -1,6 +1,6 @@
 import type { ToolbarStatusOption } from "@shared/components/toolbar/ToolbarFilter2";
 
-export const statusSocios: ToolbarStatusOption<boolean | null>[] = [
+export const statusMensualidades: ToolbarStatusOption<boolean | null>[] = [
     {
         label: "Todos",
         value: null,

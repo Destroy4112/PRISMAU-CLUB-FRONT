@@ -1,53 +1,53 @@
 import type { ModalsApi } from "@shared/hooks/useModal";
 import { useState, type ChangeEvent } from "react";
-import type { Mensualidad } from "../../domain/models/mensualidad.model";
-import type { PagoMensualidadResponse } from "../../domain/models/mensualidad.response.model";
-import { mensualidadDomainToForm, payMensualidadFormToInput } from "../mapper/mensualidad-form.mapper";
-import { usePayMensualidadMutation } from "../mutations/usePayMensualidadMutation";
-import { INITIAL_PAY_MENSUALIDAD_FORM, type MensualidadModalKey, type PayMensualidadForm } from "../types/mensualidad";
+import type { CuotaBaile } from "../../domain/models/cuotaBaile.model";
+import type { PagoCuotaBaileResponse } from "../../domain/models/cuotaBaile.response.model";
+import { cuotaBaileDomainToForm, payCuotaBaileFormToInput } from "../mapper/cuotaBaile-form.mapper";
+import { usePayCuotaBaileMutation } from "../mutations/usePayCuotaBaileMutation";
+import { INITIAL_PAY_CUOTAS_FORM, type CuotaBaileModalKey, type PayCuotaBaileForm } from "../types/cuotaBaile";
 
-export default function useMensualidadForm(modalApi: ModalsApi<MensualidadModalKey>) {
+export default function useCuotaBaileForm(modalApi: ModalsApi<CuotaBaileModalKey>) {
 
     const { toggleModal } = modalApi;
 
-    const [payMensualidadForm, setPayMensualidadForm] = useState<PayMensualidadForm>(INITIAL_PAY_MENSUALIDAD_FORM);
-    const [pagoInfo, setPagoInfo] = useState<PagoMensualidadResponse | null>(null);
+    const [payCuotaBaileForm, setPayCuotaBaileForm] = useState<PayCuotaBaileForm>(INITIAL_PAY_CUOTAS_FORM);
+    const [pagoInfo, setPagoInfo] = useState<PagoCuotaBaileResponse | null>(null);
     const [archivoSeleccionado, setArchivoSeleccionado] = useState<File | null>(null)
 
-    const cargar = (row: Mensualidad): void => {
-        setPayMensualidadForm(mensualidadDomainToForm(row));
+    const cargar = (row: CuotaBaile): void => {
+        setPayCuotaBaileForm(cuotaBaileDomainToForm(row));
         toggleModal("pagar");
     };
 
-    const ver = (row: Mensualidad): void => {
-        setPayMensualidadForm(mensualidadDomainToForm(row));
+    const ver = (row: CuotaBaile): void => {
+        setPayCuotaBaileForm(cuotaBaileDomainToForm(row));
         toggleModal("ver");
     };
 
     const closeModal = (): void => {
         toggleModal("pagar");
-        setPayMensualidadForm(INITIAL_PAY_MENSUALIDAD_FORM);
+        setPayCuotaBaileForm(INITIAL_PAY_CUOTAS_FORM);
     };
 
     const closeModalFactura = (): void => {
         toggleModal("ver");
-        setPayMensualidadForm(INITIAL_PAY_MENSUALIDAD_FORM);
+        setPayCuotaBaileForm(INITIAL_PAY_CUOTAS_FORM);
     };
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
         const { name, value } = e.target;
         const fieldValue = e.target instanceof HTMLInputElement && e.target.type === "checkbox" ? e.target.checked : value;
-        setPayMensualidadForm(prev => ({ ...prev, [name]: fieldValue, }));
+        setPayCuotaBaileForm(prev => ({ ...prev, [name]: fieldValue, }));
     };
 
     const handleChangeFile = (e: ChangeEvent<HTMLInputElement>): void => {
         const file = e.target.files?.[0] ?? null;
         if (file == null) return;
+        setPayCuotaBaileForm((prev) => ({ ...prev, soporte: file }));
         setArchivoSeleccionado(file)
-        setPayMensualidadForm((prev) => ({ ...prev, soporte: file }));
     };
 
-    const { mutate: payMutation, isPending: loading } = usePayMensualidadMutation({
+    const { mutate: payMutation, isPending: loading } = usePayCuotaBaileMutation({
         onOk: (data) => {
             if (data.status) {
                 closeModal();
@@ -58,7 +58,7 @@ export default function useMensualidadForm(modalApi: ModalsApi<MensualidadModalK
     });
 
     const handleSubmit = (): void => {
-        payMutation(payMensualidadFormToInput(payMensualidadForm));
+        payMutation(payCuotaBaileFormToInput(payCuotaBaileForm));
     };
 
     const closeModalPago = (): void => {
@@ -68,15 +68,16 @@ export default function useMensualidadForm(modalApi: ModalsApi<MensualidadModalK
 
     const limpiarArchivo = () => {
         setArchivoSeleccionado(null);
-        setPayMensualidadForm((prev) => ({ ...prev, soporte: null }));
+        setPayCuotaBaileForm((prev) => ({ ...prev, soporte: null }));
     }
 
     return {
-        tituloModal: "Pagar Mensualidad",
-        payMensualidadForm,
+        tituloModal: "Pagar Cuota de Baile",
+        payCuotaBaileForm,
         loading,
         pagoInfo,
         archivoSeleccionado,
+        limpiarArchivo,
         ver,
         cargar,
         closeModal,
@@ -84,7 +85,6 @@ export default function useMensualidadForm(modalApi: ModalsApi<MensualidadModalK
         closeModalPago,
         handleChange,
         handleChangeFile,
-        handleSubmit,
-        limpiarArchivo
+        handleSubmit
     };
 }

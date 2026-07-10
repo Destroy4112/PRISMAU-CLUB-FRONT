@@ -12,13 +12,14 @@ import InfoPagoMensualidad from '../components/InfoPagoMensualidad';
 import SociosColumns from '../components/MensualidadesColumns';
 import MetricsMensualidad from '../components/MetricsMensualidad';
 import useMensualidad from '../hooks/useMensualidad';
-import { statusSocios } from '../utils/programacion.util';
+import { statusMensualidades } from '../utils/mensualidad.util';
 
 function MensualidadesPage() {
 
     const { titulo, subtitulo, campos, tituloModal, isLoading, socios, filters, limit, page, total, loading, payMensualidadForm,
-        modals, socio, pagadas, pendientes, pagoInfo, handleFilterChange, clearFilter, setFilter, onPageChange, cargar, ver,
-        onRowsPerPageChange, handleChange, closeModal, handleChangeFile, handleSubmit, closeModalFactura, closeModalPago } = useMensualidad();
+        modals, socio, pagadas, pendientes, pagoInfo, archivoSeleccionado, handleFilterChange, clearFilter, setFilter, onPageChange,
+        cargar, ver, onRowsPerPageChange, handleChange, closeModal, handleChangeFile, handleSubmit, closeModalFactura,
+        closeModalPago, limpiarArchivo } = useMensualidad();
 
     const columns = SociosColumns({ cargar, ver });
 
@@ -30,14 +31,15 @@ function MensualidadesPage() {
                 <div className="flex flex-col gap-6">
                     <MetricsMensualidad total={total} pagadas={pagadas} pendientes={pendientes} />
                     <ToolbarFilter2<boolean | null> filters={filters} total={total} onSearchChange={handleFilterChange}
-                        entityName={titulo} statusOptions={statusSocios} onClearSearch={() => clearFilter("search")}
+                        entityName={titulo} statusOptions={statusMensualidades} onClearSearch={() => clearFilter("search")}
                         onStatusFilterChange={(v) => setFilter("state", v)} campos={campos} searchType='number' />
                 </div>
                 <DataTableComponent<Mensualidad> columns={columns} data={socios} loading={isLoading} limit={limit}
                     page={page} total={total} onPageChange={onPageChange} onRowsPerPageChange={onRowsPerPageChange} />
                 <VentanaModal size={'full'} titulo={tituloModal} show={modals.pagar} cerrarModal={closeModal}
                     handleSubmit={handleSubmit} loading={loading}>
-                    <FormMensualidad form={payMensualidadForm} handleChange={handleChange} handleChangeFile={handleChangeFile} />
+                    <FormMensualidad form={payMensualidadForm} handleChange={handleChange} handleChangeFile={handleChangeFile}
+                        archivoSeleccionado={archivoSeleccionado} limpiar={limpiarArchivo} />
                 </VentanaModal>
                 <VentanaModalSencilla size={'full'} show={modals.ver} cerrarModal={closeModalFactura}
                     titulo={'Detalle de pago'}>

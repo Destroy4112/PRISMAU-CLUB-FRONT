@@ -51,8 +51,10 @@ export function mensualidadPayDtoToFormData(dto: PayMensualidadDto): FormData {
     formData.append("mensualidad_id", dto.mensualidad_id.toString());
     formData.append("metodo_pago", dto.metodo_pago);
     formData.append("referencia_pago", dto.referencia_pago);
-    formData.append("valor_diferente", dto.valor_diferente.toString());
-    formData.append("valor", dto.valor.toString());
+    formData.append('valor_diferente', dto.valor_diferente ? '1' : '0');
+    if (dto.valor_diferente && dto.valor !== undefined && dto.valor !== null) {
+        formData.append('valor', String(dto.valor));
+    }
     formData.append("soporte", dto.soporte);
     return formData;
 }
