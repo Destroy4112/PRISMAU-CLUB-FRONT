@@ -7,10 +7,10 @@ export default function InfoPagoMensualidad({ pago, closeModal }: InfoPagoMensua
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 px-4 backdrop-blur-sm">
-            <div className="relative w-full max-w-5xl overflow-hidden rounded-[2rem] bg-white shadow-2xl">
+            <div className="relative w-full max-w-5xl overflow-hidden rounded-4xl bg-white shadow-2xl">
 
                 {/* Header */}
-                <div className="relative overflow-hidden bg-gradient-to-r from-emerald-600 via-green-600 to-teal-600 px-7 py-6 text-white">
+                <div className="relative overflow-hidden bg-linear-to-r from-emerald-600 via-green-600 to-teal-600 px-7 py-6 text-white">
                     <div className="absolute right-0 top-0 h-32 w-32 translate-x-10 -translate-y-10 rounded-full bg-white/10" />
                     <div className="absolute bottom-0 left-16 h-20 w-20 translate-y-10 rounded-full bg-white/10" />
 
