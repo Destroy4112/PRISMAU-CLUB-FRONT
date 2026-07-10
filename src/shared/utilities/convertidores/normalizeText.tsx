@@ -59,3 +59,9 @@ export const formatearMoneda = (valor: number) => {
         currency: 'COP',
     }).format(valor);
 };
+
+export const formatearPorcentaje = (valor: number) => `${valor.toFixed(2).replace(".", ",")}%`;
+
+export const formatearNumero = (valor: number) => {
+    return new Intl.NumberFormat('es-CO').format(valor);
+};
