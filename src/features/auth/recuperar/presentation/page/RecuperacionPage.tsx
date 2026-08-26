@@ -5,14 +5,14 @@ import useRecuperar from "../hooks/useRecuperar";
 
 export default function RecuperacionPage() {
 
-    const { title, description, documento, loading, handleChangeDocumento, handleSubmit } = useRecuperar();
+   const { title, description, documento, loading, handleChangeDocumento, handleSubmit } = useRecuperar();
 
-    return (
-        <ContainerReset>
-            <ContentDescription title={title} description={description} />
-            <FormReset id="documento" label="Número de documento" value={documento} loading={loading} type="text"
-                textButton="Siguiente" handleChange={handleChangeDocumento} handleSubmit={handleSubmit} />
-        </ContainerReset>
-    )
+   return (
+      <ContainerReset>
+         <ContentDescription title={title} description={description} />
+         <FormReset id="documento" label="Número de documento" value={documento} loading={loading} type="text"
+            textButton="Siguiente" handleChange={handleChangeDocumento} handleSubmit={handleSubmit} />
+      </ContainerReset>
+   )
 }
 

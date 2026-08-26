@@ -7,23 +7,23 @@ import { useEspacioList } from "./useEspacioList";
 
 function useEspacio() {
 
-    const modalApi = useModals<EspacioModalKey>();
+   const modalApi = useModals<EspacioModalKey>();
 
-    const list = useEspacioList();
-    const form = useEspacioForm(modalApi);
-    const action = useEspacioActions();
-    const disponibilidad = useDisponibilidad();
+   const list = useEspacioList();
+   const form = useEspacioForm(modalApi);
+   const action = useEspacioActions();
+   const disponibilidad = useDisponibilidad();
 
-    return {
-        titulo: "Espacios",
-        subtitulo: "Gestión de espacios del club",
-        campos: "nombre, apellido, documento, cargo...",
-        modals: modalApi.modals,
-        ...list,
-        ...form,
-        ...action,
-        ...disponibilidad
-    };
+   return {
+      titulo: "Espacios",
+      subtitulo: "Gestión de espacios del club",
+      campos: "nombre, apellido, documento, cargo...",
+      modals: modalApi.modals,
+      ...list,
+      ...form,
+      ...action,
+      ...disponibilidad
+   };
 }
 
 export default useEspacio;

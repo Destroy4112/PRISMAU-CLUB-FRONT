@@ -5,13 +5,13 @@ import useLogin from "../hooks/useLogin";
 
 export default function LoginPage() {
 
-  const { loginForm, loading, visible, toggleVisible, handleSubmit, handleChange } = useLogin();
+   const { loginForm, loading, visible, toggleVisible, handleSubmit, handleChange } = useLogin();
 
-  return (
-    <ContainerAuth>
-      <ContentLogo />
-      <FormLogin loading={loading} form={loginForm} handleSubmit={handleSubmit} handleChange={handleChange}
-        visible={visible} toggleVisible={toggleVisible} />
-    </ContainerAuth>
-  )
+   return (
+      <ContainerAuth>
+         <ContentLogo />
+         <FormLogin loading={loading} form={loginForm} handleSubmit={handleSubmit} handleChange={handleChange}
+            visible={visible} toggleVisible={toggleVisible} />
+      </ContainerAuth>
+   )
 }

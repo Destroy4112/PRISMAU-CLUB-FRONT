@@ -10,23 +10,23 @@ import useOption from '../hooks/useOption'
 
 export default function OptionsPage() {
 
-    const { titulo, subtitulo, tituloModal, modals, optionForm, pregunta, options, isLoading, loading,
-        openModal, closeModal, handleChange, cargarOption, submit, handleDelete } = useOption();
+   const { titulo, subtitulo, tituloModal, modals, optionForm, pregunta, options, isLoading, loading,
+      openModal, closeModal, handleChange, cargarOption, submit, handleDelete } = useOption();
 
-    const columns = OptionColumns({ cargar: cargarOption, handleDelete });
+   const columns = OptionColumns({ cargar: cargarOption, handleDelete });
 
-    return (
-        <>
-            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<FileQuestion className="w-7 h-7" />} color="red"
-                canCreate label="Nueva Option" accion={openModal} />
-            <Contenido>
-                <InfoData titulo={pregunta.pregunta} icon={<ClipboardList className="h-7 w-7" />} color="red" />
-                <DataTableComponent data={options} loading={isLoading} columns={columns} />
-                <VentanaModal size={'5xl'} titulo={tituloModal} show={modals} cerrarModal={closeModal}
-                    handleSubmit={submit} loading={loading}>
-                    <FormOptionRespuesta value={optionForm.respuesta} handleChange={handleChange} />
-                </VentanaModal>
-            </Contenido>
-        </>
-    )
+   return (
+      <>
+         <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<FileQuestion className="w-7 h-7" />} color="red"
+            canCreate label="Nueva Option" accion={openModal} />
+         <Contenido>
+            <InfoData titulo={pregunta.pregunta} icon={<ClipboardList className="h-7 w-7" />} color="red" />
+            <DataTableComponent data={options} loading={isLoading} columns={columns} />
+            <VentanaModal size={'5xl'} titulo={tituloModal} show={modals} cerrarModal={closeModal}
+               handleSubmit={submit} loading={loading}>
+               <FormOptionRespuesta value={optionForm.respuesta} handleChange={handleChange} />
+            </VentanaModal>
+         </Contenido>
+      </>
+   )
 }

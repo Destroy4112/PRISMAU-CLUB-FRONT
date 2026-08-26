@@ -6,8 +6,8 @@ import type { Adherente } from '../../domain/model/adherente.model'
 import { adherenteKeys } from './adherente.keys'
 
 export function useAdherenteQuery(params: PageParams & FilterWithState) {
-    return useAppQuery<PaginatedResponse<Adherente>, Error>({
-        queryKey: adherenteKeys.list(params),
-        queryFn: () => adherenteUseCases.getAll(params),
-    })
+   return useAppQuery<PaginatedResponse<Adherente>, Error>({
+      queryKey: adherenteKeys.list(params),
+      queryFn: () => adherenteUseCases.getAll(params),
+   })
 }

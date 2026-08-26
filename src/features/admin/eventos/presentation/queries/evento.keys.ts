@@ -1,3 +1,3 @@
 export const eventoKeys = {
-    all: ["evento"] as const,
+   all: ["evento"] as const,
 };

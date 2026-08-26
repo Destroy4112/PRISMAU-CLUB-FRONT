@@ -3,13 +3,13 @@ import type { FinanzaRepository } from "../../domain/repository/finanza.reposito
 
 export class FinanzaUseCases {
 
-    private readonly repository: FinanzaRepository;
+   private readonly repository: FinanzaRepository;
 
-    constructor(repo: FinanzaRepository) {
-        this.repository = repo;
-    }
+   constructor(repo: FinanzaRepository) {
+      this.repository = repo;
+   }
 
-    getFinanza(): Promise<Finanza> {
-        return this.repository.getFinanza()
-    }
+   getFinanza(): Promise<Finanza> {
+      return this.repository.getFinanza()
+   }
 }

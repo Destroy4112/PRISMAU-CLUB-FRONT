@@ -1,32 +1,32 @@
 import { useAppSelector } from '@core/store/redux/hooks';
-import useLogout from '@features/auth/login/presentation/hooks/useLogout';
+import useLogout from '@features/auth/logout/presentation/hooks/useLogout';
+import { selectCurrentUser } from '@features/auth/shared/presentation/store/session/session.selectors';
 import { initFlowbite } from 'flowbite';
 import React, { useEffect, useState } from 'react';
 import { Outlet } from 'react-router';
 import Sidebar from './aside/Sidebar';
 import ContainerContenido from './content/ContainerContenido';
 import Navbar from './nav/Navbar';
-import { selectCurrentUser } from '@features/auth/presentation/store/session/session.selectors';
 
 function Plantilla() {
 
-    const usuario = useAppSelector(selectCurrentUser);
+   const usuario = useAppSelector(selectCurrentUser);
 
-    const { logout } = useLogout();
+   const { logout } = useLogout();
 
-    const [collapsed, setCollapsed] = useState<boolean>(false);
+   const [collapsed, setCollapsed] = useState<boolean>(false);
 
-    useEffect(() => { initFlowbite(); }, []);
+   useEffect(() => { initFlowbite(); }, []);
 
-    return (
-        <>
-            <Navbar usuario={usuario} logout={logout} />
-            <Sidebar usuario={usuario} collapsed={collapsed} setCollapsed={setCollapsed} />
-            <ContainerContenido collapsed={collapsed}>
-                <Outlet />
-            </ContainerContenido>
-        </>
-    );
+   return (
+      <>
+         <Navbar usuario={usuario} logout={logout} />
+         <Sidebar usuario={usuario} collapsed={collapsed} setCollapsed={setCollapsed} />
+         <ContainerContenido collapsed={collapsed}>
+            <Outlet />
+         </ContainerContenido>
+      </>
+   );
 }
 
 export default React.memo(Plantilla);

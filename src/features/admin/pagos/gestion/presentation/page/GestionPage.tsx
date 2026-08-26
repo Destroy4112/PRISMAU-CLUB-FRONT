@@ -6,13 +6,13 @@ import useFinanza from "../hooks/useFinanza";
 
 export default function GestionPage() {
 
-    const { titulo, subtitulo, estadisticas, isError, isLoading, refetch } = useFinanza();
+   const { titulo, subtitulo, estadisticas, isError, isLoading, refetch } = useFinanza();
 
-    return (
-        <>
-            <TituloPage titulo={titulo} subtitulo={subtitulo} color="red" icono={<CircleDollarSign className="w-7 h-7" />} />
-            <MenuPagos />
-            <DashboardPagos estadisticas={estadisticas} isError={isError} isLoading={isLoading} refetch={refetch} />
-        </>
-    )
+   return (
+      <>
+         <TituloPage titulo={titulo} subtitulo={subtitulo} color="red" icono={<CircleDollarSign className="w-7 h-7" />} />
+         <MenuPagos />
+         <DashboardPagos estadisticas={estadisticas} isError={isError} isLoading={isLoading} refetch={refetch} />
+      </>
+   )
 }

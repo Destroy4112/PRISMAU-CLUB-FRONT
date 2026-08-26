@@ -6,41 +6,41 @@ import type { AsociadoEstadoInput, AsociadoImagenInput, CreateAsociadoInput, Upd
 
 export class AsociadoUseCases {
 
-    private readonly repo: AsociadoRepository;
+   private readonly repo: AsociadoRepository;
 
-    constructor(repo: AsociadoRepository) {
-        this.repo = repo;
-    }
+   constructor(repo: AsociadoRepository) {
+      this.repo = repo;
+   }
 
-    getAll(params: PageParams & FilterWithState): Promise<PaginatedResponse<Asociado>> {
-        return this.repo.getAll(params);
-    }
+   getAll(params: PageParams & FilterWithState): Promise<PaginatedResponse<Asociado>> {
+      return this.repo.getAll(params);
+   }
 
-    getAsociados(): Promise<Asociado[]> {
-        return this.repo.getAsociados();
-    }
+   getAsociados(): Promise<Asociado[]> {
+      return this.repo.getAsociados();
+   }
 
-    create(payload: CreateAsociadoInput): Promise<ApiResponseVoid> {
-        return this.repo.create(payload);
-    }
+   create(payload: CreateAsociadoInput): Promise<ApiResponseVoid> {
+      return this.repo.create(payload);
+   }
 
-    updateImagen(payload: AsociadoImagenInput): Promise<ApiResponseVoid> {
-        return this.repo.updateImagen(payload);
-    }
+   updateImagen(payload: AsociadoImagenInput): Promise<ApiResponseVoid> {
+      return this.repo.updateImagen(payload);
+   }
 
-    update(payload: UpdateAsociadoInput): Promise<ApiResponseVoid> {
-        return this.repo.update(payload);
-    }
+   update(payload: UpdateAsociadoInput): Promise<ApiResponseVoid> {
+      return this.repo.update(payload);
+   }
 
-    updateEstado(payload: AsociadoEstadoInput): Promise<ApiResponseVoid> {
-        return this.repo.updateEstado(payload);
-    }
+   updateEstado(payload: AsociadoEstadoInput): Promise<ApiResponseVoid> {
+      return this.repo.updateEstado(payload);
+   }
 
-    delete(id: number): Promise<ApiResponseVoid> {
-        return this.repo.delete(id);
-    }
+   delete(id: number): Promise<ApiResponseVoid> {
+      return this.repo.delete(id);
+   }
 
-    deleteImagen(id: number): Promise<ApiResponseVoid> {
-        return this.repo.deleteImagen(id);
-    }
+   deleteImagen(id: number): Promise<ApiResponseVoid> {
+      return this.repo.deleteImagen(id);
+   }
 }

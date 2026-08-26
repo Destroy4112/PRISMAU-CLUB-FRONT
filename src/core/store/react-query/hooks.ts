@@ -1,5 +1,5 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-
-export const useAppQueryClient = useQueryClient;
-export const useAppQuery = useQuery;
-export const useAppMutation = useMutation;
+export {
+   useMutation as useAppMutation,
+   useQuery as useAppQuery,
+   useQueryClient as useAppQueryClient,
+} from '@tanstack/react-query';

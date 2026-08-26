@@ -3,12 +3,12 @@ import { useEventoQuery } from "../queries/useEventoQuery";
 
 export function useEventoList() {
 
-    const { data, isLoading } = useEventoQuery();
+   const { data, isLoading } = useEventoQuery();
 
-    const eventos: Evento[] = data || [];
+   const eventos: Evento[] = data || [];
 
-    return {
-        eventos,
-        isLoading,
-    };
+   return {
+      eventos,
+      isLoading,
+   };
 }

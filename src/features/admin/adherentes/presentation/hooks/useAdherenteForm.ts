@@ -8,66 +8,66 @@ import { adherenteDomainToForm, adherenteFormToCreateInput, adherenteFormToUpdat
 
 export function useAdherenteForm(modalApi: ModalsApi<AdherenteModalKey>) {
 
-    const { toggleModal } = modalApi;
+   const { toggleModal } = modalApi;
 
-    const [adherenteForm, setAdherenteForm] = useState<AdherenteForm>(ADHERENTE_FORM_INITIAL);
-    const [touched, setTouched] = useState<boolean>(false);
-    const [editId, setEditId] = useState<number | null>(null);
-    const isEditing = editId != null;
+   const [adherenteForm, setAdherenteForm] = useState<AdherenteForm>(ADHERENTE_FORM_INITIAL);
+   const [touched, setTouched] = useState<boolean>(false);
+   const [editId, setEditId] = useState<number | null>(null);
+   const isEditing = editId != null;
 
-    const resetForm = (): void => {
-        setTouched(false);
-        setAdherenteForm(ADHERENTE_FORM_INITIAL);
-        setEditId(null);
-    };
+   const resetForm = (): void => {
+      setTouched(false);
+      setAdherenteForm(ADHERENTE_FORM_INITIAL);
+      setEditId(null);
+   };
 
-    const openModal = (): void => {
-        resetForm();
-        toggleModal("crearEditar");
-    };
+   const openModal = (): void => {
+      resetForm();
+      toggleModal("crearEditar");
+   };
 
-    const closeModal = (): void => {
-        toggleModal("crearEditar");
-        resetForm();
-    };
+   const closeModal = (): void => {
+      toggleModal("crearEditar");
+      resetForm();
+   };
 
-    const { mutate: createAdherenteMutation, isPending: isCreating } = useCreateAdherenteMutation({
-        onOk: () => closeModal(),
-    });
+   const { mutate: createAdherenteMutation, isPending: isCreating } = useCreateAdherenteMutation({
+      onOk: () => closeModal(),
+   });
 
-    const { mutate: updateAdherenteMutation, isPending: isUpdating } = useUpdateAdherenteMutation({
-        onOk: () => closeModal(),
-    });
+   const { mutate: updateAdherenteMutation, isPending: isUpdating } = useUpdateAdherenteMutation({
+      onOk: () => closeModal(),
+   });
 
-    const handleChange = ({ target }: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
-        const { name, value } = target;
-        setAdherenteForm((prev) => ({ ...prev, [name]: value }));
-    };
+   const handleChange = ({ target }: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
+      const { name, value } = target;
+      setAdherenteForm((prev) => ({ ...prev, [name]: value }));
+   };
 
-    const cargar = (row: Adherente): void => {
-        setEditId(row.id!);
-        setAdherenteForm(adherenteDomainToForm(row));
-        toggleModal("crearEditar");
-    };
+   const cargar = (row: Adherente): void => {
+      setEditId(row.id!);
+      setAdherenteForm(adherenteDomainToForm(row));
+      toggleModal("crearEditar");
+   };
 
-    const submit = (): void => {
-        setTouched(true);
-        if (isEditing && editId != null) {
-            updateAdherenteMutation(adherenteFormToUpdateInput(adherenteForm, editId));
-            return;
-        }
-        createAdherenteMutation(adherenteFormToCreateInput(adherenteForm));
-    };
+   const submit = (): void => {
+      setTouched(true);
+      if (isEditing && editId != null) {
+         updateAdherenteMutation(adherenteFormToUpdateInput(adherenteForm, editId));
+         return;
+      }
+      createAdherenteMutation(adherenteFormToCreateInput(adherenteForm));
+   };
 
-    return {
-        adherenteForm,
-        touched,
-        loading: isCreating || isUpdating,
-        tituloModal: isEditing ? "Editar Adherente" : "Crear Adherente",
-        openModal,
-        closeModal,
-        cargar,
-        handleChange,
-        submit,
-    };
+   return {
+      adherenteForm,
+      touched,
+      loading: isCreating || isUpdating,
+      tituloModal: isEditing ? "Editar Adherente" : "Crear Adherente",
+      openModal,
+      closeModal,
+      cargar,
+      handleChange,
+      submit,
+   };
 }

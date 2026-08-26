@@ -6,33 +6,33 @@ import type { CreateEmpleadoInput, EmpleadoImagenInput, UpdateEmpleadoInput } fr
 
 export class EmpleadoUseCases {
 
-    private readonly repo: EmpleadoRepository;
+   private readonly repo: EmpleadoRepository;
 
-    constructor(repo: EmpleadoRepository) {
-        this.repo = repo;
-    }
+   constructor(repo: EmpleadoRepository) {
+      this.repo = repo;
+   }
 
-    getAll(params: PageParams & FilterWithState): Promise<PaginatedResponse<Empleado>> {
-        return this.repo.getAll(params);
-    }
+   getAll(params: PageParams & FilterWithState): Promise<PaginatedResponse<Empleado>> {
+      return this.repo.getAll(params);
+   }
 
-    create(payload: CreateEmpleadoInput): Promise<ApiResponseVoid> {
-        return this.repo.create(payload);
-    }
+   create(payload: CreateEmpleadoInput): Promise<ApiResponseVoid> {
+      return this.repo.create(payload);
+   }
 
-    updateImagen(payload: EmpleadoImagenInput): Promise<ApiResponseVoid> {
-        return this.repo.updateImagen(payload);
-    }
+   updateImagen(payload: EmpleadoImagenInput): Promise<ApiResponseVoid> {
+      return this.repo.updateImagen(payload);
+   }
 
-    update(payload: UpdateEmpleadoInput): Promise<ApiResponseVoid> {
-        return this.repo.update(payload);
-    }
+   update(payload: UpdateEmpleadoInput): Promise<ApiResponseVoid> {
+      return this.repo.update(payload);
+   }
 
-    delete(id: number): Promise<ApiResponseVoid> {
-        return this.repo.delete(id);
-    }
+   delete(id: number): Promise<ApiResponseVoid> {
+      return this.repo.delete(id);
+   }
 
-    deleteImagen(id: number): Promise<ApiResponseVoid> {
-        return this.repo.deleteImagen(id);
-    }
+   deleteImagen(id: number): Promise<ApiResponseVoid> {
+      return this.repo.deleteImagen(id);
+   }
 }

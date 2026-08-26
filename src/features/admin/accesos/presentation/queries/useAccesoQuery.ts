@@ -6,8 +6,8 @@ import type { Acceso } from '../../domain/models/acceso.model'
 import { accesoKeys } from './acceso.keys'
 
 export function useAccesoQuery(params: PageParams & Filter) {
-    return useAppQuery<PaginatedResponse<Acceso>, Error>({
-        queryKey: accesoKeys.lists(params),
-        queryFn: () => accesoUseCases.getAll(params),
-    })
+   return useAppQuery<PaginatedResponse<Acceso>, Error>({
+      queryKey: accesoKeys.lists(params),
+      queryFn: () => accesoUseCases.getAll(params),
+   })
 }

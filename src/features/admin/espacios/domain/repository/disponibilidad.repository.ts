@@ -3,6 +3,6 @@ import type { SaveDisponibilidadInput } from "../../application/contracts/dispon
 import type { Disponibilidad } from "../model/disponibilidad.model";
 
 export interface DisponibilidadRepository {
-    get(id: number): Promise<Disponibilidad[]>;
-    save(disponibilidad: SaveDisponibilidadInput): Promise<ApiResponseVoid>;
+   get(id: number): Promise<Disponibilidad[]>;
+   save(disponibilidad: SaveDisponibilidadInput): Promise<ApiResponseVoid>;
 }

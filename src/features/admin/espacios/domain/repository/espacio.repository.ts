@@ -4,8 +4,8 @@ import type { CreateEspacioInput, UpdateEspacioInput } from "../../application/c
 import type { Espacio } from "../model/espacio.model";
 
 export interface EspacioRepository {
-    getAll(params: PageParams & FilterWithState): Promise<PaginatedResponse<Espacio>>;
-    create(payload: CreateEspacioInput): Promise<ApiResponseVoid>;
-    update(payload: UpdateEspacioInput): Promise<ApiResponseVoid>;
-    delete(id: number): Promise<ApiResponseVoid>;
+   getAll(params: PageParams & FilterWithState): Promise<PaginatedResponse<Espacio>>;
+   create(payload: CreateEspacioInput): Promise<ApiResponseVoid>;
+   update(payload: UpdateEspacioInput): Promise<ApiResponseVoid>;
+   delete(id: number): Promise<ApiResponseVoid>;
 }

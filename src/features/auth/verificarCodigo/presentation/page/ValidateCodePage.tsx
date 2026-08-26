@@ -5,13 +5,13 @@ import useVerificarCodigo from "../hooks/useVerificarCodigo";
 
 export default function ValidateCodePage() {
 
-    const { title, description, data, loading, handleChange, handleSubmit } = useVerificarCodigo();
+   const { title, description, data, loading, handleChange, handleSubmit } = useVerificarCodigo();
 
-    return (
-        <ContainerReset>
-            <ContentDescription title={title} description={description} />
-            <FormReset id="documento" label="Código" value={data.code} loading={loading} type="text"
-                textButton="Siguiente" handleChange={handleChange} handleSubmit={handleSubmit} />
-        </ContainerReset>
-    )
+   return (
+      <ContainerReset>
+         <ContentDescription title={title} description={description} />
+         <FormReset id="documento" label="Código" value={data.code} loading={loading} type="text"
+            textButton="Siguiente" handleChange={handleChange} handleSubmit={handleSubmit} />
+      </ContainerReset>
+   )
 }

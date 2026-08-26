@@ -5,25 +5,25 @@ import type { PreguntaInput } from "../contracts/pregunta.input";
 
 export class PreguntaUseCases {
 
-    private readonly repo: PreguntaRepository;
+   private readonly repo: PreguntaRepository;
 
-    constructor(repo: PreguntaRepository) {
-        this.repo = repo;
-    }
+   constructor(repo: PreguntaRepository) {
+      this.repo = repo;
+   }
 
-    getAll(id: number): Promise<Pregunta[]> {
-        return this.repo.getAll(id);
-    }
+   getAll(id: number): Promise<Pregunta[]> {
+      return this.repo.getAll(id);
+   }
 
-    create(payload: PreguntaInput): Promise<ApiResponseVoid> {
-        return this.repo.create(payload);
-    }
+   create(payload: PreguntaInput): Promise<ApiResponseVoid> {
+      return this.repo.create(payload);
+   }
 
-    update(payload: PreguntaInput): Promise<ApiResponseVoid> {
-        return this.repo.update(payload);
-    }
+   update(payload: PreguntaInput): Promise<ApiResponseVoid> {
+      return this.repo.update(payload);
+   }
 
-    delete(id: PreguntaId): Promise<ApiResponseVoid> {
-        return this.repo.delete(id);
-    }
+   delete(id: PreguntaId): Promise<ApiResponseVoid> {
+      return this.repo.delete(id);
+   }
 }

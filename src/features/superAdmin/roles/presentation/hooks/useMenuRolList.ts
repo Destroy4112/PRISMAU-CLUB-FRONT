@@ -3,18 +3,18 @@ import { useMenuRolQuery } from "../queries/useMenuRolQuery";
 
 export function useMenuRolList() {
 
-    const [rol, setRol] = useState<number>(0);
+   const [rol, setRol] = useState<number>(0);
 
-    const cargarRol = useCallback((rolId: number): void => {
-        setRol(rolId);
-    }, []);
+   const cargarRol = useCallback((rolId: number): void => {
+      setRol(rolId);
+   }, []);
 
-    const { data: menusRol, isLoading } = useMenuRolQuery(rol);
+   const { data: menusRol, isLoading } = useMenuRolQuery(rol);
 
-    return {
-        rol,
-        menusRol,
-        isLoading,
-        cargarRol
-    };
+   return {
+      rol,
+      menusRol,
+      isLoading,
+      cargarRol
+   };
 }

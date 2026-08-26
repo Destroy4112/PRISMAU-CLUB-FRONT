@@ -5,14 +5,14 @@ import type { ContratoRepository } from "../../domain/repository/contrato.reposi
 
 export class ContratoUseCases {
 
-    private readonly repo: ContratoRepository;
+   private readonly repo: ContratoRepository;
 
-    constructor(repo: ContratoRepository) {
-        this.repo = repo;
-    }
+   constructor(repo: ContratoRepository) {
+      this.repo = repo;
+   }
 
-    getAll(params: PageParams & Filter): Promise<PaginatedResponse<Contrato>> {
-        return this.repo.getAll(params);
-    }
+   getAll(params: PageParams & Filter): Promise<PaginatedResponse<Contrato>> {
+      return this.repo.getAll(params);
+   }
 
 }

@@ -6,29 +6,29 @@ import { useAdherenteQuery } from "../queries/useAdherenteQuery";
 
 export function useAdherenteList() {
 
-    const { filters, limit, page, onPageChange, onRowsPerPageChange, handleFilterChange, setFilter, clearFilter,
-    } = useSearchPaginate<FilterWithState>(INITIAL_FILTERS_WITH_STATE);
+   const { filters, limit, page, onPageChange, onRowsPerPageChange, handleFilterChange, setFilter, clearFilter,
+   } = useSearchPaginate<FilterWithState>(INITIAL_FILTERS_WITH_STATE);
 
-    const debouncedSearch = useDebounce<string>(filters.search, 500);
+   const debouncedSearch = useDebounce<string>(filters.search, 500);
 
-    const queryParams = { page, limit, search: debouncedSearch, state: filters.state };
+   const queryParams = { page, limit, search: debouncedSearch, state: filters.state };
 
-    const { data, isLoading } = useAdherenteQuery(queryParams);
+   const { data, isLoading } = useAdherenteQuery(queryParams);
 
-    const adherentes: Adherente[] = data?.data || [];
-    const total = data?.total || 0;
+   const adherentes: Adherente[] = data?.data || [];
+   const total = data?.total || 0;
 
-    return {
-        adherentes,
-        total,
-        isLoading,
-        page,
-        limit,
-        filters,
-        onPageChange,
-        onRowsPerPageChange,
-        handleFilterChange,
-        clearFilter,
-        setFilter
-    };
+   return {
+      adherentes,
+      total,
+      isLoading,
+      page,
+      limit,
+      filters,
+      onPageChange,
+      onRowsPerPageChange,
+      handleFilterChange,
+      clearFilter,
+      setFilter
+   };
 }

@@ -6,8 +6,8 @@ import type { Contrato } from '../../domain/models/contrato.model'
 import { contratoKeys } from './contrato.keys'
 
 export function useContratoQuery(params: PageParams & Filter) {
-    return useAppQuery<PaginatedResponse<Contrato>, Error>({
-        queryKey: contratoKeys.lists(params),
-        queryFn: () => contratoUseCases.getAll(params),
-    })
+   return useAppQuery<PaginatedResponse<Contrato>, Error>({
+      queryKey: contratoKeys.lists(params),
+      queryFn: () => contratoUseCases.getAll(params),
+   })
 }

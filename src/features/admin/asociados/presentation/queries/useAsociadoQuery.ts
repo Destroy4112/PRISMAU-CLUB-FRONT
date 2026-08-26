@@ -6,8 +6,8 @@ import type { Asociado } from '../../domain/model/asociado.model'
 import { asociadoKeys } from './asociado.keys'
 
 export function useAsociadoQuery(params: PageParams & FilterWithState) {
-    return useAppQuery<PaginatedResponse<Asociado>, Error>({
-        queryKey: asociadoKeys.list(params),
-        queryFn: () => asociadoUseCases.getAll(params),
-    })
+   return useAppQuery<PaginatedResponse<Asociado>, Error>({
+      queryKey: asociadoKeys.list(params),
+      queryFn: () => asociadoUseCases.getAll(params),
+   })
 }

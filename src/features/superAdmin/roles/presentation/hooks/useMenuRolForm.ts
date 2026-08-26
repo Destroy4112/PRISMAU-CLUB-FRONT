@@ -5,45 +5,45 @@ import { buildMenuRolContext, INITIAL_MENU_ROL_FORM, type MenuRolForm, type UseM
 
 export function useMenuRolForm({ modalsApi, rol }: UseMenuRolFormProps) {
 
-    const { toggleModal } = modalsApi;
+   const { toggleModal } = modalsApi;
 
-    const [menuRolForm, setMenuRolForm] = useState<MenuRolForm>(INITIAL_MENU_ROL_FORM);
+   const [menuRolForm, setMenuRolForm] = useState<MenuRolForm>(INITIAL_MENU_ROL_FORM);
 
-    const context = buildMenuRolContext(rol);
+   const context = buildMenuRolContext(rol);
 
-    const resetForm = useCallback((): void => {
-        setMenuRolForm(INITIAL_MENU_ROL_FORM);
-    }, []);
+   const resetForm = useCallback((): void => {
+      setMenuRolForm(INITIAL_MENU_ROL_FORM);
+   }, []);
 
-    const closeModal = useCallback((): void => {
-        toggleModal("crear");
-        resetForm();
-    }, [toggleModal, resetForm]);
+   const closeModal = useCallback((): void => {
+      toggleModal("crear");
+      resetForm();
+   }, [toggleModal, resetForm]);
 
-    const openModal = useCallback((): void => {
-        toggleModal("crear");
-        resetForm();
-    }, [toggleModal, resetForm]);
+   const openModal = useCallback((): void => {
+      toggleModal("crear");
+      resetForm();
+   }, [toggleModal, resetForm]);
 
-    const { mutate: asignMenuMutation, isPending: isCreating } = useCreateMenuRolMutation({
-        onOk: () => closeModal(),
-    });
+   const { mutate: asignMenuMutation, isPending: isCreating } = useCreateMenuRolMutation({
+      onOk: () => closeModal(),
+   });
 
-    const handleChange = ({ target }: ChangeEvent<HTMLSelectElement>): void => {
-        setMenuRolForm((prev) => ({ ...prev, [target.name]: Number(target.value) }));
-    };
+   const handleChange = ({ target }: ChangeEvent<HTMLSelectElement>): void => {
+      setMenuRolForm((prev) => ({ ...prev, [target.name]: Number(target.value) }));
+   };
 
-    const handleSubmit = (): void => {
-        const payload = menuRolFormToPayload(menuRolForm, context);
-        asignMenuMutation(payload);
-    };
+   const handleSubmit = (): void => {
+      const payload = menuRolFormToPayload(menuRolForm, context);
+      asignMenuMutation(payload);
+   };
 
-    return {
-        menuRolForm,
-        isCreating,
-        openModal,
-        closeModal,
-        handleChange,
-        handleSubmit,
-    };
+   return {
+      menuRolForm,
+      isCreating,
+      openModal,
+      closeModal,
+      handleChange,
+      handleSubmit,
+   };
 }

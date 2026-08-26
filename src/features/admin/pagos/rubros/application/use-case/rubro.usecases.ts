@@ -6,29 +6,29 @@ import type { CreateRubroInput, UpdateRubroInput } from "../contracts/rubro.inpu
 
 export class RubroUseCases {
 
-    private readonly repo: RubroRepository;
+   private readonly repo: RubroRepository;
 
-    constructor(repo: RubroRepository) {
-        this.repo = repo;
-    }
+   constructor(repo: RubroRepository) {
+      this.repo = repo;
+   }
 
-    getAll(): Promise<Rubro[]> {
-        return this.repo.getAll();
-    }
+   getAll(): Promise<Rubro[]> {
+      return this.repo.getAll();
+   }
 
-    getPaginated(params: PageParams & Filter): Promise<PaginatedResponse<Rubro>> {
-        return this.repo.getPaginated(params);
-    }
+   getPaginated(params: PageParams & Filter): Promise<PaginatedResponse<Rubro>> {
+      return this.repo.getPaginated(params);
+   }
 
-    create(payload: CreateRubroInput): Promise<ApiResponseVoid> {
-        return this.repo.create(payload);
-    }
+   create(payload: CreateRubroInput): Promise<ApiResponseVoid> {
+      return this.repo.create(payload);
+   }
 
-    update(payload: UpdateRubroInput): Promise<ApiResponseVoid> {
-        return this.repo.update(payload);
-    }
+   update(payload: UpdateRubroInput): Promise<ApiResponseVoid> {
+      return this.repo.update(payload);
+   }
 
-    delete(id: RubroId): Promise<ApiResponseVoid> {
-        return this.repo.delete(id);
-    }
+   delete(id: RubroId): Promise<ApiResponseVoid> {
+      return this.repo.delete(id);
+   }
 }

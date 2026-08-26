@@ -1,6 +1,6 @@
 import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
-import type { CambiarPayload } from "../payload/cambiar.payload";
+import type { CambiarInput } from "../../application/contracts/cambiar.input";
 
 export interface CambiarRepository {
-    changePassword(payload: CambiarPayload): Promise<ApiResponseVoid>;
+   changePassword(payload: CambiarInput): Promise<ApiResponseVoid>;
 }

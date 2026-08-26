@@ -1,6 +1,6 @@
+import { PRIVATE_ROUTES } from "@app/routes/constants/rutas";
 import { useAppNavigate } from "@app/routes/hooks";
 import useResetPasswordMutation from "@features/users/presentation/mutations/useResetPasswordMutation";
-import { PRIVATE_ROUTES } from "@shared/constants/rutas/Rutas.model";
 import type { ModalsApi } from "@shared/hooks/useModal";
 import { alertConfirm, alertError, alertSucces, alertWarning } from "@shared/utilities/alerts/alertas.utility";
 import { useCallback, useState, type ChangeEvent } from "react";
@@ -12,87 +12,87 @@ import { ASOCIADO_ESTADO_INITIAL, type AsociadoEstadoForm, type AsociadoModalKey
 
 export function useAsociadoActions(modalApi: ModalsApi<AsociadoModalKey>) {
 
-    const navigate = useAppNavigate();
+   const navigate = useAppNavigate();
 
-    const { toggleModal } = modalApi;
+   const { toggleModal } = modalApi;
 
-    const [asociadoEstadoForm, setAsociadoEstadoForm] = useState<AsociadoEstadoForm>(ASOCIADO_ESTADO_INITIAL);
+   const [asociadoEstadoForm, setAsociadoEstadoForm] = useState<AsociadoEstadoForm>(ASOCIADO_ESTADO_INITIAL);
 
-    const resetForm = () => {
-        setAsociadoEstadoForm(ASOCIADO_ESTADO_INITIAL);
-    }
+   const resetForm = () => {
+      setAsociadoEstadoForm(ASOCIADO_ESTADO_INITIAL);
+   }
 
-    //-------------------- GO FAMILIARES -------------------------------------
+   //-------------------- GO FAMILIARES -------------------------------------
 
-    const goFamiliares = (asociado: Asociado) => {
-        navigate(PRIVATE_ROUTES.FAMILIARES_ASOCIADO, { state: { asociado } });
-    }
+   const goFamiliares = (asociado: Asociado) => {
+      navigate(PRIVATE_ROUTES.FAMILIARES_ASOCIADO, { state: { asociado } });
+   }
 
-    // -------------------- CAMBIAR ESTADO -------------------------------------
+   // -------------------- CAMBIAR ESTADO -------------------------------------
 
-    const { mutate: cambiarEstadoMutation, isPending: isUpdatingStatus } = useUpdateStatusAsociadoMutation({
-        onOk: () => closeModalEstado(),
-    });
+   const { mutate: cambiarEstadoMutation, isPending: isUpdatingStatus } = useUpdateStatusAsociadoMutation({
+      onOk: () => closeModalEstado(),
+   });
 
-    const closeModalEstado = (): void => {
-        toggleModal("estado");
-        resetForm();
-    };
+   const closeModalEstado = (): void => {
+      toggleModal("estado");
+      resetForm();
+   };
 
-    const handleChangeEstado = ({ target }: ChangeEvent<HTMLTextAreaElement | HTMLSelectElement>) => {
-        setAsociadoEstadoForm((prev) => ({ ...prev, [target.name]: target.value }));
-    };
+   const handleChangeEstado = ({ target }: ChangeEvent<HTMLTextAreaElement | HTMLSelectElement>) => {
+      setAsociadoEstadoForm((prev) => ({ ...prev, [target.name]: target.value }));
+   };
 
-    const changeState = async (id: number): Promise<void> => {
-        if (await alertConfirm("¿Seguro que quiere cambiar el estado de este asociado?", "Si, cambiar!")) {
-            toggleModal("estado");
-            setAsociadoEstadoForm((prev) => ({ ...prev, id }));
-        }
-    };
+   const changeState = async (id: number): Promise<void> => {
+      if (await alertConfirm("¿Seguro que quiere cambiar el estado de este asociado?", "Si, cambiar!")) {
+         toggleModal("estado");
+         setAsociadoEstadoForm((prev) => ({ ...prev, id }));
+      }
+   };
 
-    const handleUpdateEstado = (): void => {
-        cambiarEstadoMutation(asociadoEstadoFormToInput(asociadoEstadoForm));
-    };
+   const handleUpdateEstado = (): void => {
+      cambiarEstadoMutation(asociadoEstadoFormToInput(asociadoEstadoForm));
+   };
 
-    //-------------------- ELIMINAR ASOCIADO -------------------------------------
+   //-------------------- ELIMINAR ASOCIADO -------------------------------------
 
-    const { mutate: eliminarMutation } = useDeleteAsociadoMutation();
+   const { mutate: eliminarMutation } = useDeleteAsociadoMutation();
 
-    const handleDelete = useCallback(async (id: number): Promise<void> => {
-        if (await alertConfirm("¿Seguro que quiere eliminar este asociado?", "Si, eliminar!")) {
-            eliminarMutation(id);
-        }
-    }, [eliminarMutation]);
+   const handleDelete = useCallback(async (id: number): Promise<void> => {
+      if (await alertConfirm("¿Seguro que quiere eliminar este asociado?", "Si, eliminar!")) {
+         eliminarMutation(id);
+      }
+   }, [eliminarMutation]);
 
-    //-------------------- RESETEAR CONTRASEÑA -------------------------------------
+   //-------------------- RESETEAR CONTRASEÑA -------------------------------------
 
-    const { mutate: resetPasswordMutation } = useResetPasswordMutation();
+   const { mutate: resetPasswordMutation } = useResetPasswordMutation();
 
-    const handleResetPassword = useCallback(async (id: number): Promise<void> => {
-        if (await alertConfirm("¿Seguro que quiere restablecer la contraseña de este adherente?", "Si, restablecer!")) {
-            resetPasswordMutation(id, {
-                onSuccess: (res) => {
-                    if (res.status) {
-                        alertSucces(res.message);
-                    } else {
-                        res.errors.forEach((error: string) => alertWarning(error));
-                    }
-                },
-                onError: (error) => alertError(error.message)
-            });
-        }
-    }, [resetPasswordMutation]);
+   const handleResetPassword = useCallback(async (id: number): Promise<void> => {
+      if (await alertConfirm("¿Seguro que quiere restablecer la contraseña de este adherente?", "Si, restablecer!")) {
+         resetPasswordMutation(id, {
+            onSuccess: (res) => {
+               if (res.status) {
+                  alertSucces(res.message);
+               } else {
+                  res.errors?.forEach((error: string) => alertWarning(error));
+               }
+            },
+            onError: (error) => alertError(error.message)
+         });
+      }
+   }, [resetPasswordMutation]);
 
-    return {
-        tituloModalEstado: "Cambiar estado",
-        asociadoEstadoForm,
-        isUpdatingStatus,
-        closeModalEstado,
-        goFamiliares,
-        handleChangeEstado,
-        changeState,
-        handleDelete,
-        handleUpdateEstado,
-        handleResetPassword
-    };
+   return {
+      tituloModalEstado: "Cambiar estado",
+      asociadoEstadoForm,
+      isUpdatingStatus,
+      closeModalEstado,
+      goFamiliares,
+      handleChangeEstado,
+      changeState,
+      handleDelete,
+      handleUpdateEstado,
+      handleResetPassword
+   };
 }

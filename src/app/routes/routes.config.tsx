@@ -1,4 +1,4 @@
-import { ERROR_ROUTES, PRIVATE_ROUTES, PUBLIC_ROUTES } from '@shared/constants/rutas/Rutas.model'
+import { ERROR_ROUTES, PRIVATE_ROUTES, PUBLIC_ROUTES } from '@app/routes/constants/rutas'
 import { lazy } from 'react'
 
 const LoginPage = lazy(() => import('@features/auth/login/presentation/page/LoginPage'))
@@ -41,54 +41,54 @@ const MensualidadesPage = lazy(() => import('@features/admin/pagos/mensualidades
 const CuotasBailePage = lazy(() => import('@features/admin/pagos/cuotasBaile/presentation/page/CuotasBailePage'))
 
 export const LOGINROUTES = [
-    { path: PUBLIC_ROUTES.LOGIN, element: <LoginPage /> }
+   { path: PUBLIC_ROUTES.LOGIN, element: <LoginPage /> }
 ]
 
 export const PUBLICROUTES = [
-    { path: PUBLIC_ROUTES.RECUPERAR, element: <RecuperacionPage /> },
-    { path: PUBLIC_ROUTES.VALIDAR, element: <ValidateCodePage /> },
-    { path: PUBLIC_ROUTES.CHANGE_PASSWORD, element: <ChangePasswordPage /> },
+   { path: PUBLIC_ROUTES.RECUPERAR, element: <RecuperacionPage /> },
+   { path: PUBLIC_ROUTES.VALIDAR, element: <ValidateCodePage /> },
+   { path: PUBLIC_ROUTES.CHANGE_PASSWORD, element: <ChangePasswordPage /> },
 ]
 
 export const COMMONPRIVATEROUTES = [
-    { path: PRIVATE_ROUTES.DASHBOARD, element: <DashboardPage /> },
+   { path: PRIVATE_ROUTES.DASHBOARD, element: <DashboardPage /> },
 ]
 
 export const SUPERADMINROUTES = [
-    { path: PRIVATE_ROUTES.ADMINISTRADORES, element: <AdministradoresPage /> },
-    { path: PRIVATE_ROUTES.ROLES, element: <RolesPage /> },
-    { path: PRIVATE_ROUTES.MODULOS, element: <MenusPage /> },
-    { path: PRIVATE_ROUTES.HOBBIES, element: <HobbiesPage /> },
-    { path: PRIVATE_ROUTES.CONTRATOS, element: <ContratosPage /> },
+   { path: PRIVATE_ROUTES.ADMINISTRADORES, element: <AdministradoresPage /> },
+   { path: PRIVATE_ROUTES.ROLES, element: <RolesPage /> },
+   { path: PRIVATE_ROUTES.MODULOS, element: <MenusPage /> },
+   { path: PRIVATE_ROUTES.HOBBIES, element: <HobbiesPage /> },
+   { path: PRIVATE_ROUTES.CONTRATOS, element: <ContratosPage /> },
 ]
 
 export const ADMINROUTES = [
-    { path: PRIVATE_ROUTES.SOLICITUDES, element: <SolicitudesPage /> },
-    { path: PRIVATE_ROUTES.RESERVAS, element: <ReservasPage /> },
-    { path: PRIVATE_ROUTES.ENCUESTAS, element: <EncuestasPage /> },
-    { path: PRIVATE_ROUTES.ENCUESTA, element: <RespuestasEncuestaPage /> },
-    { path: PRIVATE_ROUTES.PREGUNTAS, element: <PreguntasPage /> },
-    { path: PRIVATE_ROUTES.RESPUESTAS, element: <OptionsPage /> },
-    { path: PRIVATE_ROUTES.BUSCAR_USER, element: <BusquedaUserPage /> },
-    { path: PRIVATE_ROUTES.ASOCIADOS, element: <AsociadosPage /> },
-    { path: PRIVATE_ROUTES.FAMILIARES_ASOCIADO, element: <FamiliaresAsociadoPage /> },
-    { path: PRIVATE_ROUTES.ADHERENTES, element: <AdherentesPage /> },
-    { path: PRIVATE_ROUTES.FAMILIARES_ADHERENTE, element: <FamiliaresAdherentePage /> },
-    { path: PRIVATE_ROUTES.EMPLEADOS, element: <EmpleadosPage /> },
-    { path: PRIVATE_ROUTES.ESPACIOS, element: <EspaciosPage /> },
-    { path: PRIVATE_ROUTES.EVENTOS, element: <EventosPage /> },
-    { path: PRIVATE_ROUTES.INVITACIONES, element: <InvitacionesPage /> },
-    { path: PRIVATE_ROUTES.ACCESOS, element: <AccesosPage /> },
-    { path: PRIVATE_ROUTES.ESTADOS, element: <EstadosPage /> },
-    { path: PRIVATE_ROUTES.GESTION_PAGOS, element: <GestionPage /> },
-    { path: PRIVATE_ROUTES.RUBROS, element: <RubrosPage /> },
-    { path: PRIVATE_ROUTES.PROGRAMACION_PAGOS, element: <ProgramacionPage /> },
-    { path: PRIVATE_ROUTES.ADMINISTRACION_PAGOS, element: <AdministracionPage /> },
-    { path: PRIVATE_ROUTES.MENSUALIDADES, element: <MensualidadesPage /> },
-    { path: PRIVATE_ROUTES.CUOTAS_BAILE, element: <CuotasBailePage /> },
+   { path: PRIVATE_ROUTES.SOLICITUDES, element: <SolicitudesPage /> },
+   { path: PRIVATE_ROUTES.RESERVAS, element: <ReservasPage /> },
+   { path: PRIVATE_ROUTES.ENCUESTAS, element: <EncuestasPage /> },
+   { path: PRIVATE_ROUTES.ENCUESTA, element: <RespuestasEncuestaPage /> },
+   { path: PRIVATE_ROUTES.PREGUNTAS, element: <PreguntasPage /> },
+   { path: PRIVATE_ROUTES.RESPUESTAS, element: <OptionsPage /> },
+   { path: PRIVATE_ROUTES.BUSCAR_USER, element: <BusquedaUserPage /> },
+   { path: PRIVATE_ROUTES.ASOCIADOS, element: <AsociadosPage /> },
+   { path: PRIVATE_ROUTES.FAMILIARES_ASOCIADO, element: <FamiliaresAsociadoPage /> },
+   { path: PRIVATE_ROUTES.ADHERENTES, element: <AdherentesPage /> },
+   { path: PRIVATE_ROUTES.FAMILIARES_ADHERENTE, element: <FamiliaresAdherentePage /> },
+   { path: PRIVATE_ROUTES.EMPLEADOS, element: <EmpleadosPage /> },
+   { path: PRIVATE_ROUTES.ESPACIOS, element: <EspaciosPage /> },
+   { path: PRIVATE_ROUTES.EVENTOS, element: <EventosPage /> },
+   { path: PRIVATE_ROUTES.INVITACIONES, element: <InvitacionesPage /> },
+   { path: PRIVATE_ROUTES.ACCESOS, element: <AccesosPage /> },
+   { path: PRIVATE_ROUTES.ESTADOS, element: <EstadosPage /> },
+   { path: PRIVATE_ROUTES.GESTION_PAGOS, element: <GestionPage /> },
+   { path: PRIVATE_ROUTES.RUBROS, element: <RubrosPage /> },
+   { path: PRIVATE_ROUTES.PROGRAMACION_PAGOS, element: <ProgramacionPage /> },
+   { path: PRIVATE_ROUTES.ADMINISTRACION_PAGOS, element: <AdministracionPage /> },
+   { path: PRIVATE_ROUTES.MENSUALIDADES, element: <MensualidadesPage /> },
+   { path: PRIVATE_ROUTES.CUOTAS_BAILE, element: <CuotasBailePage /> },
 ]
 
 export const ERRORROUTES = [
-    { path: ERROR_ROUTES.PAGE_403, element: <Page403 /> },
-    { path: ERROR_ROUTES.PAGE_404, element: <Page404 /> },
+   { path: ERROR_ROUTES.PAGE_403, element: <Page403 /> },
+   { path: ERROR_ROUTES.PAGE_404, element: <Page404 /> },
 ]

@@ -4,6 +4,6 @@ import type { UpdateSocioValueInput } from "../../application/contracts/socio.in
 import type { Socio } from "../models/socio.model";
 
 export interface AdministracionRepository {
-    getSocios(params: PageParams & FilterWithState): Promise<PaginatedResponse<Socio>>;
-    updateSocioValue(socio: UpdateSocioValueInput): Promise<ApiResponseVoid>;
+   getSocios(params: PageParams & FilterWithState): Promise<PaginatedResponse<Socio>>;
+   updateSocioValue(socio: UpdateSocioValueInput): Promise<ApiResponseVoid>;
 }

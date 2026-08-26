@@ -6,18 +6,18 @@ import type { SolicitudRespuestaInput } from "../contracts/solicitud.input";
 
 export class SolicitudUseCases {
 
-    private readonly repo: SolicitudRepository;
+   private readonly repo: SolicitudRepository;
 
-    constructor(repo: SolicitudRepository) {
-        this.repo = repo;
-    }
+   constructor(repo: SolicitudRepository) {
+      this.repo = repo;
+   }
 
-    getAll(params: PageParams & FilterWithState): Promise<PaginatedResponse<Solicitud>> {
-        return this.repo.getAll(params);
-    }
+   getAll(params: PageParams & FilterWithState): Promise<PaginatedResponse<Solicitud>> {
+      return this.repo.getAll(params);
+   }
 
-    reply(payload: SolicitudRespuestaInput): Promise<ApiResponseVoid> {
-        return this.repo.reply(payload);
-    }
+   reply(payload: SolicitudRespuestaInput): Promise<ApiResponseVoid> {
+      return this.repo.reply(payload);
+   }
 
 }

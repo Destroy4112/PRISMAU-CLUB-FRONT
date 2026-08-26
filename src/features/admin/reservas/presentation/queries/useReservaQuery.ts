@@ -6,8 +6,8 @@ import type { Reserva } from '../../domain/model/reserva.model'
 import { reservaKeys } from './reserva.keys'
 
 export function useReservaQuery(params: PageParams & Filter) {
-    return useAppQuery<PaginatedResponse<Reserva>, Error>({
-        queryKey: reservaKeys.list(params),
-        queryFn: () => reservaUseCases.getAll(params),
-    })
+   return useAppQuery<PaginatedResponse<Reserva>, Error>({
+      queryKey: reservaKeys.list(params),
+      queryFn: () => reservaUseCases.getAll(params),
+   })
 }

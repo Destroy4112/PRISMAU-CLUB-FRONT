@@ -6,8 +6,8 @@ import type { Solicitud } from '../../domain/models/solicitud.model'
 import { solicitudKeys } from './solicitud.keys'
 
 export function useSolicitudQuery(params: PageParams & FilterWithState) {
-    return useAppQuery<PaginatedResponse<Solicitud>, Error>({
-        queryKey: solicitudKeys.list(params),
-        queryFn: () => solicitudUseCases.getAll(params),
-    })
+   return useAppQuery<PaginatedResponse<Solicitud>, Error>({
+      queryKey: solicitudKeys.list(params),
+      queryFn: () => solicitudUseCases.getAll(params),
+   })
 }

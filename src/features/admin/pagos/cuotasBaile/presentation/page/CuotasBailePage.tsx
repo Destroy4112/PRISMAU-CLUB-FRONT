@@ -16,39 +16,39 @@ import { statusCuotasBaile } from '../utils/cuotaBaile.util';
 
 function CuotasBailePage() {
 
-    const { titulo, subtitulo, campos, tituloModal, isLoading, cuotas, filters, limit, page, total, loading, payCuotaBaileForm,
-        modals, socio, pagadas, pendientes, pagoInfo, archivoSeleccionado, handleFilterChange, clearFilter, setFilter, cargar,
-        onPageChange, ver, limpiarArchivo, onRowsPerPageChange, handleChange, closeModal, handleChangeFile, handleSubmit,
-        closeModalFactura, closeModalPago } = useCuotaBaile();
+   const { titulo, subtitulo, campos, tituloModal, isLoading, cuotas, filters, limit, page, total, loading, payCuotaBaileForm,
+      modals, socio, pagadas, pendientes, pagoInfo, archivoSeleccionado, handleFilterChange, clearFilter, setFilter, cargar,
+      onPageChange, ver, limpiarArchivo, onRowsPerPageChange, handleChange, closeModal, handleChangeFile, handleSubmit,
+      closeModalFactura, closeModalPago } = useCuotaBaile();
 
-    const columns = SociosColumns({ cargar, ver });
+   const columns = SociosColumns({ cargar, ver });
 
-    return (
-        <>
-            <TituloPage titulo={`${titulo} de ${socio.nombre} ${socio.apellidos}`} subtitulo={subtitulo}
-                icono={<DollarSign className="w-7 h-7" />} color="pink" />
-            <Contenido>
-                <div className="flex flex-col gap-6">
-                    <MetricsCuotaBaile total={total} pagadas={pagadas} pendientes={pendientes} />
-                    <ToolbarFilter2<boolean | null> filters={filters} total={total} onSearchChange={handleFilterChange}
-                        entityName={titulo} statusOptions={statusCuotasBaile} onClearSearch={() => clearFilter("search")}
-                        onStatusFilterChange={(v) => setFilter("state", v)} campos={campos} searchType='number' />
-                </div>
-                <DataTableComponent<CuotaBaile> columns={columns} data={cuotas} loading={isLoading} limit={limit}
-                    page={page} total={total} onPageChange={onPageChange} onRowsPerPageChange={onRowsPerPageChange} />
-                <VentanaModal size={'full'} titulo={tituloModal} show={modals.pagar} cerrarModal={closeModal}
-                    handleSubmit={handleSubmit} loading={loading}>
-                    <FormCuotaBaile form={payCuotaBaileForm} handleChange={handleChange} handleChangeFile={handleChangeFile}
-                        limpiar={limpiarArchivo} archivoSeleccionado={archivoSeleccionado} />
-                </VentanaModal>
-                <VentanaModalSencilla size={'full'} show={modals.ver} cerrarModal={closeModalFactura}
-                    titulo={'Detalle de pago'}>
-                    <FacturaCuotaBaile cuotaBaile={payCuotaBaileForm.cuotaBaile!} socio={socio} />
-                </VentanaModalSencilla>
-                {modals.pago && <InfoPagoCuotaBaile pago={pagoInfo!} closeModal={closeModalPago} />}
-            </Contenido >
-        </>
-    );
+   return (
+      <>
+         <TituloPage titulo={`${titulo} de ${socio.nombre} ${socio.apellidos}`} subtitulo={subtitulo}
+            icono={<DollarSign className="w-7 h-7" />} color="pink" />
+         <Contenido>
+            <div className="flex flex-col gap-6">
+               <MetricsCuotaBaile total={total} pagadas={pagadas} pendientes={pendientes} />
+               <ToolbarFilter2<boolean | null> filters={filters} total={total} onSearchChange={handleFilterChange}
+                  entityName={titulo} statusOptions={statusCuotasBaile} onClearSearch={() => clearFilter("search")}
+                  onStatusFilterChange={(v) => setFilter("state", v)} campos={campos} searchType='number' />
+            </div>
+            <DataTableComponent<CuotaBaile> columns={columns} data={cuotas} loading={isLoading} limit={limit}
+               page={page} total={total} onPageChange={onPageChange} onRowsPerPageChange={onRowsPerPageChange} />
+            <VentanaModal size={'full'} titulo={tituloModal} show={modals.pagar} cerrarModal={closeModal}
+               handleSubmit={handleSubmit} loading={loading}>
+               <FormCuotaBaile form={payCuotaBaileForm} handleChange={handleChange} handleChangeFile={handleChangeFile}
+                  limpiar={limpiarArchivo} archivoSeleccionado={archivoSeleccionado} />
+            </VentanaModal>
+            <VentanaModalSencilla size={'full'} show={modals.ver} cerrarModal={closeModalFactura}
+               titulo={'Detalle de pago'}>
+               <FacturaCuotaBaile cuotaBaile={payCuotaBaileForm.cuotaBaile!} socio={socio} />
+            </VentanaModalSencilla>
+            {modals.pago && <InfoPagoCuotaBaile pago={pagoInfo!} closeModal={closeModalPago} />}
+         </Contenido >
+      </>
+   );
 }
 
 export default CuotasBailePage;

@@ -4,8 +4,8 @@ import type { MenuRole } from '../../domain/model/menu-role.model'
 import { menuRolKeys } from './menu-rol.keys'
 
 export function useMenuRolQuery(id: number) {
-    return useAppQuery<MenuRole[], Error>({
-        queryKey: menuRolKeys.listByRol(id),
-        queryFn: () => menuRolUseCases.getByRol(id),
-    })
+   return useAppQuery<MenuRole[], Error>({
+      queryKey: menuRolKeys.listByRol(id),
+      queryFn: () => menuRolUseCases.getByRol(id),
+   })
 }

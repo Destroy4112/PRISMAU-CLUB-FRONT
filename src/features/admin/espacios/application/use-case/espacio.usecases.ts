@@ -6,26 +6,26 @@ import type { CreateEspacioInput, UpdateEspacioInput } from "../contracts/espaci
 
 export class EspacioUseCases {
 
-    private readonly repo: EspacioRepository;
+   private readonly repo: EspacioRepository;
 
-    constructor(repo: EspacioRepository) {
-        this.repo = repo;
-    }
+   constructor(repo: EspacioRepository) {
+      this.repo = repo;
+   }
 
-    getAll(params: PageParams & FilterWithState): Promise<PaginatedResponse<Espacio>> {
-        return this.repo.getAll(params);
-    }
+   getAll(params: PageParams & FilterWithState): Promise<PaginatedResponse<Espacio>> {
+      return this.repo.getAll(params);
+   }
 
-    create(payload: CreateEspacioInput): Promise<ApiResponseVoid> {
-        return this.repo.create(payload);
-    }
+   create(payload: CreateEspacioInput): Promise<ApiResponseVoid> {
+      return this.repo.create(payload);
+   }
 
-    update(payload: UpdateEspacioInput): Promise<ApiResponseVoid> {
-        return this.repo.update(payload);
-    }
+   update(payload: UpdateEspacioInput): Promise<ApiResponseVoid> {
+      return this.repo.update(payload);
+   }
 
-    delete(id: number): Promise<ApiResponseVoid> {
-        return this.repo.delete(id);
-    }
+   delete(id: number): Promise<ApiResponseVoid> {
+      return this.repo.delete(id);
+   }
 
 }

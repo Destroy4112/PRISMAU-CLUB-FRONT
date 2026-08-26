@@ -6,29 +6,29 @@ import type { AdministradorInput } from "../contracts/administrador.input";
 
 export class AdministradorUseCases {
 
-    private readonly repo: AdministradorRepository;
+   private readonly repo: AdministradorRepository;
 
-    constructor(repo: AdministradorRepository) {
-        this.repo = repo;
-    }
+   constructor(repo: AdministradorRepository) {
+      this.repo = repo;
+   }
 
-    getAll(params: PageParams & Filter): Promise<PaginatedResponse<Administrador>> {
-        return this.repo.getAll(params);
-    }
+   getAll(params: PageParams & Filter): Promise<PaginatedResponse<Administrador>> {
+      return this.repo.getAll(params);
+   }
 
-    create(payload: AdministradorInput): Promise<ApiResponseVoid> {
-        return this.repo.create(payload);
-    }
+   create(payload: AdministradorInput): Promise<ApiResponseVoid> {
+      return this.repo.create(payload);
+   }
 
-    update(payload: AdministradorInput): Promise<ApiResponseVoid> {
-        return this.repo.update(payload);
-    }
+   update(payload: AdministradorInput): Promise<ApiResponseVoid> {
+      return this.repo.update(payload);
+   }
 
-    updateStatus(id: AdministradorId): Promise<ApiResponseVoid> {
-        return this.repo.updateStatus(id);
-    }
+   updateStatus(id: AdministradorId): Promise<ApiResponseVoid> {
+      return this.repo.updateStatus(id);
+   }
 
-    delete(id: AdministradorId): Promise<ApiResponseVoid> {
-        return this.repo.delete(id);
-    }
+   delete(id: AdministradorId): Promise<ApiResponseVoid> {
+      return this.repo.delete(id);
+   }
 }

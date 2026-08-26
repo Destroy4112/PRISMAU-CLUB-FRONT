@@ -5,33 +5,33 @@ import { useDeleteEmpleadoMutation } from "../mutations/useDeleteEmpleadoMutatio
 
 export function useEmpleadoActions() {
 
-    const { mutate: eliminarMutation } = useDeleteEmpleadoMutation();
+   const { mutate: eliminarMutation } = useDeleteEmpleadoMutation();
 
-    const handleDelete = useCallback(async (id: number): Promise<void> => {
-        if (await alertConfirm("¿Seguro que quiere eliminar este empleado?", "Si, eliminar!")) {
-            eliminarMutation(id);
-        }
-    }, [eliminarMutation]);
+   const handleDelete = useCallback(async (id: number): Promise<void> => {
+      if (await alertConfirm("¿Seguro que quiere eliminar este empleado?", "Si, eliminar!")) {
+         eliminarMutation(id);
+      }
+   }, [eliminarMutation]);
 
-    const { mutate: resetPasswordMutation } = useResetPasswordMutation();
+   const { mutate: resetPasswordMutation } = useResetPasswordMutation();
 
-    const handleResetPassword = useCallback(async (id: number): Promise<void> => {
-        if (await alertConfirm("¿Seguro que quiere restablecer la contraseña de este empleado?", "Si, restablecer!")) {
-            resetPasswordMutation(id, {
-                onSuccess: (res) => {
-                    if (res.status) {
-                        alertSucces(res.message);
-                    } else {
-                        res.errors.forEach((error: string) => alertWarning(error));
-                    }
-                },
-                onError: (error) => alertError(error.message)
-            });
-        }
-    }, [resetPasswordMutation]);
+   const handleResetPassword = useCallback(async (id: number): Promise<void> => {
+      if (await alertConfirm("¿Seguro que quiere restablecer la contraseña de este empleado?", "Si, restablecer!")) {
+         resetPasswordMutation(id, {
+            onSuccess: (res) => {
+               if (res.status) {
+                  alertSucces(res.message);
+               } else {
+                  res.errors?.forEach((error: string) => alertWarning(error));
+               }
+            },
+            onError: (error) => alertError(error.message)
+         });
+      }
+   }, [resetPasswordMutation]);
 
-    return {
-        handleDelete,
-        handleResetPassword,
-    };
+   return {
+      handleDelete,
+      handleResetPassword,
+   };
 }

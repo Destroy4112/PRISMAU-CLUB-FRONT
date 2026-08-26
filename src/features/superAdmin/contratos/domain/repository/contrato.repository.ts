@@ -3,5 +3,5 @@ import type { PageParams, PaginatedResponse } from "@shared/constants/response/R
 import type { Contrato } from "../models/contrato.model";
 
 export interface ContratoRepository {
-    getAll(params: PageParams & Filter): Promise<PaginatedResponse<Contrato>>;
+   getAll(params: PageParams & Filter): Promise<PaginatedResponse<Contrato>>;
 }

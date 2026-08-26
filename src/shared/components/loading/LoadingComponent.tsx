@@ -11,29 +11,18 @@ export default function LoadingComponent() {
             </div>
 
             <div className="relative z-10 flex flex-col items-center justify-center">
-
-
                 <div className="relative w-48 h-48 flex items-center justify-center">
-
     
                     <div className="absolute inset-0 rounded-full border-2 border-transparent border-t-green-600/40 border-r-green-500/40 animate-spin" style={{ animationDuration: '3s' }}></div>
-
-    
                     <div className="absolute inset-4 rounded-full border-2 border-transparent border-b-orange-500/40 border-l-orange-500/40" style={{ animation: 'spin 2s linear infinite reverse' }}></div>
-
-    
                     <div className="absolute inset-8 rounded-full border-2 border-transparent border-t-purple-500/35 border-r-purple-500/35 animate-spin" style={{ animationDuration: '1.5s' }}></div>
-
     
                     <div className="relative w-32 h-32 flex items-center justify-center overflow-hidden group">
                         <div className="absolute inset-0 bg-linear-to-br from-blue-100/40 via-transparent to-orange-100/30 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-
                         <img src={imagen.logoPrisma} alt="PRISMA Logo" className="w-24 h-24 object-contain relative z-10 drop-shadow-2xl" />
-
                         <div className="absolute inset-0 bg-linear-to-t from-blue-100/20 to-transparent blur-xl"></div>
                     </div>
 
-    
                     <div className="absolute inset-0 animate-spin" style={{ animationDuration: '4s' }}>
                         <div className="absolute top-0 left-1/2 w-3 h-3 -ml-1.5 bg-green-500 rounded-full shadow-lg shadow-green-500/40"></div>
                     </div>
@@ -48,7 +37,6 @@ export default function LoadingComponent() {
 
                 </div>
 
-
                 <div className="items-center justify-center mt-8 w-72 h-1.5 bg-gray-200/60 rounded-full overflow-hidden backdrop-blur-sm shadow-inner">
                     <div
                         className="h-full bg-green-500 rounded-full animate-pulse"
@@ -58,7 +46,6 @@ export default function LoadingComponent() {
                         }}
                     ></div>
                 </div>
-
 
                 <div className="mt-6 text-center">
                     <p className="text-xl font-medium text-gray-900 animate-pulse">Cargando...</p>

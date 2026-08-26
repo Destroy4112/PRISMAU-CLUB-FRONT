@@ -2,10 +2,10 @@ import { useRubrosProgramacionQuery } from "../queries/useRubrosProgramacionQuer
 
 export function useRubroProgramacion() {
 
-    const { data: rubros = [], isLoading } = useRubrosProgramacionQuery();
+   const { data: rubros = [], isLoading } = useRubrosProgramacionQuery();
 
-    return {
-        rubros,
-        isLoading,
-    };
+   return {
+      rubros,
+      isLoading,
+   };
 }

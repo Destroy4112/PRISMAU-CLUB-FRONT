@@ -3,17 +3,17 @@ import type { Socio } from "../../domain/models/socio.model";
 export type EditableSocioField = "mensualidad" | "cuotaBaile";
 
 export interface EditValorForm {
-    documento: string;
-    field: EditableSocioField;
-    value: string;
+   documento: string;
+   field: EditableSocioField;
+   value: string;
 }
 
 export interface SocioColumnsProps {
-    edit: EditValorForm | null;
-    loading: boolean;
-    startEdit: (data: EditValorForm) => void;
-    cancelEdit: () => void;
-    changeEditValue: (value: string) => void;
-    saveEdit: () => void;
-    go: (field: EditableSocioField, socio: Socio) => void;
+   edit: EditValorForm | null;
+   loading: boolean;
+   startEdit: (data: EditValorForm) => void;
+   cancelEdit: () => void;
+   changeEditValue: (value: string) => void;
+   saveEdit: () => void;
+   go: (field: EditableSocioField, socio: Socio) => void;
 }

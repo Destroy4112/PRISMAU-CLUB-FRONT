@@ -1,4 +1,4 @@
 export type UserPasswordDto = {
-    id: number;
-    password: string;
+   id: number;
+   password: string;
 };

@@ -1,5 +1,5 @@
+import { ENDPOINTS } from "@core/constants/endpoints";
 import { http } from "@core/http/axios.instance";
-import { ENDPOINTS } from "@shared/constants/endpoints/Endpoints.model";
 import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
 import type { MenuRolInput } from "../../application/contracts/menu-rol.input";
 import type { MenuRole } from "../../domain/model/menu-role.model";
@@ -12,21 +12,21 @@ const URL = ENDPOINTS.MENU_ROL;
 
 export class MenuRolApiRepository implements MenuRolRepository {
 
-    async getByRol(id: number): Promise<MenuRole[]> {
-        const res = await http.get<MenuRoleDTO[]>(`${URL}/${id}`);
-        return res.data.map(menuRoleDtoToDomain);
-    }
+   async getByRol(id: number): Promise<MenuRole[]> {
+      const res = await http.get<MenuRoleDTO[]>(`${URL}/${id}`);
+      return res.data.map(menuRoleDtoToDomain);
+   }
 
-    async create(payload: MenuRolInput): Promise<ApiResponseVoid> {
-        const dto = menuRolpayloadToCreateDto(payload);
-        const res = await http.post<ApiResponseVoid>(URL, dto);
-        if (!res.data?.status) return { status: false, errors: res.data.errors };
-        return res.data;
-    }
+   async create(payload: MenuRolInput): Promise<ApiResponseVoid> {
+      const dto = menuRolpayloadToCreateDto(payload);
+      const res = await http.post<ApiResponseVoid>(URL, dto);
+      if (!res.data?.status) return { status: false, errors: res.data.errors };
+      return res.data;
+   }
 
-    async delete(id: number): Promise<ApiResponseVoid> {
-        const res = await http.delete<ApiResponseVoid>(`${URL}/${id}`);
-        if (!res.data?.status) return { status: false, errors: res.data.errors };
-        return res.data;
-    }
+   async delete(id: number): Promise<ApiResponseVoid> {
+      const res = await http.delete<ApiResponseVoid>(`${URL}/${id}`);
+      if (!res.data?.status) return { status: false, errors: res.data.errors };
+      return res.data;
+   }
 }

@@ -6,18 +6,18 @@ import { useEventoList } from "./useEventoList";
 
 export default function useEvento() {
 
-    const modals = useModals<EventoModalKey>();
+   const modals = useModals<EventoModalKey>();
 
-    const list = useEventoList();
-    const form = useEventoForm(modals);
-    const actions = useEventoActions();
+   const list = useEventoList();
+   const form = useEventoForm(modals);
+   const actions = useEventoActions();
 
-    return {
-        titulo: "Eventos",
-        subtitulo: "Listado de eventos disponibles",
-        modals: modals.modals,
-        ...list,
-        ...form,
-        ...actions,
-    }
+   return {
+      titulo: "Eventos",
+      subtitulo: "Listado de eventos disponibles",
+      modals: modals.modals,
+      ...list,
+      ...form,
+      ...actions,
+   }
 }

@@ -9,22 +9,22 @@ import useInvitacion from '../hooks/useInvitacion';
 
 function InvitacionesPage() {
 
-    const { titulo, subtitulo, isLoading, contratos, filters, limit, page, total, campos,
-        handleFilterChange, limpiarFiltros, onPageChange, onRowsPerPageChange } = useInvitacion();
+   const { titulo, subtitulo, isLoading, contratos, filters, limit, page, total, campos,
+      handleFilterChange, limpiarFiltros, onPageChange, onRowsPerPageChange } = useInvitacion();
 
-    const columns = InvitacionesColumns();
+   const columns = InvitacionesColumns();
 
-    return (
-        <>
-            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<Contact className="w-7 h-7" />} color="green" />
-            <Contenido>
-                <ToolbarFilter entityName={titulo} onSearchChange={handleFilterChange} onClearSearch={limpiarFiltros}
-                    filters={filters} total={total} campos={campos} />
-                <DataTableComponent<Invitacion> columns={columns} data={contratos} loading={isLoading}
-                    limit={limit} page={page} total={total} onPageChange={onPageChange} onRowsPerPageChange={onRowsPerPageChange} />
-            </Contenido>
-        </>
-    );
+   return (
+      <>
+         <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<Contact className="w-7 h-7" />} color="green" />
+         <Contenido>
+            <ToolbarFilter entityName={titulo} onSearchChange={handleFilterChange} onClearSearch={limpiarFiltros}
+               filters={filters} total={total} campos={campos} />
+            <DataTableComponent<Invitacion> columns={columns} data={contratos} loading={isLoading}
+               limit={limit} page={page} total={total} onPageChange={onPageChange} onRowsPerPageChange={onRowsPerPageChange} />
+         </Contenido>
+      </>
+   );
 }
 
 export default InvitacionesPage;

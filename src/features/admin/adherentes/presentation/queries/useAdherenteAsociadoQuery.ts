@@ -4,8 +4,8 @@ import type { Asociado } from '@features/admin/asociados/domain/model/asociado.m
 import { adherenteKeys } from './adherente.keys'
 
 export function useAdherenteAsociadoQuery() {
-    return useAppQuery<Asociado[], Error>({
-        queryKey: adherenteKeys.asociados(),
-        queryFn: () => asociadoUseCases.getAsociados(),
-    })
+   return useAppQuery<Asociado[], Error>({
+      queryKey: adherenteKeys.asociados(),
+      queryFn: () => asociadoUseCases.getAsociados(),
+   })
 }

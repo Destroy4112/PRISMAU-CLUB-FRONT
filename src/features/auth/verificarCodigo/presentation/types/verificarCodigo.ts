@@ -1,15 +1,15 @@
 export interface VerificarForm {
-    code: string
+   code: string
 }
 
 export const INITIAL_VERIFICAR_FORM: VerificarForm = {
-    code: ''
+   code: ''
 }
 
 export interface VerificarContext {
-    documento: string
+   documento: string
 }
 
-export const buildVerificarContext = (documento : string): VerificarContext => ({
-    documento,
+export const buildVerificarContext = (documento: string): VerificarContext => ({
+   documento,
 });

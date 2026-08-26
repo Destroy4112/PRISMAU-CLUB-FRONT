@@ -1,4 +1,4 @@
-import { URL_BACK } from '@shared/constants/endpoints/Endpoints.model';
+import { URL_BACK } from '@core/constants/endpoints';
 import axios from 'axios';
 
 export const http = axios.create({ baseURL: `${URL_BACK}/api/` });

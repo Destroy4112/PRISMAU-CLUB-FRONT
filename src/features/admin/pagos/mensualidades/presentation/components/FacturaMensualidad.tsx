@@ -10,219 +10,219 @@ import type { FacturaMensualidadProps } from "../types/mensualidad";
 
 export default function FacturaMensualidad({ mensualidad, socio }: FacturaMensualidadProps) {
 
-    const periodo = formatearFechaMesAnio(mensualidad.fecha);
+   const periodo = formatearFechaMesAnio(mensualidad.fecha);
 
-    const handleOpenPdfInNewTab = async () => {
-        const blob = await pdf(<FacturaMensualidadPdf mensualidad={mensualidad} socio={socio} />).toBlob();
-        const pdfUrl = URL.createObjectURL(blob);
-        window.open(pdfUrl, '_blank');
-    };
+   const handleOpenPdfInNewTab = async () => {
+      const blob = await pdf(<FacturaMensualidadPdf mensualidad={mensualidad} socio={socio} />).toBlob();
+      const pdfUrl = URL.createObjectURL(blob);
+      window.open(pdfUrl, '_blank');
+   };
 
-    return (
-        <div className="min-h-screen">
-            <div className="bg-white border border-gray-200 shadow-sm rounded-lg mb-6">
-                <div className="flex flex-col sm:flex-row justify-between items-center p-4">
-                    <div className="flex items-center space-x-4">
-                        <HiOutlineDocumentText className="w-6 h-6 text-blue-600" />
-                        <div>
-                            <h2 className="text-sm font-medium text-gray-900">
-                                Factura #{mensualidad.id}
-                            </h2>
-                            <p className="text-xs text-gray-500">{periodo}</p>
+   return (
+      <div className="min-h-screen">
+         <div className="bg-white border border-gray-200 shadow-sm rounded-lg mb-6">
+            <div className="flex flex-col sm:flex-row justify-between items-center p-4">
+               <div className="flex items-center space-x-4">
+                  <HiOutlineDocumentText className="w-6 h-6 text-blue-600" />
+                  <div>
+                     <h2 className="text-sm font-medium text-gray-900">
+                        Factura #{mensualidad.id}
+                     </h2>
+                     <p className="text-xs text-gray-500">{periodo}</p>
+                  </div>
+               </div>
+               <div className="flex flex-col sm:flex-row items-center space-x-2">
+                  <Button size="sm" color="gray" pill onClick={handleOpenPdfInNewTab}>
+                     <HiOutlineDownload className="w-4 h-4 mr-2" />
+                     Descargar
+                  </Button>
+               </div>
+
+            </div>
+         </div>
+
+         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+            <div className="md:col-span-8">
+               <Card className="mb-6">
+                  <div className="border-b border-gray-200 pb-8">
+                     <div className="flex flex-col md:flex-row justify-between items-start">
+                        <div className="flex-1 mb-4 md:mb-0">
+                           <div className="flex items-center space-x-4 mb-6">
+                              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center">
+                                 <img src={imagen.logoClub} alt="Logo" className="w-12 h-12 object-contain" />
+                              </div>
+                              <div>
+                                 <h1 className="text-sm sm:text-2xl font-bold text-gray-900">
+                                    CORPORACIÓN CLUB SINCELEJO
+                                 </h1>
+                                 <p className="sm:text-sm text-xs text-gray-500">
+                                    NIT: 800.007.089 - 9
+                                 </p>
+                              </div>
+                           </div>
+
+                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                              {[
+                                 {
+                                    icon: HiOutlineLocationMarker,
+                                    label: "Dirección",
+                                    value: "CALLE 38 NO 34 184",
+                                 },
+                                 {
+                                    icon: HiOutlinePhone,
+                                    label: "Teléfono",
+                                    value: "3135335145 - 2804889",
+                                 },
+                                 {
+                                    icon: HiOutlineMail,
+                                    label: "Email",
+                                    value: "info@clubsincelejo.com",
+                                 },
+                                 {
+                                    icon: HiOutlineGlobe,
+                                    label: "Ciudad",
+                                    value: "SINCELEJO - COLOMBIA",
+                                 },
+                              ].map((item, index) => (
+                                 <div key={index} className="flex items-start space-x-3">
+                                    <item.icon className="w-5 h-5 text-gray-400 mt-0.5" />
+                                    <div>
+                                       <p className="text-gray-600">{item.label}</p>
+                                       <p className="font-medium text-gray-900 text-xs sm:text-sm">
+                                          {item.value}
+                                       </p>
+                                    </div>
+                                 </div>
+                              ))}
+                           </div>
                         </div>
-                    </div>
-                    <div className="flex flex-col sm:flex-row items-center space-x-2">
-                        <Button size="sm" color="gray" pill onClick={handleOpenPdfInNewTab}>
-                            <HiOutlineDownload className="w-4 h-4 mr-2" />
-                            Descargar
-                        </Button>
-                    </div>
+                        <div className="text-right mb-4 md:mb-0">
+                           <div className="inline-block rounded-lg bg-blue-50 px-4 py-2 mb-6">
+                              <div className="text-xs text-blue-600 font-medium">
+                                 FACTURA N°
+                              </div>
+                              <div className="text-2xl font-bold text-blue-600">
+                                 {mensualidad.id}
+                              </div>
+                           </div>
+                           <div className="flex flex-col space-y-1 text-sm">
+                              <div>
+                                 <span className="text-gray-500">Fecha de Emisión:</span>
+                                 <span className="ml-2 font-medium">{periodo}</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
 
-                </div>
+                  <div className="py-2 border-b border-gray-200">
+                     <h2 className="text-lg font-semibold text-gray-900 mb-2">
+                        Información del Cliente
+                     </h2>
+                     <div className="bg-gray-50 rounded-lg p-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                           <div>
+                              <p className="text-sm text-gray-500 mb-1">
+                                 Nombre Completo
+                              </p>
+                              <p className="font-medium text-gray-900">
+                                 {socio.nombre} {socio.apellidos}
+                              </p>
+                           </div>
+                           <div>
+                              <p className="text-sm text-gray-500 mb-1">Documento</p>
+                              <p className="font-medium text-gray-900">
+                                 {socio.documento}
+                              </p>
+                           </div>
+                           <div>
+                              <p className="text-sm text-gray-500 mb-1">Teléfono</p>
+                              <p className="font-medium text-gray-900">{socio.telefono}</p>
+                           </div>
+                           <div>
+                              <p className="text-sm text-gray-500 mb-1">Dirección</p>
+                              <p className="font-medium text-gray-900">
+                                 {socio.direccion || "No registrada"}
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div className="py-4">
+                     <h2 className="text-lg font-semibold text-gray-900 mb-4">
+                        Detalle de Pagos
+                     </h2>
+                     <div className="overflow-x-auto">
+                        <Table className='border border-gray-100'>
+                           <TableHead>
+                              <TableHeadCell className="bg-gray-200">Código</TableHeadCell>
+                              <TableHeadCell className="bg-gray-200">Descripción</TableHeadCell>
+                              <TableHeadCell className="bg-gray-200">Metodo de Pago</TableHeadCell>
+                              <TableHeadCell className="bg-gray-200">Comprobante</TableHeadCell>
+                              <TableHeadCell className="bg-gray-200 text-right">Valor</TableHeadCell>
+                           </TableHead>
+                           <TableBody>
+                              {
+                                 mensualidad.pagos.map((pago) => (
+                                    <TableRow key={pago.id}>
+                                       <TableCell>{pago.id}</TableCell>
+                                       <TableCell>PAGO FACTURA {periodo}</TableCell>
+                                       <TableCell>{pago.metodoPago}</TableCell>
+                                       <TableCell>{pago.referenciaPago}</TableCell>
+                                       <TableCell className="text-right">{formatearMoneda(pago.monto)}</TableCell>
+                                    </TableRow>
+                                 ))
+                              }
+                           </TableBody>
+                        </Table>
+                     </div>
+                  </div>
+               </Card>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-                <div className="md:col-span-8">
-                    <Card className="mb-6">
-                        <div className="border-b border-gray-200 pb-8">
-                            <div className="flex flex-col md:flex-row justify-between items-start">
-                                <div className="flex-1 mb-4 md:mb-0">
-                                    <div className="flex items-center space-x-4 mb-6">
-                                        <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center">
-                                            <img src={imagen.logoClub} alt="Logo" className="w-12 h-12 object-contain" />
-                                        </div>
-                                        <div>
-                                            <h1 className="text-sm sm:text-2xl font-bold text-gray-900">
-                                                CORPORACIÓN CLUB SINCELEJO
-                                            </h1>
-                                            <p className="sm:text-sm text-xs text-gray-500">
-                                                NIT: 800.007.089 - 9
-                                            </p>
-                                        </div>
-                                    </div>
+            <div className="md:col-span-4 space-y-6">
+               <Card>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                     Resumen de Pago
+                  </h3>
 
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                        {[
-                                            {
-                                                icon: HiOutlineLocationMarker,
-                                                label: "Dirección",
-                                                value: "CALLE 38 NO 34 184",
-                                            },
-                                            {
-                                                icon: HiOutlinePhone,
-                                                label: "Teléfono",
-                                                value: "3135335145 - 2804889",
-                                            },
-                                            {
-                                                icon: HiOutlineMail,
-                                                label: "Email",
-                                                value: "info@clubsincelejo.com",
-                                            },
-                                            {
-                                                icon: HiOutlineGlobe,
-                                                label: "Ciudad",
-                                                value: "SINCELEJO - COLOMBIA",
-                                            },
-                                        ].map((item, index) => (
-                                            <div key={index} className="flex items-start space-x-3">
-                                                <item.icon className="w-5 h-5 text-gray-400 mt-0.5" />
-                                                <div>
-                                                    <p className="text-gray-600">{item.label}</p>
-                                                    <p className="font-medium text-gray-900 text-xs sm:text-sm">
-                                                        {item.value}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                                <div className="text-right mb-4 md:mb-0">
-                                    <div className="inline-block rounded-lg bg-blue-50 px-4 py-2 mb-6">
-                                        <div className="text-xs text-blue-600 font-medium">
-                                            FACTURA N°
-                                        </div>
-                                        <div className="text-2xl font-bold text-blue-600">
-                                            {mensualidad.id}
-                                        </div>
-                                    </div>
-                                    <div className="flex flex-col space-y-1 text-sm">
-                                        <div>
-                                            <span className="text-gray-500">Fecha de Emisión:</span>
-                                            <span className="ml-2 font-medium">{periodo}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                  <div className="space-y-4">
+                     <div className="flex justify-between items-center pb-4 border-b border-gray-200">
+                        <span className="text-gray-600">Estado</span>
+                        <BadgeStatusPago status={mensualidad.estado} />
+                     </div>
+                     <div className="flex justify-between items-center pt-2">
+                        <span className="text-lg font-semibold">Total</span>
+                        <span className="text-md sm:text-2xl font-bold text-green-600">
+                           {formatearMoneda(mensualidad.valor)}
+                        </span>
+                     </div>
+                  </div>
+               </Card>
 
-                        <div className="py-2 border-b border-gray-200">
-                            <h2 className="text-lg font-semibold text-gray-900 mb-2">
-                                Información del Cliente
-                            </h2>
-                            <div className="bg-gray-50 rounded-lg p-6">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
-                                    <div>
-                                        <p className="text-sm text-gray-500 mb-1">
-                                            Nombre Completo
-                                        </p>
-                                        <p className="font-medium text-gray-900">
-                                            {socio.nombre} {socio.apellidos}
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <p className="text-sm text-gray-500 mb-1">Documento</p>
-                                        <p className="font-medium text-gray-900">
-                                            {socio.documento}
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <p className="text-sm text-gray-500 mb-1">Teléfono</p>
-                                        <p className="font-medium text-gray-900">{socio.telefono}</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-sm text-gray-500 mb-1">Dirección</p>
-                                        <p className="font-medium text-gray-900">
-                                            {socio.direccion || "No registrada"}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+               <Card>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                     Soporte
+                  </h3>
+                  {
+                     mensualidad.pagos.map((pago) => (
+                        pago.soporte
+                           ? <FilePreview key={pago.id} fileUrl={pago.soporte} />
+                           : <p key={pago.id} className="text-sm text-gray-500">El pago se realizó con el metodo de pago: {pago.metodoPago}</p>
+                     ))
+                  }
 
-                        <div className="py-4">
-                            <h2 className="text-lg font-semibold text-gray-900 mb-4">
-                                Detalle de Pagos
-                            </h2>
-                            <div className="overflow-x-auto">
-                                <Table className='border border-gray-100'>
-                                    <TableHead>
-                                        <TableHeadCell className="bg-gray-200">Código</TableHeadCell>
-                                        <TableHeadCell className="bg-gray-200">Descripción</TableHeadCell>
-                                        <TableHeadCell className="bg-gray-200">Metodo de Pago</TableHeadCell>
-                                        <TableHeadCell className="bg-gray-200">Comprobante</TableHeadCell>
-                                        <TableHeadCell className="bg-gray-200 text-right">Valor</TableHeadCell>
-                                    </TableHead>
-                                    <TableBody>
-                                        {
-                                            mensualidad.pagos.map((pago) => (
-                                                <TableRow key={pago.id}>
-                                                    <TableCell>{pago.id}</TableCell>
-                                                    <TableCell>PAGO FACTURA {periodo}</TableCell>
-                                                    <TableCell>{pago.metodoPago}</TableCell>
-                                                    <TableCell>{pago.referenciaPago}</TableCell>
-                                                    <TableCell className="text-right">{formatearMoneda(pago.monto)}</TableCell>
-                                                </TableRow>
-                                            ))
-                                        }
-                                    </TableBody>
-                                </Table>
-                            </div>
-                        </div>
-                    </Card>
-                </div>
+               </Card>
 
-                <div className="md:col-span-4 space-y-6">
-                    <Card>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                            Resumen de Pago
-                        </h3>
-
-                        <div className="space-y-4">
-                            <div className="flex justify-between items-center pb-4 border-b border-gray-200">
-                                <span className="text-gray-600">Estado</span>
-                                <BadgeStatusPago status={mensualidad.estado} />
-                            </div>
-                            <div className="flex justify-between items-center pt-2">
-                                <span className="text-lg font-semibold">Total</span>
-                                <span className="text-md sm:text-2xl font-bold text-green-600">
-                                    {formatearMoneda(mensualidad.valor)}
-                                </span>
-                            </div>
-                        </div>
-                    </Card>
-
-                    <Card>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                            Soporte
-                        </h3>
-                        {
-                            mensualidad.pagos.map((pago) => (
-                                pago.soporte
-                                    ? <FilePreview key={pago.id} fileUrl={pago.soporte} />
-                                    : <p key={pago.id} className="text-sm text-gray-500">El pago se realizó con el metodo de pago: {pago.metodoPago}</p>
-                            ))
-                        }
-
-                    </Card>
-
-                </div>
             </div>
-            <div className="mt-8 text-center text-sm text-gray-500">
-                <p className="mt-1">
-                    © {new Date().getFullYear()} Corporación Club Sincelejo - Todos los
-                    derechos reservados
-                </p>
-            </div>
-        </div>
-    );
+         </div>
+         <div className="mt-8 text-center text-sm text-gray-500">
+            <p className="mt-1">
+               © {new Date().getFullYear()} Corporación Club Sincelejo - Todos los
+               derechos reservados
+            </p>
+         </div>
+      </div>
+   );
 }

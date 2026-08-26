@@ -5,17 +5,17 @@ import { useSolicitudList } from "./useSolicitudList";
 
 export default function useSolicitud() {
 
-    const modal = useModals<SolicitudModalKey>();
+   const modal = useModals<SolicitudModalKey>();
 
-    const list = useSolicitudList();
-    const form = useSolicitudForm(modal);
+   const list = useSolicitudList();
+   const form = useSolicitudForm(modal);
 
-    return {
-        titulo: "Solicitudes",
-        subtitulo: "Revisión de solicitudes de usuarios",
-        campos: "nombre del socio",
-        modals: modal.modals,
-        ...list,
-        ...form
-    };
+   return {
+      titulo: "Solicitudes",
+      subtitulo: "Revisión de solicitudes de usuarios",
+      campos: "nombre del socio",
+      modals: modal.modals,
+      ...list,
+      ...form
+   };
 }

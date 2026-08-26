@@ -5,23 +5,23 @@ import { useUpdateStatusAdministradorMutation } from "../mutations/useUpdateStat
 
 export function useAdministradorActions() {
 
-    const { mutate: cambiarEstadoMutation } = useUpdateStatusAdministradorMutation();
-    const { mutate: eliminarAdminMutation } = useDeleteAdministradorMutation();
+   const { mutate: cambiarEstadoMutation } = useUpdateStatusAdministradorMutation();
+   const { mutate: eliminarAdminMutation } = useDeleteAdministradorMutation();
 
-    const handleUpdateStatus = useCallback(async (id: number): Promise<void> => {
-        if (await alertConfirm("¿Seguro que quiere cambiar el estado de este admin?", "Si, cambiar!")) {
-            cambiarEstadoMutation(id);
-        }
-    }, [cambiarEstadoMutation]);
+   const handleUpdateStatus = useCallback(async (id: number): Promise<void> => {
+      if (await alertConfirm("¿Seguro que quiere cambiar el estado de este admin?", "Si, cambiar!")) {
+         cambiarEstadoMutation(id);
+      }
+   }, [cambiarEstadoMutation]);
 
-    const handleDelete = useCallback(async (id: number): Promise<void> => {
-        if (await alertConfirm("¿Seguro que quiere eliminar este admin?", "Si, eliminar!")) {
-            eliminarAdminMutation(id);
-        }
-    }, [eliminarAdminMutation]);
+   const handleDelete = useCallback(async (id: number): Promise<void> => {
+      if (await alertConfirm("¿Seguro que quiere eliminar este admin?", "Si, eliminar!")) {
+         eliminarAdminMutation(id);
+      }
+   }, [eliminarAdminMutation]);
 
-    return {
-        handleDelete,
-        handleUpdateStatus,
-    };
+   return {
+      handleDelete,
+      handleUpdateStatus,
+   };
 }

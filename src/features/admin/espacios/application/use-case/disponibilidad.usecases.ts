@@ -5,18 +5,18 @@ import type { SaveDisponibilidadInput } from "../contracts/disponibilidad.input"
 
 export class DisponibilidadUseCases {
 
-    private readonly repo: DisponibilidadRepository;
+   private readonly repo: DisponibilidadRepository;
 
-    constructor(repo: DisponibilidadRepository) {
-        this.repo = repo;
-    }
+   constructor(repo: DisponibilidadRepository) {
+      this.repo = repo;
+   }
 
-    get(id: number): Promise<Disponibilidad[]> {
-        return this.repo.get(id);
-    }
+   get(id: number): Promise<Disponibilidad[]> {
+      return this.repo.get(id);
+   }
 
-    save(disponibilidad: SaveDisponibilidadInput): Promise<ApiResponseVoid> {
-        return this.repo.save(disponibilidad);
-    }
+   save(disponibilidad: SaveDisponibilidadInput): Promise<ApiResponseVoid> {
+      return this.repo.save(disponibilidad);
+   }
 
 }

@@ -6,8 +6,8 @@ import type { Empleado } from '../../domain/model/empleado.model'
 import { empleadoKeys } from './empleado.keys'
 
 export function useEmpleadoQuery(params: PageParams & FilterWithState) {
-    return useAppQuery<PaginatedResponse<Empleado>, Error>({
-        queryKey: empleadoKeys.list(params),
-        queryFn: () => empleadoUseCases.getAll(params),
-    })
+   return useAppQuery<PaginatedResponse<Empleado>, Error>({
+      queryKey: empleadoKeys.list(params),
+      queryFn: () => empleadoUseCases.getAll(params),
+   })
 }

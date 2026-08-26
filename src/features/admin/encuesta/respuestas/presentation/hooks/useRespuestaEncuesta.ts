@@ -7,19 +7,19 @@ import { useRespuestaEncuestaList } from "./useRespuestaEncuestaList";
 
 export default function useRespuestaEncuesta() {
 
-    const encuesta: Encuesta = useAppLocation().state?.encuesta;
+   const encuesta: Encuesta = useAppLocation().state?.encuesta;
 
-    const modalApi = useModals<RespuestaEncuestaModalKey>();
+   const modalApi = useModals<RespuestaEncuestaModalKey>();
 
-    const list = useRespuestaEncuestaList(encuesta.id);
-    const form = useRespuestaEncuestaForm(modalApi); 
+   const list = useRespuestaEncuestaList(encuesta.id);
+   const form = useRespuestaEncuestaForm(modalApi);
 
-    return {
-        titulo: 'Respuestas de la encuesta',
-        subtitulo: 'Listado de usuarios que respondieron la encuesta',
-        modals: modalApi.modals.detalle,
-        encuesta,
-        ...list,
-        ...form
-    }
+   return {
+      titulo: 'Respuestas de la encuesta',
+      subtitulo: 'Listado de usuarios que respondieron la encuesta',
+      modals: modalApi.modals.detalle,
+      encuesta,
+      ...list,
+      ...form
+   }
 }

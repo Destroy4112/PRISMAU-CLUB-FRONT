@@ -1,6 +1,6 @@
 type Rubro = {
-    rubro: string;
-    valor: number;
+   rubro: string;
+   valor: number;
 }
 
 export type CreateRubroInput = Rubro;

@@ -4,9 +4,9 @@ import type { AdministradorInput } from "../../application/contracts/administrad
 import type { Administrador, AdministradorId } from "../models/administrador.model";
 
 export interface AdministradorRepository {
-    getAll(params: PageParams & Filter): Promise<PaginatedResponse<Administrador>>;
-    create(payload: AdministradorInput): Promise<ApiResponseVoid>;
-    update(payload: AdministradorInput): Promise<ApiResponseVoid>;
-    updateStatus(id: AdministradorId): Promise<ApiResponseVoid>;
-    delete(id: AdministradorId): Promise<ApiResponseVoid>;
+   getAll(params: PageParams & Filter): Promise<PaginatedResponse<Administrador>>;
+   create(payload: AdministradorInput): Promise<ApiResponseVoid>;
+   update(payload: AdministradorInput): Promise<ApiResponseVoid>;
+   updateStatus(id: AdministradorId): Promise<ApiResponseVoid>;
+   delete(id: AdministradorId): Promise<ApiResponseVoid>;
 }

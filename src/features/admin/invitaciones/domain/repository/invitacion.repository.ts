@@ -3,5 +3,5 @@ import type { PageParams, PaginatedResponse } from "@shared/constants/response/R
 import type { Invitacion } from "../models/invitacion.model";
 
 export interface InvitacionRepository {
-    getAll(params: PageParams & Filter): Promise<PaginatedResponse<Invitacion>>;
+   getAll(params: PageParams & Filter): Promise<PaginatedResponse<Invitacion>>;
 }

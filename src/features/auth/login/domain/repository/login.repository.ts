@@ -1,6 +1,6 @@
-import type { SessionResponse } from "@features/auth/domain/models/session.model";
-import type { LoginPayload } from "../payload/login.payload";
+import type { SessionResponse } from "@features/auth/shared/domain/models/session.model";
+import type { LoginInput } from "../../application/contracts/login.input";
 
 export interface LoginRepository {
-    iniciarSesion(login: LoginPayload): Promise<SessionResponse>;
+   iniciarSesion(login: LoginInput): Promise<SessionResponse>;
 }

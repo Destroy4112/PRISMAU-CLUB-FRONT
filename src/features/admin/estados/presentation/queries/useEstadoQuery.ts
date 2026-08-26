@@ -6,8 +6,8 @@ import type { Estado } from '../../domain/models/estado.model'
 import { estadoKeys } from './estado.keys'
 
 export function useEstadoQuery(params: PageParams & FilterWithState) {
-    return useAppQuery<PaginatedResponse<Estado>, Error>({
-        queryKey: estadoKeys.lists(params),
-        queryFn: () => estadoUseCases.getAll(params),
-    })
+   return useAppQuery<PaginatedResponse<Estado>, Error>({
+      queryKey: estadoKeys.lists(params),
+      queryFn: () => estadoUseCases.getAll(params),
+   })
 }

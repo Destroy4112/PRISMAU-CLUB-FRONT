@@ -8,16 +8,16 @@ import useDashboard from "../hook/useDashboard";
 
 export default function DashboardPage() {
 
-    const { titulo, subtitulo, rol, stats, isLoading } = useDashboard()
+   const { titulo, subtitulo, rol, stats, isLoading } = useDashboard()
 
-    const cards = useMemo(() => ItemsCardsDashboard(rol, stats), [rol, stats]);
+   const cards = useMemo(() => ItemsCardsDashboard(rol!, stats), [rol, stats]);
 
-    return (
-        <>
-            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<Home className="w-7 h-7" />} color="green" />
-            <Contenido>
-                <CardsDashboard cards={cards} loading={isLoading} />
-            </Contenido>
-        </>
-    )
+   return (
+      <>
+         <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<Home className="w-7 h-7" />} color="green" />
+         <Contenido>
+            <CardsDashboard cards={cards} loading={isLoading} />
+         </Contenido>
+      </>
+   )
 }

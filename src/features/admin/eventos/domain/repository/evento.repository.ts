@@ -3,8 +3,8 @@ import type { CreateEventoInput, UpdateEventoInput } from "../../application/con
 import type { Evento } from "../model/evento.model";
 
 export interface EventoRepository {
-    getAll(): Promise<Evento[]>;
-    create(payload: CreateEventoInput): Promise<ApiResponseVoid>;
-    update(payload: UpdateEventoInput): Promise<ApiResponseVoid>;
-    delete(id: number): Promise<ApiResponseVoid>;
+   getAll(): Promise<Evento[]>;
+   create(payload: CreateEventoInput): Promise<ApiResponseVoid>;
+   update(payload: UpdateEventoInput): Promise<ApiResponseVoid>;
+   delete(id: number): Promise<ApiResponseVoid>;
 }

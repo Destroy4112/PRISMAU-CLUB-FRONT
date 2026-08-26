@@ -4,10 +4,10 @@ import type { CreateEmpleadoInput, EmpleadoImagenInput, UpdateEmpleadoInput } fr
 import type { Empleado } from "../model/empleado.model";
 
 export interface EmpleadoRepository {
-    getAll(params: PageParams & FilterWithState): Promise<PaginatedResponse<Empleado>>;
-    create(payload: CreateEmpleadoInput): Promise<ApiResponseVoid>;
-    updateImagen(payload: EmpleadoImagenInput): Promise<ApiResponseVoid>;
-    update(payload: UpdateEmpleadoInput): Promise<ApiResponseVoid>;
-    delete(id: number): Promise<ApiResponseVoid>;
-    deleteImagen(id: number): Promise<ApiResponseVoid>;
+   getAll(params: PageParams & FilterWithState): Promise<PaginatedResponse<Empleado>>;
+   create(payload: CreateEmpleadoInput): Promise<ApiResponseVoid>;
+   updateImagen(payload: EmpleadoImagenInput): Promise<ApiResponseVoid>;
+   update(payload: UpdateEmpleadoInput): Promise<ApiResponseVoid>;
+   delete(id: number): Promise<ApiResponseVoid>;
+   deleteImagen(id: number): Promise<ApiResponseVoid>;
 }

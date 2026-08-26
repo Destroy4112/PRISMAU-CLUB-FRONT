@@ -1,17 +1,17 @@
 import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
-import type { VerificarPayload } from "../../domain/payload/verificar.payload";
+import type { VertificarInput } from "../contracts/verificar.input";
 import type { VerificarRepository } from "../../domain/repository/verificar.repository";
 
 export class VerificarUseCases {
 
-    private readonly repo: VerificarRepository;
+   private readonly repo: VerificarRepository;
 
-    constructor(repo: VerificarRepository) {
-        this.repo = repo;
-    }
+   constructor(repo: VerificarRepository) {
+      this.repo = repo;
+   }
 
-    verify(payload: VerificarPayload): Promise<ApiResponseVoid> {
-        return this.repo.verifyCode(payload);
-    }
+   verify(payload: VertificarInput): Promise<ApiResponseVoid> {
+      return this.repo.verifyCode(payload);
+   }
 
 }

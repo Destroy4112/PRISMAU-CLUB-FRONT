@@ -5,25 +5,25 @@ import type { OptionInput } from "../contracts/option.input";
 
 export class OptionUseCases {
 
-    private readonly repo: OptionRepository;
+   private readonly repo: OptionRepository;
 
-    constructor(repo: OptionRepository) {
-        this.repo = repo;
-    }
+   constructor(repo: OptionRepository) {
+      this.repo = repo;
+   }
 
-    getAll(id: number): Promise<Option[]> {
-        return this.repo.getAll(id);
-    }
+   getAll(id: number): Promise<Option[]> {
+      return this.repo.getAll(id);
+   }
 
-    create(payload: OptionInput): Promise<ApiResponseVoid> {
-        return this.repo.create(payload);
-    }
+   create(payload: OptionInput): Promise<ApiResponseVoid> {
+      return this.repo.create(payload);
+   }
 
-    update(payload: OptionInput): Promise<ApiResponseVoid> {
-        return this.repo.update(payload);
-    }
+   update(payload: OptionInput): Promise<ApiResponseVoid> {
+      return this.repo.update(payload);
+   }
 
-    delete(id: OptionId): Promise<ApiResponseVoid> {
-        return this.repo.delete(id);
-    }
+   delete(id: OptionId): Promise<ApiResponseVoid> {
+      return this.repo.delete(id);
+   }
 }

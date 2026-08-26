@@ -10,23 +10,23 @@ import { statusEstados } from '../utils/estado.util';
 
 function EstadosPage() {
 
-    const { titulo, subtitulo, isLoading, contratos, filters, limit, page, total,
-        handleFilterChange, clearFilter, setFilter, onPageChange, onRowsPerPageChange } = useEstado();
+   const { titulo, subtitulo, isLoading, contratos, filters, limit, page, total,
+      handleFilterChange, clearFilter, setFilter, onPageChange, onRowsPerPageChange } = useEstado();
 
-    const columns = EstadosColumns();
+   const columns = EstadosColumns();
 
-    return (
-        <>
-            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<History className="w-7 h-7" />} color="pink" />
-            <Contenido>
-                <ToolbarFilterSocios<string | null> filters={filters} total={total} onSearchChange={handleFilterChange}
-                    entityName={titulo} statusOptions={statusEstados} onClearSearch={() => clearFilter("search")}
-                    onStatusFilterChange={(v) => setFilter("state", v)} />
-                <DataTableComponent<Estado> columns={columns} data={contratos} loading={isLoading}
-                    limit={limit} page={page} total={total} onPageChange={onPageChange} onRowsPerPageChange={onRowsPerPageChange} />
-            </Contenido>
-        </>
-    );
+   return (
+      <>
+         <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<History className="w-7 h-7" />} color="pink" />
+         <Contenido>
+            <ToolbarFilterSocios<string | null> filters={filters} total={total} onSearchChange={handleFilterChange}
+               entityName={titulo} statusOptions={statusEstados} onClearSearch={() => clearFilter("search")}
+               onStatusFilterChange={(v) => setFilter("state", v)} />
+            <DataTableComponent<Estado> columns={columns} data={contratos} loading={isLoading}
+               limit={limit} page={page} total={total} onPageChange={onPageChange} onRowsPerPageChange={onRowsPerPageChange} />
+         </Contenido>
+      </>
+   );
 }
 
 export default EstadosPage;

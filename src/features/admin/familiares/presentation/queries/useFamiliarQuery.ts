@@ -4,8 +4,8 @@ import type { Familiar } from '../../domain/model/familiar.model'
 import { familiarKeys } from './familiar.keys'
 
 export function useFamiliarQuery(id: number, rol: string) {
-    return useAppQuery<Familiar[], Error>({
-        queryKey: familiarKeys.list(id, rol),
-        queryFn: () => familiarUseCases.getAll(id, rol),
-    })
+   return useAppQuery<Familiar[], Error>({
+      queryKey: familiarKeys.list(id, rol),
+      queryFn: () => familiarUseCases.getAll(id, rol),
+   })
 }

@@ -5,14 +5,14 @@ import type { AccesoRepository } from "../../domain/repository/acceso.repository
 
 export class AccesoUseCases {
 
-    private readonly repo: AccesoRepository;
+   private readonly repo: AccesoRepository;
 
-    constructor(repo: AccesoRepository) {
-        this.repo = repo;
-    }
+   constructor(repo: AccesoRepository) {
+      this.repo = repo;
+   }
 
-    getAll(params: PageParams & Filter): Promise<PaginatedResponse<Acceso>> {
-        return this.repo.getAll(params);
-    }
+   getAll(params: PageParams & Filter): Promise<PaginatedResponse<Acceso>> {
+      return this.repo.getAll(params);
+   }
 
 }

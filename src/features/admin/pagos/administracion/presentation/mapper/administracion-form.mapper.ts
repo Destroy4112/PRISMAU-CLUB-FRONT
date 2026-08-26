@@ -2,9 +2,9 @@ import type { UpdateSocioValueInput } from "../../application/contracts/socio.in
 import type { EditValorForm } from "../types/administracion";
 
 export function socioEditValueFormToUpdateInput(form: EditValorForm): UpdateSocioValueInput {
-    return {
-        documento: form.documento,
-        field: form.field,
-        value: form.value
-    };
+   return {
+      documento: form.documento,
+      field: form.field,
+      value: form.value
+   };
 }

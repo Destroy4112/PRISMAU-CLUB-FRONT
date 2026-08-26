@@ -1,6 +1,6 @@
 import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
-import type { VerificarPayload } from "../payload/verificar.payload";
+import type { VertificarInput } from "../../application/contracts/verificar.input";
 
 export interface VerificarRepository {
-    verifyCode(payload: VerificarPayload): Promise<ApiResponseVoid>;
+   verifyCode(payload: VertificarInput): Promise<ApiResponseVoid>;
 }

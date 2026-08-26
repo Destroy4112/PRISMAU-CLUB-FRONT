@@ -3,12 +3,12 @@ import { useAdherenteAsociadoQuery } from "../queries/useAdherenteAsociadoQuery"
 
 export function useAdherenteAsociadoList() {
 
-    const { data, isLoading: loadingAsociados } = useAdherenteAsociadoQuery();
+   const { data, isLoading: loadingAsociados } = useAdherenteAsociadoQuery();
 
-    const asociados: Asociado[] = data || [];
+   const asociados: Asociado[] = data || [];
 
-    return {
-        asociados,
-        loadingAsociados
-    };
+   return {
+      asociados,
+      loadingAsociados
+   };
 }

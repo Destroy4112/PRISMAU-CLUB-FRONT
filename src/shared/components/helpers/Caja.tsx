@@ -1,12 +1,15 @@
-import type { ContentProps } from './helpers.type';
+import type { ReactNode } from 'react';
 
-function Caja({ children }: ContentProps) {
+interface Props {
+   children: ReactNode;
+}
 
-    return (
-        <div className="p-4 border bg-white rounded-lg border-gray-200 mt-5 w-full animated-element">
-            {children}
-        </div>
-    );
+function Caja({ children }: Props) {
+   return (
+      <div className="p-4 border bg-white rounded-lg border-gray-200 mt-5 w-full animated-element">
+         {children}
+      </div>
+   );
 }
 
 export default Caja;

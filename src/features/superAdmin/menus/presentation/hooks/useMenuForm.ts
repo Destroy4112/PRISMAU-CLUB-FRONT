@@ -8,62 +8,62 @@ import { INITIAL_MENU_FORM, type MenuForm, type MenuModalKey } from "../types/me
 
 export function useMenuForm(modalsApi: ModalsApi<MenuModalKey>) {
 
-    const { toggleModal } = modalsApi;
+   const { toggleModal } = modalsApi;
 
-    const [menuForm, setMenuForm] = useState<MenuForm>(INITIAL_MENU_FORM);
-    const [editId, setEditId] = useState<number | null>(null);
+   const [menuForm, setMenuForm] = useState<MenuForm>(INITIAL_MENU_FORM);
+   const [editId, setEditId] = useState<number | null>(null);
 
-    const isEditing = editId != null;
+   const isEditing = editId != null;
 
-    const resetForm = (): void => {
-        setMenuForm(INITIAL_MENU_FORM);
-        setEditId(null);
-    };
+   const resetForm = (): void => {
+      setMenuForm(INITIAL_MENU_FORM);
+      setEditId(null);
+   };
 
-    const closeModal = (): void => {
-        toggleModal("crearEditar");
-        resetForm();
-    };
+   const closeModal = (): void => {
+      toggleModal("crearEditar");
+      resetForm();
+   };
 
-    const openCreate = (): void => {
-        resetForm();
-        toggleModal("crearEditar");
-    };
+   const openCreate = (): void => {
+      resetForm();
+      toggleModal("crearEditar");
+   };
 
-    const cargarMenu = (menu: Menu): void => {
-        setEditId(menu.id);
-        setMenuForm(menuDomainToForm(menu));
-        toggleModal("crearEditar");
-    };
+   const cargarMenu = (menu: Menu): void => {
+      setEditId(menu.id);
+      setMenuForm(menuDomainToForm(menu));
+      toggleModal("crearEditar");
+   };
 
-    const { isPending: isCreating, mutate: createMenuMutation } = useCreateMenuMutation({
-        onOk: closeModal,
-    });
+   const { isPending: isCreating, mutate: createMenuMutation } = useCreateMenuMutation({
+      onOk: closeModal,
+   });
 
-    const { isPending: isUpdating, mutate: updateMenuMutation } = useUpdateMenuMutation({
-        onOk: closeModal,
-    });
+   const { isPending: isUpdating, mutate: updateMenuMutation } = useUpdateMenuMutation({
+      onOk: closeModal,
+   });
 
-    const handleChange = ({ target }: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
-        setMenuForm((prev) => ({ ...prev, [target.name]: target.value }));
-    };
+   const handleChange = ({ target }: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
+      setMenuForm((prev) => ({ ...prev, [target.name]: target.value }));
+   };
 
-    const submit = (): void => {
-        if (isEditing) {
-            updateMenuMutation(menuFormToPayload(menuForm, editId!));
-            return;
-        }
-        createMenuMutation(menuFormToPayload(menuForm));
-    };
+   const submit = (): void => {
+      if (isEditing) {
+         updateMenuMutation(menuFormToPayload(menuForm, editId!));
+         return;
+      }
+      createMenuMutation(menuFormToPayload(menuForm));
+   };
 
-    return {
-        menuForm,
-        tituloModal: isEditing ? "Actualizar Modulo" : "Crear Modulo",
-        loading: isCreating || isUpdating,
-        openCreate,
-        closeModal,
-        cargarMenu,
-        handleChange,
-        submit
-    };
+   return {
+      menuForm,
+      tituloModal: isEditing ? "Actualizar Modulo" : "Crear Modulo",
+      loading: isCreating || isUpdating,
+      openCreate,
+      closeModal,
+      cargarMenu,
+      handleChange,
+      submit
+   };
 }

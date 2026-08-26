@@ -4,8 +4,8 @@ import type { Finanza } from '../../domain/model/finanza.model'
 import { finanzaKeys } from './finanza.keys'
 
 export function useFinanzaQuery() {
-    return useAppQuery<Finanza, Error>({
-        queryKey: finanzaKeys.all,
-        queryFn: () => finanzaUseCase.getFinanza(),
-    })
+   return useAppQuery<Finanza, Error>({
+      queryKey: finanzaKeys.all,
+      queryFn: () => finanzaUseCase.getFinanza(),
+   })
 }

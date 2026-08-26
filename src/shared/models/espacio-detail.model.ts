@@ -1,5 +1,5 @@
 export interface EspacioDetail {
-    id: number;
-    Descripcion: string;
-    imagen: string;
+   id: number;
+   Descripcion: string;
+   imagen: string;
 }

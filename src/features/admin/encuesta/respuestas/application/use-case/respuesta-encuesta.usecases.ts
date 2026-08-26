@@ -3,14 +3,14 @@ import type { RespuestaEncuestaRepository } from "../../domain/repository/respue
 
 export class RespuestaEncuestaUseCases {
 
-    private readonly repo: RespuestaEncuestaRepository;
+   private readonly repo: RespuestaEncuestaRepository;
 
-    constructor(repo: RespuestaEncuestaRepository) {
-        this.repo = repo;
-    }
+   constructor(repo: RespuestaEncuestaRepository) {
+      this.repo = repo;
+   }
 
-    getAll(id: number): Promise<RespuestaEncuesta[]> {
-        return this.repo.getAll(id);
-    }
+   getAll(id: number): Promise<RespuestaEncuesta[]> {
+      return this.repo.getAll(id);
+   }
 
 }

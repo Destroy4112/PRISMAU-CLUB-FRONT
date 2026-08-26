@@ -3,5 +3,5 @@ import type { PageParams, PaginatedResponse } from "@shared/constants/response/R
 import type { Reserva } from "../model/reserva.model";
 
 export interface ReservaRepository {
-    getAll(params: PageParams & Filter): Promise<PaginatedResponse<Reserva>>;
+   getAll(params: PageParams & Filter): Promise<PaginatedResponse<Reserva>>;
 }

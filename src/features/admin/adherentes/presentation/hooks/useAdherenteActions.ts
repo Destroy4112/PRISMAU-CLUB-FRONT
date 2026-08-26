@@ -1,6 +1,6 @@
 import { useAppNavigate } from "@app/routes/hooks";
 import useResetPasswordMutation from "@features/users/presentation/mutations/useResetPasswordMutation";
-import { PRIVATE_ROUTES } from "@shared/constants/rutas/Rutas.model";
+import { PRIVATE_ROUTES } from "@app/routes/constants/rutas";
 import type { ModalsApi } from "@shared/hooks/useModal";
 import { alertConfirm, alertError, alertSucces, alertWarning } from "@shared/utilities/alerts/alertas.utility";
 import { useCallback, useState, type ChangeEvent } from "react";
@@ -13,98 +13,98 @@ import { useChangeAdherenteMutation } from "../mutations/useChangeAdherenteMutat
 
 export function useAdherenteActions(modalApi: ModalsApi<AdherenteModalKey>) {
 
-    const navigate = useAppNavigate();
+   const navigate = useAppNavigate();
 
-    const { toggleModal } = modalApi;
+   const { toggleModal } = modalApi;
 
-    const [adherenteEstadoForm, setAdherenteEstadoForm] = useState<AdherenteEstadoForm>(ADHERENTE_ESTADO_INITIAL);
+   const [adherenteEstadoForm, setAdherenteEstadoForm] = useState<AdherenteEstadoForm>(ADHERENTE_ESTADO_INITIAL);
 
-    const resetForm = () => {
-        setAdherenteEstadoForm(ADHERENTE_ESTADO_INITIAL);
-    }
+   const resetForm = () => {
+      setAdherenteEstadoForm(ADHERENTE_ESTADO_INITIAL);
+   }
 
-    //-------------------- GO FAMILIARES -------------------------------------
+   //-------------------- GO FAMILIARES -------------------------------------
 
-    const goFamiliares = (adherente: Adherente) => {
-        navigate(PRIVATE_ROUTES.FAMILIARES_ADHERENTE, { state: { adherente } });
-    }
+   const goFamiliares = (adherente: Adherente) => {
+      navigate(PRIVATE_ROUTES.FAMILIARES_ADHERENTE, { state: { adherente } });
+   }
 
-    // -------------------- CAMBIAR ESTADO -------------------------------------
+   // -------------------- CAMBIAR ESTADO -------------------------------------
 
-    const { mutate: cambiarEstadoMutation, isPending: isUpdatingStatus } = useUpdateStatusAdherenteMutation({
-        onOk: () => closeModalEstado(),
-    });
+   const { mutate: cambiarEstadoMutation, isPending: isUpdatingStatus } = useUpdateStatusAdherenteMutation({
+      onOk: () => closeModalEstado(),
+   });
 
-    const closeModalEstado = (): void => {
-        toggleModal("estado");
-        resetForm();
-    };
+   const closeModalEstado = (): void => {
+      toggleModal("estado");
+      resetForm();
+   };
 
-    const handleChangeEstado = ({ target }: ChangeEvent<HTMLTextAreaElement | HTMLSelectElement>) => {
-        setAdherenteEstadoForm((prev) => ({ ...prev, [target.name]: target.value }));
-    };
+   const handleChangeEstado = ({ target }: ChangeEvent<HTMLTextAreaElement | HTMLSelectElement>) => {
+      setAdherenteEstadoForm((prev) => ({ ...prev, [target.name]: target.value }));
+   };
 
-    const changeState = async (id: number): Promise<void> => {
-        if (await alertConfirm("¿Seguro que quiere cambiar el estado de este adherente?", "Si, cambiar!")) {
-            toggleModal("estado");
-            setAdherenteEstadoForm((prev) => ({ ...prev, id }));
-        }
-    };
+   const changeState = async (id: number): Promise<void> => {
+      if (await alertConfirm("¿Seguro que quiere cambiar el estado de este adherente?", "Si, cambiar!")) {
+         toggleModal("estado");
+         setAdherenteEstadoForm((prev) => ({ ...prev, id }));
+      }
+   };
 
-    const handleUpdateEstado = (): void => {
-        cambiarEstadoMutation(adherenteEstadoFormToInput(adherenteEstadoForm));
-    };
+   const handleUpdateEstado = (): void => {
+      cambiarEstadoMutation(adherenteEstadoFormToInput(adherenteEstadoForm));
+   };
 
-    //-------------------- CAMBIAR A ASOCIADO -------------------------------------
+   //-------------------- CAMBIAR A ASOCIADO -------------------------------------
 
-    const { mutate: cambiarAsociadoMutation } = useChangeAdherenteMutation();
+   const { mutate: cambiarAsociadoMutation } = useChangeAdherenteMutation();
 
-    const handleUpdateAsociado = useCallback(async (id: number): Promise<void> => {
-        if (await alertConfirm("¿Seguro que quiere cambiar el estado de este adherente a Asociado?", "Si, cambiar!")) {
-            cambiarAsociadoMutation(id);
-        }
-    }, [cambiarEstadoMutation]); 
+   const handleUpdateAsociado = useCallback(async (id: number): Promise<void> => {
+      if (await alertConfirm("¿Seguro que quiere cambiar el estado de este adherente a Asociado?", "Si, cambiar!")) {
+         cambiarAsociadoMutation(id);
+      }
+   }, [cambiarEstadoMutation]);
 
-    //-------------------- ELIMINAR ADHERENTE -------------------------------------
+   //-------------------- ELIMINAR ADHERENTE -------------------------------------
 
-    const { mutate: eliminarMutation } = useDeleteAdherenteMutation();
+   const { mutate: eliminarMutation } = useDeleteAdherenteMutation();
 
-    const handleDelete = useCallback(async (id: number): Promise<void> => {
-        if (await alertConfirm("¿Seguro que quiere eliminar este adherente?", "Si, eliminar!")) {
-            eliminarMutation(id);
-        }
-    }, [eliminarMutation]);
+   const handleDelete = useCallback(async (id: number): Promise<void> => {
+      if (await alertConfirm("¿Seguro que quiere eliminar este adherente?", "Si, eliminar!")) {
+         eliminarMutation(id);
+      }
+   }, [eliminarMutation]);
 
-    //-------------------- RESETEAR CONTRASEÑA -------------------------------------
+   //-------------------- RESETEAR CONTRASEÑA -------------------------------------
 
-    const { mutate: resetPasswordMutation } = useResetPasswordMutation();
+   const { mutate: resetPasswordMutation } = useResetPasswordMutation();
 
-    const handleResetPassword = useCallback(async (id: number): Promise<void> => {
-        if (await alertConfirm("¿Seguro que quiere restablecer la contraseña de este adherente?", "Si, restablecer!")) {
-            resetPasswordMutation(id, {
-                onSuccess: (res) => {
-                    if (res.status) {
-                        alertSucces(res.message);
-                    } else {
-                        res.errors.forEach((error: string) => alertWarning(error));
-                    }
-                },
-                onError: (error) => alertError(error.message)
-            });
-        }
-    }, [resetPasswordMutation]);
+   const handleResetPassword = useCallback(async (id: number): Promise<void> => {
+      if (await alertConfirm("¿Seguro que quiere restablecer la contraseña de este adherente?", "Si, restablecer!")) {
+         resetPasswordMutation(id, {
+            onSuccess: (res) => {
+               if (res.status) {
+                  alertSucces(res.message);
+               } else {
+                  res.errors?.forEach((error: string) => alertWarning(error));
+               }
+            },
+            onError: (error) => alertError(error.message)
+         });
+      }
+   }, [resetPasswordMutation]);
 
-    return {
-        tituloModalEstado: "Cambiar estado",
-        adherenteEstadoForm,
-        isUpdatingStatus,
-        closeModalEstado,
-        goFamiliares,
-        handleChangeEstado,
-        changeState,
-        handleDelete,
-        handleUpdateEstado,
-        handleResetPassword,
-        handleUpdateAsociado
-    };
+   return {
+      tituloModalEstado: "Cambiar estado",
+      adherenteEstadoForm,
+      isUpdatingStatus,
+      closeModalEstado,
+      goFamiliares,
+      handleChangeEstado,
+      changeState,
+      handleDelete,
+      handleUpdateEstado,
+      handleResetPassword,
+      handleUpdateAsociado
+   };
 }

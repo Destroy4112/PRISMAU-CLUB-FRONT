@@ -7,20 +7,20 @@ import useCuotaBaileList from './useCuotaBaileList';
 
 export default function useCuotaBaile() {
 
-    const socio: Socio = useAppLocation().state?.socio;
+   const socio: Socio = useAppLocation().state?.socio;
 
-    const modalApi = useModals<CuotaBaileModalKey>();
+   const modalApi = useModals<CuotaBaileModalKey>();
 
-    const list = useCuotaBaileList(socio.documento);
-    const form = useCuotaBaileForm(modalApi);
+   const list = useCuotaBaileList(socio.documento);
+   const form = useCuotaBaileForm(modalApi);
 
-    return {
-        titulo: "Cuotas de baile",
-        subtitulo: "Consulta el estado e historial de las cuotas de baile del socio",
-        campos: "año...",
-        modals: modalApi.modals,
-        socio,
-        ...list,
-        ...form
-    }
+   return {
+      titulo: "Cuotas de baile",
+      subtitulo: "Consulta el estado e historial de las cuotas de baile del socio",
+      campos: "año...",
+      modals: modalApi.modals,
+      socio,
+      ...list,
+      ...form
+   }
 }

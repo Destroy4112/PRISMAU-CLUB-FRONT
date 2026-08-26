@@ -5,30 +5,30 @@ import { useReservaQuery } from '../queries/useReservaQuery';
 
 export default function useReservas() {
 
-    const { filters, limit, page, onPageChange, onRowsPerPageChange, handleFilterChange, limpiarFiltros
-    } = useSearchPaginate<Filter>(INITIAL_FILTERS);
+   const { filters, limit, page, onPageChange, onRowsPerPageChange, handleFilterChange, limpiarFiltros
+   } = useSearchPaginate<Filter>(INITIAL_FILTERS);
 
-    const debouncedSearch = useDebounce(filters.search, 500);
+   const debouncedSearch = useDebounce(filters.search, 500);
 
-    const queryParams = { page, limit, search: debouncedSearch };
+   const queryParams = { page, limit, search: debouncedSearch };
 
-    const { data, isLoading } = useReservaQuery(queryParams);
-    const reservas = data?.data || [];
-    const total = data?.total || 0;
+   const { data, isLoading } = useReservaQuery(queryParams);
+   const reservas = data?.data || [];
+   const total = data?.total || 0;
 
-    return {
-        titulo: "Reservas",
-        subtitulo: "Resumen de las reservas registradas por los usuarios",
-        campos: "nombre del socio, espacio",
-        isLoading,
-        reservas,
-        total,
-        page,
-        limit,
-        filters,
-        onPageChange,
-        onRowsPerPageChange,
-        handleFilterChange,
-        limpiarFiltros,
-    }
+   return {
+      titulo: "Reservas",
+      subtitulo: "Resumen de las reservas registradas por los usuarios",
+      campos: "nombre del socio, espacio",
+      isLoading,
+      reservas,
+      total,
+      page,
+      limit,
+      filters,
+      onPageChange,
+      onRowsPerPageChange,
+      handleFilterChange,
+      limpiarFiltros,
+   }
 }

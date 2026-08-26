@@ -1,12 +1,12 @@
 import { useAppMutation } from "@core/store/react-query/hooks";
-import type { SessionResponse } from "@features/auth/domain/models/session.model";
-import { loginUseCases } from "../../application/login.container";
-import type { LoginPayload } from "../../domain/payload/login.payload";
+import type { SessionResponse } from "@features/auth/shared/domain/models/session.model";
+import { loginUseCases } from "../../application/container/login.container";
+import type { LoginInput } from "../../application/contracts/login.input";
 
 export default function useLoginMutation() {
 
-    return useAppMutation<SessionResponse, Error, LoginPayload>({
-        mutationFn: (payload: LoginPayload) => loginUseCases.iniciarSesion(payload)
-    });
+   return useAppMutation<SessionResponse, Error, LoginInput>({
+      mutationFn: (payload: LoginInput) => loginUseCases.iniciarSesion(payload)
+   });
 
 }

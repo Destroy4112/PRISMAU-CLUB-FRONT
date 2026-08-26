@@ -6,8 +6,8 @@ import type { Socio } from '../../domain/models/socio.model'
 import { administracionKeys } from './administracion.keys'
 
 export function useAdministracionSociosQuery(params: PageParams & FilterWithState) {
-    return useAppQuery<PaginatedResponse<Socio>, Error>({
-        queryKey: administracionKeys.lists(params),
-        queryFn: () => administracionUseCases.getSocios(params),
-    })
+   return useAppQuery<PaginatedResponse<Socio>, Error>({
+      queryKey: administracionKeys.lists(params),
+      queryFn: () => administracionUseCases.getSocios(params),
+   })
 }

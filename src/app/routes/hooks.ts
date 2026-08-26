@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router";
-
-export const useAppNavigate = useNavigate;
-export const useAppLocation = useLocation;
+export {
+   useLocation as useAppLocation,
+   useNavigate as useAppNavigate
+} from "react-router";

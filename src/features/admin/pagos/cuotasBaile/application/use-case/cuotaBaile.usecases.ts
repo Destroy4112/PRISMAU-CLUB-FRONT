@@ -7,18 +7,18 @@ import type { PayCuotaBaileInput } from "../contracts/cuotaBaile.input";
 
 export class CuotaBaileUseCases {
 
-    private readonly repo: CuotaBaileRepository;
+   private readonly repo: CuotaBaileRepository;
 
-    constructor(repo: CuotaBaileRepository) {
-        this.repo = repo;
-    }
+   constructor(repo: CuotaBaileRepository) {
+      this.repo = repo;
+   }
 
-    get(documento: string, params: PageParams & FilterWithState): Promise<PaginatedResponse<CuotaBaile, CuotaBaileStats>> {
-        return this.repo.get(documento, params);
-    }
+   get(documento: string, params: PageParams & FilterWithState): Promise<PaginatedResponse<CuotaBaile, CuotaBaileStats>> {
+      return this.repo.get(documento, params);
+   }
 
-    pay(payload: PayCuotaBaileInput): Promise<ApiResponse<PagoCuotaBaileResponse>> {
-        return this.repo.pay(payload);
-    }
+   pay(payload: PayCuotaBaileInput): Promise<ApiResponse<PagoCuotaBaileResponse>> {
+      return this.repo.pay(payload);
+   }
 
 }

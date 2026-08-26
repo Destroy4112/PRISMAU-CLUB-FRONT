@@ -4,8 +4,8 @@ import type { Rubro } from '@features/admin/pagos/rubros/domain/model/rubro.mode
 import { programacionKeys } from './programacion.keys'
 
 export function useRubrosProgramacionQuery() {
-    return useAppQuery<Rubro[], Error>({ 
-        queryKey: programacionKeys.rubros(),
-        queryFn: () => rubroUseCases.getAll(),
-    })
+   return useAppQuery<Rubro[], Error>({
+      queryKey: programacionKeys.rubros(),
+      queryFn: () => rubroUseCases.getAll(),
+   })
 }

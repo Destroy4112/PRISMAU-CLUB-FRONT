@@ -6,8 +6,8 @@ import type { Rubro } from '../../domain/model/rubro.model'
 import { rubroKeys } from './rubro.keys'
 
 export function useRubrosQuery(params: PageParams & Filter) {
-    return useAppQuery<PaginatedResponse<Rubro>, Error>({
-        queryKey: rubroKeys.list(params),
-        queryFn: () => rubroUseCases.getPaginated(params),
-    })
+   return useAppQuery<PaginatedResponse<Rubro>, Error>({
+      queryKey: rubroKeys.list(params),
+      queryFn: () => rubroUseCases.getPaginated(params),
+   })
 }

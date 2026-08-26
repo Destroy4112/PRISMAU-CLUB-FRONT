@@ -8,21 +8,21 @@ import { useOptionList } from "./useOptionList";
 
 export default function useOption() {
 
-    const pregunta: Pregunta = useAppLocation().state?.pregunta;
+   const pregunta: Pregunta = useAppLocation().state?.pregunta;
 
-    const modalApi = useModals<OptionModalKey>();
+   const modalApi = useModals<OptionModalKey>();
 
-    const list = useOptionList(pregunta.id);
-    const form = useOptionForm(pregunta.id, modalApi);
-    const actions = useOptionActions();
+   const list = useOptionList(pregunta.id);
+   const form = useOptionForm(pregunta.id, modalApi);
+   const actions = useOptionActions();
 
-    return {
-        titulo: 'Opciones',
-        subtitulo: 'Listado de opciones de la pregunta',
-        modals: modalApi.modals.crearEditar,
-        pregunta,
-        ...actions,
-        ...list,
-        ...form
-    }
+   return {
+      titulo: 'Opciones',
+      subtitulo: 'Listado de opciones de la pregunta',
+      modals: modalApi.modals.crearEditar,
+      pregunta,
+      ...actions,
+      ...list,
+      ...form
+   }
 }

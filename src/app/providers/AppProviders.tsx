@@ -8,13 +8,13 @@ import { Provider } from "react-redux";
 type Props = { children: React.ReactNode };
 
 export default function AppProviders({ children }: Props) {
-  return (
-    <Provider store={store}>
-      <QueryClientProvider client={appQueryClient}>
-        <Toaster position="top-right" reverseOrder={false} />
-        <ThemeConfig dark={false} />
-        {children}
-      </QueryClientProvider>
-    </Provider>
-  );
+   return (
+      <Provider store={store}>
+         <QueryClientProvider client={appQueryClient}>
+            <Toaster position="top-right" reverseOrder={false} />
+            <ThemeConfig dark={false} />
+            {children}
+         </QueryClientProvider>
+      </Provider>
+   );
 }

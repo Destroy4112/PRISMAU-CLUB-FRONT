@@ -1,4 +1,4 @@
 export const menuKeys = {
-    all: ["menu"] as const,
-    lists: () => [...menuKeys.all, "list"] as const,
+   all: ["menu"] as const,
+   lists: () => [...menuKeys.all, "list"] as const,
 }; 

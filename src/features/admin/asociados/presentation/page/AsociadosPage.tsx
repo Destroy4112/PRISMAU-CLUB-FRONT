@@ -14,40 +14,40 @@ import { statusAsociados } from "../utils/asociado.util";
 
 export default function AsociadosPage() {
 
-    const { titulo, subtitulo, asociadoForm, total, limit, page, asociados, isLoading, tituloModal, modals, loading, touched,
-        filters, tituloModalEstado, asociadoEstadoForm, isUpdatingStatus, tituloModalImagen, isUpdatingImagen, asociadoImagenForm,
-        handleFilterChange, clearFilter, setFilter, goFamiliares, handleChangeEstado, closeModalEstado, onPageChange, submit, cargar,
-        onRowsPerPageChange, openModal, closeModal, handleChange, changeState, handleDelete, handleUpdateEstado, cargarImagen,
-        closeModalImagen, handleChangeImagen, handleUpdateImagen, handleDeleteImagen, handleResetPassword } = useAsociado();
+   const { titulo, subtitulo, asociadoForm, total, limit, page, asociados, isLoading, tituloModal, modals, loading, touched,
+      filters, tituloModalEstado, asociadoEstadoForm, isUpdatingStatus, tituloModalImagen, isUpdatingImagen, asociadoImagenForm,
+      handleFilterChange, clearFilter, setFilter, goFamiliares, handleChangeEstado, closeModalEstado, onPageChange, submit, cargar,
+      onRowsPerPageChange, openModal, closeModal, handleChange, changeState, handleDelete, handleUpdateEstado, cargarImagen,
+      closeModalImagen, handleChangeImagen, handleUpdateImagen, handleDeleteImagen, handleResetPassword } = useAsociado();
 
-    const columns = AsociadoColumns({ cargar, handleDelete, goFamiliares, changeState, cargarImagen, reset: handleResetPassword });
+   const columns = AsociadoColumns({ cargar, handleDelete, goFamiliares, changeState, cargarImagen, reset: handleResetPassword });
 
-    // const data = DataExportAsociados(asociados);
+   // const data = DataExportAsociados(asociados);
 
-    return (
-        <>
-            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<User className="w-7 h-7" />} color="green"
-                canCreate label="Crear" accion={openModal} />
-            <Contenido>
-                <ToolbarFilterSocios<number | null> filters={filters} total={total} onSearchChange={handleFilterChange}
-                    entityName={titulo} statusOptions={statusAsociados} onClearSearch={() => clearFilter("search")}
-                    onStatusFilterChange={(v) => setFilter("state", v)} />
-                <DataTableComponent<Asociado> columns={columns} data={asociados} loading={isLoading}
-                    limit={limit} page={page} total={total} onPageChange={onPageChange} onRowsPerPageChange={onRowsPerPageChange} />
-                <VentanaModal size={'full'} titulo={tituloModal} show={modals.crearEditar} cerrarModal={closeModal}
-                    handleSubmit={submit} loading={loading}>
-                    <FormAsociados form={asociadoForm} touched={touched} handleChange={handleChange} />
-                </VentanaModal>
-                <VentanaModal size="full" titulo={tituloModalEstado} show={modals.estado} cerrarModal={closeModalEstado}
-                    handleSubmit={handleUpdateEstado} loading={isUpdatingStatus}>
-                    <FormEstado estado={asociadoEstadoForm} handleChange={handleChangeEstado} />
-                </VentanaModal>
-                <VentanaModal size={'4xl'} titulo={tituloModalImagen} show={modals.imagen} cerrarModal={closeModalImagen}
-                    handleSubmit={handleUpdateImagen} loading={isUpdatingImagen}>
-                    <FormImagen label="Cambiar imagen" name="imagen" handleChange={handleChangeImagen}
-                        value={asociadoImagenForm.imagenActualUrl} deleteImagen={handleDeleteImagen} />
-                </VentanaModal>
-            </Contenido>
-        </>
-    );
+   return (
+      <>
+         <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<User className="w-7 h-7" />} color="green"
+            canCreate label="Crear" accion={openModal} />
+         <Contenido>
+            <ToolbarFilterSocios<number | null> filters={filters} total={total} onSearchChange={handleFilterChange}
+               entityName={titulo} statusOptions={statusAsociados} onClearSearch={() => clearFilter("search")}
+               onStatusFilterChange={(v) => setFilter("state", v)} />
+            <DataTableComponent<Asociado> columns={columns} data={asociados} loading={isLoading}
+               limit={limit} page={page} total={total} onPageChange={onPageChange} onRowsPerPageChange={onRowsPerPageChange} />
+            <VentanaModal size={'full'} titulo={tituloModal} show={modals.crearEditar} cerrarModal={closeModal}
+               handleSubmit={submit} loading={loading}>
+               <FormAsociados form={asociadoForm} touched={touched} handleChange={handleChange} />
+            </VentanaModal>
+            <VentanaModal size="full" titulo={tituloModalEstado} show={modals.estado} cerrarModal={closeModalEstado}
+               handleSubmit={handleUpdateEstado} loading={isUpdatingStatus}>
+               <FormEstado estado={asociadoEstadoForm} handleChange={handleChangeEstado} />
+            </VentanaModal>
+            <VentanaModal size={'4xl'} titulo={tituloModalImagen} show={modals.imagen} cerrarModal={closeModalImagen}
+               handleSubmit={handleUpdateImagen} loading={isUpdatingImagen}>
+               <FormImagen label="Cambiar imagen" name="imagen" handleChange={handleChangeImagen}
+                  value={asociadoImagenForm.imagenActualUrl} deleteImagen={handleDeleteImagen} />
+            </VentanaModal>
+         </Contenido>
+      </>
+   );
 }

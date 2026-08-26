@@ -3,9 +3,9 @@ import type { RespuestaEncuesta } from "../../domain/model/respuesta-encuesta.mo
 export type RespuestaEncuestaModalKey = "detalle";
 
 export type FormRespuestaEncuestaProps = {
-    data: RespuestaEncuesta | null;
+   data: RespuestaEncuesta | null;
 }
 
 export type ColumnsRespuestaEncuestaProps = {
-    cargar: (row: RespuestaEncuesta) => void;
+   cargar: (row: RespuestaEncuesta) => void;
 }

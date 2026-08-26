@@ -7,8 +7,8 @@ import type { CuotaBaileStats } from '../../domain/models/cuotaBaile.response.mo
 import { cuotaBaileKeys } from './cuotaBaile.keys'
 
 export function useCuotaBaileQuery(documento: string, params: PageParams & FilterWithState) {
-    return useAppQuery<PaginatedResponse<CuotaBaile, CuotaBaileStats>, Error>({
-        queryKey: cuotaBaileKeys.lists(params),
-        queryFn: () => cuotaBaileUseCases.get(documento, params),
-    })
+   return useAppQuery<PaginatedResponse<CuotaBaile, CuotaBaileStats>, Error>({
+      queryKey: cuotaBaileKeys.lists(params),
+      queryFn: () => cuotaBaileUseCases.get(documento, params),
+   })
 }

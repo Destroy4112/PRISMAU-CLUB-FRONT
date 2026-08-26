@@ -3,9 +3,9 @@ export const DIAS_SEMANA = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"
 export type DiaSemana = (typeof DIAS_SEMANA)[number];
 
 export interface Disponibilidad {
-    id: number;
-    espacioId: number;
-    dia: DiaSemana;
-    inicio: string;
-    fin: string;
+   id: number;
+   espacioId: number;
+   dia: DiaSemana;
+   inicio: string;
+   fin: string;
 }

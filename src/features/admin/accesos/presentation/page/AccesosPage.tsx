@@ -9,22 +9,22 @@ import useAcceso from '../hooks/useAcceso';
 
 function AccesoPage() {
 
-    const { titulo, subtitulo, isLoading, contratos, filters, limit, page, total, campos,
-        handleFilterChange, limpiarFiltros, onPageChange, onRowsPerPageChange } = useAcceso();
+   const { titulo, subtitulo, isLoading, contratos, filters, limit, page, total, campos,
+      handleFilterChange, limpiarFiltros, onPageChange, onRowsPerPageChange } = useAcceso();
 
-    const columns = AccesosColumns();
+   const columns = AccesosColumns();
 
-    return (
-        <>
-            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<ScanQrCode className="w-7 h-7" />} color="purple" />
-            <Contenido>
-                <ToolbarFilter entityName={titulo} onSearchChange={handleFilterChange} onClearSearch={limpiarFiltros}
-                    filters={filters} total={total} campos={campos} />
-                <DataTableComponent<Acceso> columns={columns} data={contratos} loading={isLoading}
-                    limit={limit} page={page} total={total} onPageChange={onPageChange} onRowsPerPageChange={onRowsPerPageChange} />
-            </Contenido>
-        </>
-    );
+   return (
+      <>
+         <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<ScanQrCode className="w-7 h-7" />} color="purple" />
+         <Contenido>
+            <ToolbarFilter entityName={titulo} onSearchChange={handleFilterChange} onClearSearch={limpiarFiltros}
+               filters={filters} total={total} campos={campos} />
+            <DataTableComponent<Acceso> columns={columns} data={contratos} loading={isLoading}
+               limit={limit} page={page} total={total} onPageChange={onPageChange} onRowsPerPageChange={onRowsPerPageChange} />
+         </Contenido>
+      </>
+   );
 }
 
 export default AccesoPage;

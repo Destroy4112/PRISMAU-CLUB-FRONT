@@ -8,83 +8,83 @@ import { INITIAL_PAY_MENSUALIDAD_FORM, type MensualidadModalKey, type PayMensual
 
 export default function useMensualidadForm(modalApi: ModalsApi<MensualidadModalKey>) {
 
-    const { toggleModal } = modalApi;
+   const { toggleModal } = modalApi;
 
-    const [payMensualidadForm, setPayMensualidadForm] = useState<PayMensualidadForm>(INITIAL_PAY_MENSUALIDAD_FORM);
-    const [pagoInfo, setPagoInfo] = useState<PagoMensualidadResponse | null>(null);
-    const [archivoSeleccionado, setArchivoSeleccionado] = useState<File | null>(null)
+   const [payMensualidadForm, setPayMensualidadForm] = useState<PayMensualidadForm>(INITIAL_PAY_MENSUALIDAD_FORM);
+   const [pagoInfo, setPagoInfo] = useState<PagoMensualidadResponse | null>(null);
+   const [archivoSeleccionado, setArchivoSeleccionado] = useState<File | null>(null)
 
-    const cargar = (row: Mensualidad): void => {
-        setPayMensualidadForm(mensualidadDomainToForm(row));
-        toggleModal("pagar");
-    };
+   const cargar = (row: Mensualidad): void => {
+      setPayMensualidadForm(mensualidadDomainToForm(row));
+      toggleModal("pagar");
+   };
 
-    const ver = (row: Mensualidad): void => {
-        setPayMensualidadForm(mensualidadDomainToForm(row));
-        toggleModal("ver");
-    };
+   const ver = (row: Mensualidad): void => {
+      setPayMensualidadForm(mensualidadDomainToForm(row));
+      toggleModal("ver");
+   };
 
-    const closeModal = (): void => {
-        toggleModal("pagar");
-        setPayMensualidadForm(INITIAL_PAY_MENSUALIDAD_FORM);
-    };
+   const closeModal = (): void => {
+      toggleModal("pagar");
+      setPayMensualidadForm(INITIAL_PAY_MENSUALIDAD_FORM);
+   };
 
-    const closeModalFactura = (): void => {
-        toggleModal("ver");
-        setPayMensualidadForm(INITIAL_PAY_MENSUALIDAD_FORM);
-    };
+   const closeModalFactura = (): void => {
+      toggleModal("ver");
+      setPayMensualidadForm(INITIAL_PAY_MENSUALIDAD_FORM);
+   };
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
-        const { name, value } = e.target;
-        const fieldValue = e.target instanceof HTMLInputElement && e.target.type === "checkbox" ? e.target.checked : value;
-        setPayMensualidadForm(prev => ({ ...prev, [name]: fieldValue, }));
-    };
+   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
+      const { name, value } = e.target;
+      const fieldValue = e.target instanceof HTMLInputElement && e.target.type === "checkbox" ? e.target.checked : value;
+      setPayMensualidadForm(prev => ({ ...prev, [name]: fieldValue, }));
+   };
 
-    const handleChangeFile = (e: ChangeEvent<HTMLInputElement>): void => {
-        const file = e.target.files?.[0] ?? null;
-        if (file == null) return;
-        setArchivoSeleccionado(file)
-        setPayMensualidadForm((prev) => ({ ...prev, soporte: file }));
-    };
+   const handleChangeFile = (e: ChangeEvent<HTMLInputElement>): void => {
+      const file = e.target.files?.[0] ?? null;
+      if (file == null) return;
+      setArchivoSeleccionado(file)
+      setPayMensualidadForm((prev) => ({ ...prev, soporte: file }));
+   };
 
-    const { mutate: payMutation, isPending: loading } = usePayMensualidadMutation({
-        onOk: (data) => {
-            if (data.status) {
-                closeModal();
-                setPagoInfo(data.data);
-                toggleModal("pago");
-            }
-        },
-    });
+   const { mutate: payMutation, isPending: loading } = usePayMensualidadMutation({
+      onOk: (data) => {
+         if (data.status) {
+            closeModal();
+            setPagoInfo(data.data);
+            toggleModal("pago");
+         }
+      },
+   });
 
-    const handleSubmit = (): void => {
-        payMutation(payMensualidadFormToInput(payMensualidadForm));
-    };
+   const handleSubmit = (): void => {
+      payMutation(payMensualidadFormToInput(payMensualidadForm));
+   };
 
-    const closeModalPago = (): void => {
-        toggleModal("pago");
-        setPagoInfo(null);
-    };
+   const closeModalPago = (): void => {
+      toggleModal("pago");
+      setPagoInfo(null);
+   };
 
-    const limpiarArchivo = () => {
-        setArchivoSeleccionado(null);
-        setPayMensualidadForm((prev) => ({ ...prev, soporte: null }));
-    }
+   const limpiarArchivo = () => {
+      setArchivoSeleccionado(null);
+      setPayMensualidadForm((prev) => ({ ...prev, soporte: null }));
+   }
 
-    return {
-        tituloModal: "Pagar Mensualidad",
-        payMensualidadForm,
-        loading,
-        pagoInfo,
-        archivoSeleccionado,
-        ver,
-        cargar,
-        closeModal,
-        closeModalFactura,
-        closeModalPago,
-        handleChange,
-        handleChangeFile,
-        handleSubmit,
-        limpiarArchivo
-    };
+   return {
+      tituloModal: "Pagar Mensualidad",
+      payMensualidadForm,
+      loading,
+      pagoInfo,
+      archivoSeleccionado,
+      ver,
+      cargar,
+      closeModal,
+      closeModalFactura,
+      closeModalPago,
+      handleChange,
+      handleChangeFile,
+      handleSubmit,
+      limpiarArchivo
+   };
 }

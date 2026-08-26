@@ -3,14 +3,14 @@ import type { BusquedaUserRepository } from "../../domain/repository/busqueda-us
 
 export class BusquedaUserUseCases {
 
-    private readonly repo: BusquedaUserRepository;
+   private readonly repo: BusquedaUserRepository;
 
-    constructor(repo: BusquedaUserRepository) {
-        this.repo = repo;
-    }
+   constructor(repo: BusquedaUserRepository) {
+      this.repo = repo;
+   }
 
-    get(documento: string): Promise<BusquedaUserResponse> {
-        return this.repo.get(documento);
-    }
+   get(documento: string): Promise<BusquedaUserResponse> {
+      return this.repo.get(documento);
+   }
 
 }

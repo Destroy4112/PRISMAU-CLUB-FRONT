@@ -9,22 +9,22 @@ import useContrato from '../hooks/useContrato';
 
 function ContratosPage() {
 
-    const { titulo, subtitulo, isLoading, contratos, filters, limit, page, total, campos,
-        handleFilterChange, limpiarFiltros, onPageChange, onRowsPerPageChange } = useContrato();
+   const { titulo, subtitulo, isLoading, contratos, filters, limit, page, total, campos,
+      handleFilterChange, limpiarFiltros, onPageChange, onRowsPerPageChange } = useContrato();
 
-    const columns = ContratosColumns();
+   const columns = ContratosColumns();
 
-    return (
-        <>
-            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<FileChartColumn className="w-7 h-7" />} color="green" />
-            <Contenido>
-                <ToolbarFilter entityName={titulo} onSearchChange={handleFilterChange} onClearSearch={limpiarFiltros}
-                    filters={filters} total={total} campos={campos} />
-                <DataTableComponent<Contrato> columns={columns} data={contratos} loading={isLoading}
-                    limit={limit} page={page} total={total} onPageChange={onPageChange} onRowsPerPageChange={onRowsPerPageChange} />
-            </Contenido>
-        </>
-    );
+   return (
+      <>
+         <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<FileChartColumn className="w-7 h-7" />} color="green" />
+         <Contenido>
+            <ToolbarFilter entityName={titulo} onSearchChange={handleFilterChange} onClearSearch={limpiarFiltros}
+               filters={filters} total={total} campos={campos} />
+            <DataTableComponent<Contrato> columns={columns} data={contratos} loading={isLoading}
+               limit={limit} page={page} total={total} onPageChange={onPageChange} onRowsPerPageChange={onRowsPerPageChange} />
+         </Contenido>
+      </>
+   );
 }
 
 export default ContratosPage;

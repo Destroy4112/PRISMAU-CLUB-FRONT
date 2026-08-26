@@ -7,21 +7,21 @@ import { useAdministradorPassword } from "./useAdministradorPassword";
 
 export default function useAdministrador() {
 
-    const modal = useModals<AdminModalKey>();
+   const modal = useModals<AdminModalKey>();
 
-    const list = useAdministradorList();
-    const form = useAdministradorForm(modal);
-    const actions = useAdministradorActions();
-    const password = useAdministradorPassword(modal);
+   const list = useAdministradorList();
+   const form = useAdministradorForm(modal);
+   const actions = useAdministradorActions();
+   const password = useAdministradorPassword(modal);
 
-    return {
-        titulo: "Administradores",
-        subtitulo: "Gestión de usuarios con privilegios administrativos",
-        campos: "nombre completo, documento, correo, usuario",
-        modals: modal.modals,
-        ...list,
-        ...form,
-        ...actions,
-        ...password
-    };
+   return {
+      titulo: "Administradores",
+      subtitulo: "Gestión de usuarios con privilegios administrativos",
+      campos: "nombre completo, documento, correo, usuario",
+      modals: modal.modals,
+      ...list,
+      ...form,
+      ...actions,
+      ...password
+   };
 }

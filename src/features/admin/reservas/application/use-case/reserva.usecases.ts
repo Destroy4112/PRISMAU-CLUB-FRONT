@@ -5,14 +5,14 @@ import type { ReservaRepository } from "../../domain/repository/reserva.reposito
 
 export class ReservaUseCases {
 
-    private readonly repo: ReservaRepository;
+   private readonly repo: ReservaRepository;
 
-    constructor(repo: ReservaRepository) {
-        this.repo = repo;
-    }
+   constructor(repo: ReservaRepository) {
+      this.repo = repo;
+   }
 
-    getAll(params: PageParams & Filter): Promise<PaginatedResponse<Reserva>> {
-        return this.repo.getAll(params);
-    }
+   getAll(params: PageParams & Filter): Promise<PaginatedResponse<Reserva>> {
+      return this.repo.getAll(params);
+   }
 
 }

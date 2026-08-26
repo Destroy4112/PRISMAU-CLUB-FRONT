@@ -5,14 +5,14 @@ import type { EstadoRepository } from "../../domain/repository/estado.repository
 
 export class EstadoUseCases {
 
-    private readonly repo: EstadoRepository;
+   private readonly repo: EstadoRepository;
 
-    constructor(repo: EstadoRepository) {
-        this.repo = repo;
-    }
+   constructor(repo: EstadoRepository) {
+      this.repo = repo;
+   }
 
-    getAll(params: PageParams & FilterWithState): Promise<PaginatedResponse<Estado>> {
-        return this.repo.getAll(params);
-    }
+   getAll(params: PageParams & FilterWithState): Promise<PaginatedResponse<Estado>> {
+      return this.repo.getAll(params);
+   }
 
 }

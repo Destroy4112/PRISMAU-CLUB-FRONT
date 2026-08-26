@@ -5,14 +5,14 @@ import type { InvitacionRepository } from "../../domain/repository/invitacion.re
 
 export class InvitacionUseCases {
 
-    private readonly repo: InvitacionRepository;
+   private readonly repo: InvitacionRepository;
 
-    constructor(repo: InvitacionRepository) {
-        this.repo = repo;
-    }
+   constructor(repo: InvitacionRepository) {
+      this.repo = repo;
+   }
 
-    getAll(params: PageParams & Filter): Promise<PaginatedResponse<Invitacion>> {
-        return this.repo.getAll(params);
-    }
+   getAll(params: PageParams & Filter): Promise<PaginatedResponse<Invitacion>> {
+      return this.repo.getAll(params);
+   }
 
 }

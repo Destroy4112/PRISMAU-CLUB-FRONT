@@ -5,24 +5,24 @@ import type { RespuestaEncuestaModalKey } from '../types/respuesta-encuesta';
 
 export default function useRespuestaEncuestaForm(modalsApi: ModalsApi<RespuestaEncuestaModalKey>) {
 
-    const { toggleModal } = modalsApi;
+   const { toggleModal } = modalsApi;
 
-    const [respuesta, setRespuesta] = useState<RespuestaEncuesta | null>(null);
+   const [respuesta, setRespuesta] = useState<RespuestaEncuesta | null>(null);
 
-    const cargar = (respuesta: RespuestaEncuesta) => {
-        toggleModal('detalle');
-        setRespuesta(respuesta);
-    }
+   const cargar = (respuesta: RespuestaEncuesta) => {
+      toggleModal('detalle');
+      setRespuesta(respuesta);
+   }
 
-    const cerrar = () => {
-        toggleModal('detalle');
-        setRespuesta(null);
-    }
+   const cerrar = () => {
+      toggleModal('detalle');
+      setRespuesta(null);
+   }
 
-    return {
-        tituloModal: 'Respuestas',
-        respuesta,
-        cargar,
-        cerrar,
-    }
+   return {
+      tituloModal: 'Respuestas',
+      respuesta,
+      cargar,
+      cerrar,
+   }
 }

@@ -5,26 +5,26 @@ import type { CreateEventoInput, UpdateEventoInput } from "../contracts/evento.i
 
 export class EventoUseCases {
 
-    private readonly repo: EventoRepository;
+   private readonly repo: EventoRepository;
 
-    constructor(repo: EventoRepository) {
-        this.repo = repo;
-    }
+   constructor(repo: EventoRepository) {
+      this.repo = repo;
+   }
 
-    getAll(): Promise<Evento[]> {
-        return this.repo.getAll();
-    }
+   getAll(): Promise<Evento[]> {
+      return this.repo.getAll();
+   }
 
-    create(payload: CreateEventoInput): Promise<ApiResponseVoid> {
-        return this.repo.create(payload);
-    }
+   create(payload: CreateEventoInput): Promise<ApiResponseVoid> {
+      return this.repo.create(payload);
+   }
 
-    update(payload: UpdateEventoInput): Promise<ApiResponseVoid> {
-        return this.repo.update(payload);
-    }
+   update(payload: UpdateEventoInput): Promise<ApiResponseVoid> {
+      return this.repo.update(payload);
+   }
 
-    delete(id: number): Promise<ApiResponseVoid> {
-        return this.repo.delete(id);
-    }
+   delete(id: number): Promise<ApiResponseVoid> {
+      return this.repo.delete(id);
+   }
 
 }

@@ -6,28 +6,28 @@ import { useAdministradorQuery } from "../queries/useAdministradorQuery";
 
 export function useAdministradorList() {
 
-    const { filters, limit, page, onPageChange, onRowsPerPageChange, handleFilterChange, limpiarFiltros,
-    } = useSearchPaginate<Filter>(INITIAL_FILTERS);
+   const { filters, limit, page, onPageChange, onRowsPerPageChange, handleFilterChange, limpiarFiltros,
+   } = useSearchPaginate<Filter>(INITIAL_FILTERS);
 
-    const debouncedSearch = useDebounce<string>(filters.search, 500);
+   const debouncedSearch = useDebounce<string>(filters.search, 500);
 
-    const queryParams = { page, limit, search: debouncedSearch };
+   const queryParams = { page, limit, search: debouncedSearch };
 
-    const { data, isLoading } = useAdministradorQuery(queryParams);
+   const { data, isLoading } = useAdministradorQuery(queryParams);
 
-    const admins: Administrador[] = data?.data || [];
-    const total = data?.total || 0;
+   const admins: Administrador[] = data?.data || [];
+   const total = data?.total || 0;
 
-    return {
-        admins,
-        total,
-        isLoading,
-        page,
-        limit,
-        filters,
-        onPageChange,
-        onRowsPerPageChange,
-        handleFilterChange,
-        limpiarFiltros,
-    };
+   return {
+      admins,
+      total,
+      isLoading,
+      page,
+      limit,
+      filters,
+      onPageChange,
+      onRowsPerPageChange,
+      handleFilterChange,
+      limpiarFiltros,
+   };
 }

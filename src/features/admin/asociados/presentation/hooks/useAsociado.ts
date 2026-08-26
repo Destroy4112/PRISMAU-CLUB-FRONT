@@ -7,22 +7,22 @@ import { useAsociadoList } from "./useAsociadoList";
 
 function useAsociado() {
 
-    const modalApi = useModals<AsociadoModalKey>();
+   const modalApi = useModals<AsociadoModalKey>();
 
-    const list = useAsociadoList();
-    const form = useAsociadoForm(modalApi);
-    const action = useAsociadoActions(modalApi);
-    const imagen = useAsociadoImagen(modalApi);
+   const list = useAsociadoList();
+   const form = useAsociadoForm(modalApi);
+   const action = useAsociadoActions(modalApi);
+   const imagen = useAsociadoImagen(modalApi);
 
-    return {
-        titulo: "Asociados",
-        subtitulo: "Gestión de miembros asociados del club",
-        modals: modalApi.modals,
-        ...list,
-        ...form,
-        ...action,
-        ...imagen
-    };
+   return {
+      titulo: "Asociados",
+      subtitulo: "Gestión de miembros asociados del club",
+      modals: modalApi.modals,
+      ...list,
+      ...form,
+      ...action,
+      ...imagen
+   };
 }
 
 export default useAsociado;

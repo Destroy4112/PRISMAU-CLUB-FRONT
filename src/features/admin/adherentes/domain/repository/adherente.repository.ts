@@ -4,12 +4,12 @@ import type { AdherenteEstadoInput, AdherenteImagenInput, CreateAdherenteInput, 
 import type { Adherente } from "../model/adherente.model";
 
 export interface AdherenteRepository {
-    getAll(params: PageParams & FilterWithState): Promise<PaginatedResponse<Adherente>>;
-    create(payload: CreateAdherenteInput): Promise<ApiResponseVoid>;
-    updateImagen(payload: AdherenteImagenInput): Promise<ApiResponseVoid>;
-    update(payload: UpdateAdherenteInput): Promise<ApiResponseVoid>;
-    updateEstado(payload: AdherenteEstadoInput): Promise<ApiResponseVoid>;
-    changeToAsociado(id: number): Promise<ApiResponseVoid>;
-    delete(id: number): Promise<ApiResponseVoid>;
-    deleteImagen(id: number): Promise<ApiResponseVoid>;
+   getAll(params: PageParams & FilterWithState): Promise<PaginatedResponse<Adherente>>;
+   create(payload: CreateAdherenteInput): Promise<ApiResponseVoid>;
+   updateImagen(payload: AdherenteImagenInput): Promise<ApiResponseVoid>;
+   update(payload: UpdateAdherenteInput): Promise<ApiResponseVoid>;
+   updateEstado(payload: AdherenteEstadoInput): Promise<ApiResponseVoid>;
+   changeToAsociado(id: number): Promise<ApiResponseVoid>;
+   delete(id: number): Promise<ApiResponseVoid>;
+   deleteImagen(id: number): Promise<ApiResponseVoid>;
 }

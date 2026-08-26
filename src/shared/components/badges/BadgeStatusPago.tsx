@@ -1,13 +1,13 @@
 import { Badge } from "flowbite-react";
 
 interface BadgeStatusProps {
-    status: boolean;
+   status: boolean;
 }
 
 export default function BadgeStatusPago({ status }: BadgeStatusProps) {
-    return (
-        <Badge color={status ? "success" : "failure"}>
-            {status ? "Pagado" : "Pendiente"}
-        </Badge>
-    );
+   return (
+      <Badge color={status ? "success" : "failure"}>
+         {status ? "Pagado" : "Pendiente"}
+      </Badge>
+   );
 }

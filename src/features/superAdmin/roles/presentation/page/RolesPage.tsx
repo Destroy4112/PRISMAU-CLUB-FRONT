@@ -11,27 +11,27 @@ import useMenuRole from "../hooks/useMenuRol";
 
 function RolesPage() {
 
-    const { titulo, subtitulo, isLoading, isCreating, rol, menusRol, modals, tituloModal, menus, menuRolForm,
-        cargarRol, handleChange, handleDelete, handleSubmit, openModal, closeModal } = useMenuRole();
+   const { titulo, subtitulo, isLoading, isCreating, rol, menusRol, modals, tituloModal, menus, menuRolForm,
+      cargarRol, handleChange, handleDelete, handleSubmit, openModal, closeModal } = useMenuRole();
 
-    return (
-        <>
-            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<UserCog className="w-7 h-7" />} color="pink" />
-            <Contenido>
-                <CardsRoles cargarRol={cargarRol} />
-                {rol !== 0 &&
-                    <Caja>
-                        <HeaderAsigMenu toggleModal={openModal} />
-                        <CardMenusRol menus={menusRol} eliminar={handleDelete} loading={isLoading} />
-                    </Caja>
-                }
-                <VentanaModal size={'2xl'} titulo={tituloModal} show={modals.crear} cerrarModal={closeModal}
-                    handleSubmit={handleSubmit} loading={isCreating}><></>
-                    <FormAsignarMenu form={menuRolForm} handleChange={handleChange} menus={menus} />
-                </VentanaModal>
-            </Contenido>
-        </>
-    );
+   return (
+      <>
+         <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<UserCog className="w-7 h-7" />} color="pink" />
+         <Contenido>
+            <CardsRoles cargarRol={cargarRol} />
+            {rol !== 0 &&
+               <Caja>
+                  <HeaderAsigMenu toggleModal={openModal} />
+                  <CardMenusRol menus={menusRol} eliminar={handleDelete} loading={isLoading} />
+               </Caja>
+            }
+            <VentanaModal size={'2xl'} titulo={tituloModal} show={modals.crear} cerrarModal={closeModal}
+               handleSubmit={handleSubmit} loading={isCreating}><></>
+               <FormAsignarMenu form={menuRolForm} handleChange={handleChange} menus={menus} />
+            </VentanaModal>
+         </Contenido>
+      </>
+   );
 }
 
 export default RolesPage;

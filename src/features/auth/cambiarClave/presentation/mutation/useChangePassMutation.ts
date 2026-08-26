@@ -1,10 +1,10 @@
 import { useAppMutation } from "@core/store/react-query/hooks";
 import type { ApiResponseVoid } from "@shared/constants/response/Response.model";
-import { cambiarUseCases } from "../../application/cambiar.container";
-import type { CambiarPayload } from "../../domain/payload/cambiar.payload";
+import { cambiarUseCases } from "../../application/container/cambiar.container";
+import type { CambiarInput } from "../../application/contracts/cambiar.input";
 
 export default function useChangePassMutation() {
-    return useAppMutation<ApiResponseVoid, Error, CambiarPayload>({
-        mutationFn: (payload: CambiarPayload) => cambiarUseCases.changePassword(payload),
-    });
+   return useAppMutation<ApiResponseVoid, Error, CambiarInput>({
+      mutationFn: (payload: CambiarInput) => cambiarUseCases.changePassword(payload),
+   });
 }

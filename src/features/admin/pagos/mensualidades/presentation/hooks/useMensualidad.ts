@@ -7,20 +7,20 @@ import useMensualidadList from './useMensualidadList';
 
 export default function useAdministracion() {
 
-    const socio: Socio = useAppLocation().state?.socio;
+   const socio: Socio = useAppLocation().state?.socio;
 
-    const modalApi = useModals<MensualidadModalKey>();
+   const modalApi = useModals<MensualidadModalKey>();
 
-    const list = useMensualidadList(socio.documento);
-    const form = useMensualidadForm(modalApi);
+   const list = useMensualidadList(socio.documento);
+   const form = useMensualidadForm(modalApi);
 
-    return {
-        titulo: "Mensualidades",
-        subtitulo: "Consulta el estado e historial de las mensualidades del socio",
-        campos: "año...",
-        modals: modalApi.modals,
-        socio,
-        ...list,
-        ...form
-    }
+   return {
+      titulo: "Mensualidades",
+      subtitulo: "Consulta el estado e historial de las mensualidades del socio",
+      campos: "año...",
+      modals: modalApi.modals,
+      socio,
+      ...list,
+      ...form
+   }
 }

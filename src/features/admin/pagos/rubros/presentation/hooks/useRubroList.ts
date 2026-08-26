@@ -6,28 +6,28 @@ import { useRubrosQuery } from "../queries/useRubrosQuery";
 
 export function useRubroList() {
 
-    const { filters, limit, page, onPageChange, onRowsPerPageChange, handleFilterChange, clearFilter,
-    } = useSearchPaginate<Filter>(INITIAL_FILTERS);
+   const { filters, limit, page, onPageChange, onRowsPerPageChange, handleFilterChange, clearFilter,
+   } = useSearchPaginate<Filter>(INITIAL_FILTERS);
 
-    const debouncedSearch = useDebounce<string>(filters.search, 500);
+   const debouncedSearch = useDebounce<string>(filters.search, 500);
 
-    const queryParams = { page, limit, search: debouncedSearch };
+   const queryParams = { page, limit, search: debouncedSearch };
 
-    const { data, isLoading } = useRubrosQuery(queryParams);
+   const { data, isLoading } = useRubrosQuery(queryParams);
 
-    const rubros: Rubro[] = data?.data || [];
-    const total = data?.total || 0;
+   const rubros: Rubro[] = data?.data || [];
+   const total = data?.total || 0;
 
-    return {
-        rubros,
-        total,
-        isLoading,
-        page,
-        limit,
-        filters,
-        onPageChange,
-        onRowsPerPageChange,
-        handleFilterChange,
-        clearFilter,
-    };
+   return {
+      rubros,
+      total,
+      isLoading,
+      page,
+      limit,
+      filters,
+      onPageChange,
+      onRowsPerPageChange,
+      handleFilterChange,
+      clearFilter,
+   };
 }

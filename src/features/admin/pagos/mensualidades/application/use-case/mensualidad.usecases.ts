@@ -7,18 +7,18 @@ import type { PayMensualidadInput } from "../contracts/mensualidad.input";
 
 export class MensualidadUseCases {
 
-    private readonly repo: MensualidadRepository;
+   private readonly repo: MensualidadRepository;
 
-    constructor(repo: MensualidadRepository) {
-        this.repo = repo;
-    }
+   constructor(repo: MensualidadRepository) {
+      this.repo = repo;
+   }
 
-    get(documento: string, params: PageParams & FilterWithState): Promise<PaginatedResponse<Mensualidad, MensualidadStats>> {
-        return this.repo.get(documento, params);
-    }
+   get(documento: string, params: PageParams & FilterWithState): Promise<PaginatedResponse<Mensualidad, MensualidadStats>> {
+      return this.repo.get(documento, params);
+   }
 
-    pay(payload: PayMensualidadInput): Promise<ApiResponse<PagoMensualidadResponse>> {
-        return this.repo.pay(payload);
-    }
+   pay(payload: PayMensualidadInput): Promise<ApiResponse<PagoMensualidadResponse>> {
+      return this.repo.pay(payload);
+   }
 
 }

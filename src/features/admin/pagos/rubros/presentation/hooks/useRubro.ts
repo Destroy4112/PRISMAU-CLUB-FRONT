@@ -6,19 +6,19 @@ import { useRubroList } from "./useRubroList";
 
 export default function useRubro() {
 
-    const modals = useModals<RubroModalKey>();
+   const modals = useModals<RubroModalKey>();
 
-    const list = useRubroList();
-    const form = useRubroForm(modals);
-    const actions = useRubroActions();
+   const list = useRubroList();
+   const form = useRubroForm(modals);
+   const actions = useRubroActions();
 
-    return {
-        titulo: 'Rubros',
-        subtitulo: 'Administración de rubros',
-        modals: modals.modals,
-        campos: 'rubro...',
-        ...list,
-        ...form,
-        ...actions
-    }
+   return {
+      titulo: 'Rubros',
+      subtitulo: 'Administración de rubros',
+      modals: modals.modals,
+      campos: 'rubro...',
+      ...list,
+      ...form,
+      ...actions
+   }
 }

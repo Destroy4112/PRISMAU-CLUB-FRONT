@@ -6,8 +6,8 @@ import type { Espacio } from '../../domain/model/espacio.model'
 import { espacioKeys } from './espacio.keys'
 
 export function useEspacioQuery(params: PageParams & FilterWithState) {
-    return useAppQuery<PaginatedResponse<Espacio>, Error>({
-        queryKey: espacioKeys.list(params),
-        queryFn: () => espacioUseCases.getAll(params),
-    })
+   return useAppQuery<PaginatedResponse<Espacio>, Error>({
+      queryKey: espacioKeys.list(params),
+      queryFn: () => espacioUseCases.getAll(params),
+   })
 }

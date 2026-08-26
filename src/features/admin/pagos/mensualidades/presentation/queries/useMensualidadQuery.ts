@@ -7,8 +7,8 @@ import type { MensualidadStats } from '../../domain/models/mensualidad.response.
 import { mensualidadKeys } from './mensualidad.keys'
 
 export function useMensualidadQuery(documento: string, params: PageParams & FilterWithState) {
-    return useAppQuery<PaginatedResponse<Mensualidad, MensualidadStats>, Error>({
-        queryKey: mensualidadKeys.lists(params),
-        queryFn: () => mensualidadUseCases.get(documento, params),
-    })
+   return useAppQuery<PaginatedResponse<Mensualidad, MensualidadStats>, Error>({
+      queryKey: mensualidadKeys.lists(params),
+      queryFn: () => mensualidadUseCases.get(documento, params),
+   })
 }

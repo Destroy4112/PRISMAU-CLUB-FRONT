@@ -4,11 +4,11 @@ import { menuRolKeys } from './menu-rol.keys';
 
 export function useMenuQuery() {
 
-    const usecase = () => menuUseCases.getAll();
-    type MenusForRole = Awaited<ReturnType<typeof usecase>>;
+   const usecase = () => menuUseCases.getAll();
+   type MenusForRole = Awaited<ReturnType<typeof usecase>>;
 
-    return useAppQuery<MenusForRole, Error>({
-        queryKey: menuRolKeys.menu(),
-        queryFn: () => menuUseCases.getAll(),
-    })
+   return useAppQuery<MenusForRole, Error>({
+      queryKey: menuRolKeys.menu(),
+      queryFn: () => menuUseCases.getAll(),
+   })
 }

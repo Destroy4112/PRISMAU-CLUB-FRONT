@@ -5,6 +5,6 @@ import type { Mensualidad } from "../models/mensualidad.model";
 import type { MensualidadStats, PagoMensualidadResponse } from "../models/mensualidad.response.model";
 
 export interface MensualidadRepository {
-    pay(payload: PayMensualidadInput): Promise<ApiResponse<PagoMensualidadResponse>>;
-    get(documento: string, params: PageParams & FilterWithState): Promise<PaginatedResponse<Mensualidad, MensualidadStats>>;
+   pay(payload: PayMensualidadInput): Promise<ApiResponse<PagoMensualidadResponse>>;
+   get(documento: string, params: PageParams & FilterWithState): Promise<PaginatedResponse<Mensualidad, MensualidadStats>>;
 }

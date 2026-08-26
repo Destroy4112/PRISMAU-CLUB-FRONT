@@ -4,15 +4,15 @@ import { useDeleteEspacioMutation } from "../mutations/useDeleteEspacioMutation"
 
 export function useEspacioActions() {
 
-    const { mutate: eliminarMutation } = useDeleteEspacioMutation();
+   const { mutate: eliminarMutation } = useDeleteEspacioMutation();
 
-    const handleDelete = useCallback(async (id: number): Promise<void> => {
-        if (await alertConfirm("¿Seguro que quiere eliminar este espacio?", "Si, eliminar!")) {
-            eliminarMutation(id);
-        }
-    }, [eliminarMutation]);
+   const handleDelete = useCallback(async (id: number): Promise<void> => {
+      if (await alertConfirm("¿Seguro que quiere eliminar este espacio?", "Si, eliminar!")) {
+         eliminarMutation(id);
+      }
+   }, [eliminarMutation]);
 
-    return {
-        handleDelete,
-    };
+   return {
+      handleDelete,
+   };
 }

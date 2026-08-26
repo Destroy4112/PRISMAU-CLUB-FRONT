@@ -6,18 +6,18 @@ import { useEncuestaList } from './useEncuestaList';
 
 export default function useEncuesta() {
 
-    const modalApi = useModals<EncuestaModalKey>();
+   const modalApi = useModals<EncuestaModalKey>();
 
-    const list = useEncuestaList();
-    const form = useEncuestaForm(modalApi);
-    const actions = useEncuestaActions();
+   const list = useEncuestaList();
+   const form = useEncuestaForm(modalApi);
+   const actions = useEncuestaActions();
 
-    return {
-        titulo: "Encuestas",
-        subtitulo: "Listado de encuestas disponibles",
-        modal: modalApi.modals.crearEditar,
-        ...list,
-        ...form,
-        ...actions,
-    }
+   return {
+      titulo: "Encuestas",
+      subtitulo: "Listado de encuestas disponibles",
+      modal: modalApi.modals.crearEditar,
+      ...list,
+      ...form,
+      ...actions,
+   }
 }

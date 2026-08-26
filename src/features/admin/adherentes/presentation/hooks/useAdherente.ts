@@ -8,24 +8,24 @@ import { useAdherenteList } from "./useAdherenteList";
 
 function useAdherente() {
 
-    const modalApi = useModals<AdherenteModalKey>();
+   const modalApi = useModals<AdherenteModalKey>();
 
-    const list = useAdherenteList();
-    const form = useAdherenteForm(modalApi);
-    const action = useAdherenteActions(modalApi);
-    const imagen = useAdherenteImagen(modalApi);
-    const asociado = useAdherenteAsociadoList(); 
+   const list = useAdherenteList();
+   const form = useAdherenteForm(modalApi);
+   const action = useAdherenteActions(modalApi);
+   const imagen = useAdherenteImagen(modalApi);
+   const asociado = useAdherenteAsociadoList();
 
-    return {
-        titulo: "Adherentes",
-        subtitulo: "Gestión de miembros adherentes del club",
-        modals: modalApi.modals,
-        ...list,
-        ...form,
-        ...action,
-        ...imagen,
-        ...asociado
-    };
+   return {
+      titulo: "Adherentes",
+      subtitulo: "Gestión de miembros adherentes del club",
+      modals: modalApi.modals,
+      ...list,
+      ...form,
+      ...action,
+      ...imagen,
+      ...asociado
+   };
 }
 
 export default useAdherente;

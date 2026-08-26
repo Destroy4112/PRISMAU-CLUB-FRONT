@@ -1,17 +1,17 @@
+import type { SessionResponse } from "@features/auth/shared/domain/models/session.model";
+import type { LoginInput } from "../contracts/login.input";
 import type { LoginRepository } from "../../domain/repository/login.repository";
-import type { LoginPayload } from "../../domain/payload/login.payload";
-import type { SessionResponse } from "@features/auth/domain/models/session.model";
 
 export class LoginUseCases {
 
-    private readonly repo: LoginRepository;
+   private readonly repo: LoginRepository;
 
-    constructor(repo: LoginRepository) {
-        this.repo = repo;
-    }
+   constructor(repo: LoginRepository) {
+      this.repo = repo;
+   }
 
-    iniciarSesion(payload: LoginPayload): Promise<SessionResponse> {
-         return this.repo.iniciarSesion(payload);
-    }
+   iniciarSesion(payload: LoginInput): Promise<SessionResponse> {
+      return this.repo.iniciarSesion(payload);
+   }
 
 }

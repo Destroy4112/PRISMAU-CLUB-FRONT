@@ -10,40 +10,40 @@ import { ADMINROUTES, COMMONPRIVATEROUTES, ERRORROUTES, LOGINROUTES, PUBLICROUTE
 const Loading = () => <LoadingComponent />
 
 export default function AppRouter() {
-    return (
-        <BrowserRouter>
-            <Suspense fallback={<Loading />}>
-                <Routes>
-                    <Route element={<SesionGuard />}>
-                        {LOGINROUTES.map(r => (
-                            <Route key={r.path} path={r.path} element={r.element} />
-                        ))}
-                    </Route>
-                    {PUBLICROUTES.map(r => (
+   return (
+      <BrowserRouter>
+         <Suspense fallback={<Loading />}>
+            <Routes>
+               <Route element={<SesionGuard />}>
+                  {LOGINROUTES.map(r => (
+                     <Route key={r.path} path={r.path} element={r.element} />
+                  ))}
+               </Route>
+               {PUBLICROUTES.map(r => (
+                  <Route key={r.path} path={r.path} element={r.element} />
+               ))}
+               <Route element={<AuthGuard />}>
+                  <Route element={<Plantilla />}>
+                     {COMMONPRIVATEROUTES.map(r => (
                         <Route key={r.path} path={r.path} element={r.element} />
-                    ))}
-                    <Route element={<AuthGuard />}>
-                        <Route element={<Plantilla />}>
-                            {COMMONPRIVATEROUTES.map(r => (
-                                <Route key={r.path} path={r.path} element={r.element} />
-                            ))}
-                            <Route element={<SuperadminGuard />}>
-                                {SUPERADMINROUTES.map(r => (
-                                    <Route key={r.path} path={r.path} element={r.element} />
-                                ))}
-                            </Route>
-                            <Route element={<AdminGuard />}>
-                                {ADMINROUTES.map(r => (
-                                    <Route key={r.path} path={r.path} element={r.element} />
-                                ))}
-                            </Route>
-                        </Route>
-                        {ERRORROUTES.map(r => (
-                            <Route key={r.path} path={r.path} element={r.element} />
+                     ))}
+                     <Route element={<SuperadminGuard />}>
+                        {SUPERADMINROUTES.map(r => (
+                           <Route key={r.path} path={r.path} element={r.element} />
                         ))}
-                    </Route>
-                </Routes>
-            </Suspense>
-        </BrowserRouter>
-    )
+                     </Route>
+                     <Route element={<AdminGuard />}>
+                        {ADMINROUTES.map(r => (
+                           <Route key={r.path} path={r.path} element={r.element} />
+                        ))}
+                     </Route>
+                  </Route>
+                  {ERRORROUTES.map(r => (
+                     <Route key={r.path} path={r.path} element={r.element} />
+                  ))}
+               </Route>
+            </Routes>
+         </Suspense>
+      </BrowserRouter>
+   )
 }

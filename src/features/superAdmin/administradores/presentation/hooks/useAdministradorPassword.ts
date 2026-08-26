@@ -9,53 +9,53 @@ import { ADMIN_PASSWORD_FORM_INITIAL, type AdministradorPasswordForm, type Admin
 
 export function useAdministradorPassword(modalApi: ModalsApi<AdminModalKey>) {
 
-    const queryClient = useAppQueryClient();
+   const queryClient = useAppQueryClient();
 
-    const { toggleModal } = modalApi;
+   const { toggleModal } = modalApi;
 
-    const [passwordForm, setPasswordForm] = useState<AdministradorPasswordForm>(ADMIN_PASSWORD_FORM_INITIAL);
+   const [passwordForm, setPasswordForm] = useState<AdministradorPasswordForm>(ADMIN_PASSWORD_FORM_INITIAL);
 
-    const reset = (): void => setPasswordForm(ADMIN_PASSWORD_FORM_INITIAL);
+   const reset = (): void => setPasswordForm(ADMIN_PASSWORD_FORM_INITIAL);
 
-    const openModalPass = (id: number): void => {
-        setPasswordForm({ id, password: "" });
-        toggleModal("clave");
-    };
+   const openModalPass = (id: number): void => {
+      setPasswordForm({ id, password: "" });
+      toggleModal("clave");
+   };
 
-    const closeModalPass = (): void => {
-        toggleModal("clave");
-        reset();
-    };
+   const closeModalPass = (): void => {
+      toggleModal("clave");
+      reset();
+   };
 
-    const { mutate: changePasswordMutation, isPending: isChanging } = useUpdatePasswordMutation({
-        onSuccess: async (res) => {
-            if (res.status) {
-                await queryClient.invalidateQueries({ queryKey: administradorKeys.lists() });
-                closeModalPass();
-                alertSucces(res.message);
-            } else {
-                res.errors.forEach((error: string) => alertWarning(error));
-            }
-        },
-        onError: (error) => { alertError(error.message || "No fue posible actualizar la clave"); },
-    });
+   const { mutate: changePasswordMutation, isPending: isChanging } = useUpdatePasswordMutation({
+      onSuccess: async (res) => {
+         if (res.status) {
+            await queryClient.invalidateQueries({ queryKey: administradorKeys.lists() });
+            closeModalPass();
+            alertSucces(res.message);
+         } else {
+            res.errors?.forEach((error: string) => alertWarning(error));
+         }
+      },
+      onError: (error) => { alertError(error.message || "No fue posible actualizar la clave"); },
+   });
 
-    const handleChangePassword = ({ target }: ChangeEvent<HTMLInputElement>): void => {
-        setPasswordForm((prev) => ({ ...prev, password: target.value }));
-    };
+   const handleChangePassword = ({ target }: ChangeEvent<HTMLInputElement>): void => {
+      setPasswordForm((prev) => ({ ...prev, password: target.value }));
+   };
 
-    const handleUpdatePass = (): void => {
-        const payload = administradorPasswordFormToPayload(passwordForm);
-        changePasswordMutation(payload);
-    };
+   const handleUpdatePass = (): void => {
+      const payload = administradorPasswordFormToPayload(passwordForm);
+      changePasswordMutation(payload);
+   };
 
-    return {
-        tituloModalClave: "Cambiar clave",
-        passwordForm,
-        isChanging,
-        openModalPass,
-        closeModalPass,
-        handleChangePassword,
-        handleUpdatePass,
-    };
+   return {
+      tituloModalClave: "Cambiar clave",
+      passwordForm,
+      isChanging,
+      openModalPass,
+      closeModalPass,
+      handleChangePassword,
+      handleUpdatePass,
+   };
 }

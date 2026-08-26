@@ -4,8 +4,8 @@ import type { Evento } from '../../domain/model/evento.model'
 import { eventoKeys } from './evento.keys'
 
 export function useEventoQuery() {
-    return useAppQuery<Evento[], Error>({
-        queryKey: eventoKeys.all,
-        queryFn: () => eventoUseCases.getAll(),
-    })
+   return useAppQuery<Evento[], Error>({
+      queryKey: eventoKeys.all,
+      queryFn: () => eventoUseCases.getAll(),
+   })
 }

@@ -1,4 +1,4 @@
 export type VerificarDto = {
-    Documento: string;
-    code: string;
+   Documento: string;
+   code: string;
 };

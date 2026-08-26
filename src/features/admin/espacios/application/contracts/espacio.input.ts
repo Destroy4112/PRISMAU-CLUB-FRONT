@@ -1,13 +1,13 @@
 type Espacio = {
-    descripcion: string;
-    estado: number;
+   descripcion: string;
+   estado: number;
 }
 
 export type CreateEspacioInput = Espacio & {
-    imagen: File;
+   imagen: File;
 };
 
 export type UpdateEspacioInput = Espacio & {
-    id: number;
-    imagen: File;
+   id: number;
+   imagen: File;
 }

@@ -8,63 +8,63 @@ import { buildOptionContext, INITIAL_FORM_PREGUNTA, type OptionForm, type Option
 
 export function useOptionForm(id: number, modalsApi: ModalsApi<OptionModalKey>) {
 
-    const { toggleModal } = modalsApi;
+   const { toggleModal } = modalsApi;
 
-    const [optionForm, setOptionForm] = useState<OptionForm>(INITIAL_FORM_PREGUNTA);
-    const [editId, setEditId] = useState<number | null>(null);
+   const [optionForm, setOptionForm] = useState<OptionForm>(INITIAL_FORM_PREGUNTA);
+   const [editId, setEditId] = useState<number | null>(null);
 
-    const isEditing = editId != null;
+   const isEditing = editId != null;
 
-    const context = buildOptionContext(id);
+   const context = buildOptionContext(id);
 
-    const resetForm = (): void => {
-        setOptionForm(INITIAL_FORM_PREGUNTA);
-        setEditId(null);
-    };
+   const resetForm = (): void => {
+      setOptionForm(INITIAL_FORM_PREGUNTA);
+      setEditId(null);
+   };
 
-    const closeModal = (): void => {
-        toggleModal("crearEditar");
-        resetForm();
-    };
+   const closeModal = (): void => {
+      toggleModal("crearEditar");
+      resetForm();
+   };
 
-    const openModal = (): void => {
-        toggleModal("crearEditar");
-    };
+   const openModal = (): void => {
+      toggleModal("crearEditar");
+   };
 
-    const cargarOption = (option: Option): void => {
-        setEditId(option.id);
-        setOptionForm(optionDomainToForm(option));
-        toggleModal("crearEditar");
-    };
+   const cargarOption = (option: Option): void => {
+      setEditId(option.id);
+      setOptionForm(optionDomainToForm(option));
+      toggleModal("crearEditar");
+   };
 
-    const { isPending: isCreating, mutate: createOptionMutation } = useCreateOptionMutation({
-        onOk: closeModal,
-    });
+   const { isPending: isCreating, mutate: createOptionMutation } = useCreateOptionMutation({
+      onOk: closeModal,
+   });
 
-    const { isPending: isUpdating, mutate: updateOptionMutation } = useUpdateOptionMutation({
-        onOk: closeModal,
-    });
+   const { isPending: isUpdating, mutate: updateOptionMutation } = useUpdateOptionMutation({
+      onOk: closeModal,
+   });
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
-        setOptionForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    };
+   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+      setOptionForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+   };
 
-    const submit = (): void => {
-        if (isEditing) {
-            updateOptionMutation(optionFormToPayload(optionForm, context, editId));
-            return;
-        }
-        createOptionMutation(optionFormToPayload(optionForm, context));
-    };
+   const submit = (): void => {
+      if (isEditing) {
+         updateOptionMutation(optionFormToPayload(optionForm, context, editId));
+         return;
+      }
+      createOptionMutation(optionFormToPayload(optionForm, context));
+   };
 
-    return {
-        optionForm,
-        tituloModal: isEditing ? "Actualizar Option" : "Crear Option",
-        loading: isCreating || isUpdating,
-        openModal,
-        closeModal,
-        cargarOption,
-        handleChange,
-        submit
-    };
+   return {
+      optionForm,
+      tituloModal: isEditing ? "Actualizar Option" : "Crear Option",
+      loading: isCreating || isUpdating,
+      openModal,
+      closeModal,
+      cargarOption,
+      handleChange,
+      submit
+   };
 }

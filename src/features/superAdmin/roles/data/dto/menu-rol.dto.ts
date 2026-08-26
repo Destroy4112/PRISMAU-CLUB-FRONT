@@ -1,4 +1,4 @@
 export interface MenuRolCreateDTO {
-    menu_id: number | null;
-    role_id: number;
+   menu_id: number | null;
+   role_id: number;
 } 

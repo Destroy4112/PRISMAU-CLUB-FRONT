@@ -4,6 +4,6 @@ import type { SolicitudRespuestaInput } from "../../application/contracts/solici
 import type { Solicitud } from "../models/solicitud.model";
 
 export interface SolicitudRepository {
-    getAll(params: PageParams & FilterWithState): Promise<PaginatedResponse<Solicitud>>;
-    reply(payload: SolicitudRespuestaInput): Promise<ApiResponseVoid>;
+   getAll(params: PageParams & FilterWithState): Promise<PaginatedResponse<Solicitud>>;
+   reply(payload: SolicitudRespuestaInput): Promise<ApiResponseVoid>;
 }

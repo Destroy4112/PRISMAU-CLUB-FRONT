@@ -1,3 +1,3 @@
 export const finanzaKeys = {
-    all: ["finanza"] as const,
+   all: ["finanza"] as const,
 };

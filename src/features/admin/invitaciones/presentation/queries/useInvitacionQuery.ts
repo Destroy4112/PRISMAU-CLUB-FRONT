@@ -6,8 +6,8 @@ import type { Invitacion } from '../../domain/models/invitacion.model'
 import { invitacionKeys } from './invitacion.keys'
 
 export function useInvitacionQuery(params: PageParams & Filter) {
-    return useAppQuery<PaginatedResponse<Invitacion>, Error>({
-        queryKey: invitacionKeys.lists(params),
-        queryFn: () => invitacionUseCases.getAll(params),
-    })
+   return useAppQuery<PaginatedResponse<Invitacion>, Error>({
+      queryKey: invitacionKeys.lists(params),
+      queryFn: () => invitacionUseCases.getAll(params),
+   })
 }

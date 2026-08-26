@@ -1,3 +1,3 @@
 export const encuestaKeys = {
-    all: () => ["encuesta"] as const,
+   all: () => ["encuesta"] as const,
 }; 

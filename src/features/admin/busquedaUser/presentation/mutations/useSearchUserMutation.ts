@@ -3,8 +3,8 @@ import { busquedaUserUseCases } from "../../application/container/busqueda.conta
 import type { BusquedaUserResponse } from "../../domain/model/busqueda-user.model";
 
 export const useSearchUserMutation = () => {
-    return useAppMutation<BusquedaUserResponse, Error, string>({
-        mutationKey: ["searchUser"],
-        mutationFn: (documento: string) => busquedaUserUseCases.get(documento),
-    });
+   return useAppMutation<BusquedaUserResponse, Error, string>({
+      mutationKey: ["searchUser"],
+      mutationFn: (documento: string) => busquedaUserUseCases.get(documento),
+   });
 };

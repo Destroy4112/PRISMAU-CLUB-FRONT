@@ -5,29 +5,29 @@ import { useAdministracionSociosQuery } from "../queries/useAdministracionSocios
 
 export default function useAdministracionSocio() {
 
-    const { filters, limit, page, onPageChange, onRowsPerPageChange, handleFilterChange, setFilter, clearFilter,
-    } = useSearchPaginate<FilterWithState>(INITIAL_FILTERS_WITH_STATE);
+   const { filters, limit, page, onPageChange, onRowsPerPageChange, handleFilterChange, setFilter, clearFilter,
+   } = useSearchPaginate<FilterWithState>(INITIAL_FILTERS_WITH_STATE);
 
-    const debounce = useDebounce<string>(filters.search, 500);
+   const debounce = useDebounce<string>(filters.search, 500);
 
-    const queryParams = { page, limit, search: debounce, state: filters.state };
+   const queryParams = { page, limit, search: debounce, state: filters.state };
 
-    const { data, isLoading } = useAdministracionSociosQuery(queryParams);
+   const { data, isLoading } = useAdministracionSociosQuery(queryParams);
 
-    const socios = data?.data || [];
-    const total = data?.total || 0;
+   const socios = data?.data || [];
+   const total = data?.total || 0;
 
-    return {
-        isLoading,
-        socios,
-        limit,
-        page,
-        total,
-        filters,
-        handleFilterChange,
-        setFilter,
-        clearFilter,
-        onPageChange,
-        onRowsPerPageChange
-    };
+   return {
+      isLoading,
+      socios,
+      limit,
+      page,
+      total,
+      filters,
+      handleFilterChange,
+      setFilter,
+      clearFilter,
+      onPageChange,
+      onRowsPerPageChange
+   };
 }

@@ -12,29 +12,29 @@ import useFamiliar from "../hooks/useFamiliar";
 
 export default function FamiliaresAdherentePage() {
 
-    const adherente: SocioDetail = useAppLocation().state?.adherente;
+   const adherente: SocioDetail = useAppLocation().state?.adherente;
 
-    const { titulo, subtitulo, familiares, isLoading, loading, familiarForm, touched, modals, tituloModal, tituloModalImagen,
-        isUpdatingImagen, familiarImagenForm, openModal, closeModal, cargar, handleChange, submit, cargarImagen, handleChangeImagen,
-        handleUpdateImagen, closeModalImagen, handleDelete, handleDeleteImagen, handleResetPassword } = useFamiliar(adherente, 'Adherente');
+   const { titulo, subtitulo, familiares, isLoading, loading, familiarForm, touched, modals, tituloModal, tituloModalImagen,
+      isUpdatingImagen, familiarImagenForm, openModal, closeModal, cargar, handleChange, submit, cargarImagen, handleChangeImagen,
+      handleUpdateImagen, closeModalImagen, handleDelete, handleDeleteImagen, handleResetPassword } = useFamiliar(adherente, 'Adherente');
 
-    return (
-        <>
-            <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<Users className="w-7 h-7" />} color="purple" />
-            <Contenido>
-                <MenuSencillo toggleModal={openModal} noBuscar />
-                <CardFamiliares familiares={familiares} loading={isLoading} cargar={cargar} handleDelete={handleDelete}
-                    change={cargarImagen} reset={handleResetPassword} />
-                <VentanaModal size={'full'} titulo={tituloModal} show={modals.crearEditar} cerrarModal={closeModal}
-                    handleSubmit={submit} loading={loading}>
-                    <FormFamiliar form={familiarForm} touched={touched} handleChange={handleChange} />
-                </VentanaModal>
-                <VentanaModal size={'4xl'} titulo={tituloModalImagen} show={modals.imagen} cerrarModal={closeModalImagen}
-                    handleSubmit={handleUpdateImagen} loading={isUpdatingImagen}>
-                    <FormImagen label="Cambiar imagen" name="imagen" handleChange={handleChangeImagen}
-                        value={familiarImagenForm.imagenActualUrl} deleteImagen={handleDeleteImagen} />
-                </VentanaModal>
-            </Contenido>
-        </>
-    );
+   return (
+      <>
+         <TituloPage titulo={titulo} subtitulo={subtitulo} icono={<Users className="w-7 h-7" />} color="purple" />
+         <Contenido>
+            <MenuSencillo toggleModal={openModal} noBuscar />
+            <CardFamiliares familiares={familiares} loading={isLoading} cargar={cargar} handleDelete={handleDelete}
+               change={cargarImagen} reset={handleResetPassword} />
+            <VentanaModal size={'full'} titulo={tituloModal} show={modals.crearEditar} cerrarModal={closeModal}
+               handleSubmit={submit} loading={loading}>
+               <FormFamiliar form={familiarForm} touched={touched} handleChange={handleChange} />
+            </VentanaModal>
+            <VentanaModal size={'4xl'} titulo={tituloModalImagen} show={modals.imagen} cerrarModal={closeModalImagen}
+               handleSubmit={handleUpdateImagen} loading={isUpdatingImagen}>
+               <FormImagen label="Cambiar imagen" name="imagen" handleChange={handleChangeImagen}
+                  value={familiarImagenForm.imagenActualUrl} deleteImagen={handleDeleteImagen} />
+            </VentanaModal>
+         </Contenido>
+      </>
+   );
 }

@@ -6,18 +6,18 @@ import type { UpdateSocioValueInput } from "../contracts/socio.input";
 
 export class AdministracionUseCases {
 
-    private readonly repo: AdministracionRepository;
+   private readonly repo: AdministracionRepository;
 
-    constructor(repo: AdministracionRepository) {
-        this.repo = repo;
-    }
+   constructor(repo: AdministracionRepository) {
+      this.repo = repo;
+   }
 
-    getSocios(params: PageParams & FilterWithState): Promise<PaginatedResponse<Socio>> {
-        return this.repo.getSocios(params);
-    }
+   getSocios(params: PageParams & FilterWithState): Promise<PaginatedResponse<Socio>> {
+      return this.repo.getSocios(params);
+   }
 
-    updateSocioValue(socio: UpdateSocioValueInput): Promise<ApiResponseVoid> {
-        return this.repo.updateSocioValue(socio);
-    }
+   updateSocioValue(socio: UpdateSocioValueInput): Promise<ApiResponseVoid> {
+      return this.repo.updateSocioValue(socio);
+   }
 
 }
